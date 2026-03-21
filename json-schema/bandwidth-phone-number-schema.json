@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/bandwidth/phone-number.json",
+  "title": "Bandwidth Phone Number",
+  "description": "Represents a phone number managed through the Bandwidth Phone Numbers API, including its assignment, location metadata, and configured features.",
+  "type": "object",
+  "properties": {
+    "fullNumber": {
+      "type": "string",
+      "pattern": "^\\+?1?[2-9]\\d{9}$",
+      "description": "The full phone number, optionally in E.164 format"
+    },
+    "city": {
+      "type": "string",
+      "description": "The city associated with the phone number"
+    },
+    "state": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "The two-letter state code associated with the phone number"
+    },
+    "lata": {
+      "type": "string",
+      "description": "The Local Access and Transport Area (LATA) code"
+    },
+    "rateCenter": {
+      "type": "string",
+      "description": "The rate center the phone number belongs to"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Active", "Released", "PortOut"],
+      "description": "The current status of the phone number"
+    },
+    "siteId": {
+      "type": "string",
+      "description": "The site (sub-account) the number is assigned to"
+    },
+    "sipPeerId": {
+      "type": "string",
+      "description": "The SIP peer (location) the number is assigned to"
+    },
+    "features": {
+      "$ref": "#/$defs/NumberFeatures"
+    }
+  },
+  "$defs": {
+    "NumberFeatures": {
+      "type": "object",
+      "description": "Configured features for a phone number",
+      "properties": {
+        "callingNameDisplay": {
+          "type": "object",
+          "description": "CNAM (Caller Name) display configuration",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Whether CNAM display is enabled"
+            },
+            "callingName": {
+              "type": "string",
+              "maxLength": 15,
+              "description": "The caller name to display (max 15 characters)"
+            }
+          }
+        },
+        "directoryListing": {
+          "type": "object",
+          "description": "Directory listing configuration",
+          "properties": {
+            "listed": {
+              "type": "boolean",
+              "description": "Whether the number is listed"
+            },
+            "listingType": {
+              "type": "string",
+              "enum": ["LISTED", "NON_LISTED", "NON_PUBLISHED"],
+              "description": "The type of directory listing"
+            },
+            "listingName": {
+              "type": "string",
+              "description": "The name for the directory listing"
+            }
+          }
+        }
+      }
+    },
+    "Site": {
+      "type": "object",
+      "description": "A site (sub-account) within a Bandwidth account",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique site identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "The site name"
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the site"
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        }
+      }
+    },
+    "SipPeer": {
+      "type": "object",
+      "description": "A SIP peer (location) within a site",
+      "properties": {
+        "peerId": {
+          "type": "string",
+          "description": "The unique SIP peer identifier"
+        },
+        "peerName": {
+          "type": "string",
+          "description": "The SIP peer name"
+        },
+        "isDefaultPeer": {
+          "type": "boolean",
+          "description": "Whether this is the default peer for the site"
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "description": "A phone number order",
+      "required": ["name"],
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "description": "The unique order identifier"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "The order name (max 50 characters)"
+        },
+        "orderStatus": {
+          "type": "string",
+          "enum": ["RECEIVED", "PROCESSING", "COMPLETE", "PARTIAL", "FAILED"],
+          "description": "The current order status"
+        },
+        "orderCreateDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the order was created"
+        },
+        "siteId": {
+          "type": "string",
+          "description": "The target site for ordered numbers"
+        },
+        "peerId": {
+          "type": "string",
+          "description": "The target SIP peer for ordered numbers"
+        }
+      }
+    },
+    "PortInRequest": {
+      "type": "object",
+      "description": "A phone number port-in request",
+      "properties": {
+        "portInId": {
+          "type": "string",
+          "description": "The unique port-in request identifier"
+        },
+        "status": {
+          "type": "string",
+          "description": "The current port-in status"
+        },
+        "billingTelephoneNumber": {
+          "type": "string",
+          "description": "The billing telephone number for the porting account"
+        },
+        "losingCarrierName": {
+          "type": "string",
+          "description": "The name of the losing carrier"
+        },
+        "requestedFocDate": {
+          "type": "string",
+          "format": "date",
+          "description": "The requested Firm Order Commitment date"
+        },
+        "phoneNumbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The phone numbers being ported"
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "description": "A physical address",
+      "properties": {
+        "houseNumber": {
+          "type": "string",
+          "description": "The house or building number"
+        },
+        "streetName": {
+          "type": "string",
+          "description": "The street name"
+        },
+        "city": {
+          "type": "string",
+          "description": "The city"
+        },
+        "stateCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "The two-letter state code"
+        },
+        "zip": {
+          "type": "string",
+          "pattern": "^\\d{5}$",
+          "description": "The five-digit ZIP code"
+        },
+        "country": {
+          "type": "string",
+          "description": "The country code"
+        }
+      }
+    }
+  }
+}

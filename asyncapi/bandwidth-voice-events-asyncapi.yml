@@ -1,0 +1,507 @@
+asyncapi: 2.6.0
+info:
+  title: Bandwidth Voice Events
+  description: >-
+    Bandwidth Voice API sends webhooks (BXML callbacks) to your application
+    for real-time call event notifications. These webhooks inform your
+    application of call state changes and request BXML instructions to
+    control call flow. Your application must respond with HTTP 200 and
+    BXML verbs to direct the call, or HTTP 200 with an empty body to
+    acknowledge the event.
+  version: '2.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+servers:
+  production:
+    url: '{callbackUrl}'
+    protocol: https
+    description: >-
+      Your application's webhook endpoint. The URL is configured per-call
+      via the answerUrl, disconnectUrl, and other callback URL parameters
+      when creating or updating calls.
+    variables:
+      callbackUrl:
+        description: The URL configured for receiving voice webhooks
+    security:
+      - basicAuth: []
+channels:
+  /voice/answer:
+    description: >-
+      Sent when an outbound call is answered or when an inbound call is
+      received. This is the primary webhook for initiating call flow
+      control via BXML response.
+    publish:
+      operationId: onAnswerCallback
+      summary: Call answered callback
+      message:
+        $ref: '#/components/messages/AnswerCallback'
+  /voice/initiate:
+    description: >-
+      Sent when an inbound call is received, before the answer callback.
+      Allows your application to perform pre-answer logic such as call
+      screening or routing decisions.
+    publish:
+      operationId: onInitiateCallback
+      summary: Call initiate callback
+      message:
+        $ref: '#/components/messages/InitiateCallback'
+  /voice/disconnect:
+    description: >-
+      Sent when a call is disconnected for any reason. Provides the
+      disconnect cause and final call state.
+    publish:
+      operationId: onDisconnectCallback
+      summary: Call disconnect callback
+      message:
+        $ref: '#/components/messages/DisconnectCallback'
+  /voice/transferAnswer:
+    description: >-
+      Sent when a transferred call is answered by the transfer target.
+    publish:
+      operationId: onTransferAnswerCallback
+      summary: Transfer answered callback
+      message:
+        $ref: '#/components/messages/TransferAnswerCallback'
+  /voice/transferDisconnect:
+    description: >-
+      Sent when a transferred call is disconnected.
+    publish:
+      operationId: onTransferDisconnectCallback
+      summary: Transfer disconnect callback
+      message:
+        $ref: '#/components/messages/TransferDisconnectCallback'
+  /voice/redirect:
+    description: >-
+      Sent when a call is redirected to a new BXML URL via the update
+      call API endpoint.
+    publish:
+      operationId: onRedirectCallback
+      summary: Call redirect callback
+      message:
+        $ref: '#/components/messages/RedirectCallback'
+  /voice/recordingComplete:
+    description: >-
+      Sent when a call recording has been completed and the media file
+      is available for download.
+    publish:
+      operationId: onRecordingCompleteCallback
+      summary: Recording complete callback
+      message:
+        $ref: '#/components/messages/RecordingCompleteCallback'
+  /voice/transcriptionAvailable:
+    description: >-
+      Sent when a recording transcription has been completed and is
+      available for retrieval.
+    publish:
+      operationId: onTranscriptionAvailableCallback
+      summary: Transcription available callback
+      message:
+        $ref: '#/components/messages/TranscriptionAvailableCallback'
+  /voice/gather:
+    description: >-
+      Sent when a DTMF gather operation completes, either because the
+      user pressed the terminating digit or the gather timed out.
+    publish:
+      operationId: onGatherCallback
+      summary: DTMF gather callback
+      message:
+        $ref: '#/components/messages/GatherCallback'
+  /voice/conferenceCreated:
+    description: >-
+      Sent when a new conference is created.
+    publish:
+      operationId: onConferenceCreatedCallback
+      summary: Conference created callback
+      message:
+        $ref: '#/components/messages/ConferenceCreatedCallback'
+  /voice/conferenceMemberJoin:
+    description: >-
+      Sent when a new member joins a conference.
+    publish:
+      operationId: onConferenceMemberJoinCallback
+      summary: Conference member join callback
+      message:
+        $ref: '#/components/messages/ConferenceMemberJoinCallback'
+  /voice/conferenceMemberExit:
+    description: >-
+      Sent when a member leaves a conference.
+    publish:
+      operationId: onConferenceMemberExitCallback
+      summary: Conference member exit callback
+      message:
+        $ref: '#/components/messages/ConferenceMemberExitCallback'
+  /voice/conferenceCompleted:
+    description: >-
+      Sent when a conference ends (all members have left or it was
+      explicitly completed).
+    publish:
+      operationId: onConferenceCompletedCallback
+      summary: Conference completed callback
+      message:
+        $ref: '#/components/messages/ConferenceCompletedCallback'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Optional HTTP Basic Authentication for webhook endpoints.
+        Configure credentials in your Bandwidth application settings.
+  messages:
+    AnswerCallback:
+      name: AnswerCallback
+      title: Answer Callback
+      summary: >-
+        Sent when an outbound call is answered or an inbound call is received
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AnswerEvent'
+    InitiateCallback:
+      name: InitiateCallback
+      title: Initiate Callback
+      summary: >-
+        Sent when an inbound call is received before the answer callback
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/InitiateEvent'
+    DisconnectCallback:
+      name: DisconnectCallback
+      title: Disconnect Callback
+      summary: Sent when a call is disconnected
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/DisconnectEvent'
+    TransferAnswerCallback:
+      name: TransferAnswerCallback
+      title: Transfer Answer Callback
+      summary: Sent when a transferred call is answered
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/TransferAnswerEvent'
+    TransferDisconnectCallback:
+      name: TransferDisconnectCallback
+      title: Transfer Disconnect Callback
+      summary: Sent when a transferred call is disconnected
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/TransferDisconnectEvent'
+    RedirectCallback:
+      name: RedirectCallback
+      title: Redirect Callback
+      summary: Sent when a call is redirected
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/RedirectEvent'
+    RecordingCompleteCallback:
+      name: RecordingCompleteCallback
+      title: Recording Complete Callback
+      summary: Sent when a call recording is completed
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/RecordingCompleteEvent'
+    TranscriptionAvailableCallback:
+      name: TranscriptionAvailableCallback
+      title: Transcription Available Callback
+      summary: Sent when a recording transcription is available
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/TranscriptionAvailableEvent'
+    GatherCallback:
+      name: GatherCallback
+      title: Gather Callback
+      summary: Sent when a DTMF gather operation completes
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/GatherEvent'
+    ConferenceCreatedCallback:
+      name: ConferenceCreatedCallback
+      title: Conference Created Callback
+      summary: Sent when a conference is created
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ConferenceCreatedEvent'
+    ConferenceMemberJoinCallback:
+      name: ConferenceMemberJoinCallback
+      title: Conference Member Join Callback
+      summary: Sent when a member joins a conference
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ConferenceMemberJoinEvent'
+    ConferenceMemberExitCallback:
+      name: ConferenceMemberExitCallback
+      title: Conference Member Exit Callback
+      summary: Sent when a member leaves a conference
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ConferenceMemberExitEvent'
+    ConferenceCompletedCallback:
+      name: ConferenceCompletedCallback
+      title: Conference Completed Callback
+      summary: Sent when a conference ends
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ConferenceCompletedEvent'
+  schemas:
+    BaseCallEvent:
+      type: object
+      properties:
+        eventType:
+          type: string
+          description: The type of voice event
+        accountId:
+          type: string
+          description: The Bandwidth account ID
+        applicationId:
+          type: string
+          description: The application ID associated with the call
+        callId:
+          type: string
+          description: The unique call identifier
+        to:
+          type: string
+          description: The destination phone number
+        from:
+          type: string
+          description: The originating phone number
+        direction:
+          type: string
+          enum:
+            - inbound
+            - outbound
+          description: The direction of the call
+        callUrl:
+          type: string
+          format: uri
+          description: The URL for the call resource
+        startTime:
+          type: string
+          format: date-time
+          description: The time the call started
+        tag:
+          type: string
+          description: Custom tag attached to the call
+    AnswerEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseCallEvent'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              const: answer
+              description: Event type is always answer
+            answerTime:
+              type: string
+              format: date-time
+              description: The time the call was answered
+    InitiateEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseCallEvent'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              const: initiate
+              description: Event type is always initiate
+    DisconnectEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseCallEvent'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              const: disconnect
+              description: Event type is always disconnect
+            endTime:
+              type: string
+              format: date-time
+              description: The time the call ended
+            cause:
+              type: string
+              description: >-
+                The reason for the disconnect (e.g., hangup, timeout,
+                cancel, rejected, callback-error)
+            errorMessage:
+              type: string
+              description: Error message if the disconnect was due to an error
+            errorId:
+              type: string
+              description: Error ID for troubleshooting
+    TransferAnswerEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseCallEvent'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              const: transferAnswer
+              description: Event type is always transferAnswer
+            transferCallId:
+              type: string
+              description: The call ID of the original call that initiated the transfer
+            transferTo:
+              type: string
+              description: The phone number the call was transferred to
+    TransferDisconnectEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseCallEvent'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              const: transferDisconnect
+              description: Event type is always transferDisconnect
+            transferCallId:
+              type: string
+              description: The call ID of the original call
+            cause:
+              type: string
+              description: The reason for the disconnect
+    RedirectEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseCallEvent'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              const: redirect
+              description: Event type is always redirect
+    RecordingCompleteEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseCallEvent'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              const: recording
+              description: Event type is always recording
+            recordingId:
+              type: string
+              description: The unique recording identifier
+            channels:
+              type: integer
+              description: The number of audio channels
+            duration:
+              type: string
+              description: The duration of the recording
+            fileFormat:
+              type: string
+              enum:
+                - wav
+                - mp3
+              description: The audio format
+            mediaUrl:
+              type: string
+              format: uri
+              description: The URL to download the recording
+            status:
+              type: string
+              enum:
+                - complete
+                - partial
+                - error
+              description: The recording status
+    TranscriptionAvailableEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseCallEvent'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              const: transcription
+              description: Event type is always transcription
+            recordingId:
+              type: string
+              description: The recording ID that was transcribed
+            transcriptionId:
+              type: string
+              description: The unique transcription identifier
+            transcriptionUrl:
+              type: string
+              format: uri
+              description: The URL to retrieve the transcription
+    GatherEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseCallEvent'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              const: gather
+              description: Event type is always gather
+            digits:
+              type: string
+              description: The DTMF digits collected from the caller
+            terminatingDigit:
+              type: string
+              description: The digit that terminated the gather
+    ConferenceCreatedEvent:
+      type: object
+      properties:
+        eventType:
+          type: string
+          const: conferenceCreated
+          description: Event type is always conferenceCreated
+        conferenceId:
+          type: string
+          description: The unique conference identifier
+        name:
+          type: string
+          description: The conference name
+        tag:
+          type: string
+          description: Custom tag for the conference
+    ConferenceMemberJoinEvent:
+      type: object
+      properties:
+        eventType:
+          type: string
+          const: conferenceMemberJoin
+          description: Event type is always conferenceMemberJoin
+        conferenceId:
+          type: string
+          description: The conference identifier
+        name:
+          type: string
+          description: The conference name
+        callId:
+          type: string
+          description: The call ID of the member who joined
+        tag:
+          type: string
+          description: Custom tag
+    ConferenceMemberExitEvent:
+      type: object
+      properties:
+        eventType:
+          type: string
+          const: conferenceMemberExit
+          description: Event type is always conferenceMemberExit
+        conferenceId:
+          type: string
+          description: The conference identifier
+        name:
+          type: string
+          description: The conference name
+        callId:
+          type: string
+          description: The call ID of the member who left
+        tag:
+          type: string
+          description: Custom tag
+    ConferenceCompletedEvent:
+      type: object
+      properties:
+        eventType:
+          type: string
+          const: conferenceCompleted
+          description: Event type is always conferenceCompleted
+        conferenceId:
+          type: string
+          description: The conference identifier
+        name:
+          type: string
+          description: The conference name
+        tag:
+          type: string
+          description: Custom tag

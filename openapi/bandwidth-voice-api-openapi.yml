@@ -1,0 +1,870 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Voice API
+  description: >-
+    The Bandwidth Voice API enables developers to programmatically make and
+    receive phone calls, manage call recordings, and create multi-party
+    conferences. It supports advanced call control features including call
+    transfers, bridging, DTMF detection, and text-to-speech. The API uses
+    BXML (Bandwidth XML) verbs for call flow control and provides webhooks
+    for real-time event notifications on call state changes. Bandwidth
+    operates its own tier-1 network, providing direct carrier connectivity.
+  version: '2.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+externalDocs:
+  description: Bandwidth Voice API Documentation
+  url: https://dev.bandwidth.com/docs/voice/
+servers:
+  - url: https://voice.bandwidth.com/api/v2
+    description: Production Server
+tags:
+  - name: Calls
+    description: >-
+      Create, retrieve, and manage phone calls. Supports outbound call
+      creation, call state queries, and in-progress call modifications
+      using BXML or redirect URLs.
+  - name: Recordings
+    description: >-
+      Manage call recordings including retrieval of recording metadata,
+      audio files, and transcription of recorded audio content.
+  - name: Conferences
+    description: >-
+      Create and manage multi-party conference calls. Supports adding and
+      removing members, muting, holding, and playing audio to conferences.
+security:
+  - basicAuth: []
+paths:
+  /accounts/{accountId}/calls:
+    post:
+      operationId: createCall
+      summary: Create a call
+      description: >-
+        Creates an outbound phone call. The call will be initiated from the
+        specified Bandwidth number to the destination number. The answerUrl
+        will receive a webhook when the call is answered, and your application
+        should respond with BXML to control the call flow.
+      tags:
+        - Calls
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCallRequest'
+      responses:
+        '201':
+          description: Call created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Call'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /accounts/{accountId}/calls/{callId}:
+    get:
+      operationId: getCall
+      summary: Get call information
+      description: >-
+        Retrieves the current state and metadata for a specific call
+        identified by its call ID.
+      tags:
+        - Calls
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/callId'
+      responses:
+        '200':
+          description: Call information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Call'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Call not found
+    post:
+      operationId: updateCall
+      summary: Update a call
+      description: >-
+        Modifies an in-progress call by redirecting it to a new BXML
+        document URL or by completing the call. This enables advanced
+        call control scenarios such as transferring, bridging, or
+        terminating calls programmatically.
+      tags:
+        - Calls
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/callId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCallRequest'
+      responses:
+        '200':
+          description: Call updated successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Call not found
+  /accounts/{accountId}/calls/{callId}/recordings:
+    get:
+      operationId: getCallRecordings
+      summary: List call recordings
+      description: >-
+        Retrieves a list of all recordings associated with a specific call.
+        Each recording includes metadata such as duration, file format, and
+        media URL for downloading the audio file.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/callId'
+      responses:
+        '200':
+          description: Recordings retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recording'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Call not found
+  /accounts/{accountId}/calls/{callId}/recordings/{recordingId}:
+    get:
+      operationId: getCallRecording
+      summary: Get a specific recording
+      description: >-
+        Retrieves metadata for a specific recording associated with a call.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/callId'
+        - $ref: '#/components/parameters/recordingId'
+      responses:
+        '200':
+          description: Recording metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+    delete:
+      operationId: deleteCallRecording
+      summary: Delete a recording
+      description: >-
+        Permanently deletes a specific call recording and its associated
+        media file.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/callId'
+        - $ref: '#/components/parameters/recordingId'
+      responses:
+        '204':
+          description: Recording deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+  /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media:
+    get:
+      operationId: getCallRecordingMedia
+      summary: Download recording media
+      description: >-
+        Downloads the audio file for a specific call recording. Returns
+        the binary audio content in the format specified during recording.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/callId'
+        - $ref: '#/components/parameters/recordingId'
+      responses:
+        '200':
+          description: Recording audio file
+          content:
+            audio/wav:
+              schema:
+                type: string
+                format: binary
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+  /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription:
+    post:
+      operationId: createRecordingTranscription
+      summary: Transcribe a recording
+      description: >-
+        Initiates a transcription job for a specific call recording. The
+        transcription result will be delivered via a webhook callback to
+        the URL specified in the request or the application's default
+        callback URL.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/callId'
+        - $ref: '#/components/parameters/recordingId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranscriptionRequest'
+      responses:
+        '200':
+          description: Transcription initiated
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+    get:
+      operationId: getRecordingTranscription
+      summary: Get recording transcription
+      description: >-
+        Retrieves the transcription result for a specific call recording.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/callId'
+        - $ref: '#/components/parameters/recordingId'
+      responses:
+        '200':
+          description: Transcription retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcription'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Transcription not found
+  /accounts/{accountId}/recordings:
+    get:
+      operationId: listAccountRecordings
+      summary: List account recordings
+      description: >-
+        Retrieves a list of all recordings across all calls for the account.
+        Supports filtering by date range and pagination.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: from
+          in: query
+          description: Filter recordings created on or after this date
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          description: Filter recordings created on or before this date
+          schema:
+            type: string
+            format: date-time
+        - name: minStartTime
+          in: query
+          description: Minimum start time for filtering recordings
+          schema:
+            type: string
+            format: date-time
+        - name: maxStartTime
+          in: query
+          description: Maximum start time for filtering recordings
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Recordings list retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recording'
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/conferences:
+    get:
+      operationId: listConferences
+      summary: List conferences
+      description: >-
+        Retrieves a list of conferences associated with the account,
+        including active and completed conferences.
+      tags:
+        - Conferences
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: name
+          in: query
+          description: Filter conferences by name
+          schema:
+            type: string
+        - name: minCreatedTime
+          in: query
+          description: Minimum creation time for filtering
+          schema:
+            type: string
+            format: date-time
+        - name: maxCreatedTime
+          in: query
+          description: Maximum creation time for filtering
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Conferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Conference'
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/conferences/{conferenceId}:
+    get:
+      operationId: getConference
+      summary: Get conference information
+      description: >-
+        Retrieves detailed information about a specific conference including
+        its current state and list of members.
+      tags:
+        - Conferences
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/conferenceId'
+      responses:
+        '200':
+          description: Conference information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conference'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Conference not found
+    post:
+      operationId: updateConference
+      summary: Update a conference
+      description: >-
+        Modifies an active conference. Can be used to mute all members,
+        set the conference status to completed (ending the conference),
+        or redirect the conference to a new callback URL.
+      tags:
+        - Conferences
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/conferenceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConferenceRequest'
+      responses:
+        '204':
+          description: Conference updated successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Conference not found
+  /accounts/{accountId}/conferences/{conferenceId}/members/{memberId}:
+    put:
+      operationId: updateConferenceMember
+      summary: Update a conference member
+      description: >-
+        Modifies a specific member of an active conference. Supports
+        muting, unmuting, holding, and removing individual members.
+      tags:
+        - Conferences
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/conferenceId'
+        - name: memberId
+          in: path
+          required: true
+          description: The unique identifier of the conference member
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConferenceMemberRequest'
+      responses:
+        '204':
+          description: Conference member updated successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+  /accounts/{accountId}/conferences/{conferenceId}/recordings:
+    get:
+      operationId: getConferenceRecordings
+      summary: List conference recordings
+      description: >-
+        Retrieves a list of all recordings associated with a specific conference.
+      tags:
+        - Conferences
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/conferenceId'
+      responses:
+        '200':
+          description: Conference recordings retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recording'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Conference not found
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic Authentication using your Bandwidth API credentials.
+        Use your API username and password from the Bandwidth Dashboard.
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    callId:
+      name: callId
+      in: path
+      required: true
+      description: The unique identifier for the call
+      schema:
+        type: string
+    recordingId:
+      name: recordingId
+      in: path
+      required: true
+      description: The unique identifier for the recording
+      schema:
+        type: string
+    conferenceId:
+      name: conferenceId
+      in: path
+      required: true
+      description: The unique identifier for the conference
+      schema:
+        type: string
+  schemas:
+    CreateCallRequest:
+      type: object
+      required:
+        - from
+        - to
+        - answerUrl
+        - applicationId
+      properties:
+        from:
+          type: string
+          description: >-
+            The Bandwidth phone number that will make the outbound call,
+            in E.164 format
+          example: '+19195551234'
+        to:
+          type: string
+          description: >-
+            The destination phone number for the outbound call, in E.164 format
+          example: '+19195554321'
+        answerUrl:
+          type: string
+          format: uri
+          description: >-
+            The URL to send the answer webhook to when the call is answered.
+            The endpoint should return BXML to control the call flow.
+        answerMethod:
+          type: string
+          enum:
+            - POST
+            - GET
+          default: POST
+          description: The HTTP method to use for the answer webhook
+        answerFallbackUrl:
+          type: string
+          format: uri
+          description: >-
+            Fallback URL for the answer webhook if the primary URL fails
+        answerFallbackMethod:
+          type: string
+          enum:
+            - POST
+            - GET
+          default: POST
+          description: The HTTP method for the fallback answer webhook
+        disconnectUrl:
+          type: string
+          format: uri
+          description: >-
+            The URL to send the disconnect webhook to when the call ends
+        disconnectMethod:
+          type: string
+          enum:
+            - POST
+            - GET
+          default: POST
+          description: The HTTP method for the disconnect webhook
+        applicationId:
+          type: string
+          description: >-
+            The ID of the Bandwidth application associated with this call
+        tag:
+          type: string
+          maxLength: 256
+          description: >-
+            A custom string to attach to the call for tracking purposes
+        callTimeout:
+          type: number
+          minimum: 1
+          maximum: 300
+          default: 30
+          description: >-
+            The timeout in seconds for the outbound call to be answered
+        callbackTimeout:
+          type: number
+          minimum: 1
+          maximum: 25
+          default: 15
+          description: >-
+            The timeout in seconds for webhook callback requests
+    UpdateCallRequest:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+            - active
+            - completed
+          description: >-
+            Set to completed to hang up the call
+        redirectUrl:
+          type: string
+          format: uri
+          description: >-
+            The URL to redirect the call to for new BXML instructions
+        redirectMethod:
+          type: string
+          enum:
+            - POST
+            - GET
+          default: POST
+          description: The HTTP method for the redirect webhook
+        redirectFallbackUrl:
+          type: string
+          format: uri
+          description: >-
+            Fallback URL if the primary redirect URL fails
+        redirectFallbackMethod:
+          type: string
+          enum:
+            - POST
+            - GET
+          default: POST
+          description: The HTTP method for the fallback redirect webhook
+        tag:
+          type: string
+          maxLength: 256
+          description: >-
+            A custom string to attach to the call for tracking purposes
+    Call:
+      type: object
+      properties:
+        callId:
+          type: string
+          description: The unique identifier for the call
+        accountId:
+          type: string
+          description: The Bandwidth account ID
+        applicationId:
+          type: string
+          description: The application ID associated with the call
+        to:
+          type: string
+          description: The destination phone number
+        from:
+          type: string
+          description: The originating phone number
+        direction:
+          type: string
+          enum:
+            - inbound
+            - outbound
+          description: The direction of the call
+        state:
+          type: string
+          enum:
+            - initiated
+            - answered
+            - completed
+          description: The current state of the call
+        startTime:
+          type: string
+          format: date-time
+          description: The time the call was initiated
+        answerTime:
+          type: string
+          format: date-time
+          description: The time the call was answered
+        endTime:
+          type: string
+          format: date-time
+          description: The time the call ended
+        disconnectCause:
+          type: string
+          description: The reason the call was disconnected
+        tag:
+          type: string
+          description: Custom tag attached to the call
+        callUrl:
+          type: string
+          format: uri
+          description: The URL for this call resource
+    Recording:
+      type: object
+      properties:
+        recordingId:
+          type: string
+          description: The unique identifier for the recording
+        accountId:
+          type: string
+          description: The Bandwidth account ID
+        callId:
+          type: string
+          description: The call ID associated with this recording
+        applicationId:
+          type: string
+          description: The application ID
+        duration:
+          type: string
+          description: >-
+            The duration of the recording in ISO 8601 format
+        channels:
+          type: integer
+          description: The number of audio channels in the recording
+        startTime:
+          type: string
+          format: date-time
+          description: The time the recording started
+        endTime:
+          type: string
+          format: date-time
+          description: The time the recording ended
+        fileFormat:
+          type: string
+          enum:
+            - wav
+            - mp3
+          description: The audio format of the recording
+        status:
+          type: string
+          enum:
+            - complete
+            - partial
+            - error
+          description: The status of the recording
+        mediaUrl:
+          type: string
+          format: uri
+          description: The URL to download the recording media
+        transcription:
+          $ref: '#/components/schemas/Transcription'
+    TranscriptionRequest:
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+          description: >-
+            The URL to send the transcription completed webhook to
+        callbackMethod:
+          type: string
+          enum:
+            - POST
+            - GET
+          default: POST
+          description: The HTTP method for the transcription webhook
+        tag:
+          type: string
+          description: Custom tag for the transcription request
+    Transcription:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the transcription
+        status:
+          type: string
+          enum:
+            - none
+            - available
+            - error
+          description: The status of the transcription
+        completedTime:
+          type: string
+          format: date-time
+          description: The time the transcription was completed
+        url:
+          type: string
+          format: uri
+          description: The URL of the transcription result
+    Conference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the conference
+        name:
+          type: string
+          description: The user-defined name of the conference
+        createdTime:
+          type: string
+          format: date-time
+          description: The time the conference was created
+        completedTime:
+          type: string
+          format: date-time
+          description: The time the conference ended
+        tag:
+          type: string
+          description: Custom tag attached to the conference
+        activeMembers:
+          type: array
+          description: List of currently active conference members
+          items:
+            $ref: '#/components/schemas/ConferenceMember'
+    ConferenceMember:
+      type: object
+      properties:
+        callId:
+          type: string
+          description: The call ID of the conference member
+        conferenceId:
+          type: string
+          description: The conference ID
+        memberUrl:
+          type: string
+          format: uri
+          description: The URL for this member resource
+        mute:
+          type: boolean
+          description: Whether the member is muted
+        hold:
+          type: boolean
+          description: Whether the member is on hold
+        callIdsToCoach:
+          type: array
+          items:
+            type: string
+          description: >-
+            List of call IDs that this member is coaching
+    UpdateConferenceRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - active
+            - completed
+          description: >-
+            Set to completed to end the conference and disconnect all members
+        redirectUrl:
+          type: string
+          format: uri
+          description: >-
+            URL to redirect the conference to for new BXML instructions
+        redirectMethod:
+          type: string
+          enum:
+            - POST
+            - GET
+          default: POST
+          description: The HTTP method for the redirect webhook
+        tag:
+          type: string
+          description: Custom tag for the conference
+    UpdateConferenceMemberRequest:
+      type: object
+      properties:
+        mute:
+          type: boolean
+          description: Whether to mute the member
+        hold:
+          type: boolean
+          description: Whether to place the member on hold
+        callIdsToCoach:
+          type: array
+          items:
+            type: string
+          description: >-
+            List of call IDs that this member should coach
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The error type URI
+        description:
+          type: string
+          description: A human-readable description of the error
+        id:
+          type: string
+          description: The unique error identifier

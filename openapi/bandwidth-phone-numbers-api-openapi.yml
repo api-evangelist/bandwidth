@@ -1,0 +1,1094 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Phone Numbers API
+  description: >-
+    The Bandwidth Phone Numbers API provides programmatic access to search,
+    order, and manage phone numbers across the United States and Canada.
+    Developers can search for available local, toll-free, and short code
+    numbers, initiate number porting requests, and configure number features
+    such as CNAM, directory listings, and line features. The API also
+    supports managing sites, SIP peers, and number assignments for
+    organizing telephony resources within an account. This API uses
+    XML request and response bodies and Basic Authentication.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+externalDocs:
+  description: Bandwidth Phone Numbers API Documentation
+  url: https://dev.bandwidth.com/docs/numbers/
+servers:
+  - url: https://dashboard.bandwidth.com/api
+    description: Production Server
+tags:
+  - name: Available Numbers
+    description: >-
+      Search for available phone numbers by area code, NPA-NXX, rate center,
+      city, state, or ZIP code. Returns numbers available for ordering.
+  - name: Orders
+    description: >-
+      Create and manage phone number orders. Supports ordering new numbers
+      from available inventory and tracking order status.
+  - name: Port-ins
+    description: >-
+      Initiate and manage phone number porting requests to bring existing
+      numbers from other carriers to Bandwidth.
+  - name: Disconnects
+    description: >-
+      Disconnect and release phone numbers that are no longer needed.
+  - name: Sites
+    description: >-
+      Manage sites (sub-accounts) within a Bandwidth account. Sites
+      represent logical groupings for organizing telephony resources.
+  - name: SIP Peers
+    description: >-
+      Manage SIP peers (locations) within sites. SIP peers define
+      the network endpoints for call routing and number assignment.
+  - name: Phone Numbers
+    description: >-
+      Search and manage phone numbers currently assigned to your account,
+      including configuring number features and assignments.
+  - name: Number Features
+    description: >-
+      Configure phone number features including CNAM (Caller Name),
+      directory listings, and line features for numbers in your inventory.
+security:
+  - basicAuth: []
+paths:
+  /accounts/{accountId}/availableNumbers:
+    get:
+      operationId: searchAvailableNumbers
+      summary: Search available phone numbers
+      description: >-
+        Searches Bandwidth's inventory for available phone numbers matching
+        the specified criteria. Supports searches by area code, NPA-NXX,
+        rate center, city, state, ZIP code, and LATA. Returns up to the
+        requested quantity of available numbers.
+      tags:
+        - Available Numbers
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: areaCode
+          in: query
+          description: Three-digit area code to search
+          schema:
+            type: string
+            pattern: '^\d{3}$'
+        - name: npaNxx
+          in: query
+          description: Six-digit NPA-NXX combination to search
+          schema:
+            type: string
+            pattern: '^\d{6}$'
+        - name: rateCenter
+          in: query
+          description: Rate center name to search
+          schema:
+            type: string
+        - name: city
+          in: query
+          description: City name to search
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: Two-letter state abbreviation
+          schema:
+            type: string
+            pattern: '^[A-Z]{2}$'
+        - name: zip
+          in: query
+          description: Five-digit ZIP code to search
+          schema:
+            type: string
+            pattern: '^\d{5}$'
+        - name: lata
+          in: query
+          description: LATA code to search
+          schema:
+            type: string
+        - name: quantity
+          in: query
+          description: Number of results to return (1-5000, default 5000)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 5000
+            default: 5000
+        - name: tollFreeWildCardPattern
+          in: query
+          description: >-
+            Toll-free number pattern using wildcards (e.g., 8**) for
+            toll-free number searches
+          schema:
+            type: string
+        - name: enableTNDetail
+          in: query
+          description: Include detailed information for each number
+          schema:
+            type: boolean
+            default: false
+        - name: localVanity
+          in: query
+          description: Vanity number search pattern
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Available numbers found
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AvailableNumbersResponse'
+        '400':
+          description: Invalid search parameters
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/orders:
+    post:
+      operationId: createOrder
+      summary: Create a phone number order
+      description: >-
+        Creates a new order to purchase phone numbers from Bandwidth's
+        available inventory. The order specifies which numbers to purchase
+        and the site and SIP peer to assign them to. Order status can be
+        tracked via the GET endpoint or webhook callbacks.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: Order created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '400':
+          description: Invalid order request
+        '401':
+          description: Unauthorized
+    get:
+      operationId: listOrders
+      summary: List phone number orders
+      description: >-
+        Retrieves a list of phone number orders for the account. Supports
+        filtering by order status, date range, and other criteria.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum:
+              - RECEIVED
+              - PROCESSING
+              - COMPLETE
+              - PARTIAL
+              - FAILED
+        - name: startDate
+          in: query
+          description: Filter orders created on or after this date
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: Filter orders created on or before this date
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Orders retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get order details
+      description: >-
+        Retrieves detailed information about a specific phone number order
+        including its current status and list of numbers ordered.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/orderId'
+      responses:
+        '200':
+          description: Order details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Order not found
+  /accounts/{accountId}/portins:
+    post:
+      operationId: createPortIn
+      summary: Create a port-in request
+      description: >-
+        Initiates a number porting request to transfer phone numbers from
+        another carrier to Bandwidth. The request includes subscriber
+        information and the list of numbers to port.
+      tags:
+        - Port-ins
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PortInRequest'
+      responses:
+        '201':
+          description: Port-in request created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PortInResponse'
+        '400':
+          description: Invalid port-in request
+        '401':
+          description: Unauthorized
+    get:
+      operationId: listPortIns
+      summary: List port-in requests
+      description: >-
+        Retrieves a list of number porting requests for the account.
+      tags:
+        - Port-ins
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: status
+          in: query
+          description: Filter by port-in status
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          description: Filter requests created on or after this date
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: Filter requests created on or before this date
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Port-in requests retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PortInListResponse'
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/portins/{portInId}:
+    get:
+      operationId: getPortIn
+      summary: Get port-in request details
+      description: >-
+        Retrieves detailed information about a specific number porting
+        request including its current status and timeline.
+      tags:
+        - Port-ins
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: portInId
+          in: path
+          required: true
+          description: The unique identifier for the port-in request
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Port-in details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PortInResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Port-in request not found
+  /accounts/{accountId}/disconnects:
+    post:
+      operationId: createDisconnect
+      summary: Disconnect phone numbers
+      description: >-
+        Creates a request to disconnect and release phone numbers from
+        the account. Disconnected numbers are returned to Bandwidth's
+        available inventory.
+      tags:
+        - Disconnects
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DisconnectRequest'
+      responses:
+        '201':
+          description: Disconnect request created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DisconnectResponse'
+        '400':
+          description: Invalid disconnect request
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/sites:
+    get:
+      operationId: listSites
+      summary: List sites
+      description: >-
+        Retrieves a list of all sites (sub-accounts) configured within
+        the Bandwidth account.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: Sites retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SiteListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSite
+      summary: Create a site
+      description: >-
+        Creates a new site (sub-account) within the Bandwidth account.
+        Sites provide logical groupings for organizing telephony resources.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '201':
+          description: Site created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '400':
+          description: Invalid site configuration
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/sites/{siteId}:
+    get:
+      operationId: getSite
+      summary: Get site details
+      description: >-
+        Retrieves detailed information about a specific site.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/siteId'
+      responses:
+        '200':
+          description: Site details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Site not found
+    put:
+      operationId: updateSite
+      summary: Update a site
+      description: >-
+        Updates the configuration for a specific site.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/siteId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '200':
+          description: Site updated successfully
+        '400':
+          description: Invalid site configuration
+        '401':
+          description: Unauthorized
+        '404':
+          description: Site not found
+    delete:
+      operationId: deleteSite
+      summary: Delete a site
+      description: >-
+        Deletes a specific site. The site must have no active SIP peers
+        or phone numbers assigned to it.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/siteId'
+      responses:
+        '200':
+          description: Site deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Site not found
+  /accounts/{accountId}/sites/{siteId}/sippeers:
+    get:
+      operationId: listSipPeers
+      summary: List SIP peers
+      description: >-
+        Retrieves a list of SIP peers (locations) configured within a
+        specific site.
+      tags:
+        - SIP Peers
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/siteId'
+      responses:
+        '200':
+          description: SIP peers retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SipPeerListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSipPeer
+      summary: Create a SIP peer
+      description: >-
+        Creates a new SIP peer (location) within a site. SIP peers define
+        the network endpoints for call routing and number assignment.
+      tags:
+        - SIP Peers
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/siteId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SipPeer'
+      responses:
+        '201':
+          description: SIP peer created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SipPeer'
+        '400':
+          description: Invalid SIP peer configuration
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}:
+    get:
+      operationId: getSipPeer
+      summary: Get SIP peer details
+      description: >-
+        Retrieves detailed information about a specific SIP peer.
+      tags:
+        - SIP Peers
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/siteId'
+        - $ref: '#/components/parameters/sipPeerId'
+      responses:
+        '200':
+          description: SIP peer details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SipPeer'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SIP peer not found
+    put:
+      operationId: updateSipPeer
+      summary: Update a SIP peer
+      description: >-
+        Updates the configuration for a specific SIP peer.
+      tags:
+        - SIP Peers
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/siteId'
+        - $ref: '#/components/parameters/sipPeerId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SipPeer'
+      responses:
+        '200':
+          description: SIP peer updated successfully
+        '400':
+          description: Invalid SIP peer configuration
+        '401':
+          description: Unauthorized
+        '404':
+          description: SIP peer not found
+    delete:
+      operationId: deleteSipPeer
+      summary: Delete a SIP peer
+      description: >-
+        Deletes a specific SIP peer. The SIP peer must have no active
+        phone numbers assigned to it.
+      tags:
+        - SIP Peers
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/siteId'
+        - $ref: '#/components/parameters/sipPeerId'
+      responses:
+        '200':
+          description: SIP peer deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: SIP peer not found
+  /accounts/{accountId}/tns:
+    get:
+      operationId: listPhoneNumbers
+      summary: List phone numbers
+      description: >-
+        Retrieves a list of phone numbers assigned to the account. Supports
+        filtering by various criteria including city, state, and LATA.
+      tags:
+        - Phone Numbers
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            minimum: 1
+        - name: size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+        - name: city
+          in: query
+          description: Filter by city
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: Filter by state abbreviation
+          schema:
+            type: string
+        - name: lata
+          in: query
+          description: Filter by LATA code
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Phone numbers retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PhoneNumberListResponse'
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/tns/{phoneNumber}:
+    get:
+      operationId: getPhoneNumber
+      summary: Get phone number details
+      description: >-
+        Retrieves detailed information about a specific phone number
+        including its assignment, features, and configuration.
+      tags:
+        - Phone Numbers
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: phoneNumber
+          in: path
+          required: true
+          description: The phone number to look up (digits only)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Phone number details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PhoneNumber'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Phone number not found
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/tns:
+    get:
+      operationId: listSipPeerPhoneNumbers
+      summary: List SIP peer phone numbers
+      description: >-
+        Retrieves a list of phone numbers assigned to a specific SIP peer
+        within a site.
+      tags:
+        - SIP Peers
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/siteId'
+        - $ref: '#/components/parameters/sipPeerId'
+      responses:
+        '200':
+          description: Phone numbers retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PhoneNumberListResponse'
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/tns/{phoneNumber}/tnfeatureorder:
+    post:
+      operationId: updateNumberFeatures
+      summary: Update phone number features
+      description: >-
+        Creates a feature order to configure features such as CNAM,
+        directory listings, and line features for a specific phone number.
+      tags:
+        - Number Features
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: phoneNumber
+          in: path
+          required: true
+          description: The phone number to update features for
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/FeatureOrderRequest'
+      responses:
+        '201':
+          description: Feature order created successfully
+        '400':
+          description: Invalid feature order request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Phone number not found
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic Authentication using your Bandwidth Dashboard API
+        credentials (API username and password).
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    orderId:
+      name: orderId
+      in: path
+      required: true
+      description: The unique identifier for the order
+      schema:
+        type: string
+    siteId:
+      name: siteId
+      in: path
+      required: true
+      description: The unique identifier for the site
+      schema:
+        type: string
+    sipPeerId:
+      name: sipPeerId
+      in: path
+      required: true
+      description: The unique identifier for the SIP peer
+      schema:
+        type: string
+  schemas:
+    AvailableNumbersResponse:
+      type: object
+      description: Response containing a list of available phone numbers
+      properties:
+        resultCount:
+          type: integer
+          description: The number of results returned
+        telephoneNumberList:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableNumber'
+    AvailableNumber:
+      type: object
+      description: An available phone number from Bandwidth inventory
+      properties:
+        fullNumber:
+          type: string
+          description: The full phone number in E.164 format
+        city:
+          type: string
+          description: The city associated with the number
+        state:
+          type: string
+          description: The state associated with the number
+        lata:
+          type: string
+          description: The LATA code for the number
+        rateCenter:
+          type: string
+          description: The rate center for the number
+    OrderRequest:
+      type: object
+      description: Request to order phone numbers
+      properties:
+        name:
+          type: string
+          maxLength: 50
+          description: A name for the order (required, max 50 characters)
+        siteId:
+          type: string
+          description: The site to assign the numbers to
+        peerId:
+          type: string
+          description: The SIP peer to assign the numbers to
+        existingTelephoneNumberOrderType:
+          type: object
+          properties:
+            telephoneNumberList:
+              type: array
+              items:
+                type: string
+              description: List of specific phone numbers to order
+    OrderResponse:
+      type: object
+      description: Response containing order details
+      properties:
+        orderId:
+          type: string
+          description: The unique identifier for the order
+        orderStatus:
+          type: string
+          enum:
+            - RECEIVED
+            - PROCESSING
+            - COMPLETE
+            - PARTIAL
+            - FAILED
+          description: The current status of the order
+        orderCreateDate:
+          type: string
+          format: date-time
+          description: The date and time the order was created
+        completedQuantity:
+          type: integer
+          description: Number of phone numbers successfully ordered
+        failedQuantity:
+          type: integer
+          description: Number of phone numbers that failed to order
+        completedNumbers:
+          type: array
+          items:
+            type: string
+          description: List of successfully ordered phone numbers
+    OrderListResponse:
+      type: object
+      description: Response containing a list of orders
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of orders
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderResponse'
+    PortInRequest:
+      type: object
+      description: Request to port phone numbers from another carrier
+      properties:
+        siteId:
+          type: string
+          description: The site to assign ported numbers to
+        peerId:
+          type: string
+          description: The SIP peer to assign ported numbers to
+        billingTelephoneNumber:
+          type: string
+          description: The billing telephone number for the account being ported
+        subscriber:
+          type: object
+          properties:
+            subscriberType:
+              type: string
+              enum:
+                - BUSINESS
+                - RESIDENTIAL
+              description: The type of subscriber
+            businessName:
+              type: string
+              description: The business name (for business subscribers)
+            firstName:
+              type: string
+              description: The subscriber first name
+            lastName:
+              type: string
+              description: The subscriber last name
+            serviceAddress:
+              $ref: '#/components/schemas/Address'
+        losingCarrierName:
+          type: string
+          description: The name of the current carrier
+        listOfPhoneNumbers:
+          type: array
+          items:
+            type: string
+          description: List of phone numbers to port
+        requestedFocDate:
+          type: string
+          format: date
+          description: Requested Firm Order Commitment date
+    PortInResponse:
+      type: object
+      description: Response containing port-in request details
+      properties:
+        portInId:
+          type: string
+          description: The unique identifier for the port-in request
+        status:
+          type: string
+          description: The current status of the port-in request
+        requestedFocDate:
+          type: string
+          format: date
+          description: The requested FOC date
+        actualFocDate:
+          type: string
+          format: date
+          description: The actual FOC date assigned by the carrier
+    PortInListResponse:
+      type: object
+      description: Response containing a list of port-in requests
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of port-in requests
+        portIns:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortInResponse'
+    DisconnectRequest:
+      type: object
+      description: Request to disconnect phone numbers
+      properties:
+        name:
+          type: string
+          description: A name for the disconnect order
+        disconnectTelephoneNumberOrderType:
+          type: object
+          properties:
+            telephoneNumberList:
+              type: array
+              items:
+                type: string
+              description: List of phone numbers to disconnect
+    DisconnectResponse:
+      type: object
+      description: Response containing disconnect order details
+      properties:
+        orderId:
+          type: string
+          description: The unique identifier for the disconnect order
+        orderStatus:
+          type: string
+          description: The current status of the disconnect order
+    Site:
+      type: object
+      description: A site (sub-account) within a Bandwidth account
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the site
+        name:
+          type: string
+          description: The name of the site
+        description:
+          type: string
+          description: A description of the site
+        address:
+          $ref: '#/components/schemas/Address'
+    SiteListResponse:
+      type: object
+      description: Response containing a list of sites
+      properties:
+        sites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Site'
+    SipPeer:
+      type: object
+      description: A SIP peer (location) within a site
+      properties:
+        peerId:
+          type: string
+          description: The unique identifier for the SIP peer
+        peerName:
+          type: string
+          description: The name of the SIP peer
+        description:
+          type: string
+          description: A description of the SIP peer
+        isDefaultPeer:
+          type: boolean
+          description: Whether this is the default SIP peer for the site
+    SipPeerListResponse:
+      type: object
+      description: Response containing a list of SIP peers
+      properties:
+        sipPeers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SipPeer'
+    PhoneNumber:
+      type: object
+      description: A phone number assigned to the account
+      properties:
+        fullNumber:
+          type: string
+          description: The full phone number
+        city:
+          type: string
+          description: The city associated with the number
+        state:
+          type: string
+          description: The state associated with the number
+        lata:
+          type: string
+          description: The LATA code
+        rateCenter:
+          type: string
+          description: The rate center
+        status:
+          type: string
+          description: The current status of the number
+        siteId:
+          type: string
+          description: The site the number is assigned to
+        sipPeerId:
+          type: string
+          description: The SIP peer the number is assigned to
+    PhoneNumberListResponse:
+      type: object
+      description: Response containing a list of phone numbers
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of phone numbers
+        telephoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+    FeatureOrderRequest:
+      type: object
+      description: Request to configure phone number features
+      properties:
+        callingNameDisplay:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether CNAM display is enabled
+            callingName:
+              type: string
+              maxLength: 15
+              description: The caller name to display (max 15 characters)
+        directoryListing:
+          type: object
+          properties:
+            listed:
+              type: boolean
+              description: Whether the number is listed in the directory
+            listingType:
+              type: string
+              enum:
+                - LISTED
+                - NON_LISTED
+                - NON_PUBLISHED
+              description: The type of directory listing
+            listingName:
+              type: string
+              description: The name for the directory listing
+            listAddress:
+              type: boolean
+              description: Whether to list the address in the directory
+    Address:
+      type: object
+      description: A physical address
+      properties:
+        houseNumber:
+          type: string
+          description: The house/building number
+        streetName:
+          type: string
+          description: The street name
+        city:
+          type: string
+          description: The city
+        stateCode:
+          type: string
+          description: The two-letter state code
+        zip:
+          type: string
+          description: The ZIP code
+        country:
+          type: string
+          description: The country code

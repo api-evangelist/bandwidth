@@ -1,0 +1,478 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Messaging API
+  description: >-
+    The Bandwidth Messaging API allows developers to send and receive SMS
+    and MMS messages programmatically. It supports both toll-free and
+    local number messaging, group messaging, and application-to-person
+    (A2P) messaging workflows. The API provides delivery receipts via
+    webhooks, message status tracking, and media management for MMS
+    attachments. Bandwidth operates its own tier-1 network, providing
+    direct carrier connectivity for reliable message delivery.
+  version: '2.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+externalDocs:
+  description: Bandwidth Messaging API Documentation
+  url: https://dev.bandwidth.com/docs/messaging/
+servers:
+  - url: https://messaging.bandwidth.com/api/v2
+    description: Production Server
+tags:
+  - name: Messages
+    description: >-
+      Send and retrieve SMS and MMS messages. Supports single and group
+      messaging, delivery receipts, and message history queries.
+  - name: Media
+    description: >-
+      Upload, retrieve, and manage media files for use in MMS messages.
+      Supports files up to 3.75 MB with 48-hour retention.
+security:
+  - basicAuth: []
+paths:
+  /users/{accountId}/messages:
+    post:
+      operationId: createMessage
+      summary: Send a message
+      description: >-
+        Sends an SMS or MMS message from a Bandwidth number. For MMS,
+        include media URLs in the request body. Bandwidth will return an
+        HTTP 202 Accepted indicating the message has been queued for
+        delivery. Delivery status will be provided via webhook callbacks.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMessageRequest'
+      responses:
+        '202':
+          description: Message accepted and queued for delivery
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    get:
+      operationId: listMessages
+      summary: List messages
+      description: >-
+        Retrieves a list of message metadata for the account. Bandwidth
+        does not store message content for privacy reasons; only metadata
+        such as sender, recipient, timestamps, and delivery status is
+        returned. Supports filtering by source number, destination number,
+        and date range.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: messageId
+          in: query
+          description: Filter by a specific message ID
+          schema:
+            type: string
+        - name: sourceTn
+          in: query
+          description: Filter by source telephone number in E.164 format
+          schema:
+            type: string
+        - name: destinationTn
+          in: query
+          description: Filter by destination telephone number in E.164 format
+          schema:
+            type: string
+        - name: messageStatus
+          in: query
+          description: Filter by message delivery status
+          schema:
+            type: string
+            enum:
+              - RECEIVED
+              - QUEUED
+              - SENDING
+              - SENT
+              - FAILED
+              - DELIVERED
+              - ACCEPTED
+              - UNDELIVERED
+        - name: messageDirection
+          in: query
+          description: Filter by message direction
+          schema:
+            type: string
+            enum:
+              - INBOUND
+              - OUTBOUND
+        - name: carrierName
+          in: query
+          description: Filter by carrier name
+          schema:
+            type: string
+        - name: messageType
+          in: query
+          description: Filter by message type
+          schema:
+            type: string
+            enum:
+              - sms
+              - mms
+        - name: errorCode
+          in: query
+          description: Filter by error code
+          schema:
+            type: integer
+        - name: fromDateTime
+          in: query
+          description: Filter messages sent on or after this date-time
+          schema:
+            type: string
+            format: date-time
+        - name: toDateTime
+          in: query
+          description: Filter messages sent on or before this date-time
+          schema:
+            type: string
+            format: date-time
+        - name: pageToken
+          in: query
+          description: Page token for pagination
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of messages to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 50
+      responses:
+        '200':
+          description: Messages retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageList'
+        '401':
+          description: Unauthorized
+  /users/{accountId}/media:
+    get:
+      operationId: listMedia
+      summary: List media files
+      description: >-
+        Retrieves a list of all media files that have been uploaded to the
+        account. Each request returns a maximum of 1000 media files.
+        Bandwidth retains uploaded media for up to 48 hours.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: continuationToken
+          in: query
+          description: Token for paginating through large media lists
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Media list retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Media'
+        '401':
+          description: Unauthorized
+  /users/{accountId}/media/{mediaName}:
+    put:
+      operationId: uploadMedia
+      summary: Upload a media file
+      description: >-
+        Uploads a media file for use in MMS messages. Files can be up to
+        3.75 MB in size. Bandwidth provides free file storage for an
+        unlimited number of files with 48-hour retention.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: mediaName
+          in: path
+          required: true
+          description: The filename to assign to the uploaded media
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: true
+          description: The MIME type of the media file being uploaded
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '204':
+          description: Media uploaded successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+    get:
+      operationId: getMedia
+      summary: Download a media file
+      description: >-
+        Downloads a specific media file by its name. Returns the binary
+        content of the media file.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: mediaName
+          in: path
+          required: true
+          description: The name of the media file to download
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Media file content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media not found
+    delete:
+      operationId: deleteMedia
+      summary: Delete a media file
+      description: >-
+        Permanently deletes a specific media file from the account.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - name: mediaName
+          in: path
+          required: true
+          description: The name of the media file to delete
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Media deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media not found
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic Authentication using your Bandwidth API credentials.
+        Use your API username and password from the Bandwidth Dashboard.
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+  schemas:
+    CreateMessageRequest:
+      type: object
+      required:
+        - from
+        - to
+        - text
+        - applicationId
+      properties:
+        from:
+          type: string
+          description: >-
+            The Bandwidth phone number to send the message from, in E.164 format
+          example: '+19195551234'
+        to:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 50
+          description: >-
+            Array of destination phone numbers in E.164 format. Up to 50
+            numbers for group messaging.
+          example:
+            - '+19195554321'
+        text:
+          type: string
+          maxLength: 2048
+          description: >-
+            The text content of the message. Required for SMS. For MMS,
+            text is optional if media is provided.
+        media:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: >-
+            Array of media URLs to include as MMS attachments. Each URL
+            must be publicly accessible or a Bandwidth media URL.
+        applicationId:
+          type: string
+          description: >-
+            The ID of the Bandwidth application associated with this message.
+            This determines which webhook URLs receive delivery callbacks.
+        tag:
+          type: string
+          description: >-
+            A custom string to attach to the message for tracking purposes
+        priority:
+          type: string
+          enum:
+            - default
+            - high
+          default: default
+          description: >-
+            The priority of the message. High priority messages are
+            delivered faster but may incur additional charges.
+        expiration:
+          type: string
+          format: date-time
+          description: >-
+            The expiration time for the message. Messages not delivered
+            by this time will be discarded.
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the message
+        owner:
+          type: string
+          description: The Bandwidth phone number that owns the message
+        applicationId:
+          type: string
+          description: The application ID associated with this message
+        time:
+          type: string
+          format: date-time
+          description: The time the message was created
+        segmentCount:
+          type: integer
+          description: The number of segments the message was split into
+        direction:
+          type: string
+          enum:
+            - in
+            - out
+          description: The direction of the message
+        to:
+          type: array
+          items:
+            type: string
+          description: The destination phone numbers
+        from:
+          type: string
+          description: The source phone number
+        media:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Media URLs attached to the message
+        text:
+          type: string
+          description: The text content of the message
+        tag:
+          type: string
+          description: Custom tag attached to the message
+        priority:
+          type: string
+          enum:
+            - default
+            - high
+          description: The priority of the message
+    MessageList:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of messages matching the query
+        pageInfo:
+          type: object
+          properties:
+            prevPage:
+              type: string
+              description: Token for the previous page
+            nextPage:
+              type: string
+              description: Token for the next page
+            prevPageToken:
+              type: string
+              description: Previous page token for pagination
+            nextPageToken:
+              type: string
+              description: Next page token for pagination
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+    Media:
+      type: object
+      properties:
+        mediaName:
+          type: string
+          description: The name of the media file
+        contentLength:
+          type: integer
+          description: The size of the media file in bytes
+        contentType:
+          type: string
+          description: The MIME type of the media file
+        content:
+          type: string
+          description: The URL to access the media content
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The error type identifier
+        description:
+          type: string
+          description: A human-readable description of the error
+        fieldErrors:
+          type: array
+          items:
+            type: object
+            properties:
+              fieldName:
+                type: string
+                description: The field that caused the error
+              description:
+                type: string
+                description: Description of the field error

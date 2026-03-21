@@ -1,0 +1,482 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling API
+  description: >-
+    The Bandwidth Emergency Calling API provides programmatic access to
+    provision and manage 911 endpoints and locations for emergency services
+    routing. It supports Dynamic Location Routing (DLR) for real-time
+    address validation and location updates, ensuring compliance with
+    Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only
+    CPaaS provider that also operates its own emergency services network,
+    providing direct connectivity to public safety answering points (PSAPs)
+    across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+servers:
+  - url: https://dashboard.bandwidth.com/api
+    description: Production Server
+tags:
+  - name: Endpoints
+    description: >-
+      Manage 911 endpoints that represent end users of your service.
+      Endpoints are identified by Alternate End User IDs (AEUIs) and
+      are associated with locations for emergency routing.
+  - name: Locations
+    description: >-
+      Provision and manage physical locations (addresses) for 911
+      emergency services routing. Locations are validated against the
+      Master Street Address Guide (MSAG) for accuracy.
+  - name: Emergency Notification Recipients
+    description: >-
+      Configure notification recipients who receive alerts when 911
+      calls are made from your endpoints.
+security:
+  - basicAuth: []
+paths:
+  /accounts/{accountId}/e911s:
+    get:
+      operationId: listEndpoints
+      summary: List E911 endpoints
+      description: >-
+        Retrieves a list of all 911 endpoints provisioned for the account.
+        Each endpoint represents an end user that may place emergency calls.
+      tags:
+        - Endpoints
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: Endpoints retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EndpointListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createEndpoint
+      summary: Create an E911 endpoint
+      description: >-
+        Provisions a new 911 endpoint for an end user. The endpoint is
+        identified by an Alternate End User ID (AEUI) and must be
+        associated with a validated location for emergency routing.
+      tags:
+        - Endpoints
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Endpoint'
+      responses:
+        '201':
+          description: Endpoint created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        '400':
+          description: Invalid endpoint configuration
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/e911s/{endpointId}:
+    get:
+      operationId: getEndpoint
+      summary: Get E911 endpoint details
+      description: >-
+        Retrieves detailed information about a specific 911 endpoint
+        including its associated location and configuration.
+      tags:
+        - Endpoints
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/endpointId'
+      responses:
+        '200':
+          description: Endpoint details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Endpoint not found
+    put:
+      operationId: updateEndpoint
+      summary: Update an E911 endpoint
+      description: >-
+        Updates the configuration or location association for a specific
+        911 endpoint.
+      tags:
+        - Endpoints
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/endpointId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Endpoint'
+      responses:
+        '200':
+          description: Endpoint updated successfully
+        '400':
+          description: Invalid endpoint configuration
+        '401':
+          description: Unauthorized
+        '404':
+          description: Endpoint not found
+    delete:
+      operationId: deleteEndpoint
+      summary: Delete an E911 endpoint
+      description: >-
+        Removes a 911 endpoint from the account. The endpoint will no
+        longer be able to route emergency calls.
+      tags:
+        - Endpoints
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/endpointId'
+      responses:
+        '200':
+          description: Endpoint deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Endpoint not found
+  /accounts/{accountId}/e911s/locations:
+    get:
+      operationId: listLocations
+      summary: List E911 locations
+      description: >-
+        Retrieves a list of all validated locations provisioned for
+        emergency calling within the account.
+      tags:
+        - Locations
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: Locations retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LocationListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createLocation
+      summary: Create an E911 location
+      description: >-
+        Provisions a new location for emergency calling. The address is
+        validated against the Master Street Address Guide (MSAG) to
+        ensure it can be properly routed to the correct PSAP. Bandwidth
+        can generate a location ID automatically, or you can provide your
+        own custom location ID.
+      tags:
+        - Locations
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '201':
+          description: Location created and validated successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '400':
+          description: Invalid location or address validation failed
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/e911s/locations/{locationId}:
+    get:
+      operationId: getLocation
+      summary: Get E911 location details
+      description: >-
+        Retrieves detailed information about a specific validated location.
+      tags:
+        - Locations
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/locationId'
+      responses:
+        '200':
+          description: Location details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Location not found
+    put:
+      operationId: updateLocation
+      summary: Update an E911 location
+      description: >-
+        Updates a specific location. The new address will be re-validated
+        against the MSAG.
+      tags:
+        - Locations
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/locationId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '200':
+          description: Location updated successfully
+        '400':
+          description: Invalid location or address validation failed
+        '401':
+          description: Unauthorized
+        '404':
+          description: Location not found
+    delete:
+      operationId: deleteLocation
+      summary: Delete an E911 location
+      description: >-
+        Removes a location from the account. The location must not be
+        currently associated with any active endpoints.
+      tags:
+        - Locations
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/locationId'
+      responses:
+        '200':
+          description: Location deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Location not found
+  /accounts/{accountId}/e911s/notificationRecipients:
+    get:
+      operationId: listNotificationRecipients
+      summary: List emergency notification recipients
+      description: >-
+        Retrieves a list of configured notification recipients who are
+        alerted when 911 calls are placed from the account's endpoints.
+      tags:
+        - Emergency Notification Recipients
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: Notification recipients retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NotificationRecipientListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createNotificationRecipient
+      summary: Create a notification recipient
+      description: >-
+        Configures a new notification recipient to receive alerts when
+        911 calls are placed from the account's endpoints.
+      tags:
+        - Emergency Notification Recipients
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/NotificationRecipient'
+      responses:
+        '201':
+          description: Notification recipient created successfully
+        '400':
+          description: Invalid notification recipient configuration
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic Authentication using your Bandwidth Dashboard API
+        credentials.
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    endpointId:
+      name: endpointId
+      in: path
+      required: true
+      description: The unique identifier for the E911 endpoint
+      schema:
+        type: string
+    locationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the E911 location
+      schema:
+        type: string
+  schemas:
+    Endpoint:
+      type: object
+      description: An E911 endpoint representing an end user
+      properties:
+        endpointId:
+          type: string
+          description: The unique identifier for the endpoint
+        alternateEndUserId:
+          type: string
+          description: >-
+            The Alternate End User ID (AEUI) that identifies the end user
+        callerName:
+          type: string
+          description: The name of the end user for PSAP display
+        locationId:
+          type: string
+          description: >-
+            The ID of the validated location associated with this endpoint
+        telephoneNumber:
+          type: string
+          description: The phone number associated with this endpoint
+        activated:
+          type: boolean
+          description: Whether the endpoint is currently active
+    EndpointListResponse:
+      type: object
+      description: Response containing a list of E911 endpoints
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of endpoints
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+    Location:
+      type: object
+      description: >-
+        A validated physical location for E911 emergency routing
+      properties:
+        locationId:
+          type: string
+          description: The unique identifier for the location
+        description:
+          type: string
+          description: A description of the location
+        address:
+          type: object
+          properties:
+            houseNumber:
+              type: string
+              description: The house or building number
+            houseSuffix:
+              type: string
+              description: The house number suffix (e.g., A, B, 1/2)
+            prefixDirectional:
+              type: string
+              description: The street prefix directional (N, S, E, W)
+            streetName:
+              type: string
+              description: The street name
+            streetSuffix:
+              type: string
+              description: The street suffix (St, Ave, Blvd, etc.)
+            postDirectional:
+              type: string
+              description: The street post directional (N, S, E, W)
+            addressLine2:
+              type: string
+              description: Secondary address line (suite, floor, etc.)
+            city:
+              type: string
+              description: The city name
+            stateCode:
+              type: string
+              description: The two-letter state code
+            zip:
+              type: string
+              description: The five-digit ZIP code
+            plusFour:
+              type: string
+              description: The ZIP+4 extension
+            country:
+              type: string
+              description: The country code
+        status:
+          type: string
+          enum:
+            - VALID
+            - INVALID
+            - GEOCODED
+          description: The validation status of the location
+        latitude:
+          type: number
+          format: double
+          description: The latitude coordinate of the location
+        longitude:
+          type: number
+          format: double
+          description: The longitude coordinate of the location
+    LocationListResponse:
+      type: object
+      description: Response containing a list of E911 locations
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of locations
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+    NotificationRecipient:
+      type: object
+      description: A recipient for emergency call notifications
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the notification recipient
+        emailAddress:
+          type: string
+          format: email
+          description: The email address for notifications
+        phoneNumber:
+          type: string
+          description: The phone number for SMS notifications
+        description:
+          type: string
+          description: A description of the notification recipient
+    NotificationRecipientListResponse:
+      type: object
+      description: Response containing a list of notification recipients
+      properties:
+        notificationRecipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRecipient'

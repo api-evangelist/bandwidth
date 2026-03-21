@@ -1,0 +1,199 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "bw": "https://dev.bandwidth.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Call": {
+      "@id": "bw:Call",
+      "@context": {
+        "callId": "bw:callId",
+        "accountId": "bw:accountId",
+        "applicationId": "bw:applicationId",
+        "from": "schema:sender",
+        "to": "schema:recipient",
+        "direction": "bw:direction",
+        "state": "bw:callState",
+        "answerUrl": {
+          "@id": "bw:answerUrl",
+          "@type": "@id"
+        },
+        "disconnectUrl": {
+          "@id": "bw:disconnectUrl",
+          "@type": "@id"
+        },
+        "startTime": {
+          "@id": "schema:startTime",
+          "@type": "xsd:dateTime"
+        },
+        "answerTime": {
+          "@id": "bw:answerTime",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "schema:endTime",
+          "@type": "xsd:dateTime"
+        },
+        "disconnectCause": "bw:disconnectCause",
+        "tag": "bw:tag",
+        "callUrl": {
+          "@id": "bw:callUrl",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Message": {
+      "@id": "bw:Message",
+      "@context": {
+        "messageId": "bw:messageId",
+        "owner": "bw:owner",
+        "applicationId": "bw:applicationId",
+        "from": "schema:sender",
+        "to": {
+          "@id": "schema:recipient",
+          "@container": "@set"
+        },
+        "text": "schema:text",
+        "media": {
+          "@id": "bw:media",
+          "@type": "@id",
+          "@container": "@set"
+        },
+        "direction": "bw:direction",
+        "segmentCount": "bw:segmentCount",
+        "time": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "tag": "bw:tag",
+        "priority": "bw:priority"
+      }
+    },
+
+    "PhoneNumber": {
+      "@id": "bw:PhoneNumber",
+      "@context": {
+        "fullNumber": "schema:telephone",
+        "city": "schema:addressLocality",
+        "state": "schema:addressRegion",
+        "lata": "bw:lata",
+        "rateCenter": "bw:rateCenter",
+        "status": "bw:numberStatus",
+        "siteId": "bw:siteId",
+        "sipPeerId": "bw:sipPeerId"
+      }
+    },
+
+    "Recording": {
+      "@id": "bw:Recording",
+      "@context": {
+        "recordingId": "bw:recordingId",
+        "callId": "bw:callId",
+        "duration": "schema:duration",
+        "channels": "bw:channels",
+        "startTime": {
+          "@id": "schema:startTime",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "schema:endTime",
+          "@type": "xsd:dateTime"
+        },
+        "fileFormat": "schema:encodingFormat",
+        "status": "bw:recordingStatus",
+        "mediaUrl": {
+          "@id": "schema:contentUrl",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Conference": {
+      "@id": "bw:Conference",
+      "@context": {
+        "conferenceId": "bw:conferenceId",
+        "name": "schema:name",
+        "createdTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "completedTime": {
+          "@id": "bw:completedTime",
+          "@type": "xsd:dateTime"
+        },
+        "tag": "bw:tag",
+        "activeMembers": {
+          "@id": "bw:activeMembers",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Site": {
+      "@id": "bw:Site",
+      "@context": {
+        "siteId": "bw:siteId",
+        "name": "schema:name",
+        "description": "schema:description",
+        "address": "schema:address"
+      }
+    },
+
+    "SipPeer": {
+      "@id": "bw:SipPeer",
+      "@context": {
+        "peerId": "bw:peerId",
+        "peerName": "schema:name",
+        "isDefaultPeer": "bw:isDefaultPeer"
+      }
+    },
+
+    "Endpoint": {
+      "@id": "bw:E911Endpoint",
+      "@context": {
+        "endpointId": "bw:endpointId",
+        "alternateEndUserId": "bw:alternateEndUserId",
+        "callerName": "schema:name",
+        "locationId": "bw:locationId",
+        "telephoneNumber": "schema:telephone",
+        "activated": "bw:activated"
+      }
+    },
+
+    "Location": {
+      "@id": "bw:E911Location",
+      "@context": {
+        "locationId": "bw:locationId",
+        "address": "schema:address",
+        "latitude": "schema:latitude",
+        "longitude": "schema:longitude",
+        "status": "bw:locationStatus"
+      }
+    },
+
+    "TollFreeVerification": {
+      "@id": "bw:TollFreeVerification",
+      "@context": {
+        "verificationId": "bw:verificationId",
+        "telephoneNumbers": {
+          "@id": "schema:telephone",
+          "@container": "@set"
+        },
+        "status": "bw:verificationStatus",
+        "businessName": "schema:legalName",
+        "useCase": "bw:useCase",
+        "submissionDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "verificationDate": {
+          "@id": "bw:verificationDate",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}

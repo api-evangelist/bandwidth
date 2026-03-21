@@ -1,0 +1,208 @@
+asyncapi: 2.6.0
+info:
+  title: Bandwidth Messaging Events
+  description: >-
+    Bandwidth Messaging API sends webhooks to your application for
+    real-time message delivery notifications and inbound message alerts.
+    Callbacks are sent via HTTP POST to the callback URL configured on
+    the Bandwidth application associated with the message. You MUST
+    respond with an HTTP 2xx status code for every callback. Bandwidth
+    will retry callbacks over the next 24 hours until a 2xx response
+    is received.
+  version: '2.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+servers:
+  production:
+    url: '{callbackUrl}'
+    protocol: https
+    description: >-
+      Your application's webhook endpoint. The URL is configured on
+      the Bandwidth application associated with the message.
+    variables:
+      callbackUrl:
+        description: The callback URL configured on your Bandwidth application
+    security:
+      - basicAuth: []
+channels:
+  /messaging/inbound:
+    description: >-
+      Inbound message webhook sent when a message is received by one
+      of your Bandwidth phone numbers. Provides the full message content,
+      sender, and recipient information.
+    publish:
+      operationId: onInboundMessage
+      summary: Inbound message received
+      message:
+        $ref: '#/components/messages/InboundMessageCallback'
+  /messaging/status:
+    description: >-
+      Message delivery status webhook sent for outbound messages. You
+      will receive either a Message Delivered or Message Failed event
+      for each outbound message, but never both.
+    publish:
+      operationId: onMessageStatus
+      summary: Message delivery status update
+      message:
+        oneOf:
+          - $ref: '#/components/messages/MessageDeliveredCallback'
+          - $ref: '#/components/messages/MessageFailedCallback'
+          - $ref: '#/components/messages/MessageSendingCallback'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Optional HTTP Basic Authentication for webhook endpoints.
+        Configure credentials in your Bandwidth application settings.
+  messages:
+    InboundMessageCallback:
+      name: InboundMessageCallback
+      title: Inbound Message Callback
+      summary: >-
+        Sent when an inbound message is received by a Bandwidth number
+      contentType: application/json
+      payload:
+        type: array
+        items:
+          $ref: '#/components/schemas/InboundMessageEvent'
+    MessageDeliveredCallback:
+      name: MessageDeliveredCallback
+      title: Message Delivered Callback
+      summary: >-
+        Sent when an outbound message is successfully delivered
+      contentType: application/json
+      payload:
+        type: array
+        items:
+          $ref: '#/components/schemas/MessageDeliveredEvent'
+    MessageFailedCallback:
+      name: MessageFailedCallback
+      title: Message Failed Callback
+      summary: >-
+        Sent when an outbound message fails to deliver
+      contentType: application/json
+      payload:
+        type: array
+        items:
+          $ref: '#/components/schemas/MessageFailedEvent'
+    MessageSendingCallback:
+      name: MessageSendingCallback
+      title: Message Sending Callback
+      summary: >-
+        Sent when an outbound message is being sent to the carrier
+      contentType: application/json
+      payload:
+        type: array
+        items:
+          $ref: '#/components/schemas/MessageSendingEvent'
+  schemas:
+    BaseMessageEvent:
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+          description: The time of the event
+        type:
+          type: string
+          description: The type of messaging event
+        to:
+          type: string
+          description: The destination phone number
+        description:
+          type: string
+          description: A human-readable description of the event
+        message:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique message identifier
+            owner:
+              type: string
+              description: The Bandwidth number that owns the message
+            applicationId:
+              type: string
+              description: The application ID
+            time:
+              type: string
+              format: date-time
+              description: The time the message was created
+            segmentCount:
+              type: integer
+              description: The number of message segments
+            direction:
+              type: string
+              enum:
+                - in
+                - out
+              description: The message direction
+            to:
+              type: array
+              items:
+                type: string
+              description: The destination phone numbers
+            from:
+              type: string
+              description: The source phone number
+            media:
+              type: array
+              items:
+                type: string
+                format: uri
+              description: Media URLs for MMS attachments
+            text:
+              type: string
+              description: The message text content
+            tag:
+              type: string
+              description: Custom tag attached to the message
+            priority:
+              type: string
+              enum:
+                - default
+                - high
+              description: The message priority
+    InboundMessageEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseMessageEvent'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: message-received
+              description: Event type is always message-received
+    MessageDeliveredEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseMessageEvent'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: message-delivered
+              description: Event type is always message-delivered
+    MessageFailedEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseMessageEvent'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: message-failed
+              description: Event type is always message-failed
+            errorCode:
+              type: integer
+              description: >-
+                The Bandwidth error code indicating the failure reason
+    MessageSendingEvent:
+      allOf:
+        - $ref: '#/components/schemas/BaseMessageEvent'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: message-sending
+              description: Event type is always message-sending
