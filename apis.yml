@@ -1,5 +1,6 @@
 aid: bandwidth
-url: https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/apis.yml
 modified: '2026-03-20'
 apis:
   - aid: bandwidth:voice-api
@@ -11,7 +12,8 @@ apis:
       - Calls
       - Recordings
       - Conferences
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://voice.bandwidth.com/api/v2
     humanURL: https://dev.bandwidth.com/docs/voice/
     properties:
@@ -36,7 +38,8 @@ apis:
       - MMS
       - CPaaS
       - Text Messaging
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://messaging.bandwidth.com/api/v2
     humanURL: https://dev.bandwidth.com/docs/messaging/
     properties:
@@ -62,7 +65,8 @@ apis:
       - Porting
       - Number Management
       - Telecom
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://dashboard.bandwidth.com/api
     humanURL: https://dev.bandwidth.com/docs/numbers/
     properties:
@@ -86,7 +90,8 @@ apis:
       - Two-Factor Authentication
       - Security
       - Verification
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://mfa.bandwidth.com/api/v1
     humanURL: https://dev.bandwidth.com/docs/mfa/
     properties:
@@ -110,7 +115,8 @@ apis:
       - 911
       - Public Safety
       - Compliance
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://dashboard.bandwidth.com/api
     humanURL: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
     properties:
@@ -119,14 +125,10 @@ apis:
       - url: openapi/bandwidth-emergency-calling-api-openapi.yml
         type: OpenAPI
     description: >-
-      The Bandwidth Emergency Calling API provides programmatic access to
-      provision and manage 911 endpoints and locations for emergency services
-      routing. It supports Dynamic Location Routing (DLR) for real-time
-      address validation and location updates, ensuring compliance with
-      Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only
-      CPaaS provider that also operates its own emergency services network,
-      providing direct connectivity to public safety answering points (PSAPs)
-      across the United States and Canada.
+      The Bandwidth Emergency Calling API provides programmatic access to provision
+      and manage 911 endpoints and locations for emergency services routing. It supports
+      Dynamic Location Routing (DLR) for real-time address validation and location
+      updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements.
   - aid: bandwidth:toll-free-verification-api
     name: Bandwidth Toll-Free Verification API
     tags:
@@ -134,11 +136,14 @@ apis:
       - Verification
       - Messaging Compliance
       - A2P
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://dashboard.bandwidth.com/api
-    humanURL: https://dev.bandwidth.com/apis/messaging-apis/toll-free-verification/
+    humanURL: 
+      https://dev.bandwidth.com/apis/messaging-apis/toll-free-verification/
     properties:
-      - url: https://dev.bandwidth.com/apis/messaging-apis/toll-free-verification/
+      - url: 
+          https://dev.bandwidth.com/apis/messaging-apis/toll-free-verification/
         type: Documentation
       - url: openapi/bandwidth-toll-free-verification-api-openapi.yml
         type: OpenAPI
@@ -160,3 +165,5 @@ common:
     url: json-schema/bandwidth-message-schema.json
   - type: JSONSchema
     url: json-schema/bandwidth-phone-number-schema.json
+description: >-
+  A general overview of Bandwidth's Voice Services.
