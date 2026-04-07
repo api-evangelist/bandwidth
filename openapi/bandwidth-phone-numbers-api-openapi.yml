@@ -26,33 +26,33 @@ tags:
     description: >-
       Search for available phone numbers by area code, NPA-NXX, rate center,
       city, state, or ZIP code. Returns numbers available for ordering.
-  - name: Orders
-    description: >-
-      Create and manage phone number orders. Supports ordering new numbers
-      from available inventory and tracking order status.
-  - name: Port-ins
-    description: >-
-      Initiate and manage phone number porting requests to bring existing
-      numbers from other carriers to Bandwidth.
   - name: Disconnects
     description: >-
       Disconnect and release phone numbers that are no longer needed.
-  - name: Sites
-    description: >-
-      Manage sites (sub-accounts) within a Bandwidth account. Sites
-      represent logical groupings for organizing telephony resources.
-  - name: SIP Peers
-    description: >-
-      Manage SIP peers (locations) within sites. SIP peers define
-      the network endpoints for call routing and number assignment.
-  - name: Phone Numbers
-    description: >-
-      Search and manage phone numbers currently assigned to your account,
-      including configuring number features and assignments.
   - name: Number Features
     description: >-
       Configure phone number features including CNAM (Caller Name),
       directory listings, and line features for numbers in your inventory.
+  - name: Orders
+    description: >-
+      Create and manage phone number orders. Supports ordering new numbers
+      from available inventory and tracking order status.
+  - name: Phone Numbers
+    description: >-
+      Search and manage phone numbers currently assigned to your account,
+      including configuring number features and assignments.
+  - name: Port-Ins
+    description: >-
+      Initiate and manage phone number porting requests to bring existing
+      numbers from other carriers to Bandwidth.
+  - name: SIP Peers
+    description: >-
+      Manage SIP peers (locations) within sites. SIP peers define
+      the network endpoints for call routing and number assignment.
+  - name: Sites
+    description: >-
+      Manage sites (sub-accounts) within a Bandwidth account. Sites
+      represent logical groupings for organizing telephony resources.
 security:
   - basicAuth: []
 paths:
@@ -249,7 +249,7 @@ paths:
         another carrier to Bandwidth. The request includes subscriber
         information and the list of numbers to port.
       tags:
-        - Port-ins
+        - Port-Ins
       parameters:
         - $ref: '#/components/parameters/accountId'
       requestBody:
@@ -275,7 +275,7 @@ paths:
       description: >-
         Retrieves a list of number porting requests for the account.
       tags:
-        - Port-ins
+        - Port-Ins
       parameters:
         - $ref: '#/components/parameters/accountId'
         - name: status
@@ -312,7 +312,7 @@ paths:
         Retrieves detailed information about a specific number porting
         request including its current status and timeline.
       tags:
-        - Port-ins
+        - Port-Ins
       parameters:
         - $ref: '#/components/parameters/accountId'
         - name: portInId

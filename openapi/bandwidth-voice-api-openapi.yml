@@ -26,14 +26,14 @@ tags:
       Create, retrieve, and manage phone calls. Supports outbound call
       creation, call state queries, and in-progress call modifications
       using BXML or redirect URLs.
-  - name: Recordings
-    description: >-
-      Manage call recordings including retrieval of recording metadata,
-      audio files, and transcription of recorded audio content.
   - name: Conferences
     description: >-
       Create and manage multi-party conference calls. Supports adding and
       removing members, muting, holding, and playing audio to conferences.
+  - name: Recordings
+    description: >-
+      Manage call recordings including retrieval of recording metadata,
+      audio files, and transcription of recorded audio content.
 security:
   - basicAuth: []
 paths:

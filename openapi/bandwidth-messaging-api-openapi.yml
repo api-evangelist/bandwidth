@@ -21,14 +21,14 @@ servers:
   - url: https://messaging.bandwidth.com/api/v2
     description: Production Server
 tags:
-  - name: Messages
-    description: >-
-      Send and retrieve SMS and MMS messages. Supports single and group
-      messaging, delivery receipts, and message history queries.
   - name: Media
     description: >-
       Upload, retrieve, and manage media files for use in MMS messages.
       Supports files up to 3.75 MB with 48-hour retention.
+  - name: Messages
+    description: >-
+      Send and retrieve SMS and MMS messages. Supports single and group
+      messaging, delivery receipts, and message history queries.
 security:
   - basicAuth: []
 paths:

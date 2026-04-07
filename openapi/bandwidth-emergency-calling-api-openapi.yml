@@ -22,6 +22,10 @@ servers:
   - url: https://dashboard.bandwidth.com/api
     description: Production Server
 tags:
+  - name: Emergency Notification Recipients
+    description: >-
+      Configure notification recipients who receive alerts when 911
+      calls are made from your endpoints.
   - name: Endpoints
     description: >-
       Manage 911 endpoints that represent end users of your service.
@@ -32,10 +36,6 @@ tags:
       Provision and manage physical locations (addresses) for 911
       emergency services routing. Locations are validated against the
       Master Street Address Guide (MSAG) for accuracy.
-  - name: Emergency Notification Recipients
-    description: >-
-      Configure notification recipients who receive alerts when 911
-      calls are made from your endpoints.
 security:
   - basicAuth: []
 paths:
