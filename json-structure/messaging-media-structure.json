@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/messaging-media-structure.json",
+  "name": "Media",
+  "description": "Media schema from Bandwidth messaging API",
+  "type": "object",
+  "properties": {
+    "mediaName": {
+      "type": "string",
+      "description": "The name of the media file"
+    },
+    "contentLength": {
+      "type": "int32",
+      "description": "The size of the media file in bytes"
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The MIME type of the media file"
+    },
+    "content": {
+      "type": "string",
+      "description": "The URL to access the media content"
+    }
+  }
+}

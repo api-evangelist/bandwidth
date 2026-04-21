@@ -1,0 +1,12 @@
+{
+  "callingNameDisplay": {
+    "enabled": true,
+    "callingName": "sample-value"
+  },
+  "directoryListing": {
+    "listed": true,
+    "listingType": "LISTED",
+    "listingName": "sample-value",
+    "listAddress": true
+  }
+}

@@ -1,0 +1,103 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  namespace: bandwidth-phone-numbers
+  label: "Bandwidth Phone Numbers API"
+  baseUrl: https://dashboard.bandwidth.com/api
+
+authentication:
+  - type: basic
+    description: Bandwidth API credentials (accountId + apiToken)
+
+operations:
+  - operationId: searchAvailableNumbers
+    method: GET
+    path: /accounts/{accountId}/availableNumbers
+    description: "Search available phone numbers"
+  - operationId: createOrder
+    method: POST
+    path: /accounts/{accountId}/orders
+    description: "Create a phone number order"
+  - operationId: listOrders
+    method: GET
+    path: /accounts/{accountId}/orders
+    description: "List phone number orders"
+  - operationId: getOrder
+    method: GET
+    path: /accounts/{accountId}/orders/{orderId}
+    description: "Get order details"
+  - operationId: createPortIn
+    method: POST
+    path: /accounts/{accountId}/portins
+    description: "Create a port-in request"
+  - operationId: listPortIns
+    method: GET
+    path: /accounts/{accountId}/portins
+    description: "List port-in requests"
+  - operationId: getPortIn
+    method: GET
+    path: /accounts/{accountId}/portins/{portInId}
+    description: "Get port-in request details"
+    pathParameters: [portInId]
+  - operationId: createDisconnect
+    method: POST
+    path: /accounts/{accountId}/disconnects
+    description: "Disconnect phone numbers"
+  - operationId: listSites
+    method: GET
+    path: /accounts/{accountId}/sites
+    description: "List sites"
+  - operationId: createSite
+    method: POST
+    path: /accounts/{accountId}/sites
+    description: "Create a site"
+  - operationId: getSite
+    method: GET
+    path: /accounts/{accountId}/sites/{siteId}
+    description: "Get site details"
+  - operationId: updateSite
+    method: PUT
+    path: /accounts/{accountId}/sites/{siteId}
+    description: "Update a site"
+  - operationId: deleteSite
+    method: DELETE
+    path: /accounts/{accountId}/sites/{siteId}
+    description: "Delete a site"
+  - operationId: listSipPeers
+    method: GET
+    path: /accounts/{accountId}/sites/{siteId}/sippeers
+    description: "List SIP peers"
+  - operationId: createSipPeer
+    method: POST
+    path: /accounts/{accountId}/sites/{siteId}/sippeers
+    description: "Create a SIP peer"
+  - operationId: getSipPeer
+    method: GET
+    path: /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}
+    description: "Get SIP peer details"
+  - operationId: updateSipPeer
+    method: PUT
+    path: /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}
+    description: "Update a SIP peer"
+  - operationId: deleteSipPeer
+    method: DELETE
+    path: /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}
+    description: "Delete a SIP peer"
+  - operationId: listPhoneNumbers
+    method: GET
+    path: /accounts/{accountId}/tns
+    description: "List phone numbers"
+  - operationId: getPhoneNumber
+    method: GET
+    path: /accounts/{accountId}/tns/{phoneNumber}
+    description: "Get phone number details"
+    pathParameters: [phoneNumber]
+  - operationId: listSipPeerPhoneNumbers
+    method: GET
+    path: /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/tns
+    description: "List SIP peer phone numbers"
+  - operationId: updateNumberFeatures
+    method: POST
+    path: /accounts/{accountId}/tns/{phoneNumber}/tnfeatureorder
+    description: "Update phone number features"
+    pathParameters: [phoneNumber]

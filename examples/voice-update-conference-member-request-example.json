@@ -1,0 +1,7 @@
+{
+  "mute": true,
+  "hold": true,
+  "callIdsToCoach": [
+    "c-abc123"
+  ]
+}

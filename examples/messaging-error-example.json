@@ -1,0 +1,10 @@
+{
+  "type": "sample-value",
+  "description": "sample-value",
+  "fieldErrors": [
+    {
+      "fieldName": "sample-value",
+      "description": "sample-value"
+    }
+  ]
+}

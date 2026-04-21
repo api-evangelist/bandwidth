@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/phone-numbers-address-structure.json",
+  "name": "Address",
+  "description": "A physical address",
+  "type": "object",
+  "properties": {
+    "houseNumber": {
+      "type": "string",
+      "description": "The house/building number"
+    },
+    "streetName": {
+      "type": "string",
+      "description": "The street name"
+    },
+    "city": {
+      "type": "string",
+      "description": "The city"
+    },
+    "stateCode": {
+      "type": "string",
+      "description": "The two-letter state code"
+    },
+    "zip": {
+      "type": "string",
+      "description": "The ZIP code"
+    },
+    "country": {
+      "type": "string",
+      "description": "The country code"
+    }
+  }
+}

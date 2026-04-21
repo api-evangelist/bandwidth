@@ -1,0 +1,22 @@
+{
+  "telephoneNumbers": [
+    "+18005551234"
+  ],
+  "businessName": "sample-value",
+  "businessContact": {
+    "firstName": "sample-value",
+    "lastName": "sample-value",
+    "email": "sample-value",
+    "phone": "+19195551234"
+  },
+  "businessWebsite": "sample-value",
+  "messageVolume": "10",
+  "useCase": "TWO_FACTOR_AUTHENTICATION",
+  "useCaseSummary": "sample-value",
+  "messageContent": "sample-value",
+  "optInWorkflow": "sample-value",
+  "optInWorkflowImageUrls": [
+    "https://example.com/callback"
+  ],
+  "additionalInformation": "sample-value"
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/messaging-message-structure.json",
+  "name": "Message",
+  "description": "Message schema from Bandwidth messaging API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the message"
+    },
+    "owner": {
+      "type": "string",
+      "description": "The Bandwidth phone number that owns the message"
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "The application ID associated with this message"
+    },
+    "time": {
+      "type": "datetime",
+      "description": "The time the message was created"
+    },
+    "segmentCount": {
+      "type": "int32",
+      "description": "The number of segments the message was split into"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "in",
+        "out"
+      ],
+      "description": "The direction of the message"
+    },
+    "to": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The destination phone numbers"
+    },
+    "from": {
+      "type": "string",
+      "description": "The source phone number"
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      },
+      "description": "Media URLs attached to the message"
+    },
+    "text": {
+      "type": "string",
+      "description": "The text content of the message"
+    },
+    "tag": {
+      "type": "string",
+      "description": "Custom tag attached to the message"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "default",
+        "high"
+      ],
+      "description": "The priority of the message"
+    }
+  }
+}

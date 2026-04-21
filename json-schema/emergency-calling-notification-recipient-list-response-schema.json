@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/emergency-calling-notification-recipient-list-response-schema.json",
+  "title": "NotificationRecipientListResponse",
+  "description": "Response containing a list of notification recipients",
+  "type": "object",
+  "properties": {
+    "notificationRecipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NotificationRecipient"
+      }
+    }
+  }
+}

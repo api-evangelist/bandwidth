@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/emergency-calling-location-structure.json",
+  "name": "Location",
+  "description": "A validated physical location for E911 emergency routing",
+  "type": "object",
+  "properties": {
+    "locationId": {
+      "type": "string",
+      "description": "The unique identifier for the location"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the location"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "houseNumber": {
+          "type": "string",
+          "description": "The house or building number"
+        },
+        "houseSuffix": {
+          "type": "string",
+          "description": "The house number suffix (e.g., A, B, 1/2)"
+        },
+        "prefixDirectional": {
+          "type": "string",
+          "description": "The street prefix directional (N, S, E, W)"
+        },
+        "streetName": {
+          "type": "string",
+          "description": "The street name"
+        },
+        "streetSuffix": {
+          "type": "string",
+          "description": "The street suffix (St, Ave, Blvd, etc.)"
+        },
+        "postDirectional": {
+          "type": "string",
+          "description": "The street post directional (N, S, E, W)"
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "Secondary address line (suite, floor, etc.)"
+        },
+        "city": {
+          "type": "string",
+          "description": "The city name"
+        },
+        "stateCode": {
+          "type": "string",
+          "description": "The two-letter state code"
+        },
+        "zip": {
+          "type": "string",
+          "description": "The five-digit ZIP code"
+        },
+        "plusFour": {
+          "type": "string",
+          "description": "The ZIP+4 extension"
+        },
+        "country": {
+          "type": "string",
+          "description": "The country code"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "VALID",
+        "INVALID",
+        "GEOCODED"
+      ],
+      "description": "The validation status of the location"
+    },
+    "latitude": {
+      "type": "double",
+      "description": "The latitude coordinate of the location"
+    },
+    "longitude": {
+      "type": "double",
+      "description": "The longitude coordinate of the location"
+    }
+  }
+}

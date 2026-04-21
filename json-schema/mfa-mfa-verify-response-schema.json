@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/mfa-mfa-verify-response-schema.json",
+  "title": "MfaVerifyResponse",
+  "description": "MfaVerifyResponse schema from Bandwidth mfa API",
+  "type": "object",
+  "properties": {
+    "valid": {
+      "type": "boolean",
+      "description": "Whether the MFA code is valid and has not expired"
+    }
+  }
+}

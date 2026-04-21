@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/voice-call-structure.json",
+  "name": "Call",
+  "description": "Call schema from Bandwidth voice API",
+  "type": "object",
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "The unique identifier for the call"
+    },
+    "accountId": {
+      "type": "string",
+      "description": "The Bandwidth account ID"
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "The application ID associated with the call"
+    },
+    "to": {
+      "type": "string",
+      "description": "The destination phone number"
+    },
+    "from": {
+      "type": "string",
+      "description": "The originating phone number"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "inbound",
+        "outbound"
+      ],
+      "description": "The direction of the call"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "initiated",
+        "answered",
+        "completed"
+      ],
+      "description": "The current state of the call"
+    },
+    "startTime": {
+      "type": "datetime",
+      "description": "The time the call was initiated"
+    },
+    "answerTime": {
+      "type": "datetime",
+      "description": "The time the call was answered"
+    },
+    "endTime": {
+      "type": "datetime",
+      "description": "The time the call ended"
+    },
+    "disconnectCause": {
+      "type": "string",
+      "description": "The reason the call was disconnected"
+    },
+    "tag": {
+      "type": "string",
+      "description": "Custom tag attached to the call"
+    },
+    "callUrl": {
+      "type": "uri",
+      "description": "The URL for this call resource"
+    }
+  }
+}

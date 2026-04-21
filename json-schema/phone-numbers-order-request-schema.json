@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/phone-numbers-order-request-schema.json",
+  "title": "OrderRequest",
+  "description": "Request to order phone numbers",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "A name for the order (required, max 50 characters)"
+    },
+    "siteId": {
+      "type": "string",
+      "description": "The site to assign the numbers to"
+    },
+    "peerId": {
+      "type": "string",
+      "description": "The SIP peer to assign the numbers to"
+    },
+    "existingTelephoneNumberOrderType": {
+      "type": "object",
+      "properties": {
+        "telephoneNumberList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of specific phone numbers to order"
+        }
+      }
+    }
+  }
+}

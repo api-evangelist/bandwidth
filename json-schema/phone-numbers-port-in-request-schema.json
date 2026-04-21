@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/phone-numbers-port-in-request-schema.json",
+  "title": "PortInRequest",
+  "description": "Request to port phone numbers from another carrier",
+  "type": "object",
+  "properties": {
+    "siteId": {
+      "type": "string",
+      "description": "The site to assign ported numbers to"
+    },
+    "peerId": {
+      "type": "string",
+      "description": "The SIP peer to assign ported numbers to"
+    },
+    "billingTelephoneNumber": {
+      "type": "string",
+      "description": "The billing telephone number for the account being ported"
+    },
+    "subscriber": {
+      "type": "object",
+      "properties": {
+        "subscriberType": {
+          "type": "string",
+          "enum": [
+            "BUSINESS",
+            "RESIDENTIAL"
+          ],
+          "description": "The type of subscriber"
+        },
+        "businessName": {
+          "type": "string",
+          "description": "The business name (for business subscribers)"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The subscriber first name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The subscriber last name"
+        },
+        "serviceAddress": {
+          "$ref": "#/components/schemas/Address"
+        }
+      }
+    },
+    "losingCarrierName": {
+      "type": "string",
+      "description": "The name of the current carrier"
+    },
+    "listOfPhoneNumbers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of phone numbers to port"
+    },
+    "requestedFocDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Requested Firm Order Commitment date"
+    }
+  }
+}

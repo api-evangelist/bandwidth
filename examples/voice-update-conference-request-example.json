@@ -1,0 +1,6 @@
+{
+  "status": "active",
+  "redirectUrl": "https://example.com/callback",
+  "redirectMethod": "POST",
+  "tag": "sample-value"
+}

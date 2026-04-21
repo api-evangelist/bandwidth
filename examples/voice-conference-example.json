@@ -1,0 +1,10 @@
+{
+  "id": "c-abc123",
+  "name": "sample-value",
+  "createdTime": "2026-04-19T14:30:00Z",
+  "completedTime": "2026-04-19T14:30:00Z",
+  "tag": "sample-value",
+  "activeMembers": [
+    "sample-value"
+  ]
+}

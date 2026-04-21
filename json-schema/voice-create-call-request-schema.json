@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/voice-create-call-request-schema.json",
+  "title": "CreateCallRequest",
+  "description": "CreateCallRequest schema from Bandwidth voice API",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "string",
+      "description": "The Bandwidth phone number that will make the outbound call, in E.164 format",
+      "example": "+19195551234"
+    },
+    "to": {
+      "type": "string",
+      "description": "The destination phone number for the outbound call, in E.164 format",
+      "example": "+19195554321"
+    },
+    "answerUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to send the answer webhook to when the call is answered. The endpoint should return BXML to control the call flow."
+    },
+    "answerMethod": {
+      "type": "string",
+      "enum": [
+        "POST",
+        "GET"
+      ],
+      "default": "POST",
+      "description": "The HTTP method to use for the answer webhook"
+    },
+    "answerFallbackUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Fallback URL for the answer webhook if the primary URL fails"
+    },
+    "answerFallbackMethod": {
+      "type": "string",
+      "enum": [
+        "POST",
+        "GET"
+      ],
+      "default": "POST",
+      "description": "The HTTP method for the fallback answer webhook"
+    },
+    "disconnectUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to send the disconnect webhook to when the call ends"
+    },
+    "disconnectMethod": {
+      "type": "string",
+      "enum": [
+        "POST",
+        "GET"
+      ],
+      "default": "POST",
+      "description": "The HTTP method for the disconnect webhook"
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "The ID of the Bandwidth application associated with this call"
+    },
+    "tag": {
+      "type": "string",
+      "maxLength": 256,
+      "description": "A custom string to attach to the call for tracking purposes"
+    },
+    "callTimeout": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 300,
+      "default": 30,
+      "description": "The timeout in seconds for the outbound call to be answered"
+    },
+    "callbackTimeout": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 25,
+      "default": 15,
+      "description": "The timeout in seconds for webhook callback requests"
+    }
+  },
+  "required": [
+    "from",
+    "to",
+    "answerUrl",
+    "applicationId"
+  ]
+}

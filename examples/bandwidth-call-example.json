@@ -1,0 +1,21 @@
+{
+  "callId": "c-abc123",
+  "accountId": "c-abc123",
+  "applicationId": "c-abc123",
+  "from": "sample-value",
+  "to": "sample-value",
+  "direction": "inbound",
+  "state": "initiated",
+  "answerUrl": "https://example.com/callback",
+  "answerMethod": "POST",
+  "disconnectUrl": "https://example.com/callback",
+  "disconnectMethod": "POST",
+  "startTime": "2026-04-19T14:30:00Z",
+  "answerTime": "2026-04-19T14:30:00Z",
+  "endTime": "2026-04-19T14:30:00Z",
+  "disconnectCause": "sample-value",
+  "callTimeout": 63.44,
+  "callbackTimeout": 22.58,
+  "tag": "sample-value",
+  "callUrl": "https://example.com/callback"
+}

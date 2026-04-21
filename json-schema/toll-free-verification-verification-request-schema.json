@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/toll-free-verification-verification-request-schema.json",
+  "title": "VerificationRequest",
+  "description": "VerificationRequest schema from Bandwidth toll-free-verification API",
+  "type": "object",
+  "properties": {
+    "telephoneNumbers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of toll-free numbers to verify in E.164 format",
+      "example": [
+        "+18005551234"
+      ]
+    },
+    "businessName": {
+      "type": "string",
+      "description": "The legal name of the business sending messages from the toll-free number"
+    },
+    "businessContact": {
+      "type": "object",
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "phone"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "First name of the business contact"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the business contact"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the business contact"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the business contact"
+        }
+      }
+    },
+    "businessWebsite": {
+      "type": "string",
+      "format": "uri",
+      "description": "The business website URL"
+    },
+    "messageVolume": {
+      "type": "string",
+      "enum": [
+        "10",
+        "100",
+        "1,000",
+        "10,000",
+        "100,000",
+        "250,000",
+        "500,000",
+        "750,000",
+        "1,000,000+"
+      ],
+      "description": "Estimated monthly message volume"
+    },
+    "useCase": {
+      "type": "string",
+      "enum": [
+        "TWO_FACTOR_AUTHENTICATION",
+        "APP_NOTIFICATIONS",
+        "ACCOUNT_NOTIFICATIONS",
+        "CUSTOMER_CARE",
+        "DELIVERY_NOTIFICATIONS",
+        "FRAUD_ALERT_MESSAGING",
+        "HIGHER_EDUCATION",
+        "MARKETING",
+        "POLLING_AND_VOTING",
+        "PUBLIC_SERVICE_ANNOUNCEMENT",
+        "SECURITY_ALERT"
+      ],
+      "description": "The primary use case for messaging from this toll-free number"
+    },
+    "useCaseSummary": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "A detailed description of how the toll-free number will be used for messaging (max 500 characters)"
+    },
+    "messageContent": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Sample message content that will be sent from the number"
+    },
+    "optInWorkflow": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Description of how recipients opt in to receive messages"
+    },
+    "optInWorkflowImageUrls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "URLs to images showing the opt-in workflow (screenshots)"
+    },
+    "additionalInformation": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Any additional information to support the verification request"
+    }
+  },
+  "required": [
+    "telephoneNumbers",
+    "businessName",
+    "businessContact",
+    "messageVolume",
+    "useCase",
+    "useCaseSummary",
+    "optInWorkflow"
+  ]
+}

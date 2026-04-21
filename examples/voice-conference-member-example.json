@@ -1,0 +1,10 @@
+{
+  "callId": "c-abc123",
+  "conferenceId": "c-abc123",
+  "memberUrl": "https://example.com/callback",
+  "mute": true,
+  "hold": true,
+  "callIdsToCoach": [
+    "c-abc123"
+  ]
+}

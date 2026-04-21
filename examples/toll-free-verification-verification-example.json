@@ -1,0 +1,12 @@
+{
+  "verificationId": "c-abc123",
+  "telephoneNumbers": [
+    "+19195551234"
+  ],
+  "status": "PENDING_VERIFICATION",
+  "businessName": "sample-value",
+  "useCase": "sample-value",
+  "submissionDate": "2026-04-19T14:30:00Z",
+  "verificationDate": "2026-04-19T14:30:00Z",
+  "denialReason": "sample-value"
+}

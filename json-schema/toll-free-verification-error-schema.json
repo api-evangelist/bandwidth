@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/toll-free-verification-error-schema.json",
+  "title": "Error",
+  "description": "Error schema from Bandwidth toll-free-verification API",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The error type identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of the error"
+    }
+  }
+}

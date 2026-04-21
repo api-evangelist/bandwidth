@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.com/schemas/bandwidth/message.json",
+  "name": "Bandwidth Message",
+  "description": "Represents an SMS or MMS message sent or received through the Bandwidth Messaging API, including delivery status, media attachments, and routing metadata.",
+  "type": "object",
+  "required": [
+    "from",
+    "to",
+    "applicationId"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the message, assigned by Bandwidth"
+    },
+    "owner": {
+      "type": "string",
+      "description": "The Bandwidth phone number that owns the message"
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "The Bandwidth application ID associated with the message"
+    },
+    "from": {
+      "type": "string",
+      "pattern": "^\\+1[2-9]\\d{9}$",
+      "description": "The source phone number in E.164 format"
+    },
+    "to": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^\\+1[2-9]\\d{9}$"
+      },
+      "minItems": 1,
+      "maxItems": 50,
+      "description": "Array of destination phone numbers in E.164 format"
+    },
+    "text": {
+      "type": "string",
+      "maxLength": 2048,
+      "description": "The text content of the message"
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      },
+      "description": "Array of media URLs for MMS attachments"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "in",
+        "out"
+      ],
+      "description": "The direction of the message (in for received, out for sent)"
+    },
+    "segmentCount": {
+      "type": "int32",
+      "minimum": 1,
+      "description": "The number of segments the message was split into for delivery"
+    },
+    "time": {
+      "type": "datetime",
+      "description": "The ISO 8601 timestamp when the message was created"
+    },
+    "tag": {
+      "type": "string",
+      "description": "A custom string attached to the message for tracking"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "default",
+        "high"
+      ],
+      "default": "default",
+      "description": "The priority level of the message"
+    },
+    "expiration": {
+      "type": "datetime",
+      "description": "The expiration time after which undelivered messages are discarded"
+    }
+  },
+  "$defs": {
+    "MessageDeliveryEvent": {
+      "type": "object",
+      "description": "A webhook event for message delivery status updates",
+      "required": [
+        "type",
+        "time"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "message-received",
+            "message-delivered",
+            "message-failed",
+            "message-sending"
+          ],
+          "description": "The type of messaging event"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp of the event"
+        },
+        "description": {
+          "type": "string",
+          "description": "A human-readable description of the event"
+        },
+        "to": {
+          "type": "string",
+          "description": "The destination phone number"
+        },
+        "errorCode": {
+          "type": "integer",
+          "description": "The Bandwidth error code for failed messages"
+        },
+        "message": {
+          "type": "object",
+          "description": "The message associated with this event",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The message identifier"
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "in",
+                "out"
+              ],
+              "description": "The message direction"
+            },
+            "segmentCount": {
+              "type": "integer",
+              "description": "Number of message segments"
+            }
+          }
+        }
+      }
+    },
+    "Media": {
+      "type": "object",
+      "description": "A media file stored in Bandwidth for MMS messaging",
+      "properties": {
+        "mediaName": {
+          "type": "string",
+          "description": "The name of the media file"
+        },
+        "contentLength": {
+          "type": "integer",
+          "maximum": 3932160,
+          "description": "The size of the media file in bytes (max 3.75 MB)"
+        },
+        "contentType": {
+          "type": "string",
+          "description": "The MIME type of the media file"
+        }
+      }
+    }
+  }
+}

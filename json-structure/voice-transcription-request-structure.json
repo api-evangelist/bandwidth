@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/voice-transcription-request-structure.json",
+  "name": "TranscriptionRequest",
+  "description": "TranscriptionRequest schema from Bandwidth voice API",
+  "type": "object",
+  "properties": {
+    "callbackUrl": {
+      "type": "uri",
+      "description": "The URL to send the transcription completed webhook to"
+    },
+    "callbackMethod": {
+      "type": "string",
+      "enum": [
+        "POST",
+        "GET"
+      ],
+      "default": "POST",
+      "description": "The HTTP method for the transcription webhook"
+    },
+    "tag": {
+      "type": "string",
+      "description": "Custom tag for the transcription request"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/emergency-calling-endpoint-list-response-schema.json",
+  "title": "EndpointListResponse",
+  "description": "Response containing a list of E911 endpoints",
+  "type": "object",
+  "properties": {
+    "totalCount": {
+      "type": "integer",
+      "description": "Total number of endpoints"
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Endpoint"
+      }
+    }
+  }
+}

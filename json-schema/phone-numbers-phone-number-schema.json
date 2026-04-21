@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/phone-numbers-phone-number-schema.json",
+  "title": "PhoneNumber",
+  "description": "A phone number assigned to the account",
+  "type": "object",
+  "properties": {
+    "fullNumber": {
+      "type": "string",
+      "description": "The full phone number"
+    },
+    "city": {
+      "type": "string",
+      "description": "The city associated with the number"
+    },
+    "state": {
+      "type": "string",
+      "description": "The state associated with the number"
+    },
+    "lata": {
+      "type": "string",
+      "description": "The LATA code"
+    },
+    "rateCenter": {
+      "type": "string",
+      "description": "The rate center"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the number"
+    },
+    "siteId": {
+      "type": "string",
+      "description": "The site the number is assigned to"
+    },
+    "sipPeerId": {
+      "type": "string",
+      "description": "The SIP peer the number is assigned to"
+    }
+  }
+}

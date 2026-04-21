@@ -1,0 +1,8 @@
+{
+  "endpointId": "c-abc123",
+  "alternateEndUserId": "c-abc123",
+  "callerName": "sample-value",
+  "locationId": "c-abc123",
+  "telephoneNumber": "+19195551234",
+  "activated": true
+}

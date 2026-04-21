@@ -1,0 +1,10 @@
+{
+  "orderId": "c-abc123",
+  "orderStatus": "RECEIVED",
+  "orderCreateDate": "2026-04-19T14:30:00Z",
+  "completedQuantity": 16,
+  "failedQuantity": 775,
+  "completedNumbers": [
+    "+19195551234"
+  ]
+}

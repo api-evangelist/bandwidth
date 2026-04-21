@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/mfa-error-structure.json",
+  "name": "Error",
+  "description": "Error schema from Bandwidth mfa API",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The error type identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of the error"
+    }
+  }
+}

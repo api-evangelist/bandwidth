@@ -1,199 +1,622 @@
 {
   "@context": {
     "@version": 1.1,
-    "bw": "https://dev.bandwidth.com/ns/",
+    "bandwidth": "https://dev.bandwidth.com/schema/",
     "schema": "https://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dcterms": "http://purl.org/dc/terms/",
-
-    "Call": {
-      "@id": "bw:Call",
-      "@context": {
-        "callId": "bw:callId",
-        "accountId": "bw:accountId",
-        "applicationId": "bw:applicationId",
-        "from": "schema:sender",
-        "to": "schema:recipient",
-        "direction": "bw:direction",
-        "state": "bw:callState",
-        "answerUrl": {
-          "@id": "bw:answerUrl",
-          "@type": "@id"
-        },
-        "disconnectUrl": {
-          "@id": "bw:disconnectUrl",
-          "@type": "@id"
-        },
-        "startTime": {
-          "@id": "schema:startTime",
-          "@type": "xsd:dateTime"
-        },
-        "answerTime": {
-          "@id": "bw:answerTime",
-          "@type": "xsd:dateTime"
-        },
-        "endTime": {
-          "@id": "schema:endTime",
-          "@type": "xsd:dateTime"
-        },
-        "disconnectCause": "bw:disconnectCause",
-        "tag": "bw:tag",
-        "callUrl": {
-          "@id": "bw:callUrl",
-          "@type": "@id"
-        }
-      }
+    "Address": "bandwidth:Address",
+    "AvailableNumber": "bandwidth:AvailableNumber",
+    "AvailableNumbersResponse": "bandwidth:AvailableNumbersResponse",
+    "Bandwidth Call": "bandwidth:Bandwidth Call",
+    "Bandwidth Message": "bandwidth:Bandwidth Message",
+    "Bandwidth Phone Number": "bandwidth:Bandwidth Phone Number",
+    "Call": "bandwidth:Call",
+    "Conference": "bandwidth:Conference",
+    "ConferenceMember": "bandwidth:ConferenceMember",
+    "CreateCallRequest": "bandwidth:CreateCallRequest",
+    "CreateMessageRequest": "bandwidth:CreateMessageRequest",
+    "DisconnectRequest": "bandwidth:DisconnectRequest",
+    "DisconnectResponse": "bandwidth:DisconnectResponse",
+    "Endpoint": "bandwidth:Endpoint",
+    "EndpointListResponse": "bandwidth:EndpointListResponse",
+    "Error": "bandwidth:Error",
+    "FeatureOrderRequest": "bandwidth:FeatureOrderRequest",
+    "Location": "bandwidth:Location",
+    "LocationListResponse": "bandwidth:LocationListResponse",
+    "Media": "bandwidth:Media",
+    "Message": "bandwidth:Message",
+    "MessageList": "bandwidth:MessageList",
+    "MfaMessagingRequest": "bandwidth:MfaMessagingRequest",
+    "MfaMessagingResponse": "bandwidth:MfaMessagingResponse",
+    "MfaVerifyRequest": "bandwidth:MfaVerifyRequest",
+    "MfaVerifyResponse": "bandwidth:MfaVerifyResponse",
+    "MfaVoiceRequest": "bandwidth:MfaVoiceRequest",
+    "MfaVoiceResponse": "bandwidth:MfaVoiceResponse",
+    "NotificationRecipient": "bandwidth:NotificationRecipient",
+    "NotificationRecipientListResponse": "bandwidth:NotificationRecipientListResponse",
+    "OrderListResponse": "bandwidth:OrderListResponse",
+    "OrderRequest": "bandwidth:OrderRequest",
+    "OrderResponse": "bandwidth:OrderResponse",
+    "PhoneNumber": "bandwidth:PhoneNumber",
+    "PhoneNumberListResponse": "bandwidth:PhoneNumberListResponse",
+    "PortInListResponse": "bandwidth:PortInListResponse",
+    "PortInRequest": "bandwidth:PortInRequest",
+    "PortInResponse": "bandwidth:PortInResponse",
+    "Recording": "bandwidth:Recording",
+    "SipPeer": "bandwidth:SipPeer",
+    "SipPeerListResponse": "bandwidth:SipPeerListResponse",
+    "Site": "bandwidth:Site",
+    "SiteListResponse": "bandwidth:SiteListResponse",
+    "Transcription": "bandwidth:Transcription",
+    "TranscriptionRequest": "bandwidth:TranscriptionRequest",
+    "UpdateCallRequest": "bandwidth:UpdateCallRequest",
+    "UpdateConferenceMemberRequest": "bandwidth:UpdateConferenceMemberRequest",
+    "UpdateConferenceRequest": "bandwidth:UpdateConferenceRequest",
+    "Verification": "bandwidth:Verification",
+    "VerificationListResponse": "bandwidth:VerificationListResponse",
+    "VerificationRequest": "bandwidth:VerificationRequest",
+    "accountId": {
+      "@id": "bandwidth:accountId",
+      "@type": "xsd:string"
     },
-
-    "Message": {
-      "@id": "bw:Message",
-      "@context": {
-        "messageId": "bw:messageId",
-        "owner": "bw:owner",
-        "applicationId": "bw:applicationId",
-        "from": "schema:sender",
-        "to": {
-          "@id": "schema:recipient",
-          "@container": "@set"
-        },
-        "text": "schema:text",
-        "media": {
-          "@id": "bw:media",
-          "@type": "@id",
-          "@container": "@set"
-        },
-        "direction": "bw:direction",
-        "segmentCount": "bw:segmentCount",
-        "time": {
-          "@id": "dcterms:created",
-          "@type": "xsd:dateTime"
-        },
-        "tag": "bw:tag",
-        "priority": "bw:priority"
-      }
+    "activated": {
+      "@id": "bandwidth:activated",
+      "@type": "xsd:boolean"
     },
-
-    "PhoneNumber": {
-      "@id": "bw:PhoneNumber",
-      "@context": {
-        "fullNumber": "schema:telephone",
-        "city": "schema:addressLocality",
-        "state": "schema:addressRegion",
-        "lata": "bw:lata",
-        "rateCenter": "bw:rateCenter",
-        "status": "bw:numberStatus",
-        "siteId": "bw:siteId",
-        "sipPeerId": "bw:sipPeerId"
-      }
+    "activeMembers": {
+      "@id": "bandwidth:activeMembers",
+      "@container": "@set",
+      "@type": "xsd:string"
     },
-
-    "Recording": {
-      "@id": "bw:Recording",
-      "@context": {
-        "recordingId": "bw:recordingId",
-        "callId": "bw:callId",
-        "duration": "schema:duration",
-        "channels": "bw:channels",
-        "startTime": {
-          "@id": "schema:startTime",
-          "@type": "xsd:dateTime"
-        },
-        "endTime": {
-          "@id": "schema:endTime",
-          "@type": "xsd:dateTime"
-        },
-        "fileFormat": "schema:encodingFormat",
-        "status": "bw:recordingStatus",
-        "mediaUrl": {
-          "@id": "schema:contentUrl",
-          "@type": "@id"
-        }
-      }
+    "actualFocDate": {
+      "@id": "bandwidth:actualFocDate",
+      "@type": "xsd:string"
     },
-
-    "Conference": {
-      "@id": "bw:Conference",
-      "@context": {
-        "conferenceId": "bw:conferenceId",
-        "name": "schema:name",
-        "createdTime": {
-          "@id": "dcterms:created",
-          "@type": "xsd:dateTime"
-        },
-        "completedTime": {
-          "@id": "bw:completedTime",
-          "@type": "xsd:dateTime"
-        },
-        "tag": "bw:tag",
-        "activeMembers": {
-          "@id": "bw:activeMembers",
-          "@container": "@set"
-        }
-      }
+    "additionalInformation": {
+      "@id": "bandwidth:additionalInformation",
+      "@type": "xsd:string"
     },
-
-    "Site": {
-      "@id": "bw:Site",
-      "@context": {
-        "siteId": "bw:siteId",
-        "name": "schema:name",
-        "description": "schema:description",
-        "address": "schema:address"
-      }
+    "address": {
+      "@id": "bandwidth:address",
+      "@type": "xsd:string"
     },
-
-    "SipPeer": {
-      "@id": "bw:SipPeer",
-      "@context": {
-        "peerId": "bw:peerId",
-        "peerName": "schema:name",
-        "isDefaultPeer": "bw:isDefaultPeer"
-      }
+    "alternateEndUserId": {
+      "@id": "bandwidth:alternateEndUserId",
+      "@type": "xsd:string"
     },
-
-    "Endpoint": {
-      "@id": "bw:E911Endpoint",
-      "@context": {
-        "endpointId": "bw:endpointId",
-        "alternateEndUserId": "bw:alternateEndUserId",
-        "callerName": "schema:name",
-        "locationId": "bw:locationId",
-        "telephoneNumber": "schema:telephone",
-        "activated": "bw:activated"
-      }
+    "answerFallbackMethod": {
+      "@id": "bandwidth:answerFallbackMethod",
+      "@type": "xsd:string"
     },
-
-    "Location": {
-      "@id": "bw:E911Location",
-      "@context": {
-        "locationId": "bw:locationId",
-        "address": "schema:address",
-        "latitude": "schema:latitude",
-        "longitude": "schema:longitude",
-        "status": "bw:locationStatus"
-      }
+    "answerFallbackUrl": {
+      "@id": "bandwidth:answerFallbackUrl",
+      "@type": "@id"
     },
-
-    "TollFreeVerification": {
-      "@id": "bw:TollFreeVerification",
-      "@context": {
-        "verificationId": "bw:verificationId",
-        "telephoneNumbers": {
-          "@id": "schema:telephone",
-          "@container": "@set"
-        },
-        "status": "bw:verificationStatus",
-        "businessName": "schema:legalName",
-        "useCase": "bw:useCase",
-        "submissionDate": {
-          "@id": "dcterms:created",
-          "@type": "xsd:dateTime"
-        },
-        "verificationDate": {
-          "@id": "bw:verificationDate",
-          "@type": "xsd:dateTime"
-        }
-      }
+    "answerMethod": {
+      "@id": "bandwidth:answerMethod",
+      "@type": "xsd:string"
+    },
+    "answerTime": {
+      "@id": "bandwidth:answerTime",
+      "@type": "xsd:dateTime"
+    },
+    "answerUrl": {
+      "@id": "bandwidth:answerUrl",
+      "@type": "@id"
+    },
+    "applicationId": {
+      "@id": "bandwidth:applicationId",
+      "@type": "xsd:string"
+    },
+    "billingTelephoneNumber": {
+      "@id": "bandwidth:billingTelephoneNumber",
+      "@type": "xsd:string"
+    },
+    "businessContact": {
+      "@id": "bandwidth:businessContact",
+      "@type": "xsd:string"
+    },
+    "businessName": {
+      "@id": "bandwidth:businessName",
+      "@type": "xsd:string"
+    },
+    "businessWebsite": {
+      "@id": "bandwidth:businessWebsite",
+      "@type": "@id"
+    },
+    "callId": {
+      "@id": "bandwidth:callId",
+      "@type": "xsd:string"
+    },
+    "callIdsToCoach": {
+      "@id": "bandwidth:callIdsToCoach",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "callTimeout": {
+      "@id": "bandwidth:callTimeout",
+      "@type": "xsd:decimal"
+    },
+    "callUrl": {
+      "@id": "bandwidth:callUrl",
+      "@type": "@id"
+    },
+    "callbackMethod": {
+      "@id": "bandwidth:callbackMethod",
+      "@type": "xsd:string"
+    },
+    "callbackTimeout": {
+      "@id": "bandwidth:callbackTimeout",
+      "@type": "xsd:decimal"
+    },
+    "callbackUrl": {
+      "@id": "bandwidth:callbackUrl",
+      "@type": "@id"
+    },
+    "callerName": {
+      "@id": "bandwidth:callerName",
+      "@type": "xsd:string"
+    },
+    "callingNameDisplay": {
+      "@id": "bandwidth:callingNameDisplay",
+      "@type": "xsd:string"
+    },
+    "channels": {
+      "@id": "bandwidth:channels",
+      "@type": "xsd:integer"
+    },
+    "city": {
+      "@id": "bandwidth:city",
+      "@type": "xsd:string"
+    },
+    "code": {
+      "@id": "bandwidth:code",
+      "@type": "xsd:string"
+    },
+    "completedNumbers": {
+      "@id": "bandwidth:completedNumbers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "completedQuantity": {
+      "@id": "bandwidth:completedQuantity",
+      "@type": "xsd:integer"
+    },
+    "completedTime": {
+      "@id": "bandwidth:completedTime",
+      "@type": "xsd:dateTime"
+    },
+    "conferenceId": {
+      "@id": "bandwidth:conferenceId",
+      "@type": "xsd:string"
+    },
+    "content": {
+      "@id": "bandwidth:content",
+      "@type": "xsd:string"
+    },
+    "contentLength": {
+      "@id": "bandwidth:contentLength",
+      "@type": "xsd:integer"
+    },
+    "contentType": {
+      "@id": "bandwidth:contentType",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "bandwidth:country",
+      "@type": "xsd:string"
+    },
+    "createdTime": {
+      "@id": "bandwidth:createdTime",
+      "@type": "xsd:dateTime"
+    },
+    "denialReason": {
+      "@id": "bandwidth:denialReason",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "digits": {
+      "@id": "bandwidth:digits",
+      "@type": "xsd:integer"
+    },
+    "direction": {
+      "@id": "bandwidth:direction",
+      "@type": "xsd:string"
+    },
+    "directoryListing": {
+      "@id": "bandwidth:directoryListing",
+      "@type": "xsd:string"
+    },
+    "disconnectCause": {
+      "@id": "bandwidth:disconnectCause",
+      "@type": "xsd:string"
+    },
+    "disconnectMethod": {
+      "@id": "bandwidth:disconnectMethod",
+      "@type": "xsd:string"
+    },
+    "disconnectTelephoneNumberOrderType": {
+      "@id": "bandwidth:disconnectTelephoneNumberOrderType",
+      "@type": "xsd:string"
+    },
+    "disconnectUrl": {
+      "@id": "bandwidth:disconnectUrl",
+      "@type": "@id"
+    },
+    "duration": {
+      "@id": "bandwidth:duration",
+      "@type": "xsd:string"
+    },
+    "emailAddress": {
+      "@id": "bandwidth:emailAddress",
+      "@type": "xsd:string"
+    },
+    "endTime": {
+      "@id": "bandwidth:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "endpointId": {
+      "@id": "bandwidth:endpointId",
+      "@type": "xsd:string"
+    },
+    "endpoints": {
+      "@id": "bandwidth:endpoints",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "existingTelephoneNumberOrderType": {
+      "@id": "bandwidth:existingTelephoneNumberOrderType",
+      "@type": "xsd:string"
+    },
+    "expiration": {
+      "@id": "bandwidth:expiration",
+      "@type": "xsd:dateTime"
+    },
+    "expirationTimeInMinutes": {
+      "@id": "bandwidth:expirationTimeInMinutes",
+      "@type": "xsd:decimal"
+    },
+    "failedQuantity": {
+      "@id": "bandwidth:failedQuantity",
+      "@type": "xsd:integer"
+    },
+    "features": {
+      "@id": "bandwidth:features",
+      "@type": "xsd:string"
+    },
+    "fieldErrors": {
+      "@id": "bandwidth:fieldErrors",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "fileFormat": {
+      "@id": "bandwidth:fileFormat",
+      "@type": "xsd:string"
+    },
+    "from": {
+      "@id": "bandwidth:from",
+      "@type": "xsd:string"
+    },
+    "fullNumber": {
+      "@id": "bandwidth:fullNumber",
+      "@type": "xsd:string"
+    },
+    "hold": {
+      "@id": "bandwidth:hold",
+      "@type": "xsd:boolean"
+    },
+    "houseNumber": {
+      "@id": "bandwidth:houseNumber",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "bandwidth:id",
+      "@type": "xsd:string"
+    },
+    "isDefaultPeer": {
+      "@id": "bandwidth:isDefaultPeer",
+      "@type": "xsd:boolean"
+    },
+    "lata": {
+      "@id": "bandwidth:lata",
+      "@type": "xsd:string"
+    },
+    "latitude": {
+      "@id": "bandwidth:latitude",
+      "@type": "xsd:decimal"
+    },
+    "listOfPhoneNumbers": {
+      "@id": "bandwidth:listOfPhoneNumbers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "locationId": {
+      "@id": "bandwidth:locationId",
+      "@type": "xsd:string"
+    },
+    "locations": {
+      "@id": "bandwidth:locations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "longitude": {
+      "@id": "bandwidth:longitude",
+      "@type": "xsd:decimal"
+    },
+    "losingCarrierName": {
+      "@id": "bandwidth:losingCarrierName",
+      "@type": "xsd:string"
+    },
+    "media": {
+      "@id": "bandwidth:media",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "mediaName": {
+      "@id": "bandwidth:mediaName",
+      "@type": "xsd:string"
+    },
+    "mediaUrl": {
+      "@id": "bandwidth:mediaUrl",
+      "@type": "@id"
+    },
+    "memberUrl": {
+      "@id": "bandwidth:memberUrl",
+      "@type": "@id"
+    },
+    "message": {
+      "@id": "bandwidth:message",
+      "@type": "xsd:string"
+    },
+    "messageContent": {
+      "@id": "bandwidth:messageContent",
+      "@type": "xsd:string"
+    },
+    "messageId": {
+      "@id": "bandwidth:messageId",
+      "@type": "xsd:string"
+    },
+    "messageVolume": {
+      "@id": "bandwidth:messageVolume",
+      "@type": "xsd:string"
+    },
+    "messages": {
+      "@id": "bandwidth:messages",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "mute": {
+      "@id": "bandwidth:mute",
+      "@type": "xsd:boolean"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "notificationRecipients": {
+      "@id": "bandwidth:notificationRecipients",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "optInWorkflow": {
+      "@id": "bandwidth:optInWorkflow",
+      "@type": "xsd:string"
+    },
+    "optInWorkflowImageUrls": {
+      "@id": "bandwidth:optInWorkflowImageUrls",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "orderCreateDate": {
+      "@id": "bandwidth:orderCreateDate",
+      "@type": "xsd:dateTime"
+    },
+    "orderId": {
+      "@id": "bandwidth:orderId",
+      "@type": "xsd:string"
+    },
+    "orderStatus": {
+      "@id": "bandwidth:orderStatus",
+      "@type": "xsd:string"
+    },
+    "orders": {
+      "@id": "bandwidth:orders",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "owner": {
+      "@id": "bandwidth:owner",
+      "@type": "xsd:string"
+    },
+    "pageInfo": {
+      "@id": "bandwidth:pageInfo",
+      "@type": "xsd:string"
+    },
+    "peerId": {
+      "@id": "bandwidth:peerId",
+      "@type": "xsd:string"
+    },
+    "peerName": {
+      "@id": "bandwidth:peerName",
+      "@type": "xsd:string"
+    },
+    "phoneNumber": {
+      "@id": "bandwidth:phoneNumber",
+      "@type": "xsd:string"
+    },
+    "portInId": {
+      "@id": "bandwidth:portInId",
+      "@type": "xsd:string"
+    },
+    "portIns": {
+      "@id": "bandwidth:portIns",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "priority": {
+      "@id": "bandwidth:priority",
+      "@type": "xsd:string"
+    },
+    "rateCenter": {
+      "@id": "bandwidth:rateCenter",
+      "@type": "xsd:string"
+    },
+    "recordingId": {
+      "@id": "bandwidth:recordingId",
+      "@type": "xsd:string"
+    },
+    "redirectFallbackMethod": {
+      "@id": "bandwidth:redirectFallbackMethod",
+      "@type": "xsd:string"
+    },
+    "redirectFallbackUrl": {
+      "@id": "bandwidth:redirectFallbackUrl",
+      "@type": "@id"
+    },
+    "redirectMethod": {
+      "@id": "bandwidth:redirectMethod",
+      "@type": "xsd:string"
+    },
+    "redirectUrl": {
+      "@id": "bandwidth:redirectUrl",
+      "@type": "@id"
+    },
+    "requestedFocDate": {
+      "@id": "bandwidth:requestedFocDate",
+      "@type": "xsd:string"
+    },
+    "resultCount": {
+      "@id": "bandwidth:resultCount",
+      "@type": "xsd:integer"
+    },
+    "scope": {
+      "@id": "bandwidth:scope",
+      "@type": "xsd:string"
+    },
+    "segmentCount": {
+      "@id": "bandwidth:segmentCount",
+      "@type": "xsd:integer"
+    },
+    "sipPeerId": {
+      "@id": "bandwidth:sipPeerId",
+      "@type": "xsd:string"
+    },
+    "sipPeers": {
+      "@id": "bandwidth:sipPeers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "siteId": {
+      "@id": "bandwidth:siteId",
+      "@type": "xsd:string"
+    },
+    "sites": {
+      "@id": "bandwidth:sites",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "bandwidth:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "state": {
+      "@id": "bandwidth:state",
+      "@type": "xsd:string"
+    },
+    "stateCode": {
+      "@id": "bandwidth:stateCode",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "bandwidth:status",
+      "@type": "xsd:string"
+    },
+    "streetName": {
+      "@id": "bandwidth:streetName",
+      "@type": "xsd:string"
+    },
+    "submissionDate": {
+      "@id": "bandwidth:submissionDate",
+      "@type": "xsd:dateTime"
+    },
+    "subscriber": {
+      "@id": "bandwidth:subscriber",
+      "@type": "xsd:string"
+    },
+    "tag": {
+      "@id": "bandwidth:tag",
+      "@type": "xsd:string"
+    },
+    "telephoneNumber": {
+      "@id": "bandwidth:telephoneNumber",
+      "@type": "xsd:string"
+    },
+    "telephoneNumberList": {
+      "@id": "bandwidth:telephoneNumberList",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "telephoneNumbers": {
+      "@id": "bandwidth:telephoneNumbers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "text": {
+      "@id": "bandwidth:text",
+      "@type": "xsd:string"
+    },
+    "time": {
+      "@id": "bandwidth:time",
+      "@type": "xsd:dateTime"
+    },
+    "to": {
+      "@id": "bandwidth:to",
+      "@type": "xsd:string"
+    },
+    "totalCount": {
+      "@id": "bandwidth:totalCount",
+      "@type": "xsd:integer"
+    },
+    "transcription": {
+      "@id": "bandwidth:transcription",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "bandwidth:type",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "schema:url"
+    },
+    "useCase": {
+      "@id": "bandwidth:useCase",
+      "@type": "xsd:string"
+    },
+    "useCaseSummary": {
+      "@id": "bandwidth:useCaseSummary",
+      "@type": "xsd:string"
+    },
+    "valid": {
+      "@id": "bandwidth:valid",
+      "@type": "xsd:boolean"
+    },
+    "verificationDate": {
+      "@id": "bandwidth:verificationDate",
+      "@type": "xsd:dateTime"
+    },
+    "verificationId": {
+      "@id": "bandwidth:verificationId",
+      "@type": "xsd:string"
+    },
+    "verifications": {
+      "@id": "bandwidth:verifications",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "zip": {
+      "@id": "bandwidth:zip",
+      "@type": "xsd:string"
     }
   }
 }

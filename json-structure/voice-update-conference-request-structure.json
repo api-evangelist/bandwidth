@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/voice-update-conference-request-structure.json",
+  "name": "UpdateConferenceRequest",
+  "description": "UpdateConferenceRequest schema from Bandwidth voice API",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "completed"
+      ],
+      "description": "Set to completed to end the conference and disconnect all members"
+    },
+    "redirectUrl": {
+      "type": "uri",
+      "description": "URL to redirect the conference to for new BXML instructions"
+    },
+    "redirectMethod": {
+      "type": "string",
+      "enum": [
+        "POST",
+        "GET"
+      ],
+      "default": "POST",
+      "description": "The HTTP method for the redirect webhook"
+    },
+    "tag": {
+      "type": "string",
+      "description": "Custom tag for the conference"
+    }
+  }
+}

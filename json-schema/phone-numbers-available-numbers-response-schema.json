@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/phone-numbers-available-numbers-response-schema.json",
+  "title": "AvailableNumbersResponse",
+  "description": "Response containing a list of available phone numbers",
+  "type": "object",
+  "properties": {
+    "resultCount": {
+      "type": "integer",
+      "description": "The number of results returned"
+    },
+    "telephoneNumberList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AvailableNumber"
+      }
+    }
+  }
+}

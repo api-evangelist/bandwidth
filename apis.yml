@@ -1,6 +1,20 @@
 aid: bandwidth
 url: https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/apis.yml
-modified: '2026-03-20'
+name: Bandwidth
+tags:
+  - Communications
+  - CPaaS
+  - Voice
+  - Messaging
+  - Telephony
+  - SMS
+  - MFA
+modified: '2026-04-19'
+description: >-
+  Bandwidth is a leading cloud-based communications platform providing voice, messaging, emergency
+  calling, phone number management, multi-factor authentication, and toll-free verification APIs.
+  Built on Bandwidth's own Tier 1 network, the platform delivers enterprise-grade reliability
+  for CPaaS applications.
 apis:
   - aid: bandwidth:voice-api
     name: Bandwidth Voice API
@@ -142,18 +156,105 @@ apis:
       programmatically submit and manage toll-free number verification
       requests for A2P messaging compliance. It automates the verification
       submission process, allowing developers to view and update the
-      verification status of their toll-free numbers. This API helps
-      ensure that toll-free messaging traffic complies with carrier
-      requirements and regulations including the Telephone Consumer
-      Protection Act (TCPA).
+      verification status of their toll-free numbers.
 common:
-  - type: JSON-LD
-    url: json-ld/bandwidth-context.jsonld
+  - type: Website
+    url: https://www.bandwidth.com/
+    name: Bandwidth
+  - type: Documentation
+    url: https://dev.bandwidth.com/
+    name: Bandwidth Developer Portal
+  - type: SignUp
+    url: https://app.bandwidth.com/signup
+    name: Sign Up for Bandwidth
+  - type: Blog
+    url: https://www.bandwidth.com/blog/
+    name: Bandwidth Blog
+  - type: TermsOfService
+    url: https://www.bandwidth.com/legal/
+    name: Terms of Service
+  - type: PrivacyPolicy
+    url: https://www.bandwidth.com/legal/privacy-policy/
+    name: Privacy Policy
+  - type: Status
+    url: https://status.bandwidth.com/
+    name: Bandwidth System Status
+  - type: Support
+    url: https://support.bandwidth.com/
+    name: Bandwidth Support
+  - type: SDK
+    url: https://dev.bandwidth.com/sdks/
+    name: Bandwidth SDKs
+  - type: SpectralRules
+    url: rules/bandwidth-spectral-rules.yml
+  - type: Vocabulary
+    url: vocabulary/bandwidth-vocabulary.yaml
+  - type: NaftikoCapability
+    url: capabilities/communications-platform.yaml
   - type: JSONSchema
     url: json-schema/bandwidth-call-schema.json
   - type: JSONSchema
     url: json-schema/bandwidth-message-schema.json
   - type: JSONSchema
     url: json-schema/bandwidth-phone-number-schema.json
-description: >-
-  A general overview of Bandwidth's Voice Services.
+  - type: JSON-LD
+    url: json-ld/bandwidth-context.jsonld
+  - name: Features
+    type: Features
+    data:
+      - name: Voice Calls
+        description: Programmable outbound and inbound voice call management with BXML call control.
+      - name: SMS Messaging
+        description: Send and receive SMS messages on local and toll-free numbers.
+      - name: MMS Messaging
+        description: Send and receive multimedia messages with images, video, and audio.
+      - name: Multi-Factor Authentication
+        description: OTP code delivery and verification via voice or SMS.
+      - name: Phone Number Management
+        description: Search, order, port, and configure US and Canadian phone numbers.
+      - name: Emergency Calling (E911)
+        description: Dynamic location routing for compliant emergency call handling.
+      - name: Toll-Free Verification
+        description: Submit and track A2P toll-free number verification requests.
+      - name: Call Recording
+        description: Record and retrieve voice call audio for compliance and analytics.
+      - name: Conferences
+        description: Create multi-party voice conferences with participant management.
+      - name: Webhooks
+        description: Real-time event notifications for call state changes and message delivery.
+      - name: Tier 1 Network
+        description: Direct carrier connectivity on Bandwidth's own nationwide network.
+  - name: Use Cases
+    type: UseCases
+    data:
+      - name: Click-to-Call
+        description: Embed outbound calling in web and mobile applications.
+      - name: IVR Systems
+        description: Build interactive voice response menus with DTMF input and TTS.
+      - name: A2P Messaging
+        description: Send application-to-person SMS campaigns at scale.
+      - name: 2FA / OTP
+        description: Add SMS or voice-based multi-factor authentication to applications.
+      - name: Number Provisioning
+        description: Automate phone number procurement and assignment for customers.
+      - name: E911 Compliance
+        description: Meet Kari's Law and RAY BAUM's Act requirements for enterprise voice.
+      - name: Call Center
+        description: Build inbound/outbound contact center applications with recording.
+      - name: Number Porting
+        description: Migrate existing phone numbers to Bandwidth programmatically.
+  - name: Integrations
+    type: Integrations
+    data:
+      - name: Cisco Webex
+      - name: Microsoft Teams
+      - name: Zoom Phone
+      - name: Twilio
+      - name: Salesforce
+      - name: Amazon Connect
+      - name: Genesys Cloud
+created: '2024-01-01'
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+specificationVersion: '0.19'

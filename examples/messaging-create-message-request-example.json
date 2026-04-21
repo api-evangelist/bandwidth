@@ -1,0 +1,14 @@
+{
+  "from": "+19195551234",
+  "to": [
+    "+19195554321"
+  ],
+  "text": "sample-value",
+  "media": [
+    "sample-value"
+  ],
+  "applicationId": "c-abc123",
+  "tag": "sample-value",
+  "priority": "default",
+  "expiration": "2026-04-19T14:30:00Z"
+}

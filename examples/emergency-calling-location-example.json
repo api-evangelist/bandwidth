@@ -1,0 +1,14 @@
+{
+  "locationId": "c-abc123",
+  "description": "sample-value",
+  "address": {
+    "houseNumber": "+19195551234",
+    "houseSuffix": "sample-value",
+    "prefixDirectional": "sample-value",
+    "streetName": "sample-value",
+    "streetSuffix": "sample-value"
+  },
+  "status": "VALID",
+  "latitude": 50.16,
+  "longitude": 4.56
+}

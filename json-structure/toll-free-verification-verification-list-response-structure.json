@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/toll-free-verification-verification-list-response-structure.json",
+  "name": "VerificationListResponse",
+  "description": "VerificationListResponse schema from Bandwidth toll-free-verification API",
+  "type": "object",
+  "properties": {
+    "totalCount": {
+      "type": "int32",
+      "description": "Total number of verification requests"
+    },
+    "verifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Verification"
+      }
+    }
+  }
+}

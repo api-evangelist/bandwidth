@@ -1,0 +1,5 @@
+{
+  "callbackUrl": "https://example.com/callback",
+  "callbackMethod": "POST",
+  "tag": "sample-value"
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/messaging-create-message-request-schema.json",
+  "title": "CreateMessageRequest",
+  "description": "CreateMessageRequest schema from Bandwidth messaging API",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "string",
+      "description": "The Bandwidth phone number to send the message from, in E.164 format",
+      "example": "+19195551234"
+    },
+    "to": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "maxItems": 50,
+      "description": "Array of destination phone numbers in E.164 format. Up to 50 numbers for group messaging.",
+      "example": [
+        "+19195554321"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "maxLength": 2048,
+      "description": "The text content of the message. Required for SMS. For MMS, text is optional if media is provided."
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Array of media URLs to include as MMS attachments. Each URL must be publicly accessible or a Bandwidth media URL."
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "The ID of the Bandwidth application associated with this message. This determines which webhook URLs receive delivery callbacks."
+    },
+    "tag": {
+      "type": "string",
+      "description": "A custom string to attach to the message for tracking purposes"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "default",
+        "high"
+      ],
+      "default": "default",
+      "description": "The priority of the message. High priority messages are delivered faster but may incur additional charges."
+    },
+    "expiration": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The expiration time for the message. Messages not delivered by this time will be discarded."
+    }
+  },
+  "required": [
+    "from",
+    "to",
+    "text",
+    "applicationId"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/mfa-mfa-messaging-request-structure.json",
+  "name": "MfaMessagingRequest",
+  "description": "MfaMessagingRequest schema from Bandwidth mfa API",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "string",
+      "description": "The Bandwidth phone number to send the SMS from, in E.164 format",
+      "example": "+19195551234"
+    },
+    "to": {
+      "type": "string",
+      "description": "The destination phone number to send the MFA code to, in E.164 format",
+      "example": "+19195554321"
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "The ID of the Bandwidth messaging application to use for sending the SMS"
+    },
+    "scope": {
+      "type": "string",
+      "description": "An optional field to denote what scope or action the MFA code is for. This is returned during verification."
+    },
+    "message": {
+      "type": "string",
+      "description": "The message template to send. Use {CODE} as a placeholder for the generated MFA code.",
+      "example": "Your verification code is {CODE}"
+    },
+    "digits": {
+      "type": "int32",
+      "minimum": 4,
+      "maximum": 8,
+      "description": "The number of digits in the generated MFA code (4-8)",
+      "example": 6
+    },
+    "expirationTimeInMinutes": {
+      "type": "double",
+      "minimum": 1,
+      "maximum": 15,
+      "default": 3,
+      "description": "The time in minutes before the MFA code expires (1-15, default 3 minutes)"
+    }
+  },
+  "required": [
+    "from",
+    "to",
+    "applicationId",
+    "message",
+    "digits"
+  ]
+}

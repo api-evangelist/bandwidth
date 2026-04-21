@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/messaging-message-list-schema.json",
+  "title": "MessageList",
+  "description": "MessageList schema from Bandwidth messaging API",
+  "type": "object",
+  "properties": {
+    "totalCount": {
+      "type": "integer",
+      "description": "The total number of messages matching the query"
+    },
+    "pageInfo": {
+      "type": "object",
+      "properties": {
+        "prevPage": {
+          "type": "string",
+          "description": "Token for the previous page"
+        },
+        "nextPage": {
+          "type": "string",
+          "description": "Token for the next page"
+        },
+        "prevPageToken": {
+          "type": "string",
+          "description": "Previous page token for pagination"
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "Next page token for pagination"
+        }
+      }
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Message"
+      }
+    }
+  }
+}

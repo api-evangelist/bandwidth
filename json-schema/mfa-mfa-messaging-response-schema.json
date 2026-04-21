@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/mfa-mfa-messaging-response-schema.json",
+  "title": "MfaMessagingResponse",
+  "description": "MfaMessagingResponse schema from Bandwidth mfa API",
+  "type": "object",
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "description": "The unique identifier for the SMS message sent with the MFA code"
+    }
+  }
+}

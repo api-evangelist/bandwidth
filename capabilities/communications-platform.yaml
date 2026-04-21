@@ -1,0 +1,224 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Bandwidth Communications Platform"
+  description: >-
+    Unified communications platform workflow covering voice calls, messaging (SMS/MMS),
+    multi-factor authentication, phone number management, emergency calling (E911),
+    and toll-free verification. Serves developers building communication-enabled applications.
+  tags:
+    - Bandwidth
+    - Voice
+    - Messaging
+    - Communications
+    - Telephony
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      BANDWIDTH_ACCOUNT_ID: BANDWIDTH_ACCOUNT_ID
+      BANDWIDTH_API_TOKEN: BANDWIDTH_API_TOKEN
+      BANDWIDTH_API_SECRET: BANDWIDTH_API_SECRET
+
+capability:
+  consumes:
+    - import: bandwidth-voice
+      location: ./shared/voice-api.yaml
+    - import: bandwidth-messaging
+      location: ./shared/messaging-api.yaml
+    - import: bandwidth-mfa
+      location: ./shared/mfa-api.yaml
+    - import: bandwidth-phone-numbers
+      location: ./shared/phone-numbers-api.yaml
+    - import: bandwidth-emergency
+      location: ./shared/emergency-api.yaml
+    - import: bandwidth-toll-free
+      location: ./shared/toll-free-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: bandwidth-platform-api
+      description: "Unified REST API for Bandwidth communications platform."
+      resources:
+        - path: /v1/calls
+          name: calls
+          description: Voice call management
+          operations:
+            - method: POST
+              name: create-call
+              description: Initiate an outbound voice call
+              call: "bandwidth-voice.createCall"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/messages
+          name: messages
+          description: SMS/MMS messaging
+          operations:
+            - method: POST
+              name: send-message
+              description: Send an SMS or MMS message
+              call: "bandwidth-messaging.createMessage"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/mfa/verify
+          name: mfa-verify
+          description: Multi-factor authentication
+          operations:
+            - method: POST
+              name: verify-mfa
+              description: Verify an MFA code
+              call: "bandwidth-mfa.verifyMfaCode"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: bandwidth-platform-mcp
+      transport: http
+      description: "MCP server for AI-assisted Bandwidth communications management."
+      tools:
+        - name: create-voice-call
+          description: Initiate an outbound voice call through Bandwidth
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "bandwidth-voice.createCall"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-call-status
+          description: Retrieve the status and details of a voice call
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "bandwidth-voice.getCall"
+          with:
+            accountId: "tools.accountId"
+            callId: "tools.callId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-sms-message
+          description: Send an SMS or MMS message via Bandwidth messaging
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "bandwidth-messaging.createMessage"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-messages
+          description: List messages sent or received on the account
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "bandwidth-messaging.listMessages"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-mfa-code-sms
+          description: Send an MFA verification code via SMS
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "bandwidth-mfa.createMessagingMfa"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: verify-mfa-code
+          description: Verify a multi-factor authentication code
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "bandwidth-mfa.verifyMfaCode"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-available-phone-numbers
+          description: Search for available phone numbers to order
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "bandwidth-phone-numbers.searchAvailableNumbers"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: order-phone-numbers
+          description: Place an order for phone numbers
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "bandwidth-phone-numbers.createOrder"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-e911-endpoints
+          description: List emergency calling (E911) endpoints for the account
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "bandwidth-emergency.listEndpoints"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-e911-endpoint
+          description: Register an endpoint for E911 emergency calling
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "bandwidth-emergency.createEndpoint"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-toll-free-verifications
+          description: List toll-free number verification requests
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "bandwidth-toll-free.listTollFreeVerifications"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: submit-toll-free-verification
+          description: Submit a toll-free number for verification
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "bandwidth-toll-free.createTollFreeVerification"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."

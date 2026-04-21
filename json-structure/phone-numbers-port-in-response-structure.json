@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/phone-numbers-port-in-response-structure.json",
+  "name": "PortInResponse",
+  "description": "Response containing port-in request details",
+  "type": "object",
+  "properties": {
+    "portInId": {
+      "type": "string",
+      "description": "The unique identifier for the port-in request"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the port-in request"
+    },
+    "requestedFocDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The requested FOC date"
+    },
+    "actualFocDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The actual FOC date assigned by the carrier"
+    }
+  }
+}

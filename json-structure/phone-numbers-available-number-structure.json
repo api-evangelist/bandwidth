@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/phone-numbers-available-number-structure.json",
+  "name": "AvailableNumber",
+  "description": "An available phone number from Bandwidth inventory",
+  "type": "object",
+  "properties": {
+    "fullNumber": {
+      "type": "string",
+      "description": "The full phone number in E.164 format"
+    },
+    "city": {
+      "type": "string",
+      "description": "The city associated with the number"
+    },
+    "state": {
+      "type": "string",
+      "description": "The state associated with the number"
+    },
+    "lata": {
+      "type": "string",
+      "description": "The LATA code for the number"
+    },
+    "rateCenter": {
+      "type": "string",
+      "description": "The rate center for the number"
+    }
+  }
+}

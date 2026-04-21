@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/phone-numbers-site-list-response-schema.json",
+  "title": "SiteListResponse",
+  "description": "Response containing a list of sites",
+  "type": "object",
+  "properties": {
+    "sites": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Site"
+      }
+    }
+  }
+}

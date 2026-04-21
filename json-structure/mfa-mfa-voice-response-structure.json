@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/mfa-mfa-voice-response-structure.json",
+  "name": "MfaVoiceResponse",
+  "description": "MfaVoiceResponse schema from Bandwidth mfa API",
+  "type": "object",
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "The unique identifier for the voice call made with the MFA code"
+    }
+  }
+}

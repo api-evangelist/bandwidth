@@ -1,0 +1,14 @@
+{
+  "recordingId": "c-abc123",
+  "accountId": "c-abc123",
+  "callId": "c-abc123",
+  "applicationId": "c-abc123",
+  "duration": "sample-value",
+  "channels": 178,
+  "startTime": "2026-04-19T14:30:00Z",
+  "endTime": "2026-04-19T14:30:00Z",
+  "fileFormat": "wav",
+  "status": "complete",
+  "mediaUrl": "https://example.com/callback",
+  "transcription": "sample-value"
+}

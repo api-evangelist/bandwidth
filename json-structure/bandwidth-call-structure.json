@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.com/schemas/bandwidth/call.json",
+  "name": "Bandwidth Call",
+  "description": "Represents a voice call managed through the Bandwidth Voice API, including outbound and inbound calls with state tracking, recording references, and call control metadata.",
+  "type": "object",
+  "required": [
+    "from",
+    "to",
+    "applicationId"
+  ],
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "The unique identifier for the call, assigned by Bandwidth"
+    },
+    "accountId": {
+      "type": "string",
+      "description": "The Bandwidth account ID that owns the call"
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "The Bandwidth application ID associated with the call"
+    },
+    "from": {
+      "type": "string",
+      "pattern": "^\\+1[2-9]\\d{9}$",
+      "description": "The originating phone number in E.164 format"
+    },
+    "to": {
+      "type": "string",
+      "pattern": "^\\+1[2-9]\\d{9}$",
+      "description": "The destination phone number in E.164 format"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "inbound",
+        "outbound"
+      ],
+      "description": "The direction of the call"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "initiated",
+        "answered",
+        "completed"
+      ],
+      "description": "The current state of the call"
+    },
+    "answerUrl": {
+      "type": "uri",
+      "description": "The URL that receives the answer webhook and returns BXML"
+    },
+    "answerMethod": {
+      "type": "string",
+      "enum": [
+        "POST",
+        "GET"
+      ],
+      "default": "POST",
+      "description": "The HTTP method for the answer webhook"
+    },
+    "disconnectUrl": {
+      "type": "uri",
+      "description": "The URL that receives the disconnect webhook"
+    },
+    "disconnectMethod": {
+      "type": "string",
+      "enum": [
+        "POST",
+        "GET"
+      ],
+      "default": "POST",
+      "description": "The HTTP method for the disconnect webhook"
+    },
+    "startTime": {
+      "type": "datetime",
+      "description": "The ISO 8601 timestamp when the call was initiated"
+    },
+    "answerTime": {
+      "type": "datetime",
+      "description": "The ISO 8601 timestamp when the call was answered"
+    },
+    "endTime": {
+      "type": "datetime",
+      "description": "The ISO 8601 timestamp when the call ended"
+    },
+    "disconnectCause": {
+      "type": "string",
+      "description": "The reason the call was disconnected (e.g., hangup, timeout, cancel)"
+    },
+    "callTimeout": {
+      "type": "double",
+      "minimum": 1,
+      "maximum": 300,
+      "default": 30,
+      "description": "The timeout in seconds for the outbound call to be answered"
+    },
+    "callbackTimeout": {
+      "type": "double",
+      "minimum": 1,
+      "maximum": 25,
+      "default": 15,
+      "description": "The timeout in seconds for webhook callback requests"
+    },
+    "tag": {
+      "type": "string",
+      "maxLength": 256,
+      "description": "A custom string attached to the call for tracking purposes"
+    },
+    "callUrl": {
+      "type": "uri",
+      "description": "The URL for this call resource in the Bandwidth API"
+    }
+  },
+  "$defs": {
+    "Recording": {
+      "type": "object",
+      "description": "A recording of a voice call",
+      "properties": {
+        "recordingId": {
+          "type": "string",
+          "description": "The unique identifier for the recording"
+        },
+        "callId": {
+          "type": "string",
+          "description": "The call ID associated with this recording"
+        },
+        "duration": {
+          "type": "string",
+          "description": "The duration of the recording in ISO 8601 format"
+        },
+        "channels": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2,
+          "description": "The number of audio channels"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the recording started"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the recording ended"
+        },
+        "fileFormat": {
+          "type": "string",
+          "enum": [
+            "wav",
+            "mp3"
+          ],
+          "description": "The audio file format"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "partial",
+            "error"
+          ],
+          "description": "The recording status"
+        },
+        "mediaUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL to download the recording audio"
+        }
+      }
+    },
+    "Conference": {
+      "type": "object",
+      "description": "A multi-party conference call",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique conference identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "The user-defined conference name"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the conference was created"
+        },
+        "completedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the conference ended"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Custom tag for the conference"
+        },
+        "activeMembers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ConferenceMember"
+          },
+          "description": "List of active conference members"
+        }
+      }
+    },
+    "ConferenceMember": {
+      "type": "object",
+      "description": "A member of a conference call",
+      "properties": {
+        "callId": {
+          "type": "string",
+          "description": "The call ID of the conference member"
+        },
+        "conferenceId": {
+          "type": "string",
+          "description": "The conference ID"
+        },
+        "mute": {
+          "type": "boolean",
+          "description": "Whether the member is muted"
+        },
+        "hold": {
+          "type": "boolean",
+          "description": "Whether the member is on hold"
+        }
+      }
+    }
+  }
+}

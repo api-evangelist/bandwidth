@@ -1,0 +1,17 @@
+{
+  "siteId": "c-abc123",
+  "peerId": "c-abc123",
+  "billingTelephoneNumber": "+19195551234",
+  "subscriber": {
+    "subscriberType": "BUSINESS",
+    "businessName": "sample-value",
+    "firstName": "sample-value",
+    "lastName": "sample-value",
+    "serviceAddress": "sample-value"
+  },
+  "losingCarrierName": "sample-value",
+  "listOfPhoneNumbers": [
+    "+19195551234"
+  ],
+  "requestedFocDate": "sample-value"
+}

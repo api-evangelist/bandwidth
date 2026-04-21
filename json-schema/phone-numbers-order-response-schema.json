@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/phone-numbers-order-response-schema.json",
+  "title": "OrderResponse",
+  "description": "Response containing order details",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "The unique identifier for the order"
+    },
+    "orderStatus": {
+      "type": "string",
+      "enum": [
+        "RECEIVED",
+        "PROCESSING",
+        "COMPLETE",
+        "PARTIAL",
+        "FAILED"
+      ],
+      "description": "The current status of the order"
+    },
+    "orderCreateDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the order was created"
+    },
+    "completedQuantity": {
+      "type": "integer",
+      "description": "Number of phone numbers successfully ordered"
+    },
+    "failedQuantity": {
+      "type": "integer",
+      "description": "Number of phone numbers that failed to order"
+    },
+    "completedNumbers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of successfully ordered phone numbers"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/phone-numbers-disconnect-response-schema.json",
+  "title": "DisconnectResponse",
+  "description": "Response containing disconnect order details",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "The unique identifier for the disconnect order"
+    },
+    "orderStatus": {
+      "type": "string",
+      "description": "The current status of the disconnect order"
+    }
+  }
+}

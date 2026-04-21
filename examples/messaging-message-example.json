@@ -1,0 +1,18 @@
+{
+  "id": "c-abc123",
+  "owner": "sample-value",
+  "applicationId": "c-abc123",
+  "time": "2026-04-19T14:30:00Z",
+  "segmentCount": 736,
+  "direction": "in",
+  "to": [
+    "sample-value"
+  ],
+  "from": "sample-value",
+  "media": [
+    "sample-value"
+  ],
+  "text": "sample-value",
+  "tag": "sample-value",
+  "priority": "default"
+}

@@ -1,0 +1,220 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Bandwidth"
+  description: "Taxonomy for the Bandwidth communications platform covering voice, messaging, MFA, phone numbers, emergency calling, and toll-free verification APIs."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: bandwidth-voice
+      label: Bandwidth Voice API
+      version: "3.0"
+      baseUrl: https://voice.bandwidth.com
+      status: active
+    - namespace: bandwidth-messaging
+      label: Bandwidth Messaging API
+      version: "2.0"
+      baseUrl: https://messaging.bandwidth.com
+      status: active
+    - namespace: bandwidth-mfa
+      label: Bandwidth MFA API
+      version: "3.0"
+      baseUrl: https://mfa.bandwidth.com
+      status: active
+    - namespace: bandwidth-phone-numbers
+      label: Bandwidth Phone Numbers API
+      version: "1.0"
+      baseUrl: https://numbers.bandwidth.com
+      status: active
+    - namespace: bandwidth-emergency
+      label: Bandwidth Emergency Calling API
+      version: "2.0"
+      baseUrl: https://service.bandwidth.com
+      status: active
+    - namespace: bandwidth-toll-free
+      label: Bandwidth Toll-Free Verification API
+      version: "1.0"
+      baseUrl: https://numbers.bandwidth.com
+      status: active
+
+  resources:
+    - name: calls
+      description: Voice calls initiated and managed through Bandwidth
+      apis: [bandwidth-voice]
+      actions: [create, get, update, list-recordings, get-recording, delete-recording, list-transcriptions]
+    - name: messages
+      description: SMS and MMS messages sent and received
+      apis: [bandwidth-messaging]
+      actions: [create, list, list-media, get-media, upload-media, delete-media]
+    - name: mfa-codes
+      description: Multi-factor authentication codes for user verification
+      apis: [bandwidth-mfa]
+      actions: [send-sms, send-voice, verify]
+    - name: phone-numbers
+      description: Telephone numbers available and managed on the platform
+      apis: [bandwidth-phone-numbers]
+      actions: [search, order, list-orders, get-order, list-numbers, disconnect]
+    - name: e911-endpoints
+      description: Emergency calling endpoints registered for 911 access
+      apis: [bandwidth-emergency]
+      actions: [list, create, get, update, delete, validate-address]
+    - name: toll-free-verifications
+      description: Toll-free number verification requests
+      apis: [bandwidth-toll-free]
+      actions: [list, create, get, delete]
+
+  actions:
+    - name: create
+      description: Create a new resource
+      methods: [POST]
+      pattern: write
+    - name: get
+      description: Retrieve a specific resource by ID
+      methods: [GET]
+      pattern: read
+    - name: update
+      description: Update an existing resource
+      methods: [POST, PUT]
+      pattern: write
+    - name: list
+      description: List resources with optional filters
+      methods: [GET]
+      pattern: read
+    - name: search
+      description: Search for available resources
+      methods: [GET]
+      pattern: read
+    - name: delete
+      description: Remove a resource
+      methods: [DELETE]
+      pattern: write
+    - name: verify
+      description: Verify a code or status
+      methods: [POST]
+      pattern: write
+
+  schemas:
+    core:
+      - name: Call
+        description: A voice call object with state, direction, and metadata
+        key_properties: [callId, accountId, to, from, state, direction, startTime]
+      - name: Message
+        description: An SMS or MMS message
+        key_properties: [messageId, accountId, to, from, text, mediaUrls, status]
+      - name: Order
+        description: A phone number order with requested quantities and state
+        key_properties: [id, accountId, orderType, status, createdDate]
+      - name: TelephoneNumber
+        description: A telephone number on the Bandwidth platform
+        key_properties: [telephoneNumber, city, state, rateCenter, tier]
+
+  authentication:
+    schemes:
+      - name: BasicAuth
+        type: basic
+        description: HTTP Basic Auth with accountId as username and API token as password
+
+capability:
+  workflows:
+    - name: Communications Platform
+      file: capabilities/communications-platform.yaml
+      description: Unified voice, messaging, MFA, phone numbers, E911, and toll-free management
+      apis_combined: [bandwidth-voice, bandwidth-messaging, bandwidth-mfa, bandwidth-phone-numbers, bandwidth-emergency, bandwidth-toll-free]
+      tool_count: 12
+      personas: [Application Developer, Communications Engineer, Platform Administrator]
+      domains: [Voice, Messaging, Identity Verification, Number Management, Emergency Services]
+
+  personas:
+    - id: application-developer
+      name: Application Developer
+      description: Developer building communication-enabled web or mobile applications
+      workflows: [Communications Platform]
+    - id: communications-engineer
+      name: Communications Engineer
+      description: Engineer designing and operating telephony and messaging infrastructure
+      workflows: [Communications Platform]
+    - id: platform-administrator
+      name: Platform Administrator
+      description: Administrator managing Bandwidth account, numbers, and compliance
+      workflows: [Communications Platform]
+
+  domains:
+    - name: Voice
+      description: Outbound and inbound voice call management and recording
+      resources: [calls]
+      workflows: [Communications Platform]
+    - name: Messaging
+      description: SMS and MMS message delivery and media management
+      resources: [messages]
+      workflows: [Communications Platform]
+    - name: Identity Verification
+      description: Multi-factor authentication via voice or SMS
+      resources: [mfa-codes]
+      workflows: [Communications Platform]
+    - name: Number Management
+      description: Search, order, and manage telephone numbers
+      resources: [phone-numbers]
+      workflows: [Communications Platform]
+    - name: Emergency Services
+      description: E911 endpoint registration and management
+      resources: [e911-endpoints]
+      workflows: [Communications Platform]
+
+  namespaces:
+    - namespace: bandwidth-voice
+      type: consumed
+    - namespace: bandwidth-messaging
+      type: consumed
+    - namespace: bandwidth-mfa
+      type: consumed
+    - namespace: bandwidth-phone-numbers
+      type: consumed
+    - namespace: bandwidth-emergency
+      type: consumed
+    - namespace: bandwidth-toll-free
+      type: consumed
+    - namespace: bandwidth-platform-api
+      type: rest-exposed
+      port: 8080
+    - namespace: bandwidth-platform-mcp
+      type: mcp-exposed
+      port: 9080
+
+  binds:
+    - name: BANDWIDTH_ACCOUNT_ID
+      description: Bandwidth account identifier
+      workflows: [Communications Platform]
+    - name: BANDWIDTH_API_TOKEN
+      description: Bandwidth API authentication token
+      workflows: [Communications Platform]
+    - name: BANDWIDTH_API_SECRET
+      description: Bandwidth API secret for Basic Auth
+      workflows: [Communications Platform]
+
+crossReference:
+  - resource: calls
+    operations: [createCall, getCall, updateCall, listCallRecordings, getCallRecording, deleteRecording, listCallTranscriptions]
+    workflows: [Communications Platform]
+    personas: [Application Developer, Communications Engineer]
+  - resource: messages
+    operations: [createMessage, listMessages, listMedia, getMedia, uploadMedia, deleteMedia]
+    workflows: [Communications Platform]
+    personas: [Application Developer, Communications Engineer]
+  - resource: mfa-codes
+    operations: [createMessagingMfa, createVoiceMfa, verifyMfaCode]
+    workflows: [Communications Platform]
+    personas: [Application Developer]
+  - resource: phone-numbers
+    operations: [searchAvailableNumbers, createOrder, listOrders, getOrder, listPhoneNumbers, disconnectPhoneNumbers]
+    workflows: [Communications Platform]
+    personas: [Platform Administrator, Communications Engineer]
+  - resource: e911-endpoints
+    operations: [listEndpoints, createEndpoint, getEndpoint, updateEndpoint, deleteEndpoint]
+    workflows: [Communications Platform]
+    personas: [Platform Administrator, Communications Engineer]
+  - resource: toll-free-verifications
+    operations: [listTollFreeVerifications, createTollFreeVerification, getTollFreeVerification, deleteTollFreeVerification]
+    workflows: [Communications Platform]
+    personas: [Platform Administrator]

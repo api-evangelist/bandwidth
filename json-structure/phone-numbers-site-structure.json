@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/phone-numbers-site-structure.json",
+  "name": "Site",
+  "description": "A site (sub-account) within a Bandwidth account",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the site"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the site"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the site"
+    },
+    "address": {
+      "$ref": "#/components/schemas/Address"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/emergency-calling-notification-recipient-schema.json",
+  "title": "NotificationRecipient",
+  "description": "A recipient for emergency call notifications",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the notification recipient"
+    },
+    "emailAddress": {
+      "type": "string",
+      "format": "email",
+      "description": "The email address for notifications"
+    },
+    "phoneNumber": {
+      "type": "string",
+      "description": "The phone number for SMS notifications"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the notification recipient"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/phone-numbers-sip-peer-list-response-structure.json",
+  "name": "SipPeerListResponse",
+  "description": "Response containing a list of SIP peers",
+  "type": "object",
+  "properties": {
+    "sipPeers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SipPeer"
+      }
+    }
+  }
+}

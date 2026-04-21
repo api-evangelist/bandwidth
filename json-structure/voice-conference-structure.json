@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/voice-conference-structure.json",
+  "name": "Conference",
+  "description": "Conference schema from Bandwidth voice API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the conference"
+    },
+    "name": {
+      "type": "string",
+      "description": "The user-defined name of the conference"
+    },
+    "createdTime": {
+      "type": "datetime",
+      "description": "The time the conference was created"
+    },
+    "completedTime": {
+      "type": "datetime",
+      "description": "The time the conference ended"
+    },
+    "tag": {
+      "type": "string",
+      "description": "Custom tag attached to the conference"
+    },
+    "activeMembers": {
+      "type": "array",
+      "description": "List of currently active conference members",
+      "items": {
+        "$ref": "#/components/schemas/ConferenceMember"
+      }
+    }
+  }
+}

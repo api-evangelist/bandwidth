@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/toll-free-verification-verification-schema.json",
+  "title": "Verification",
+  "description": "Verification schema from Bandwidth toll-free-verification API",
+  "type": "object",
+  "properties": {
+    "verificationId": {
+      "type": "string",
+      "description": "The unique identifier for the verification request"
+    },
+    "telephoneNumbers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The toll-free numbers associated with this verification"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING_VERIFICATION",
+        "VERIFIED",
+        "RESTRICTED",
+        "DENIED",
+        "SUBMITTED"
+      ],
+      "description": "The current verification status"
+    },
+    "businessName": {
+      "type": "string",
+      "description": "The business name on the verification"
+    },
+    "useCase": {
+      "type": "string",
+      "description": "The messaging use case"
+    },
+    "submissionDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the verification was submitted"
+    },
+    "verificationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the verification was approved or denied"
+    },
+    "denialReason": {
+      "type": "string",
+      "description": "The reason for denial, if the verification was denied"
+    }
+  }
+}

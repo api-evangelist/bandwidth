@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-schema/phone-numbers-feature-order-request-schema.json",
+  "title": "FeatureOrderRequest",
+  "description": "Request to configure phone number features",
+  "type": "object",
+  "properties": {
+    "callingNameDisplay": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether CNAM display is enabled"
+        },
+        "callingName": {
+          "type": "string",
+          "maxLength": 15,
+          "description": "The caller name to display (max 15 characters)"
+        }
+      }
+    },
+    "directoryListing": {
+      "type": "object",
+      "properties": {
+        "listed": {
+          "type": "boolean",
+          "description": "Whether the number is listed in the directory"
+        },
+        "listingType": {
+          "type": "string",
+          "enum": [
+            "LISTED",
+            "NON_LISTED",
+            "NON_PUBLISHED"
+          ],
+          "description": "The type of directory listing"
+        },
+        "listingName": {
+          "type": "string",
+          "description": "The name for the directory listing"
+        },
+        "listAddress": {
+          "type": "boolean",
+          "description": "Whether to list the address in the directory"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  namespace: bandwidth-toll-free
+  label: "Bandwidth Toll-Free Verification API"
+  baseUrl: https://dashboard.bandwidth.com/api
+
+authentication:
+  - type: basic
+    description: Bandwidth API credentials (accountId + apiToken)
+
+operations:
+  - operationId: listTollFreeVerifications
+    method: GET
+    path: /accounts/{accountId}/tollFreeVerification
+    description: "List toll-free verification requests"
+  - operationId: createTollFreeVerification
+    method: POST
+    path: /accounts/{accountId}/tollFreeVerification
+    description: "Submit a toll-free verification request"
+  - operationId: getTollFreeVerification
+    method: GET
+    path: /accounts/{accountId}/tollFreeVerification/{verificationId}
+    description: "Get toll-free verification details"
+  - operationId: updateTollFreeVerification
+    method: PUT
+    path: /accounts/{accountId}/tollFreeVerification/{verificationId}
+    description: "Update a toll-free verification request"

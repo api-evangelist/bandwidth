@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/json-structure/emergency-calling-notification-recipient-list-response-structure.json",
+  "name": "NotificationRecipientListResponse",
+  "description": "Response containing a list of notification recipients",
+  "type": "object",
+  "properties": {
+    "notificationRecipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NotificationRecipient"
+      }
+    }
+  }
+}
