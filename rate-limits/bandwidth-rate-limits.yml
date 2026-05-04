@@ -1,0 +1,34 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Bandwidth
+providerId: bandwidth
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Communications
+description: Bandwidth API rate limits per account.
+sources:
+  - https://www.bandwidth.com/pricing/
+  - https://dev.bandwidth.com/docs/api/messaging/rate-limits
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: Messaging API (default)
+    scope: account
+    metric: messages_per_second
+    limit: 10
+    timeFrame: second
+  - name: Voice API
+    scope: account
+    metric: calls_per_second
+    limit: 10
+    timeFrame: second
+  - name: Concurrent calls
+    scope: account
+    metric: concurrent
+    limit: configurable per account

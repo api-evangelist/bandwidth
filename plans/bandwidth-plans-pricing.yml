@@ -1,0 +1,124 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Bandwidth
+providerId: bandwidth
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Communications
+  - SMS
+  - Voice
+description: Bandwidth.com pay-as-you-go pricing for SMS and Voice with carrier-direct rates.
+sources:
+  - https://www.bandwidth.com/pricing/
+plans:
+  - id: bandwidth-payg
+    name: Pay As You Go
+    type: usage-based
+    description: Pay-per-message and per-minute rates.
+    entries:
+      - label: SMS Outbound 10DLC (US)
+        name: sms_10dlc_out
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.004'
+        userMultiplied: false
+      - label: MMS Outbound 10DLC (US)
+        name: mms_10dlc_out
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.015'
+        userMultiplied: false
+      - label: SMS Outbound Short Code (US)
+        name: sms_sc_out
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.008'
+        userMultiplied: false
+      - label: MMS Outbound Short Code (US)
+        name: mms_sc_out
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.020'
+        userMultiplied: false
+      - label: SMS Outbound Toll-free (US)
+        name: sms_tf_out
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.007'
+        userMultiplied: false
+      - label: MMS Outbound Toll-free (US)
+        name: mms_tf_out
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.020'
+        userMultiplied: false
+      - label: Voice Local Outbound (US)
+        name: voice_out
+        type: metered
+        metric: minute
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.0100'
+        userMultiplied: false
+      - label: Voice Local Inbound (US)
+        name: voice_in
+        type: metered
+        metric: minute
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.0055'
+        userMultiplied: false
+    elements:
+      - name: Carrier-direct rates
+      - name: No platform fee
+      - name: Per-message/minute pricing
+  - id: bandwidth-committed
+    name: Committed Use (Enterprise)
+    type: enterprise
+    description: Volume contracts with negotiated discounts.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Volume discounts
+      - name: Tier 1 carrier (own network)
+      - name: Direct interconnects

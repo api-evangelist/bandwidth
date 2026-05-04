@@ -9,12 +9,10 @@ tags:
   - Telephony
   - SMS
   - MFA
-modified: '2026-04-19'
-description: >-
-  Bandwidth is a leading cloud-based communications platform providing voice, messaging, emergency
-  calling, phone number management, multi-factor authentication, and toll-free verification APIs.
-  Built on Bandwidth's own Tier 1 network, the platform delivers enterprise-grade reliability
-  for CPaaS applications.
+modified: '2026-05-04'
+description: Bandwidth is a leading cloud-based communications platform providing voice, messaging, emergency
+  calling, phone number management, multi-factor authentication, and toll-free verification APIs. Built
+  on Bandwidth's own Tier 1 network, the platform delivers enterprise-grade reliability for CPaaS applications.
 apis:
   - aid: bandwidth:voice-api
     name: Bandwidth Voice API
@@ -35,13 +33,11 @@ apis:
         type: OpenAPI
       - url: asyncapi/bandwidth-voice-events-asyncapi.yml
         type: AsyncAPI
-    description: >-
-      The Bandwidth Voice API enables developers to programmatically make and
-      receive phone calls, manage call recordings, and create multi-party
-      conferences. It supports advanced call control features including call
-      transfers, bridging, DTMF detection, and text-to-speech. The API uses
-      BXML (Bandwidth XML) verbs for call flow control and provides webhooks
-      for real-time event notifications on call state changes.
+    description: The Bandwidth Voice API enables developers to programmatically make and receive phone
+      calls, manage call recordings, and create multi-party conferences. It supports advanced call control
+      features including call transfers, bridging, DTMF detection, and text-to-speech. The API uses BXML
+      (Bandwidth XML) verbs for call flow control and provides webhooks for real-time event notifications
+      on call state changes.
   - aid: bandwidth:messaging-api
     name: Bandwidth Messaging API
     tags:
@@ -60,14 +56,11 @@ apis:
         type: OpenAPI
       - url: asyncapi/bandwidth-messaging-events-asyncapi.yml
         type: AsyncAPI
-    description: >-
-      The Bandwidth Messaging API allows developers to send and receive SMS
-      and MMS messages programmatically. It supports both toll-free and
-      local number messaging, group messaging, and application-to-person
-      (A2P) messaging workflows. The API provides delivery receipts via
-      webhooks, message status tracking, and media management for MMS
-      attachments. Bandwidth operates its own tier-1 network, providing
-      direct carrier connectivity for reliable message delivery.
+    description: The Bandwidth Messaging API allows developers to send and receive SMS and MMS messages
+      programmatically. It supports both toll-free and local number messaging, group messaging, and application-to-person
+      (A2P) messaging workflows. The API provides delivery receipts via webhooks, message status tracking,
+      and media management for MMS attachments. Bandwidth operates its own tier-1 network, providing direct
+      carrier connectivity for reliable message delivery.
   - aid: bandwidth:phone-numbers-api
     name: Bandwidth Phone Numbers API
     tags:
@@ -84,14 +77,11 @@ apis:
         type: Documentation
       - url: openapi/bandwidth-phone-numbers-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Bandwidth Phone Numbers API provides programmatic access to search,
-      order, and manage phone numbers across the United States and Canada.
-      Developers can search for available local, toll-free, and short code
-      numbers, initiate number porting requests, and configure number features
-      such as CNAM, directory listings, and line features. The API also
-      supports managing sites, SIP peers, and number assignments for
-      organizing telephony resources within an account.
+    description: The Bandwidth Phone Numbers API provides programmatic access to search, order, and manage
+      phone numbers across the United States and Canada. Developers can search for available local, toll-free,
+      and short code numbers, initiate number porting requests, and configure number features such as
+      CNAM, directory listings, and line features. The API also supports managing sites, SIP peers, and
+      number assignments for organizing telephony resources within an account.
   - aid: bandwidth:multi-factor-authentication-api
     name: Bandwidth Multi-Factor Authentication API
     tags:
@@ -108,14 +98,11 @@ apis:
         type: Documentation
       - url: openapi/bandwidth-mfa-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Bandwidth Multi-Factor Authentication API allows developers to
-      generate and verify secure MFA codes delivered via voice calls or SMS
-      messages. It leverages Bandwidth's Voice and Messaging APIs under the
-      hood, handling token generation and management automatically. Developers
-      can customize the code length, expiration time, and delivery message
-      template. The API supports both one-time passcode delivery and
-      verification in a simple two-step workflow.
+    description: The Bandwidth Multi-Factor Authentication API allows developers to generate and verify
+      secure MFA codes delivered via voice calls or SMS messages. It leverages Bandwidth's Voice and Messaging
+      APIs under the hood, handling token generation and management automatically. Developers can customize
+      the code length, expiration time, and delivery message template. The API supports both one-time
+      passcode delivery and verification in a simple two-step workflow.
   - aid: bandwidth:emergency-calling-api
     name: Bandwidth Emergency Calling API
     tags:
@@ -131,11 +118,10 @@ apis:
         type: Documentation
       - url: openapi/bandwidth-emergency-calling-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Bandwidth Emergency Calling API provides programmatic access to provision
-      and manage 911 endpoints and locations for emergency services routing. It supports
-      Dynamic Location Routing (DLR) for real-time address validation and location
-      updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements.
+    description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage
+      911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing
+      (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law
+      and RAY BAUM's Act requirements.
   - aid: bandwidth:toll-free-verification-api
     name: Bandwidth Toll-Free Verification API
     tags:
@@ -151,12 +137,10 @@ apis:
         type: Documentation
       - url: openapi/bandwidth-toll-free-verification-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Bandwidth Toll-Free Verification API enables developers to
-      programmatically submit and manage toll-free number verification
-      requests for A2P messaging compliance. It automates the verification
-      submission process, allowing developers to view and update the
-      verification status of their toll-free numbers.
+    description: The Bandwidth Toll-Free Verification API enables developers to programmatically submit
+      and manage toll-free number verification requests for A2P messaging compliance. It automates the
+      verification submission process, allowing developers to view and update the verification status
+      of their toll-free numbers.
 common:
   - type: Website
     url: https://www.bandwidth.com/
@@ -202,28 +186,25 @@ common:
   - name: Features
     type: Features
     data:
-      - name: Voice Calls
-        description: Programmable outbound and inbound voice call management with BXML call control.
-      - name: SMS Messaging
-        description: Send and receive SMS messages on local and toll-free numbers.
-      - name: MMS Messaging
-        description: Send and receive multimedia messages with images, video, and audio.
-      - name: Multi-Factor Authentication
-        description: OTP code delivery and verification via voice or SMS.
-      - name: Phone Number Management
-        description: Search, order, port, and configure US and Canadian phone numbers.
-      - name: Emergency Calling (E911)
-        description: Dynamic location routing for compliant emergency call handling.
-      - name: Toll-Free Verification
-        description: Submit and track A2P toll-free number verification requests.
-      - name: Call Recording
-        description: Record and retrieve voice call audio for compliance and analytics.
-      - name: Conferences
-        description: Create multi-party voice conferences with participant management.
-      - name: Webhooks
-        description: Real-time event notifications for call state changes and message delivery.
-      - name: Tier 1 Network
-        description: Direct carrier connectivity on Bandwidth's own nationwide network.
+      - 'SMS 10DLC outbound: $0.004/message'
+      - 'MMS 10DLC outbound: $0.015/message'
+      - 'SMS Short Code: $0.008/msg out, MMS Short Code: $0.020'
+      - 'SMS Toll-free: $0.007/msg out'
+      - 'Voice US Local: $0.010 outbound, $0.0055 inbound per minute'
+      - Tier 1 carrier with own network and interconnects
+      - REST API for Messaging and Voice
+      - Default 10 messages/sec and 10 calls/sec
+      - OAuth + API keys
+      - Webhooks for delivery receipts and inbound events
+      - BXML for voice IVR scripting
+      - Verify API for OTP
+      - Number Management API
+      - Phone Number Insight (line-type lookup)
+      - Iris API for porting and management
+      - Enterprise committed-use volume contracts
+    sources:
+      - https://www.bandwidth.com/pricing/
+    updated: '2026-05-04'
   - name: Use Cases
     type: UseCases
     data:
