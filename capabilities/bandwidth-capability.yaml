@@ -1,0 +1,392 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bandwidth Emergency Calling API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and
+    locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation
+    and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS
+    provider that also operates its own emergency services network, providing direct connectivity to public safety answering
+    points (PSAPs) across the United States and Canada.
+  tags:
+  - Bandwidth
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: bandwidth
+    baseUri: https://dashboard.bandwidth.com/api
+    description: Bandwidth Emergency Calling API HTTP API.
+    authentication:
+      type: basic
+      username: '{{BANDWIDTH_USERNAME}}'
+      password: '{{BANDWIDTH_PASSWORD}}'
+    resources:
+    - name: accounts-accountid-e911s
+      path: /accounts/{accountId}/e911s
+      operations:
+      - name: listendpoints
+        method: GET
+        description: List E911 endpoints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createendpoint
+        method: POST
+        description: Create an E911 endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountid-e911s-endpointid
+      path: /accounts/{accountId}/e911s/{endpointId}
+      operations:
+      - name: getendpoint
+        method: GET
+        description: Get E911 endpoint details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateendpoint
+        method: PUT
+        description: Update an E911 endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteendpoint
+        method: DELETE
+        description: Delete an E911 endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountid-e911s-locations
+      path: /accounts/{accountId}/e911s/locations
+      operations:
+      - name: listlocations
+        method: GET
+        description: List E911 locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createlocation
+        method: POST
+        description: Create an E911 location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountid-e911s-locations-locationid
+      path: /accounts/{accountId}/e911s/locations/{locationId}
+      operations:
+      - name: getlocation
+        method: GET
+        description: Get E911 location details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatelocation
+        method: PUT
+        description: Update an E911 location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletelocation
+        method: DELETE
+        description: Delete an E911 location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountid-e911s-notificationrecipients
+      path: /accounts/{accountId}/e911s/notificationRecipients
+      operations:
+      - name: listnotificationrecipients
+        method: GET
+        description: List emergency notification recipients
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createnotificationrecipient
+        method: POST
+        description: Create a notification recipient
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: bandwidth-rest
+    description: REST adapter for Bandwidth Emergency Calling API.
+    resources:
+    - path: /accounts/{accountId}/e911s
+      name: listendpoints
+      operations:
+      - method: GET
+        name: listendpoints
+        description: List E911 endpoints
+        call: bandwidth.listendpoints
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s
+      name: createendpoint
+      operations:
+      - method: POST
+        name: createendpoint
+        description: Create an E911 endpoint
+        call: bandwidth.createendpoint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/{endpointId}
+      name: getendpoint
+      operations:
+      - method: GET
+        name: getendpoint
+        description: Get E911 endpoint details
+        call: bandwidth.getendpoint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/{endpointId}
+      name: updateendpoint
+      operations:
+      - method: PUT
+        name: updateendpoint
+        description: Update an E911 endpoint
+        call: bandwidth.updateendpoint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/{endpointId}
+      name: deleteendpoint
+      operations:
+      - method: DELETE
+        name: deleteendpoint
+        description: Delete an E911 endpoint
+        call: bandwidth.deleteendpoint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/locations
+      name: listlocations
+      operations:
+      - method: GET
+        name: listlocations
+        description: List E911 locations
+        call: bandwidth.listlocations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/locations
+      name: createlocation
+      operations:
+      - method: POST
+        name: createlocation
+        description: Create an E911 location
+        call: bandwidth.createlocation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/locations/{locationId}
+      name: getlocation
+      operations:
+      - method: GET
+        name: getlocation
+        description: Get E911 location details
+        call: bandwidth.getlocation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/locations/{locationId}
+      name: updatelocation
+      operations:
+      - method: PUT
+        name: updatelocation
+        description: Update an E911 location
+        call: bandwidth.updatelocation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/locations/{locationId}
+      name: deletelocation
+      operations:
+      - method: DELETE
+        name: deletelocation
+        description: Delete an E911 location
+        call: bandwidth.deletelocation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/notificationRecipients
+      name: listnotificationrecipients
+      operations:
+      - method: GET
+        name: listnotificationrecipients
+        description: List emergency notification recipients
+        call: bandwidth.listnotificationrecipients
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounts/{accountId}/e911s/notificationRecipients
+      name: createnotificationrecipient
+      operations:
+      - method: POST
+        name: createnotificationrecipient
+        description: Create a notification recipient
+        call: bandwidth.createnotificationrecipient
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: bandwidth-mcp
+    transport: http
+    description: MCP adapter for Bandwidth Emergency Calling API for AI agent use.
+    tools:
+    - name: listendpoints
+      description: List E911 endpoints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bandwidth.listendpoints
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createendpoint
+      description: Create an E911 endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bandwidth.createendpoint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getendpoint
+      description: Get E911 endpoint details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bandwidth.getendpoint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateendpoint
+      description: Update an E911 endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: bandwidth.updateendpoint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteendpoint
+      description: Delete an E911 endpoint
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: bandwidth.deleteendpoint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listlocations
+      description: List E911 locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bandwidth.listlocations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createlocation
+      description: Create an E911 location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bandwidth.createlocation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getlocation
+      description: Get E911 location details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bandwidth.getlocation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatelocation
+      description: Update an E911 location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: bandwidth.updatelocation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletelocation
+      description: Delete an E911 location
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: bandwidth.deletelocation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listnotificationrecipients
+      description: List emergency notification recipients
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bandwidth.listnotificationrecipients
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createnotificationrecipient
+      description: Create a notification recipient
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bandwidth.createnotificationrecipient
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    BANDWIDTH_USERNAME: BANDWIDTH_USERNAME
+    BANDWIDTH_PASSWORD: BANDWIDTH_PASSWORD
