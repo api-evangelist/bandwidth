@@ -234,7 +234,18 @@ common:
       - name: Salesforce
       - name: Amazon Connect
       - name: Genesys Cloud
+  - type: Integrations
+    url: https://www.bandwidth.com/integrations/
 created: '2024-01-01'
+integrations:
+  - name: Microsoft Teams
+  - name: Operator Connect
+  - name: Genesys Cloud CX
+  - name: Webex Calling
+  - name: Zoom Phone
+  - name: Google Voice SIP Link
+  - name: Five9
+  - name: Pindrop
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
