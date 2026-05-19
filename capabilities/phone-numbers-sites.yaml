@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bandwidth Phone Numbers API — Sites
+  description: 'Bandwidth Phone Numbers API — Sites. 5 operations. Lead operation: List sites. Self-contained Naftiko capability
+    covering one Bandwidth business surface.'
+  tags:
+  - Bandwidth
+  - Sites
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BANDWIDTH_API_KEY: BANDWIDTH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: phone-numbers-sites
+    baseUri: https://dashboard.bandwidth.com/api
+    description: Bandwidth Phone Numbers API — Sites business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountId-sites
+      path: /accounts/{accountId}/sites
+      operations:
+      - name: listsites
+        method: GET
+        description: List sites
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsite
+        method: POST
+        description: Create a site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-accountId-sites-siteId
+      path: /accounts/{accountId}/sites/{siteId}
+      operations:
+      - name: getsite
+        method: GET
+        description: Get site details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatesite
+        method: PUT
+        description: Update a site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletesite
+        method: DELETE
+        description: Delete a site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.BANDWIDTH_USER}}'
+      password: '{{env.BANDWIDTH_PASS}}'
+  exposes:
+  - type: rest
+    namespace: phone-numbers-sites-rest
+    port: 8080
+    description: REST adapter for Bandwidth Phone Numbers API — Sites. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/sites
+      name: accounts-accountid-sites
+      description: REST surface for accounts-accountId-sites.
+      operations:
+      - method: GET
+        name: listsites
+        description: List sites
+        call: phone-numbers-sites.listsites
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsite
+        description: Create a site
+        call: phone-numbers-sites.createsite
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/sites/{siteid}
+      name: accounts-accountid-sites-siteid
+      description: REST surface for accounts-accountId-sites-siteId.
+      operations:
+      - method: GET
+        name: getsite
+        description: Get site details
+        call: phone-numbers-sites.getsite
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatesite
+        description: Update a site
+        call: phone-numbers-sites.updatesite
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesite
+        description: Delete a site
+        call: phone-numbers-sites.deletesite
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: phone-numbers-sites-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bandwidth Phone Numbers API — Sites. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-sites
+      description: List sites
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: phone-numbers-sites.listsites
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-site
+      description: Create a site
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: phone-numbers-sites.createsite
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-site-details
+      description: Get site details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: phone-numbers-sites.getsite
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-site
+      description: Update a site
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: phone-numbers-sites.updatesite
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-site
+      description: Delete a site
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: phone-numbers-sites.deletesite
+      outputParameters:
+      - type: object
+        mapping: $.

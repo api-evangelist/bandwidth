@@ -1,0 +1,230 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bandwidth Phone Numbers API — SIP Peers
+  description: 'Bandwidth Phone Numbers API — SIP Peers. 6 operations. Lead operation: List SIP peers. Self-contained Naftiko
+    capability covering one Bandwidth business surface.'
+  tags:
+  - Bandwidth
+  - SIP Peers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BANDWIDTH_API_KEY: BANDWIDTH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: phone-numbers-sip-peers
+    baseUri: https://dashboard.bandwidth.com/api
+    description: Bandwidth Phone Numbers API — SIP Peers business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountId-sites-siteId-sippeers
+      path: /accounts/{accountId}/sites/{siteId}/sippeers
+      operations:
+      - name: listsippeers
+        method: GET
+        description: List SIP peers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsippeer
+        method: POST
+        description: Create a SIP peer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-accountId-sites-siteId-sippeers-sipPeerId
+      path: /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}
+      operations:
+      - name: getsippeer
+        method: GET
+        description: Get SIP peer details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatesippeer
+        method: PUT
+        description: Update a SIP peer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletesippeer
+        method: DELETE
+        description: Delete a SIP peer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountId-sites-siteId-sippeers-sipPeerId-tns
+      path: /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/tns
+      operations:
+      - name: listsippeerphonenumbers
+        method: GET
+        description: List SIP peer phone numbers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.BANDWIDTH_USER}}'
+      password: '{{env.BANDWIDTH_PASS}}'
+  exposes:
+  - type: rest
+    namespace: phone-numbers-sip-peers-rest
+    port: 8080
+    description: REST adapter for Bandwidth Phone Numbers API — SIP Peers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/sites/{siteid}/sippeers
+      name: accounts-accountid-sites-siteid-sippeers
+      description: REST surface for accounts-accountId-sites-siteId-sippeers.
+      operations:
+      - method: GET
+        name: listsippeers
+        description: List SIP peers
+        call: phone-numbers-sip-peers.listsippeers
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsippeer
+        description: Create a SIP peer
+        call: phone-numbers-sip-peers.createsippeer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/sites/{siteid}/sippeers/{sippeerid}
+      name: accounts-accountid-sites-siteid-sippeers-sippeerid
+      description: REST surface for accounts-accountId-sites-siteId-sippeers-sipPeerId.
+      operations:
+      - method: GET
+        name: getsippeer
+        description: Get SIP peer details
+        call: phone-numbers-sip-peers.getsippeer
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatesippeer
+        description: Update a SIP peer
+        call: phone-numbers-sip-peers.updatesippeer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesippeer
+        description: Delete a SIP peer
+        call: phone-numbers-sip-peers.deletesippeer
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/sites/{siteid}/sippeers/{sippeerid}/tns
+      name: accounts-accountid-sites-siteid-sippeers-sippeerid-tns
+      description: REST surface for accounts-accountId-sites-siteId-sippeers-sipPeerId-tns.
+      operations:
+      - method: GET
+        name: listsippeerphonenumbers
+        description: List SIP peer phone numbers
+        call: phone-numbers-sip-peers.listsippeerphonenumbers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: phone-numbers-sip-peers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bandwidth Phone Numbers API — SIP Peers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-sip-peers
+      description: List SIP peers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: phone-numbers-sip-peers.listsippeers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-sip-peer
+      description: Create a SIP peer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: phone-numbers-sip-peers.createsippeer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-sip-peer-details
+      description: Get SIP peer details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: phone-numbers-sip-peers.getsippeer
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-sip-peer
+      description: Update a SIP peer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: phone-numbers-sip-peers.updatesippeer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-sip-peer
+      description: Delete a SIP peer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: phone-numbers-sip-peers.deletesippeer
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-sip-peer-phone-numbers
+      description: List SIP peer phone numbers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: phone-numbers-sip-peers.listsippeerphonenumbers
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bandwidth Phone Numbers API — Disconnects
+  description: 'Bandwidth Phone Numbers API — Disconnects. 1 operations. Lead operation: Disconnect phone numbers. Self-contained
+    Naftiko capability covering one Bandwidth business surface.'
+  tags:
+  - Bandwidth
+  - Disconnects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BANDWIDTH_API_KEY: BANDWIDTH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: phone-numbers-disconnects
+    baseUri: https://dashboard.bandwidth.com/api
+    description: Bandwidth Phone Numbers API — Disconnects business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountId-disconnects
+      path: /accounts/{accountId}/disconnects
+      operations:
+      - name: createdisconnect
+        method: POST
+        description: Disconnect phone numbers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.BANDWIDTH_USER}}'
+      password: '{{env.BANDWIDTH_PASS}}'
+  exposes:
+  - type: rest
+    namespace: phone-numbers-disconnects-rest
+    port: 8080
+    description: REST adapter for Bandwidth Phone Numbers API — Disconnects. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/disconnects
+      name: accounts-accountid-disconnects
+      description: REST surface for accounts-accountId-disconnects.
+      operations:
+      - method: POST
+        name: createdisconnect
+        description: Disconnect phone numbers
+        call: phone-numbers-disconnects.createdisconnect
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: phone-numbers-disconnects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bandwidth Phone Numbers API — Disconnects. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: disconnect-phone-numbers
+      description: Disconnect phone numbers
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: phone-numbers-disconnects.createdisconnect
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

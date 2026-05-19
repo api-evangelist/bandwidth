@@ -1,0 +1,286 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bandwidth Voice API — Recordings
+  description: 'Bandwidth Voice API — Recordings. 7 operations. Lead operation: List call recordings. Self-contained Naftiko
+    capability covering one Bandwidth business surface.'
+  tags:
+  - Bandwidth
+  - Recordings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BANDWIDTH_API_KEY: BANDWIDTH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: voice-recordings
+    baseUri: https://voice.bandwidth.com/api/v2
+    description: Bandwidth Voice API — Recordings business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountId-calls-callId-recordings
+      path: /accounts/{accountId}/calls/{callId}/recordings
+      operations:
+      - name: getcallrecordings
+        method: GET
+        description: List call recordings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountId-calls-callId-recordings-recordingId
+      path: /accounts/{accountId}/calls/{callId}/recordings/{recordingId}
+      operations:
+      - name: getcallrecording
+        method: GET
+        description: Get a specific recording
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletecallrecording
+        method: DELETE
+        description: Delete a recording
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountId-calls-callId-recordings-recordingId-media
+      path: /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media
+      operations:
+      - name: getcallrecordingmedia
+        method: GET
+        description: Download recording media
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountId-calls-callId-recordings-recordingId-transcription
+      path: /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription
+      operations:
+      - name: createrecordingtranscription
+        method: POST
+        description: Transcribe a recording
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getrecordingtranscription
+        method: GET
+        description: Get recording transcription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountId-recordings
+      path: /accounts/{accountId}/recordings
+      operations:
+      - name: listaccountrecordings
+        method: GET
+        description: List account recordings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: from
+          in: query
+          type: string
+          description: Filter recordings created on or after this date
+        - name: to
+          in: query
+          type: string
+          description: Filter recordings created on or before this date
+        - name: minStartTime
+          in: query
+          type: string
+          description: Minimum start time for filtering recordings
+        - name: maxStartTime
+          in: query
+          type: string
+          description: Maximum start time for filtering recordings
+    authentication:
+      type: basic
+      username: '{{env.BANDWIDTH_USER}}'
+      password: '{{env.BANDWIDTH_PASS}}'
+  exposes:
+  - type: rest
+    namespace: voice-recordings-rest
+    port: 8080
+    description: REST adapter for Bandwidth Voice API — Recordings. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/calls/{callid}/recordings
+      name: accounts-accountid-calls-callid-recordings
+      description: REST surface for accounts-accountId-calls-callId-recordings.
+      operations:
+      - method: GET
+        name: getcallrecordings
+        description: List call recordings
+        call: voice-recordings.getcallrecordings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/calls/{callid}/recordings/{recordingid}
+      name: accounts-accountid-calls-callid-recordings-recordingid
+      description: REST surface for accounts-accountId-calls-callId-recordings-recordingId.
+      operations:
+      - method: GET
+        name: getcallrecording
+        description: Get a specific recording
+        call: voice-recordings.getcallrecording
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecallrecording
+        description: Delete a recording
+        call: voice-recordings.deletecallrecording
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/calls/{callid}/recordings/{recordingid}/media
+      name: accounts-accountid-calls-callid-recordings-recordingid-media
+      description: REST surface for accounts-accountId-calls-callId-recordings-recordingId-media.
+      operations:
+      - method: GET
+        name: getcallrecordingmedia
+        description: Download recording media
+        call: voice-recordings.getcallrecordingmedia
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/calls/{callid}/recordings/{recordingid}/transcription
+      name: accounts-accountid-calls-callid-recordings-recordingid-transcription
+      description: REST surface for accounts-accountId-calls-callId-recordings-recordingId-transcription.
+      operations:
+      - method: POST
+        name: createrecordingtranscription
+        description: Transcribe a recording
+        call: voice-recordings.createrecordingtranscription
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getrecordingtranscription
+        description: Get recording transcription
+        call: voice-recordings.getrecordingtranscription
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/recordings
+      name: accounts-accountid-recordings
+      description: REST surface for accounts-accountId-recordings.
+      operations:
+      - method: GET
+        name: listaccountrecordings
+        description: List account recordings
+        call: voice-recordings.listaccountrecordings
+        with:
+          from: rest.from
+          to: rest.to
+          minStartTime: rest.minStartTime
+          maxStartTime: rest.maxStartTime
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: voice-recordings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bandwidth Voice API — Recordings. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-call-recordings
+      description: List call recordings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: voice-recordings.getcallrecordings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-recording
+      description: Get a specific recording
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: voice-recordings.getcallrecording
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-recording
+      description: Delete a recording
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: voice-recordings.deletecallrecording
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-recording-media
+      description: Download recording media
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: voice-recordings.getcallrecordingmedia
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: transcribe-recording
+      description: Transcribe a recording
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: voice-recordings.createrecordingtranscription
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-recording-transcription
+      description: Get recording transcription
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: voice-recordings.getrecordingtranscription
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-account-recordings
+      description: List account recordings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: voice-recordings.listaccountrecordings
+      with:
+        from: tools.from
+        to: tools.to
+        minStartTime: tools.minStartTime
+        maxStartTime: tools.maxStartTime
+      outputParameters:
+      - type: object
+        mapping: $.

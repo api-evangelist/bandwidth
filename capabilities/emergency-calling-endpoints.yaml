@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bandwidth Emergency Calling API — Endpoints
+  description: 'Bandwidth Emergency Calling API — Endpoints. 5 operations. Lead operation: List E911 endpoints. Self-contained
+    Naftiko capability covering one Bandwidth business surface.'
+  tags:
+  - Bandwidth
+  - Endpoints
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BANDWIDTH_API_KEY: BANDWIDTH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: emergency-calling-endpoints
+    baseUri: https://dashboard.bandwidth.com/api
+    description: Bandwidth Emergency Calling API — Endpoints business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountId-e911s
+      path: /accounts/{accountId}/e911s
+      operations:
+      - name: listendpoints
+        method: GET
+        description: List E911 endpoints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createendpoint
+        method: POST
+        description: Create an E911 endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-accountId-e911s-endpointId
+      path: /accounts/{accountId}/e911s/{endpointId}
+      operations:
+      - name: getendpoint
+        method: GET
+        description: Get E911 endpoint details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateendpoint
+        method: PUT
+        description: Update an E911 endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteendpoint
+        method: DELETE
+        description: Delete an E911 endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.BANDWIDTH_USER}}'
+      password: '{{env.BANDWIDTH_PASS}}'
+  exposes:
+  - type: rest
+    namespace: emergency-calling-endpoints-rest
+    port: 8080
+    description: REST adapter for Bandwidth Emergency Calling API — Endpoints. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/e911s
+      name: accounts-accountid-e911s
+      description: REST surface for accounts-accountId-e911s.
+      operations:
+      - method: GET
+        name: listendpoints
+        description: List E911 endpoints
+        call: emergency-calling-endpoints.listendpoints
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createendpoint
+        description: Create an E911 endpoint
+        call: emergency-calling-endpoints.createendpoint
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/e911s/{endpointid}
+      name: accounts-accountid-e911s-endpointid
+      description: REST surface for accounts-accountId-e911s-endpointId.
+      operations:
+      - method: GET
+        name: getendpoint
+        description: Get E911 endpoint details
+        call: emergency-calling-endpoints.getendpoint
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateendpoint
+        description: Update an E911 endpoint
+        call: emergency-calling-endpoints.updateendpoint
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteendpoint
+        description: Delete an E911 endpoint
+        call: emergency-calling-endpoints.deleteendpoint
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: emergency-calling-endpoints-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bandwidth Emergency Calling API — Endpoints. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-e911-endpoints
+      description: List E911 endpoints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: emergency-calling-endpoints.listendpoints
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-e911-endpoint
+      description: Create an E911 endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: emergency-calling-endpoints.createendpoint
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-e911-endpoint-details
+      description: Get E911 endpoint details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: emergency-calling-endpoints.getendpoint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-e911-endpoint
+      description: Update an E911 endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: emergency-calling-endpoints.updateendpoint
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-e911-endpoint
+      description: Delete an E911 endpoint
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: emergency-calling-endpoints.deleteendpoint
+      outputParameters:
+      - type: object
+        mapping: $.

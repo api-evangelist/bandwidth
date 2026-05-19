@@ -1,0 +1,181 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bandwidth Messaging API — Messages
+  description: 'Bandwidth Messaging API — Messages. 2 operations. Lead operation: Send a message. Self-contained Naftiko capability
+    covering one Bandwidth business surface.'
+  tags:
+  - Bandwidth
+  - Messages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BANDWIDTH_API_KEY: BANDWIDTH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: messaging-messages
+    baseUri: https://messaging.bandwidth.com/api/v2
+    description: Bandwidth Messaging API — Messages business capability. Self-contained, no shared references.
+    resources:
+    - name: users-accountId-messages
+      path: /users/{accountId}/messages
+      operations:
+      - name: createmessage
+        method: POST
+        description: Send a message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listmessages
+        method: GET
+        description: List messages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: messageId
+          in: query
+          type: string
+          description: Filter by a specific message ID
+        - name: sourceTn
+          in: query
+          type: string
+          description: Filter by source telephone number in E.164 format
+        - name: destinationTn
+          in: query
+          type: string
+          description: Filter by destination telephone number in E.164 format
+        - name: messageStatus
+          in: query
+          type: string
+          description: Filter by message delivery status
+        - name: messageDirection
+          in: query
+          type: string
+          description: Filter by message direction
+        - name: carrierName
+          in: query
+          type: string
+          description: Filter by carrier name
+        - name: messageType
+          in: query
+          type: string
+          description: Filter by message type
+        - name: errorCode
+          in: query
+          type: integer
+          description: Filter by error code
+        - name: fromDateTime
+          in: query
+          type: string
+          description: Filter messages sent on or after this date-time
+        - name: toDateTime
+          in: query
+          type: string
+          description: Filter messages sent on or before this date-time
+        - name: pageToken
+          in: query
+          type: string
+          description: Page token for pagination
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of messages to return
+    authentication:
+      type: basic
+      username: '{{env.BANDWIDTH_USER}}'
+      password: '{{env.BANDWIDTH_PASS}}'
+  exposes:
+  - type: rest
+    namespace: messaging-messages-rest
+    port: 8080
+    description: REST adapter for Bandwidth Messaging API — Messages. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/users/{accountid}/messages
+      name: users-accountid-messages
+      description: REST surface for users-accountId-messages.
+      operations:
+      - method: POST
+        name: createmessage
+        description: Send a message
+        call: messaging-messages.createmessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listmessages
+        description: List messages
+        call: messaging-messages.listmessages
+        with:
+          messageId: rest.messageId
+          sourceTn: rest.sourceTn
+          destinationTn: rest.destinationTn
+          messageStatus: rest.messageStatus
+          messageDirection: rest.messageDirection
+          carrierName: rest.carrierName
+          messageType: rest.messageType
+          errorCode: rest.errorCode
+          fromDateTime: rest.fromDateTime
+          toDateTime: rest.toDateTime
+          pageToken: rest.pageToken
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: messaging-messages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bandwidth Messaging API — Messages. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: send-message
+      description: Send a message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: messaging-messages.createmessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-messages
+      description: List messages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: messaging-messages.listmessages
+      with:
+        messageId: tools.messageId
+        sourceTn: tools.sourceTn
+        destinationTn: tools.destinationTn
+        messageStatus: tools.messageStatus
+        messageDirection: tools.messageDirection
+        carrierName: tools.carrierName
+        messageType: tools.messageType
+        errorCode: tools.errorCode
+        fromDateTime: tools.fromDateTime
+        toDateTime: tools.toDateTime
+        pageToken: tools.pageToken
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
