@@ -1,0 +1,1209 @@
+# Bandwidth GraphQL Schema
+# Conceptual schema representing Bandwidth's cloud communications platform APIs
+# Sources: https://dev.bandwidth.com/
+
+# ─── Scalars ─────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar URL
+
+# ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum OrderStatus {
+  RECEIVED
+  PROCESSING
+  COMPLETE
+  FAILED
+  PARTIAL
+  CANCELLED
+}
+
+enum OrderType {
+  NEW_NUMBER
+  PORT_IN
+  PORT_OUT
+  DISCONNECT
+  IMPORT_TN
+  TOLL_FREE
+}
+
+enum MessageStatus {
+  RECEIVED
+  QUEUED
+  SENDING
+  SENT
+  FAILED
+  DELIVERED
+  UNDELIVERED
+  REJECTED
+}
+
+enum MessageDirection {
+  INBOUND
+  OUTBOUND
+}
+
+enum MessageType {
+  SMS
+  MMS
+}
+
+enum CallState {
+  INITIATED
+  ANSWERED
+  TRANSFERRING
+  BRIDGED
+  CONFERENCE
+  RECORDING
+  HANGUP
+  DISCONNECTED
+}
+
+enum CallDirection {
+  INBOUND
+  OUTBOUND
+}
+
+enum ConferenceStatus {
+  CREATED
+  ACTIVE
+  COMPLETED
+}
+
+enum TNStatus {
+  AVAILABLE
+  INSERVICE
+  RESERVED
+  DISCONNECTED
+}
+
+enum SIPPeerType {
+  DEFAULT
+  PEER
+}
+
+enum E911Status {
+  PROVISIONED
+  ACTIVE
+  REMOVED
+}
+
+enum PortType {
+  AUTOMATED
+  MANUAL
+  FULL_AUTOMATION
+}
+
+enum RecordingStatus {
+  RECORDING
+  PAUSED
+  STOPPED
+  PROCESSING
+  COMPLETE
+  DELETED
+  ERROR
+}
+
+enum TranscriptionStatus {
+  NONE
+  QUEUED
+  PROCESSING
+  AVAILABLE
+  ERROR
+}
+
+enum SubscriptionEventType {
+  SUBSCRIPTION_ORDER
+  SUBSCRIPTION_DISCONNECT
+  SUBSCRIPTION_PORT_IN
+  SUBSCRIPTION_PORT_OUT
+  SUBSCRIPTION_TOLL_FREE
+  SUBSCRIPTION_MESSAGING
+  SUBSCRIPTION_VOICE
+}
+
+# ─── Account & Identity ───────────────────────────────────────────────────────
+
+"""
+Top-level Bandwidth dashboard account (Iris/Dashboard API).
+"""
+type DashboardAccount {
+  accountId: ID!
+  companyName: String!
+  accountType: String
+  billingAddress: Address
+  contact: Contact
+  users: [DashboardUser!]
+  sites: [Site!]
+  subscriptions: [Subscription!]
+  created: DateTime
+  modified: DateTime
+}
+
+"""
+A user within a Bandwidth dashboard account.
+"""
+type DashboardUser {
+  userId: ID!
+  username: String!
+  firstName: String
+  lastName: String
+  email: String!
+  roles: [String!]
+  accountId: ID!
+  active: Boolean!
+  created: DateTime
+}
+
+"""
+A physical or billing address.
+"""
+type Address {
+  houseNumber: String
+  streetName: String
+  streetSuffix: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String
+  addressType: String
+}
+
+"""
+A contact record associated with an account or order.
+"""
+type Contact {
+  name: String
+  phone: String
+  email: String
+}
+
+# ─── Site & SIP Peer ──────────────────────────────────────────────────────────
+
+"""
+A logical grouping of SIP peers within a Bandwidth account (Iris hierarchy: Account > Site > SIP Peer).
+"""
+type Site {
+  siteId: ID!
+  accountId: ID!
+  name: String!
+  description: String
+  address: Address
+  sipPeers: [SIPPeer!]
+  created: DateTime
+  modified: DateTime
+}
+
+"""
+A SIP peer (also called a location) that represents a termination/origination endpoint within a site.
+"""
+type SIPPeer {
+  sipPeerId: ID!
+  siteId: ID!
+  peerName: String!
+  isDefaultPeer: Boolean
+  shortMessagingEnabled: Boolean
+  voiceEnabled: Boolean
+  faxEnabled: Boolean
+  phoneNumbers: [PhoneNumber!]
+  created: DateTime
+  modified: DateTime
+}
+
+"""
+Alias type for SIPPeer used in location-based contexts.
+"""
+type Location {
+  locationId: ID!
+  siteId: ID!
+  name: String!
+  isDefault: Boolean
+  voiceEnabled: Boolean
+  messagingEnabled: Boolean
+  phoneNumbers: [PhoneNumber!]
+}
+
+# ─── Phone Numbers & TNs ──────────────────────────────────────────────────────
+
+"""
+A telephone number (TN) managed within a Bandwidth account.
+"""
+type PhoneNumber {
+  id: ID!
+  fullNumber: String!
+  nationalNumber: String
+  e164: String!
+  accountId: ID
+  siteId: ID
+  sipPeerId: ID
+  status: TNStatus!
+  city: String
+  state: String
+  rateCenter: String
+  lata: String
+  tier: String
+  vendor: String
+  type: String
+  features: [String!]
+  created: DateTime
+  modified: DateTime
+}
+
+"""
+A telephone number (TN) detail record from the Bandwidth TN inventory.
+"""
+type TN {
+  fullNumber: String!
+  accountId: ID
+  city: String
+  state: String
+  rateCenter: String
+  lata: String
+  status: TNStatus!
+  orderType: OrderType
+  orderId: ID
+  lastOrderType: OrderType
+  lastOrderDate: DateTime
+  features: TNFeatures
+}
+
+"""
+Feature flags for a telephone number.
+"""
+type TNFeatures {
+  cnamEnabled: Boolean
+  lidbEnabled: Boolean
+  callForwardEnabled: Boolean
+  smsEnabled: Boolean
+  mmsEnabled: Boolean
+}
+
+"""
+A reservation that holds a telephone number for a limited time before ordering.
+"""
+type TNReservation {
+  reservationId: ID!
+  accountId: ID!
+  reservedTN: String!
+  status: String!
+  reservationExpires: DateTime
+  created: DateTime
+}
+
+# ─── Orders ───────────────────────────────────────────────────────────────────
+
+"""
+Base order type for all Bandwidth number management operations.
+"""
+interface Order {
+  orderId: ID!
+  accountId: ID!
+  status: OrderStatus!
+  orderType: OrderType!
+  created: DateTime
+  modified: DateTime
+  completedNumbers: [String!]
+  failedNumbers: [String!]
+  notes: [OrderNote!]
+}
+
+"""
+A note or comment attached to an order.
+"""
+type OrderNote {
+  noteId: ID!
+  orderId: ID!
+  userId: String
+  description: String!
+  created: DateTime
+}
+
+"""
+An order to acquire new local or geographic phone numbers.
+"""
+type NewNumberOrder implements Order {
+  orderId: ID!
+  accountId: ID!
+  status: OrderStatus!
+  orderType: OrderType!
+  created: DateTime
+  modified: DateTime
+  completedNumbers: [String!]
+  failedNumbers: [String!]
+  notes: [OrderNote!]
+  quantity: Int!
+  areaCode: String
+  rateCenter: String
+  state: String
+  city: String
+  lata: String
+  zip: String
+  siteId: ID
+  sipPeerId: ID
+}
+
+"""
+An order to port in telephone numbers from another carrier.
+"""
+type PortInOrder implements Order {
+  orderId: ID!
+  accountId: ID!
+  status: OrderStatus!
+  orderType: OrderType!
+  created: DateTime
+  modified: DateTime
+  completedNumbers: [String!]
+  failedNumbers: [String!]
+  notes: [OrderNote!]
+  portType: PortType
+  requestedFocDate: DateTime
+  actualFocDate: DateTime
+  losingCarrier: String
+  billingTelephoneNumber: String
+  subscriberName: String
+  serviceAddress: Address
+  listOfPhoneNumbers: [String!]!
+  siteId: ID
+  sipPeerId: ID
+}
+
+"""
+An order to import telephone numbers from a losing carrier into a Bandwidth account.
+"""
+type ImportTNOrder implements Order {
+  orderId: ID!
+  accountId: ID!
+  status: OrderStatus!
+  orderType: OrderType!
+  created: DateTime
+  modified: DateTime
+  completedNumbers: [String!]
+  failedNumbers: [String!]
+  notes: [OrderNote!]
+  losingCarrierName: String
+  listOfPhoneNumbers: [String!]!
+  siteId: ID
+  sipPeerId: ID
+}
+
+"""
+An order to acquire toll-free telephone numbers.
+"""
+type TollFreeOrder implements Order {
+  orderId: ID!
+  accountId: ID!
+  status: OrderStatus!
+  orderType: OrderType!
+  created: DateTime
+  modified: DateTime
+  completedNumbers: [String!]
+  failedNumbers: [String!]
+  notes: [OrderNote!]
+  quantity: Int
+  tollFreeWildCardPattern: String
+  specificNumbers: [String!]
+  siteId: ID
+  sipPeerId: ID
+}
+
+"""
+An order to disconnect (release) telephone numbers from a Bandwidth account.
+"""
+type DisconnectOrder implements Order {
+  orderId: ID!
+  accountId: ID!
+  status: OrderStatus!
+  orderType: OrderType!
+  created: DateTime
+  modified: DateTime
+  completedNumbers: [String!]
+  failedNumbers: [String!]
+  notes: [OrderNote!]
+  listOfPhoneNumbers: [String!]!
+  disconnectMode: String
+}
+
+"""
+A report of a number port-out event (number leaving Bandwidth to another carrier).
+"""
+type PortOutReport {
+  portOutId: ID!
+  accountId: ID!
+  portOutDate: DateTime
+  portOutPin: String
+  telephoneNumbers: [String!]!
+  receivingCarrier: String
+  status: String
+  created: DateTime
+}
+
+# ─── Messaging ────────────────────────────────────────────────────────────────
+
+"""
+A message application configuration that provides a messaging-capable application ID.
+"""
+type ApplicationMessaging {
+  applicationId: ID!
+  accountId: ID!
+  name: String!
+  callbackUrl: URL!
+  callbackUsername: String
+  callbackPassword: String
+  callbackTimeout: Int
+  created: DateTime
+  modified: DateTime
+}
+
+"""
+An inbound or outbound SMS/MMS message resource.
+"""
+type Message {
+  id: ID!
+  owner: String!
+  applicationId: ID!
+  time: DateTime!
+  segmentCount: Int!
+  direction: MessageDirection!
+  to: [String!]!
+  from: String!
+  media: [URL]
+  text: String
+  tag: String
+  priority: String
+  status: MessageStatus
+}
+
+"""
+Input payload for sending a new SMS or MMS message.
+"""
+type MessageRequest {
+  applicationId: ID!
+  to: [String!]!
+  from: String!
+  text: String
+  media: [URL]
+  tag: String
+  priority: String
+  expiration: DateTime
+}
+
+"""
+A group (multi-recipient) message.
+"""
+type GroupMessage {
+  id: ID!
+  applicationId: ID!
+  from: String!
+  to: [String!]!
+  text: String
+  media: [URL]
+  segmentCount: Int
+  direction: MessageDirection!
+  status: MessageStatus
+  time: DateTime!
+  tag: String
+}
+
+"""
+An MMS-specific message resource with media attachment details.
+"""
+type MMS {
+  id: ID!
+  applicationId: ID!
+  from: String!
+  to: [String!]!
+  media: [URL!]!
+  text: String
+  segmentCount: Int
+  direction: MessageDirection!
+  status: MessageStatus
+  time: DateTime!
+}
+
+"""
+A single SMS/MMS billing segment (each 160-char block for SMS or each media part for MMS).
+"""
+type Segment {
+  segmentIndex: Int!
+  messageId: ID!
+  content: String
+  length: Int
+}
+
+"""
+A webhook callback notification sent to a customer's server for message or call events.
+"""
+type Callback {
+  type: String!
+  time: DateTime!
+  description: String
+  message: Message
+  call: Call
+  errorCode: Int
+  errorMessage: String
+}
+
+"""
+A webhook notification event from a Bandwidth subscription.
+"""
+type WebhookNotification {
+  notificationId: ID!
+  subscriptionId: ID!
+  accountId: ID!
+  eventType: SubscriptionEventType!
+  orderId: ID
+  status: OrderStatus
+  message: String
+  timestamp: DateTime!
+}
+
+# ─── Subscriptions (Webhook) ──────────────────────────────────────────────────
+
+"""
+A Bandwidth subscription for receiving webhook notifications about order or number events.
+"""
+type Subscription {
+  subscriptionId: ID!
+  accountId: ID!
+  orderType: String
+  callbackSubscription: CallbackSubscription
+  created: DateTime
+  modified: DateTime
+}
+
+"""
+Callback configuration within a subscription.
+"""
+type CallbackSubscription {
+  url: URL!
+  username: String
+  password: String
+  expiry: Int
+  status: String
+}
+
+# ─── Voice & Calls ────────────────────────────────────────────────────────────
+
+"""
+A voice application configuration that provides an application ID for inbound/outbound calls.
+"""
+type ApplicationVoice {
+  applicationId: ID!
+  accountId: ID!
+  name: String!
+  callInitiationUrl: URL
+  callInitiationMethod: String
+  callStatusUrl: URL
+  callStatusMethod: String
+  disconnectUrl: URL
+  disconnectMethod: String
+  created: DateTime
+  modified: DateTime
+}
+
+"""
+A call resource representing an in-progress or completed phone call.
+"""
+type Call {
+  callId: ID!
+  parentCallId: ID
+  applicationId: ID!
+  accountId: ID!
+  to: String!
+  from: String!
+  direction: CallDirection!
+  state: CallState!
+  startTime: DateTime
+  answerTime: DateTime
+  endTime: DateTime
+  disconnectCause: String
+  errorMessage: String
+  callUrl: URL
+  callTimeout: Float
+  callbackTimeout: Float
+  answerUrl: URL
+  answerMethod: String
+  disconnectUrl: URL
+  disconnectMethod: String
+  machineDetection: MachineDetection
+  recording: Recording
+  conferenceId: ID
+  tag: String
+}
+
+"""
+Machine detection configuration for a call.
+"""
+type MachineDetection {
+  mode: String
+  detectionTimeout: Float
+  silenceTimeout: Float
+  speechThreshold: Float
+  speechEndThreshold: Float
+  machineSpeechEndThreshold: Float
+  delayResult: Boolean
+  callbackUrl: URL
+  callbackMethod: String
+  username: String
+  password: String
+  fallbackUrl: URL
+  fallbackMethod: String
+  fallbackUsername: String
+  fallbackPassword: String
+}
+
+"""
+A recording of a voice call or conference.
+"""
+type Recording {
+  recordingId: ID!
+  callId: ID!
+  accountId: ID!
+  applicationId: ID
+  status: RecordingStatus!
+  startTime: DateTime
+  endTime: DateTime
+  duration: String
+  fileFormat: String
+  mediaUrl: URL
+  transcription: Transcription
+  tag: String
+}
+
+"""
+A transcription generated from a call or conference recording.
+"""
+type Transcription {
+  transcriptionId: ID!
+  status: TranscriptionStatus!
+  completedTime: DateTime
+  url: URL
+  text: String
+}
+
+"""
+A call routing rule that maps incoming calls to BXML instructions.
+"""
+type CallRoute {
+  routeId: ID!
+  applicationId: ID!
+  pattern: String!
+  bxml: BXML!
+  priority: Int
+}
+
+# ─── BXML Verb Types ──────────────────────────────────────────────────────────
+
+"""
+A BXML (Bandwidth XML) document containing an ordered list of call control verbs.
+"""
+type BXML {
+  verbs: [BXMLVerb!]!
+  rawXml: String
+}
+
+"""
+Abstract base for all BXML verb types used in Bandwidth Voice call control.
+"""
+interface BXMLVerb {
+  verbType: String!
+}
+
+"""
+BXML verb: Ring - cause the call to ring before answering.
+"""
+type Ring implements BXMLVerb {
+  verbType: String!
+  duration: Float
+  answerCall: Boolean
+}
+
+"""
+BXML verb: Forward - forward a call to another number.
+"""
+type Forward implements BXMLVerb {
+  verbType: String!
+  to: String!
+  from: String
+  callTimeout: Int
+  diversionTreatment: String
+  diversionReason: String
+}
+
+"""
+BXML verb: Transfer - transfer call leg to one or more phone numbers.
+"""
+type Transfer implements BXMLVerb {
+  verbType: String!
+  transferCallerId: String
+  callTimeout: Int
+  transferCompleteUrl: URL
+  transferCompleteMethod: String
+  username: String
+  password: String
+  tag: String
+  targets: [String!]
+}
+
+"""
+BXML verb: Redirect - fetch a new BXML document from a URL and continue execution.
+"""
+type Redirect implements BXMLVerb {
+  verbType: String!
+  redirectUrl: URL!
+  redirectMethod: String
+  username: String
+  password: String
+  tag: String
+}
+
+"""
+BXML verb: Conference - place the call into a named conference bridge.
+"""
+type Conference implements BXMLVerb {
+  verbType: String!
+  name: String!
+  mute: Boolean
+  hold: Boolean
+  callIdsToCoach: [String!]
+  conferenceEventUrl: URL
+  conferenceEventMethod: String
+  username: String
+  password: String
+  tag: String
+  callbackTimeout: Float
+}
+
+"""
+A conference resource for multi-party voice calls.
+"""
+type ConferenceRecord {
+  conferenceId: ID!
+  name: String!
+  accountId: ID!
+  status: ConferenceStatus!
+  createdTime: DateTime
+  completedTime: DateTime
+  tag: String
+  activeMembers: [ConferenceMember!]
+  recordings: [Recording!]
+}
+
+"""
+A participant in a Bandwidth conference.
+"""
+type ConferenceMember {
+  memberId: ID!
+  conferenceId: ID!
+  callId: ID!
+  mute: Boolean
+  hold: Boolean
+  isCoaching: Boolean
+  callIdsBeingCoached: [String!]
+}
+
+"""
+BXML verb: Gather - collect DTMF digits from the caller.
+"""
+type Gather implements BXMLVerb {
+  verbType: String!
+  gatherUrl: URL
+  gatherMethod: String
+  username: String
+  password: String
+  tag: String
+  terminatingDigits: String
+  maxDigits: Int
+  interDigitTimeout: Float
+  firstDigitTimeout: Float
+  repeatCount: Int
+  audioPrompt: SpeakSentence
+}
+
+"""
+BXML verb: SpeakSentence - synthesize text-to-speech on a call.
+"""
+type SpeakSentence implements BXMLVerb {
+  verbType: String!
+  text: String!
+  voice: String
+  gender: String
+  locale: String
+}
+
+"""
+BXML verb: Record - record the active call leg.
+"""
+type Record implements BXMLVerb {
+  verbType: String!
+  recordCompleteUrl: URL
+  recordCompleteMethod: String
+  recordingAvailableUrl: URL
+  recordingAvailableMethod: String
+  username: String
+  password: String
+  tag: String
+  terminatingDigits: String
+  maxDuration: Int
+  silenceTimeout: Int
+  fileFormat: String
+  transcribe: Boolean
+  transcriptionAvailableUrl: URL
+  transcriptionAvailableMethod: String
+  detectLanguage: Boolean
+}
+
+"""
+BXML verb: Bridge - bridge two call legs together.
+"""
+type Bridge implements BXMLVerb {
+  verbType: String!
+  callId: String!
+  bridgeCompleteUrl: URL
+  bridgeCompleteMethod: String
+  bridgeTargetCompleteUrl: URL
+  bridgeTargetCompleteMethod: String
+  username: String
+  password: String
+  tag: String
+}
+
+"""
+BXML verb: Hangup - terminate the current call leg.
+"""
+type Hangup implements BXMLVerb {
+  verbType: String!
+}
+
+"""
+BXML verb: Pause - wait for a specified duration before executing the next verb.
+"""
+type Pause implements BXMLVerb {
+  verbType: String!
+  duration: Float!
+}
+
+"""
+BXML verb: PlayAudio - play an audio file on the call.
+"""
+type PlayAudio implements BXMLVerb {
+  verbType: String!
+  url: URL!
+  username: String
+  password: String
+}
+
+"""
+BXML verb: SendDTMF - send DTMF digits on the active call.
+"""
+type SendDTMF implements BXMLVerb {
+  verbType: String!
+  digits: String!
+  toneDuration: Int
+  toneInterval: Int
+}
+
+"""
+BXML verb: StartStream - stream call audio to a WebSocket endpoint.
+"""
+type StartStream implements BXMLVerb {
+  verbType: String!
+  name: String
+  tracks: String
+  destination: URL!
+  streamEventUrl: URL
+  streamEventMethod: String
+  username: String
+  password: String
+  tag: String
+}
+
+# ─── Emergency Services ───────────────────────────────────────────────────────
+
+"""
+An E911 endpoint registration linking a phone number to an emergency location.
+"""
+type E911 {
+  endpointId: ID!
+  accountId: ID!
+  identifier: String!
+  callerId: String!
+  callerName: String
+  address: E911Location!
+  status: E911Status!
+  created: DateTime
+  modified: DateTime
+}
+
+"""
+A validated civic address used for E911 emergency routing.
+"""
+type E911Location {
+  houseNumber: String!
+  streetName: String!
+  streetSuffix: String
+  preDirectional: String
+  postDirectional: String
+  addressLine2: String
+  city: String!
+  state: String!
+  zip: String!
+  plusFour: String
+  country: String
+  addressType: String
+  locationId: String
+}
+
+"""
+Emergency Caller ID registration for a device or user.
+"""
+type EmergencyCallerID {
+  callerId: String!
+  callerName: String
+  associatedNumber: String
+  locationId: ID
+  location: E911Location
+  accountId: ID!
+  status: E911Status!
+  created: DateTime
+}
+
+"""
+An E911 endpoint record (alias view used in emergency calling provisioning).
+"""
+type E911Endpoint {
+  endpointId: ID!
+  identifier: String!
+  callerId: String!
+  callerName: String
+  address: E911Location!
+  uri: String
+  accountId: ID!
+  status: E911Status!
+}
+
+"""
+A Dynamic Location Routing (DLR) session for real-time E911 location updates.
+"""
+type DLRSession {
+  sessionId: ID!
+  accountId: ID!
+  callerId: String!
+  location: E911Location!
+  expires: DateTime
+  created: DateTime
+}
+
+# ─── Multi-Factor Authentication ──────────────────────────────────────────────
+
+"""
+A request to send an MFA one-time passcode via SMS or voice.
+"""
+type MFARequest {
+  requestId: ID!
+  accountId: ID!
+  applicationId: ID!
+  to: String!
+  from: String!
+  message: String
+  digits: Int
+  via: MFAChannel!
+  created: DateTime
+}
+
+"""
+The channel used for MFA delivery.
+"""
+enum MFAChannel {
+  VOICE
+  SMS
+}
+
+"""
+An MFA verification attempt result.
+"""
+type MFAVerification {
+  requestId: ID!
+  valid: Boolean!
+  expirationTime: DateTime
+}
+
+"""
+A generated MFA code record (for internal tracking, not exposed to end-users).
+"""
+type MFACode {
+  requestId: ID!
+  accountId: ID!
+  to: String!
+  code: String
+  expiration: DateTime
+  verified: Boolean
+  verifiedAt: DateTime
+}
+
+# ─── Root Types ───────────────────────────────────────────────────────────────
+
+type Query {
+  "Retrieve a single phone number by its E.164 form."
+  phoneNumber(e164: String!): PhoneNumber
+  "List phone numbers in an account, optionally filtered."
+  phoneNumbers(accountId: ID!, status: TNStatus, siteId: ID, sipPeerId: ID, limit: Int, offset: Int): [PhoneNumber!]
+
+  "Retrieve a TN detail record."
+  tn(fullNumber: String!): TN
+
+  "Retrieve a TN reservation by ID."
+  tnReservation(reservationId: ID!): TNReservation
+
+  "Retrieve any order by ID."
+  order(accountId: ID!, orderId: ID!): Order
+  "List orders for an account, with optional type and status filters."
+  orders(accountId: ID!, type: OrderType, status: OrderStatus, limit: Int, offset: Int): [Order!]
+
+  "Retrieve a new-number order."
+  newNumberOrder(accountId: ID!, orderId: ID!): NewNumberOrder
+  "Retrieve a port-in order."
+  portInOrder(accountId: ID!, orderId: ID!): PortInOrder
+  "Retrieve an import TN order."
+  importTNOrder(accountId: ID!, orderId: ID!): ImportTNOrder
+  "Retrieve a toll-free number order."
+  tollFreeOrder(accountId: ID!, orderId: ID!): TollFreeOrder
+  "Retrieve a disconnect order."
+  disconnectOrder(accountId: ID!, orderId: ID!): DisconnectOrder
+  "List port-out reports for an account."
+  portOutReports(accountId: ID!, startDate: DateTime, endDate: DateTime): [PortOutReport!]
+
+  "Retrieve a site."
+  site(accountId: ID!, siteId: ID!): Site
+  "List sites for an account."
+  sites(accountId: ID!): [Site!]
+
+  "Retrieve a SIP peer."
+  sipPeer(accountId: ID!, siteId: ID!, sipPeerId: ID!): SIPPeer
+  "List SIP peers for a site."
+  sipPeers(accountId: ID!, siteId: ID!): [SIPPeer!]
+
+  "Retrieve a messaging application."
+  applicationMessaging(accountId: ID!, applicationId: ID!): ApplicationMessaging
+  "Retrieve a voice application."
+  applicationVoice(accountId: ID!, applicationId: ID!): ApplicationVoice
+
+  "Retrieve a message by ID."
+  message(accountId: ID!, messageId: ID!): Message
+  "Retrieve a call by ID."
+  call(accountId: ID!, callId: ID!): Call
+  "List calls for an account."
+  calls(accountId: ID!, state: CallState, applicationId: ID, limit: Int, offset: Int): [Call!]
+
+  "Retrieve a recording."
+  recording(accountId: ID!, callId: ID!, recordingId: ID!): Recording
+  "List recordings for a call."
+  recordings(accountId: ID!, callId: ID!): [Recording!]
+
+  "Retrieve a conference."
+  conference(accountId: ID!, conferenceId: ID!): ConferenceRecord
+  "List conferences for an account."
+  conferences(accountId: ID!, name: String, status: ConferenceStatus): [ConferenceRecord!]
+
+  "Retrieve an E911 endpoint."
+  e911Endpoint(accountId: ID!, endpointId: ID!): E911Endpoint
+  "List E911 endpoints for an account."
+  e911Endpoints(accountId: ID!): [E911Endpoint!]
+
+  "Retrieve an Emergency Caller ID."
+  emergencyCallerID(accountId: ID!, callerId: String!): EmergencyCallerID
+
+  "Retrieve a Bandwidth account."
+  account(accountId: ID!): DashboardAccount
+  "List subscriptions for an account."
+  subscriptions(accountId: ID!, orderType: String): [Subscription!]
+}
+
+type Mutation {
+  "Create a new number order."
+  createNewNumberOrder(accountId: ID!, quantity: Int!, areaCode: String, state: String, siteId: ID, sipPeerId: ID): NewNumberOrder
+
+  "Create a port-in order."
+  createPortInOrder(accountId: ID!, listOfPhoneNumbers: [String!]!, subscriberName: String!, serviceAddress: AddressInput!, siteId: ID, sipPeerId: ID): PortInOrder
+
+  "Create a toll-free number order."
+  createTollFreeOrder(accountId: ID!, quantity: Int, specificNumbers: [String!], siteId: ID, sipPeerId: ID): TollFreeOrder
+
+  "Create a disconnect order."
+  createDisconnectOrder(accountId: ID!, listOfPhoneNumbers: [String!]!): DisconnectOrder
+
+  "Reserve a telephone number."
+  createTNReservation(accountId: ID!, tn: String!): TNReservation
+  "Delete a telephone number reservation."
+  deleteTNReservation(accountId: ID!, reservationId: ID!): Boolean
+
+  "Send an SMS or MMS message."
+  sendMessage(accountId: ID!, applicationId: ID!, to: [String!]!, from: String!, text: String, media: [URL]): Message
+
+  "Initiate an outbound call."
+  createCall(accountId: ID!, applicationId: ID!, to: String!, from: String!, answerUrl: URL!, tag: String): Call
+  "Modify an in-progress call (redirect, hangup, etc.)."
+  modifyCall(accountId: ID!, callId: ID!, state: String, redirectUrl: URL, tag: String): Call
+
+  "Create a conference."
+  createConference(accountId: ID!, name: String!, tag: String): ConferenceRecord
+  "Modify a conference (mute, hold, remove member)."
+  modifyConference(accountId: ID!, conferenceId: ID!, status: String, redirectUrl: URL, tag: String): ConferenceRecord
+
+  "Provision an E911 endpoint."
+  provisionE911(accountId: ID!, identifier: String!, callerId: String!, address: E911LocationInput!): E911Endpoint
+  "Update an E911 endpoint address."
+  updateE911Endpoint(accountId: ID!, endpointId: ID!, address: E911LocationInput!): E911Endpoint
+  "Remove an E911 endpoint."
+  removeE911Endpoint(accountId: ID!, endpointId: ID!): Boolean
+
+  "Start a DLR session for real-time E911 location."
+  createDLRSession(accountId: ID!, callerId: String!, location: E911LocationInput!, expiry: Int): DLRSession
+  "Delete a DLR session."
+  deleteDLRSession(accountId: ID!, sessionId: ID!): Boolean
+
+  "Send an MFA code via SMS or voice."
+  sendMFACode(accountId: ID!, applicationId: ID!, to: String!, from: String!, message: String!, digits: Int, via: MFAChannel!): MFARequest
+  "Verify an MFA code."
+  verifyMFACode(accountId: ID!, applicationId: ID!, to: String!, expirationTimeInMinutes: Float!, code: String!): MFAVerification
+
+  "Create a webhook subscription."
+  createSubscription(accountId: ID!, orderType: String!, callbackUrl: URL!): Subscription
+  "Delete a webhook subscription."
+  deleteSubscription(accountId: ID!, subscriptionId: ID!): Boolean
+}
+
+# ─── Input Types ─────────────────────────────────────────────────────────────
+
+input AddressInput {
+  houseNumber: String!
+  streetName: String!
+  streetSuffix: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String
+}
+
+input E911LocationInput {
+  houseNumber: String!
+  streetName: String!
+  streetSuffix: String
+  city: String!
+  state: String!
+  zip: String!
+  plusFour: String
+  country: String
+  addressType: String
+}
+
+input PhoneNumberFilter {
+  status: TNStatus
+  areaCode: String
+  state: String
+  city: String
+  rateCenter: String
+  siteId: ID
+  sipPeerId: ID
+}
