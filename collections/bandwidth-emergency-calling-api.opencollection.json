@@ -1,0 +1,305 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List E911 endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all 911 endpoints provisioned for the account. Each endpoint represents an end user that may place emergency calls."
+        },
+        {
+          "info": {
+            "name": "Create an E911 endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Provisions a new 911 endpoint for an end user. The endpoint is identified by an Alternate End User ID (AEUI) and must be associated with a validated location for emergency routing."
+        },
+        {
+          "info": {
+            "name": "Get E911 endpoint details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/:endpointId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 endpoint"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific 911 endpoint including its associated location and configuration."
+        },
+        {
+          "info": {
+            "name": "Update an E911 endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/:endpointId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 endpoint"
+              }
+            ]
+          },
+          "docs": "Updates the configuration or location association for a specific 911 endpoint."
+        },
+        {
+          "info": {
+            "name": "Delete an E911 endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/:endpointId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 endpoint"
+              }
+            ]
+          },
+          "docs": "Removes a 911 endpoint from the account. The endpoint will no longer be able to route emergency calls."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List E911 locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all validated locations provisioned for emergency calling within the account."
+        },
+        {
+          "info": {
+            "name": "Create an E911 location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Provisions a new location for emergency calling. The address is validated against the Master Street Address Guide (MSAG) to ensure it can be properly routed to the correct PSAP. Bandwidth can generate a location ID automatically, or you can provide your own custom location ID."
+        },
+        {
+          "info": {
+            "name": "Get E911 location details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations/:locationId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 location"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific validated location."
+        },
+        {
+          "info": {
+            "name": "Update an E911 location",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations/:locationId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 location"
+              }
+            ]
+          },
+          "docs": "Updates a specific location. The new address will be re-validated against the MSAG."
+        },
+        {
+          "info": {
+            "name": "Delete an E911 location",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations/:locationId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 location"
+              }
+            ]
+          },
+          "docs": "Removes a location from the account. The location must not be currently associated with any active endpoints."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Emergency Notification Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List emergency notification recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/notificationRecipients",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of configured notification recipients who are alerted when 911 calls are placed from the account's endpoints."
+        },
+        {
+          "info": {
+            "name": "Create a notification recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/notificationRecipients",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Configures a new notification recipient to receive alerts when 911 calls are placed from the account's endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

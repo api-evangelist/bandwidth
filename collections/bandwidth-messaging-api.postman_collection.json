@@ -1,0 +1,1533 @@
+{
+  "item": [
+    {
+      "id": "6830004d-89ad-40fd-9831-88ca8f97e299",
+      "name": "Media",
+      "description": {
+        "content": "Upload, retrieve, and manage media files for use in MMS messages. Supports files up to 3.75 MB with 48-hour retention.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5dfaa3e0-3664-40b1-8bae-076789a64482",
+          "name": "List media files",
+          "request": {
+            "name": "List media files",
+            "description": {
+              "content": "Retrieves a list of all media files that have been uploaded to the account. Each request returns a maximum of 1000 media files. Bandwidth retains uploaded media for up to 48 hours.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":accountId",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "continuationToken",
+                  "value": "<string>",
+                  "description": "Token for paginating through large media lists"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "213d5804-5272-42dc-adc5-3345d83036cb",
+              "name": "Media list retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "continuationToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"mediaName\": \"string\",\n    \"contentLength\": 7541,\n    \"contentType\": \"string\",\n    \"content\": \"string\"\n  },\n  {\n    \"mediaName\": \"string\",\n    \"contentLength\": 5904,\n    \"contentType\": \"string\",\n    \"content\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f86bb710-9768-4c8e-ba77-c093c453a153",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "continuationToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36ab2be7-59bf-4b01-946b-605ebd4c4e8d",
+          "name": "Upload a media file",
+          "request": {
+            "name": "Upload a media file",
+            "description": {
+              "content": "Uploads a media file for use in MMS messages. Files can be up to 3.75 MB in size. Bandwidth provides free file storage for an unlimited number of files with 48-hour retention.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":accountId",
+                "media",
+                ":mediaName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mediaName",
+                  "description": "(Required) The filename to assign to the uploaded media"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<binary>"
+            }
+          },
+          "response": [
+            {
+              "id": "0f54ed09-b072-4aa9-80db-27ea02bd5e76",
+              "name": "Media uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media",
+                    ":mediaName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The filename to assign to the uploaded media"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The MIME type of the media file being uploaded",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1cf5544-68be-4402-8e4c-6a7dedc7a75b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media",
+                    ":mediaName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The filename to assign to the uploaded media"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The MIME type of the media file being uploaded",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ae117db-6506-488c-8b71-58e0fba0bc7c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media",
+                    ":mediaName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The filename to assign to the uploaded media"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The MIME type of the media file being uploaded",
+                    "key": "Content-Type",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb2195b0-cbf9-4025-bddb-cdf399ed9aba",
+          "name": "Download a media file",
+          "request": {
+            "name": "Download a media file",
+            "description": {
+              "content": "Downloads a specific media file by its name. Returns the binary content of the media file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":accountId",
+                "media",
+                ":mediaName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mediaName",
+                  "description": "(Required) The name of the media file to download"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a653b17-650b-43f6-8bdb-dbfc71793d38",
+              "name": "Media file content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media",
+                    ":mediaName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to download"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e956a839-f980-40ee-98f4-a9bc13393955",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media",
+                    ":mediaName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to download"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "211b7917-33e6-4e82-a0a3-2a80938e11fe",
+              "name": "Media not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media",
+                    ":mediaName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to download"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c02a5f8-ff87-4a26-a878-8d77c4be5fc8",
+          "name": "Delete a media file",
+          "request": {
+            "name": "Delete a media file",
+            "description": {
+              "content": "Permanently deletes a specific media file from the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":accountId",
+                "media",
+                ":mediaName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mediaName",
+                  "description": "(Required) The name of the media file to delete"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a771df2-ae6d-47d1-8548-8896f6d9ccc3",
+              "name": "Media deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media",
+                    ":mediaName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0fc09c0-f3d7-404e-8031-eec0d42c5efd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media",
+                    ":mediaName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a9c66fa-3c90-41d7-b0ce-b119b058e89c",
+              "name": "Media not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "media",
+                    ":mediaName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1bbbbc16-e23c-4cdf-b197-78c9a62a452c",
+      "name": "Messages",
+      "description": {
+        "content": "Send and retrieve SMS and MMS messages. Supports single and group messaging, delivery receipts, and message history queries.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60696507-f9b3-4f04-9fce-984b427b2387",
+          "name": "Send a message",
+          "request": {
+            "name": "Send a message",
+            "description": {
+              "content": "Sends an SMS or MMS message from a Bandwidth number. For MMS, include media URLs in the request body. Bandwidth will return an HTTP 202 Accepted indicating the message has been queued for delivery. Delivery status will be provided via webhook callbacks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":accountId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": [\n    \"<string>\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0a50a57-8530-420a-9ee3-6e0f99cf0c60",
+              "name": "Message accepted and queued for delivery",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": [\n    \"+19195554321\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"owner\": \"string\",\n  \"applicationId\": \"string\",\n  \"time\": \"2017-09-22T17:41:41.954Z\",\n  \"segmentCount\": 7182,\n  \"direction\": \"out\",\n  \"to\": [\n    \"string\",\n    \"string\"\n  ],\n  \"from\": \"string\",\n  \"media\": [\n    \"https://FuA.ljohk9CntgDD\",\n    \"https://afqYbLNNvyYdaSVbCBuGeXferKacKRwp.mpBTyS0m6orolSPMm0Tc2lbQX\"\n  ],\n  \"text\": \"string\",\n  \"tag\": \"string\",\n  \"priority\": \"high\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe34e3cd-39ac-4e4c-89c1-da5860289c3e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": [\n    \"+19195554321\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\",\n  \"fieldErrors\": [\n    {\n      \"fieldName\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"fieldName\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0869fd1b-a3d0-4a9b-b46e-d3b4690cea16",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": [\n    \"+19195554321\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "772a8200-4c10-47ed-8fc9-e36dc883985e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": [\n    \"+19195554321\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1471f6fb-f0dc-457b-99b7-8042c91330b1",
+          "name": "List messages",
+          "request": {
+            "name": "List messages",
+            "description": {
+              "content": "Retrieves a list of message metadata for the account. Bandwidth does not store message content for privacy reasons; only metadata such as sender, recipient, timestamps, and delivery status is returned. Supports filtering by source number, destination number, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":accountId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "messageId",
+                  "value": "<string>",
+                  "description": "Filter by a specific message ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceTn",
+                  "value": "<string>",
+                  "description": "Filter by source telephone number in E.164 format"
+                },
+                {
+                  "disabled": false,
+                  "key": "destinationTn",
+                  "value": "<string>",
+                  "description": "Filter by destination telephone number in E.164 format"
+                },
+                {
+                  "disabled": false,
+                  "key": "messageStatus",
+                  "value": "<string>",
+                  "description": "Filter by message delivery status"
+                },
+                {
+                  "disabled": false,
+                  "key": "messageDirection",
+                  "value": "<string>",
+                  "description": "Filter by message direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "carrierName",
+                  "value": "<string>",
+                  "description": "Filter by carrier name"
+                },
+                {
+                  "disabled": false,
+                  "key": "messageType",
+                  "value": "<string>",
+                  "description": "Filter by message type"
+                },
+                {
+                  "disabled": false,
+                  "key": "errorCode",
+                  "value": "<integer>",
+                  "description": "Filter by error code"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDateTime",
+                  "value": "<dateTime>",
+                  "description": "Filter messages sent on or after this date-time"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDateTime",
+                  "value": "<dateTime>",
+                  "description": "Filter messages sent on or before this date-time"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Page token for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of messages to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af7acaf4-8cbf-41ff-b430-9c520e51f1f0",
+              "name": "Messages retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceTn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destinationTn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "carrierName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "errorCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fromDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "toDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 1993,\n  \"pageInfo\": {\n    \"prevPage\": \"string\",\n    \"nextPage\": \"string\",\n    \"prevPageToken\": \"string\",\n    \"nextPageToken\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"id\": \"string\",\n      \"owner\": \"string\",\n      \"applicationId\": \"string\",\n      \"time\": \"1973-12-21T02:06:28.833Z\",\n      \"segmentCount\": 4135,\n      \"direction\": \"in\",\n      \"to\": [\n        \"string\",\n        \"string\"\n      ],\n      \"from\": \"string\",\n      \"media\": [\n        \"https://JBcFGAhQItBfexYaCGPdVqJjscQLESN.vediiqzx65xiV,iO0nEQTgas9XevlBnMC,mHmXCBkUpqD9VyOoWciVR+Y5lQv+d96sZaG0\",\n        \"https://pwJyBVVaGf.jymvg+YXRCOZb8Hr60u-+p+eBxRSnEC1IMoBoBVHaepy3QvJs85BTum85M-rXLM5-X\"\n      ],\n      \"text\": \"string\",\n      \"tag\": \"string\",\n      \"priority\": \"default\"\n    },\n    {\n      \"id\": \"string\",\n      \"owner\": \"string\",\n      \"applicationId\": \"string\",\n      \"time\": \"1976-12-31T21:44:59.565Z\",\n      \"segmentCount\": 7086,\n      \"direction\": \"out\",\n      \"to\": [\n        \"string\",\n        \"string\"\n      ],\n      \"from\": \"string\",\n      \"media\": [\n        \"https://VmTinQR.cvxehwYRJzvbn0hHmD5LAiPwvMBVKpfXO4qS-qccSMbkw6G+qtVP0tdxVJePwR75vF\",\n        \"http://iQg.ykOLBvHiQqewyb6c-8-fvFbErCZM87WMaAeGiSRh\"\n      ],\n      \"text\": \"string\",\n      \"tag\": \"string\",\n      \"priority\": \"default\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61067759-0ee1-410f-9e92-a6a9ae20002c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceTn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destinationTn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "carrierName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "errorCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fromDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "toDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://messaging.bandwidth.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4c76caf1-5b7e-49d9-b03a-d99dc7ff0a70",
+    "name": "Bandwidth Messaging API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bandwidth Messaging API allows developers to send and receive SMS and MMS messages programmatically. It supports both toll-free and local number messaging, group messaging, and application-to-person (A2P) messaging workflows. The API provides delivery receipts via webhooks, message status tracking, and media management for MMS attachments. Bandwidth operates its own tier-1 network, providing direct carrier connectivity for reliable message delivery.\n\nContact Support:\n Name: Bandwidth Support",
+      "type": "text/plain"
+    }
+  }
+}

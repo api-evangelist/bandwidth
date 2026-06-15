@@ -1,0 +1,733 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Phone Numbers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Available Numbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search available phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/availableNumbers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "areaCode",
+                "value": "",
+                "type": "query",
+                "description": "Three-digit area code to search"
+              },
+              {
+                "name": "npaNxx",
+                "value": "",
+                "type": "query",
+                "description": "Six-digit NPA-NXX combination to search"
+              },
+              {
+                "name": "rateCenter",
+                "value": "",
+                "type": "query",
+                "description": "Rate center name to search"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "City name to search"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter state abbreviation"
+              },
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query",
+                "description": "Five-digit ZIP code to search"
+              },
+              {
+                "name": "lata",
+                "value": "",
+                "type": "query",
+                "description": "LATA code to search"
+              },
+              {
+                "name": "quantity",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return (1-5000, default 5000)"
+              },
+              {
+                "name": "tollFreeWildCardPattern",
+                "value": "",
+                "type": "query",
+                "description": "Toll-free number pattern using wildcards (e.g., 8**) for toll-free number searches"
+              },
+              {
+                "name": "enableTNDetail",
+                "value": "",
+                "type": "query",
+                "description": "Include detailed information for each number"
+              },
+              {
+                "name": "localVanity",
+                "value": "",
+                "type": "query",
+                "description": "Vanity number search pattern"
+              }
+            ]
+          },
+          "docs": "Searches Bandwidth's inventory for available phone numbers matching the specified criteria. Supports searches by area code, NPA-NXX, rate center, city, state, ZIP code, and LATA. Returns up to the requested quantity of available numbers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List phone number orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/orders",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders created on or after this date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders created on or before this date"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of phone number orders for the account. Supports filtering by order status, date range, and other criteria."
+        },
+        {
+          "info": {
+            "name": "Create a phone number order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/orders",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Creates a new order to purchase phone numbers from Bandwidth's available inventory. The order specifies which numbers to purchase and the site and SIP peer to assign them to. Order status can be tracked via the GET endpoint or webhook callbacks."
+        },
+        {
+          "info": {
+            "name": "Get order details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/orders/:orderId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the order"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific phone number order including its current status and list of numbers ordered."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Port-Ins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List port-in requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/portins",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by port-in status"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter requests created on or after this date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter requests created on or before this date"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of number porting requests for the account."
+        },
+        {
+          "info": {
+            "name": "Create a port-in request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/portins",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Initiates a number porting request to transfer phone numbers from another carrier to Bandwidth. The request includes subscriber information and the list of numbers to port."
+        },
+        {
+          "info": {
+            "name": "Get port-in request details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/portins/:portInId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "portInId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the port-in request"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific number porting request including its current status and timeline."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Disconnects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Disconnect phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/disconnects",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Creates a request to disconnect and release phone numbers from the account. Disconnected numbers are returned to Bandwidth's available inventory."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all sites (sub-accounts) configured within the Bandwidth account."
+        },
+        {
+          "info": {
+            "name": "Create a site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Creates a new site (sub-account) within the Bandwidth account. Sites provide logical groupings for organizing telephony resources."
+        },
+        {
+          "info": {
+            "name": "Get site details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific site."
+        },
+        {
+          "info": {
+            "name": "Update a site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Updates the configuration for a specific site."
+        },
+        {
+          "info": {
+            "name": "Delete a site",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Deletes a specific site. The site must have no active SIP peers or phone numbers assigned to it."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SIP Peers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SIP peers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of SIP peers (locations) configured within a specific site."
+        },
+        {
+          "info": {
+            "name": "Create a SIP peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Creates a new SIP peer (location) within a site. SIP peers define the network endpoints for call routing and number assignment."
+        },
+        {
+          "info": {
+            "name": "Get SIP peer details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              },
+              {
+                "name": "sipPeerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SIP peer"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific SIP peer."
+        },
+        {
+          "info": {
+            "name": "Update a SIP peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              },
+              {
+                "name": "sipPeerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SIP peer"
+              }
+            ]
+          },
+          "docs": "Updates the configuration for a specific SIP peer."
+        },
+        {
+          "info": {
+            "name": "Delete a SIP peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              },
+              {
+                "name": "sipPeerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SIP peer"
+              }
+            ]
+          },
+          "docs": "Deletes a specific SIP peer. The SIP peer must have no active phone numbers assigned to it."
+        },
+        {
+          "info": {
+            "name": "List SIP peer phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId/tns",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              },
+              {
+                "name": "sipPeerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SIP peer"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of phone numbers assigned to a specific SIP peer within a site."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Phone Numbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/tns",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "Filter by city"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state abbreviation"
+              },
+              {
+                "name": "lata",
+                "value": "",
+                "type": "query",
+                "description": "Filter by LATA code"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of phone numbers assigned to the account. Supports filtering by various criteria including city, state, and LATA."
+        },
+        {
+          "info": {
+            "name": "Get phone number details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/tns/:phoneNumber",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "path",
+                "description": "The phone number to look up (digits only)"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific phone number including its assignment, features, and configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Number Features",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update phone number features",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/tns/:phoneNumber/tnfeatureorder",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "path",
+                "description": "The phone number to update features for"
+              }
+            ]
+          },
+          "docs": "Creates a feature order to configure features such as CNAM, directory listings, and line features for a specific phone number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

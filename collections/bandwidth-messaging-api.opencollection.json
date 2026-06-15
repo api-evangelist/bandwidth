@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Messaging API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://messaging.bandwidth.com/api/v2/users/:accountId/messages",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a specific message ID"
+              },
+              {
+                "name": "sourceTn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source telephone number in E.164 format"
+              },
+              {
+                "name": "destinationTn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by destination telephone number in E.164 format"
+              },
+              {
+                "name": "messageStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by message delivery status"
+              },
+              {
+                "name": "messageDirection",
+                "value": "",
+                "type": "query",
+                "description": "Filter by message direction"
+              },
+              {
+                "name": "carrierName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by carrier name"
+              },
+              {
+                "name": "messageType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by message type"
+              },
+              {
+                "name": "errorCode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by error code"
+              },
+              {
+                "name": "fromDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Filter messages sent on or after this date-time"
+              },
+              {
+                "name": "toDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Filter messages sent on or before this date-time"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Page token for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of message metadata for the account. Bandwidth does not store message content for privacy reasons; only metadata such as sender, recipient, timestamps, and delivery status is returned. Supports filtering by source number, destination number, and date range."
+        },
+        {
+          "info": {
+            "name": "Send a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://messaging.bandwidth.com/api/v2/users/:accountId/messages",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an SMS or MMS message from a Bandwidth number. For MMS, include media URLs in the request body. Bandwidth will return an HTTP 202 Accepted indicating the message has been queued for delivery. Delivery status will be provided via webhook callbacks."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List media files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://messaging.bandwidth.com/api/v2/users/:accountId/media",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "continuationToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for paginating through large media lists"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all media files that have been uploaded to the account. Each request returns a maximum of 1000 media files. Bandwidth retains uploaded media for up to 48 hours."
+        },
+        {
+          "info": {
+            "name": "Download a media file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://messaging.bandwidth.com/api/v2/users/:accountId/media/:mediaName",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "mediaName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the media file to download"
+              }
+            ]
+          },
+          "docs": "Downloads a specific media file by its name. Returns the binary content of the media file."
+        },
+        {
+          "info": {
+            "name": "Upload a media file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://messaging.bandwidth.com/api/v2/users/:accountId/media/:mediaName",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "mediaName",
+                "value": "",
+                "type": "path",
+                "description": "The filename to assign to the uploaded media"
+              }
+            ]
+          },
+          "docs": "Uploads a media file for use in MMS messages. Files can be up to 3.75 MB in size. Bandwidth provides free file storage for an unlimited number of files with 48-hour retention."
+        },
+        {
+          "info": {
+            "name": "Delete a media file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://messaging.bandwidth.com/api/v2/users/:accountId/media/:mediaName",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "mediaName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the media file to delete"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a specific media file from the account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

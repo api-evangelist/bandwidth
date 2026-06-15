@@ -1,0 +1,496 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Voice API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/calls",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an outbound phone call. The call will be initiated from the specified Bandwidth number to the destination number. The answerUrl will receive a webhook when the call is answered, and your application should respond with BXML to control the call flow."
+        },
+        {
+          "info": {
+            "name": "Get call information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/calls/:callId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the call"
+              }
+            ]
+          },
+          "docs": "Retrieves the current state and metadata for a specific call identified by its call ID."
+        },
+        {
+          "info": {
+            "name": "Update a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/calls/:callId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the call"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies an in-progress call by redirecting it to a new BXML document URL or by completing the call. This enables advanced call control scenarios such as transferring, bridging, or terminating calls programmatically."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List call recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/calls/:callId/recordings",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the call"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all recordings associated with a specific call. Each recording includes metadata such as duration, file format, and media URL for downloading the audio file."
+        },
+        {
+          "info": {
+            "name": "Get a specific recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/calls/:callId/recordings/:recordingId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the call"
+              },
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the recording"
+              }
+            ]
+          },
+          "docs": "Retrieves metadata for a specific recording associated with a call."
+        },
+        {
+          "info": {
+            "name": "Delete a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/calls/:callId/recordings/:recordingId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the call"
+              },
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the recording"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a specific call recording and its associated media file."
+        },
+        {
+          "info": {
+            "name": "Download recording media",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/calls/:callId/recordings/:recordingId/media",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the call"
+              },
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the recording"
+              }
+            ]
+          },
+          "docs": "Downloads the audio file for a specific call recording. Returns the binary audio content in the format specified during recording."
+        },
+        {
+          "info": {
+            "name": "Get recording transcription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the call"
+              },
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the recording"
+              }
+            ]
+          },
+          "docs": "Retrieves the transcription result for a specific call recording."
+        },
+        {
+          "info": {
+            "name": "Transcribe a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the call"
+              },
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the recording"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a transcription job for a specific call recording. The transcription result will be delivered via a webhook callback to the URL specified in the request or the application's default callback URL."
+        },
+        {
+          "info": {
+            "name": "List account recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/recordings",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Filter recordings created on or after this date"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Filter recordings created on or before this date"
+              },
+              {
+                "name": "minStartTime",
+                "value": "",
+                "type": "query",
+                "description": "Minimum start time for filtering recordings"
+              },
+              {
+                "name": "maxStartTime",
+                "value": "",
+                "type": "query",
+                "description": "Maximum start time for filtering recordings"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all recordings across all calls for the account. Supports filtering by date range and pagination."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conferences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List conferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/conferences",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter conferences by name"
+              },
+              {
+                "name": "minCreatedTime",
+                "value": "",
+                "type": "query",
+                "description": "Minimum creation time for filtering"
+              },
+              {
+                "name": "maxCreatedTime",
+                "value": "",
+                "type": "query",
+                "description": "Maximum creation time for filtering"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of conferences associated with the account, including active and completed conferences."
+        },
+        {
+          "info": {
+            "name": "Get conference information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/conferences/:conferenceId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "conferenceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the conference"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific conference including its current state and list of members."
+        },
+        {
+          "info": {
+            "name": "Update a conference",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/conferences/:conferenceId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "conferenceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the conference"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies an active conference. Can be used to mute all members, set the conference status to completed (ending the conference), or redirect the conference to a new callback URL."
+        },
+        {
+          "info": {
+            "name": "Update a conference member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/conferences/:conferenceId/members/:memberId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "conferenceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the conference"
+              },
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conference member"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies a specific member of an active conference. Supports muting, unmuting, holding, and removing individual members."
+        },
+        {
+          "info": {
+            "name": "List conference recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.bandwidth.com/api/v2/accounts/:accountId/conferences/:conferenceId/recordings",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "conferenceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the conference"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all recordings associated with a specific conference."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

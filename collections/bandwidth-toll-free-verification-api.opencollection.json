@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Toll-Free Verification API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Toll-Free Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List toll-free verification requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/tollFreeVerification",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by verification status"
+              },
+              {
+                "name": "telephoneNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by toll-free telephone number"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all toll-free number verification requests for the account. Returns verification status, submission details, and associated toll-free numbers."
+        },
+        {
+          "info": {
+            "name": "Submit a toll-free verification request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/tollFreeVerification",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a new toll-free number verification request to the toll-free aggregator. Once submitted, the number will have a Pending Verification status until the aggregator reviews and approves or denies the request. Status updates are delivered via webhook notifications."
+        },
+        {
+          "info": {
+            "name": "Get toll-free verification details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/tollFreeVerification/:verificationId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "verificationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the verification request"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific toll-free number verification request including its current status, submission details, and any denial reasons if applicable."
+        },
+        {
+          "info": {
+            "name": "Update a toll-free verification request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/tollFreeVerification/:verificationId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "verificationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the verification request"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing toll-free verification request. This can be used to provide additional information or correct details on a pending or denied verification submission."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
