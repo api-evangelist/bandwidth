@@ -24,7 +24,7 @@ apis:
   - Recordings
   - Telephony
   - Voice
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://voice.bandwidth.com/api/v2
   humanURL: https://dev.bandwidth.com/docs/voice/
   properties:
@@ -50,7 +50,7 @@ apis:
   - MMS
   - SMS
   - Text Messaging
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://messaging.bandwidth.com/api/v2
   humanURL: https://dev.bandwidth.com/docs/messaging/
   properties:
@@ -74,7 +74,7 @@ apis:
   - Porting
   - Telecom
   - Telephone Numbers
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://dashboard.bandwidth.com/api
   humanURL: https://dev.bandwidth.com/docs/numbers/
   properties:
@@ -96,7 +96,7 @@ apis:
   - Security
   - Two-Factor Authentication
   - Verification
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://mfa.bandwidth.com/api/v1
   humanURL: https://dev.bandwidth.com/docs/mfa/
   properties:
@@ -117,7 +117,7 @@ apis:
   - E911
   - Emergency Services
   - Public Safety
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://dashboard.bandwidth.com/api
   humanURL: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
   properties:
@@ -136,7 +136,7 @@ apis:
   - Messaging Compliance
   - Toll-Free
   - Verification
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://dashboard.bandwidth.com/api
   humanURL: https://dev.bandwidth.com/apis/messaging-apis/toll-free-verification/
   properties:
