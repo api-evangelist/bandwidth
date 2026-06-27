@@ -159,7 +159,7 @@ common:
 - type: Documentation
   url: https://dev.bandwidth.com/
   name: Bandwidth Developer Portal
-- type: SignUp
+- type: Signup
   url: https://app.bandwidth.com/signup
   name: Sign Up for Bandwidth
 - type: Blog
@@ -177,7 +177,7 @@ common:
 - type: Support
   url: https://support.bandwidth.com/
   name: Bandwidth Support
-- type: SDK
+- type: SDKs
   url: https://dev.bandwidth.com/sdks/
   name: Bandwidth SDKs
 - type: SpectralRules
@@ -245,7 +245,7 @@ common:
   - name: Genesys Cloud
 - type: Integrations
   url: https://www.bandwidth.com/integrations/
-- type: LLMsTxt
+- type: LlmsText
   url: https://dev.bandwidth.com/llms.txt
 created: '2024-01-01'
 integrations:

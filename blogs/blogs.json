@@ -2,11 +2,11 @@
   "repo": "bandwidth",
   "feeds": [
     {
-      "source": "https://www.bandwidth.com/feed/",
+      "source": "https://www.bandwidth.com/blog/",
       "feed_url": "https://www.bandwidth.com/feed/",
       "title": "",
       "saved": 0,
-      "method": "feed"
+      "method": "discovered"
     },
     {
       "source": "https://app.bandwidth.com/signup",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
-  "post_count": 0
+  "fetched": "2026-06-27T12:03:07Z",
+  "post_count": 1
 }
