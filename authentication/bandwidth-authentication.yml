@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bandwidth-emergency-calling-api-openapi.yml, openapi/bandwidth-messaging-api-openapi.yml,
+  openapi/bandwidth-mfa-api-openapi.yml, openapi/bandwidth-phone-numbers-api-openapi.yml, openapi/bandwidth-toll-free-verification-api-openapi.yml,
+  openapi/bandwidth-voice-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+  sources:
+  - openapi/bandwidth-emergency-calling-api-openapi.yml
+  - openapi/bandwidth-messaging-api-openapi.yml
+  - openapi/bandwidth-mfa-api-openapi.yml
+  - openapi/bandwidth-phone-numbers-api-openapi.yml
+  - openapi/bandwidth-toll-free-verification-api-openapi.yml
+  - openapi/bandwidth-voice-api-openapi.yml

@@ -149,6 +149,14 @@ apis:
     It automates the verification submission process, allowing developers to view
     and update the verification status of their toll-free numbers.
 common:
+- type: TrustCenter
+  url: security/bandwidth-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/bandwidth-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/bandwidth-domain-security.yml
+- type: Authentication
+  url: authentication/bandwidth-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/Bandwidth
 - type: LinkedIn
