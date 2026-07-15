@@ -149,6 +149,8 @@ apis:
     It automates the verification submission process, allowing developers to view
     and update the verification status of their toll-free numbers.
 common:
+- type: AgenticAccess
+  url: agentic-access/bandwidth-agentic-access.yml
 - type: TrustCenter
   url: security/bandwidth-trust-center.yml
 - type: VulnerabilityDisclosure
