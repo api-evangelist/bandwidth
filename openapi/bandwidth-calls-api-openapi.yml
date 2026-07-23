@@ -1,0 +1,292 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers Calls API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: Calls
+  description: Create, retrieve, and manage phone calls. Supports outbound call creation, call state queries, and in-progress call modifications using BXML or redirect URLs.
+paths:
+  /accounts/{accountId}/calls:
+    post:
+      operationId: createCall
+      summary: Create a call
+      description: Creates an outbound phone call. The call will be initiated from the specified Bandwidth number to the destination number. The answerUrl will receive a webhook when the call is answered, and your application should respond with BXML to control the call flow.
+      tags:
+      - Calls
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCallRequest'
+      responses:
+        '201':
+          description: Call created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Call'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /accounts/{accountId}/calls/{callId}:
+    get:
+      operationId: getCall
+      summary: Get call information
+      description: Retrieves the current state and metadata for a specific call identified by its call ID.
+      tags:
+      - Calls
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/callId'
+      responses:
+        '200':
+          description: Call information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Call'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Call not found
+    post:
+      operationId: updateCall
+      summary: Update a call
+      description: Modifies an in-progress call by redirecting it to a new BXML document URL or by completing the call. This enables advanced call control scenarios such as transferring, bridging, or terminating calls programmatically.
+      tags:
+      - Calls
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/callId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCallRequest'
+      responses:
+        '200':
+          description: Call updated successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Call not found
+components:
+  schemas:
+    CreateCallRequest:
+      type: object
+      required:
+      - from
+      - to
+      - answerUrl
+      - applicationId
+      properties:
+        from:
+          type: string
+          description: The Bandwidth phone number that will make the outbound call, in E.164 format
+          example: '+19195551234'
+        to:
+          type: string
+          description: The destination phone number for the outbound call, in E.164 format
+          example: '+19195554321'
+        answerUrl:
+          type: string
+          format: uri
+          description: The URL to send the answer webhook to when the call is answered. The endpoint should return BXML to control the call flow.
+        answerMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method to use for the answer webhook
+        answerFallbackUrl:
+          type: string
+          format: uri
+          description: Fallback URL for the answer webhook if the primary URL fails
+        answerFallbackMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the fallback answer webhook
+        disconnectUrl:
+          type: string
+          format: uri
+          description: The URL to send the disconnect webhook to when the call ends
+        disconnectMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the disconnect webhook
+        applicationId:
+          type: string
+          description: The ID of the Bandwidth application associated with this call
+        tag:
+          type: string
+          maxLength: 256
+          description: A custom string to attach to the call for tracking purposes
+        callTimeout:
+          type: number
+          minimum: 1
+          maximum: 300
+          default: 30
+          description: The timeout in seconds for the outbound call to be answered
+        callbackTimeout:
+          type: number
+          minimum: 1
+          maximum: 25
+          default: 15
+          description: The timeout in seconds for webhook callback requests
+    UpdateCallRequest:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - active
+          - completed
+          description: Set to completed to hang up the call
+        redirectUrl:
+          type: string
+          format: uri
+          description: The URL to redirect the call to for new BXML instructions
+        redirectMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the redirect webhook
+        redirectFallbackUrl:
+          type: string
+          format: uri
+          description: Fallback URL if the primary redirect URL fails
+        redirectFallbackMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the fallback redirect webhook
+        tag:
+          type: string
+          maxLength: 256
+          description: A custom string to attach to the call for tracking purposes
+    Call:
+      type: object
+      properties:
+        callId:
+          type: string
+          description: The unique identifier for the call
+        accountId:
+          type: string
+          description: The Bandwidth account ID
+        applicationId:
+          type: string
+          description: The application ID associated with the call
+        to:
+          type: string
+          description: The destination phone number
+        from:
+          type: string
+          description: The originating phone number
+        direction:
+          type: string
+          enum:
+          - inbound
+          - outbound
+          description: The direction of the call
+        state:
+          type: string
+          enum:
+          - initiated
+          - answered
+          - completed
+          description: The current state of the call
+        startTime:
+          type: string
+          format: date-time
+          description: The time the call was initiated
+        answerTime:
+          type: string
+          format: date-time
+          description: The time the call was answered
+        endTime:
+          type: string
+          format: date-time
+          description: The time the call ended
+        disconnectCause:
+          type: string
+          description: The reason the call was disconnected
+        tag:
+          type: string
+          description: Custom tag attached to the call
+        callUrl:
+          type: string
+          format: uri
+          description: The URL for this call resource
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The error type URI
+        description:
+          type: string
+          description: A human-readable description of the error
+        id:
+          type: string
+          description: The unique error identifier
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    callId:
+      name: callId
+      in: path
+      required: true
+      description: The unique identifier for the call
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers SIP Peers API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: SIP Peers
+  description: Manage SIP peers (locations) within sites. SIP peers define the network endpoints for call routing and number assignment.
+paths:
+  /accounts/{accountId}/sites/{siteId}/sippeers:
+    get:
+      operationId: listSipPeers
+      summary: List SIP peers
+      description: Retrieves a list of SIP peers (locations) configured within a specific site.
+      tags:
+      - SIP Peers
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/siteId'
+      responses:
+        '200':
+          description: SIP peers retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SipPeerListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSipPeer
+      summary: Create a SIP peer
+      description: Creates a new SIP peer (location) within a site. SIP peers define the network endpoints for call routing and number assignment.
+      tags:
+      - SIP Peers
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/siteId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SipPeer'
+      responses:
+        '201':
+          description: SIP peer created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SipPeer'
+        '400':
+          description: Invalid SIP peer configuration
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}:
+    get:
+      operationId: getSipPeer
+      summary: Get SIP peer details
+      description: Retrieves detailed information about a specific SIP peer.
+      tags:
+      - SIP Peers
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/siteId'
+      - $ref: '#/components/parameters/sipPeerId'
+      responses:
+        '200':
+          description: SIP peer details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SipPeer'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SIP peer not found
+    put:
+      operationId: updateSipPeer
+      summary: Update a SIP peer
+      description: Updates the configuration for a specific SIP peer.
+      tags:
+      - SIP Peers
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/siteId'
+      - $ref: '#/components/parameters/sipPeerId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SipPeer'
+      responses:
+        '200':
+          description: SIP peer updated successfully
+        '400':
+          description: Invalid SIP peer configuration
+        '401':
+          description: Unauthorized
+        '404':
+          description: SIP peer not found
+    delete:
+      operationId: deleteSipPeer
+      summary: Delete a SIP peer
+      description: Deletes a specific SIP peer. The SIP peer must have no active phone numbers assigned to it.
+      tags:
+      - SIP Peers
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/siteId'
+      - $ref: '#/components/parameters/sipPeerId'
+      responses:
+        '200':
+          description: SIP peer deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: SIP peer not found
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/tns:
+    get:
+      operationId: listSipPeerPhoneNumbers
+      summary: List SIP peer phone numbers
+      description: Retrieves a list of phone numbers assigned to a specific SIP peer within a site.
+      tags:
+      - SIP Peers
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/siteId'
+      - $ref: '#/components/parameters/sipPeerId'
+      responses:
+        '200':
+          description: Phone numbers retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PhoneNumberListResponse'
+        '401':
+          description: Unauthorized
+components:
+  parameters:
+    sipPeerId:
+      name: sipPeerId
+      in: path
+      required: true
+      description: The unique identifier for the SIP peer
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    siteId:
+      name: siteId
+      in: path
+      required: true
+      description: The unique identifier for the site
+      schema:
+        type: string
+  schemas:
+    SipPeerListResponse:
+      type: object
+      description: Response containing a list of SIP peers
+      properties:
+        sipPeers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SipPeer'
+    PhoneNumberListResponse:
+      type: object
+      description: Response containing a list of phone numbers
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of phone numbers
+        telephoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+    SipPeer:
+      type: object
+      description: A SIP peer (location) within a site
+      properties:
+        peerId:
+          type: string
+          description: The unique identifier for the SIP peer
+        peerName:
+          type: string
+          description: The name of the SIP peer
+        description:
+          type: string
+          description: A description of the SIP peer
+        isDefaultPeer:
+          type: boolean
+          description: Whether this is the default SIP peer for the site
+    PhoneNumber:
+      type: object
+      description: A phone number assigned to the account
+      properties:
+        fullNumber:
+          type: string
+          description: The full phone number
+        city:
+          type: string
+          description: The city associated with the number
+        state:
+          type: string
+          description: The state associated with the number
+        lata:
+          type: string
+          description: The LATA code
+        rateCenter:
+          type: string
+          description: The rate center
+        status:
+          type: string
+          description: The current status of the number
+        siteId:
+          type: string
+          description: The site the number is assigned to
+        sipPeerId:
+          type: string
+          description: The SIP peer the number is assigned to
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

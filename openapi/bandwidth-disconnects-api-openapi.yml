@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers Disconnects API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: Disconnects
+  description: Disconnect and release phone numbers that are no longer needed.
+paths:
+  /accounts/{accountId}/disconnects:
+    post:
+      operationId: createDisconnect
+      summary: Disconnect phone numbers
+      description: Creates a request to disconnect and release phone numbers from the account. Disconnected numbers are returned to Bandwidth's available inventory.
+      tags:
+      - Disconnects
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DisconnectRequest'
+      responses:
+        '201':
+          description: Disconnect request created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DisconnectResponse'
+        '400':
+          description: Invalid disconnect request
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    DisconnectResponse:
+      type: object
+      description: Response containing disconnect order details
+      properties:
+        orderId:
+          type: string
+          description: The unique identifier for the disconnect order
+        orderStatus:
+          type: string
+          description: The current status of the disconnect order
+    DisconnectRequest:
+      type: object
+      description: Request to disconnect phone numbers
+      properties:
+        name:
+          type: string
+          description: A name for the disconnect order
+        disconnectTelephoneNumberOrderType:
+          type: object
+          properties:
+            telephoneNumberList:
+              type: array
+              items:
+                type: string
+              description: List of phone numbers to disconnect
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

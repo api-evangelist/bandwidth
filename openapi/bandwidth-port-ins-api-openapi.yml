@@ -1,0 +1,218 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers Port-Ins API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: Port-Ins
+  description: Initiate and manage phone number porting requests to bring existing numbers from other carriers to Bandwidth.
+paths:
+  /accounts/{accountId}/portins:
+    post:
+      operationId: createPortIn
+      summary: Create a port-in request
+      description: Initiates a number porting request to transfer phone numbers from another carrier to Bandwidth. The request includes subscriber information and the list of numbers to port.
+      tags:
+      - Port-Ins
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PortInRequest'
+      responses:
+        '201':
+          description: Port-in request created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PortInResponse'
+        '400':
+          description: Invalid port-in request
+        '401':
+          description: Unauthorized
+    get:
+      operationId: listPortIns
+      summary: List port-in requests
+      description: Retrieves a list of number porting requests for the account.
+      tags:
+      - Port-Ins
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - name: status
+        in: query
+        description: Filter by port-in status
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: Filter requests created on or after this date
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        description: Filter requests created on or before this date
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Port-in requests retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PortInListResponse'
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/portins/{portInId}:
+    get:
+      operationId: getPortIn
+      summary: Get port-in request details
+      description: Retrieves detailed information about a specific number porting request including its current status and timeline.
+      tags:
+      - Port-Ins
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - name: portInId
+        in: path
+        required: true
+        description: The unique identifier for the port-in request
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Port-in details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PortInResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Port-in request not found
+components:
+  schemas:
+    PortInResponse:
+      type: object
+      description: Response containing port-in request details
+      properties:
+        portInId:
+          type: string
+          description: The unique identifier for the port-in request
+        status:
+          type: string
+          description: The current status of the port-in request
+        requestedFocDate:
+          type: string
+          format: date
+          description: The requested FOC date
+        actualFocDate:
+          type: string
+          format: date
+          description: The actual FOC date assigned by the carrier
+    Address:
+      type: object
+      description: A physical address
+      properties:
+        houseNumber:
+          type: string
+          description: The house/building number
+        streetName:
+          type: string
+          description: The street name
+        city:
+          type: string
+          description: The city
+        stateCode:
+          type: string
+          description: The two-letter state code
+        zip:
+          type: string
+          description: The ZIP code
+        country:
+          type: string
+          description: The country code
+    PortInRequest:
+      type: object
+      description: Request to port phone numbers from another carrier
+      properties:
+        siteId:
+          type: string
+          description: The site to assign ported numbers to
+        peerId:
+          type: string
+          description: The SIP peer to assign ported numbers to
+        billingTelephoneNumber:
+          type: string
+          description: The billing telephone number for the account being ported
+        subscriber:
+          type: object
+          properties:
+            subscriberType:
+              type: string
+              enum:
+              - BUSINESS
+              - RESIDENTIAL
+              description: The type of subscriber
+            businessName:
+              type: string
+              description: The business name (for business subscribers)
+            firstName:
+              type: string
+              description: The subscriber first name
+            lastName:
+              type: string
+              description: The subscriber last name
+            serviceAddress:
+              $ref: '#/components/schemas/Address'
+        losingCarrierName:
+          type: string
+          description: The name of the current carrier
+        listOfPhoneNumbers:
+          type: array
+          items:
+            type: string
+          description: List of phone numbers to port
+        requestedFocDate:
+          type: string
+          format: date
+          description: Requested Firm Order Commitment date
+    PortInListResponse:
+      type: object
+      description: Response containing a list of port-in requests
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of port-in requests
+        portIns:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortInResponse'
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

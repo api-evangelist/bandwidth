@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: Available Numbers
+  description: Search for available phone numbers by area code, NPA-NXX, rate center, city, state, or ZIP code. Returns numbers available for ordering.
+paths:
+  /accounts/{accountId}/availableNumbers:
+    get:
+      operationId: searchAvailableNumbers
+      summary: Search available phone numbers
+      description: Searches Bandwidth's inventory for available phone numbers matching the specified criteria. Supports searches by area code, NPA-NXX, rate center, city, state, ZIP code, and LATA. Returns up to the requested quantity of available numbers.
+      tags:
+      - Available Numbers
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - name: areaCode
+        in: query
+        description: Three-digit area code to search
+        schema:
+          type: string
+          pattern: ^\d{3}$
+      - name: npaNxx
+        in: query
+        description: Six-digit NPA-NXX combination to search
+        schema:
+          type: string
+          pattern: ^\d{6}$
+      - name: rateCenter
+        in: query
+        description: Rate center name to search
+        schema:
+          type: string
+      - name: city
+        in: query
+        description: City name to search
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: Two-letter state abbreviation
+        schema:
+          type: string
+          pattern: ^[A-Z]{2}$
+      - name: zip
+        in: query
+        description: Five-digit ZIP code to search
+        schema:
+          type: string
+          pattern: ^\d{5}$
+      - name: lata
+        in: query
+        description: LATA code to search
+        schema:
+          type: string
+      - name: quantity
+        in: query
+        description: Number of results to return (1-5000, default 5000)
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 5000
+          default: 5000
+      - name: tollFreeWildCardPattern
+        in: query
+        description: Toll-free number pattern using wildcards (e.g., 8**) for toll-free number searches
+        schema:
+          type: string
+      - name: enableTNDetail
+        in: query
+        description: Include detailed information for each number
+        schema:
+          type: boolean
+          default: false
+      - name: localVanity
+        in: query
+        description: Vanity number search pattern
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Available numbers found
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AvailableNumbersResponse'
+        '400':
+          description: Invalid search parameters
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    AvailableNumber:
+      type: object
+      description: An available phone number from Bandwidth inventory
+      properties:
+        fullNumber:
+          type: string
+          description: The full phone number in E.164 format
+        city:
+          type: string
+          description: The city associated with the number
+        state:
+          type: string
+          description: The state associated with the number
+        lata:
+          type: string
+          description: The LATA code for the number
+        rateCenter:
+          type: string
+          description: The rate center for the number
+    AvailableNumbersResponse:
+      type: object
+      description: Response containing a list of available phone numbers
+      properties:
+        resultCount:
+          type: integer
+          description: The number of results returned
+        telephoneNumberList:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableNumber'
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

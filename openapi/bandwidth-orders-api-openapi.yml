@@ -1,0 +1,194 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers Orders API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: Orders
+  description: Create and manage phone number orders. Supports ordering new numbers from available inventory and tracking order status.
+paths:
+  /accounts/{accountId}/orders:
+    post:
+      operationId: createOrder
+      summary: Create a phone number order
+      description: Creates a new order to purchase phone numbers from Bandwidth's available inventory. The order specifies which numbers to purchase and the site and SIP peer to assign them to. Order status can be tracked via the GET endpoint or webhook callbacks.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: Order created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '400':
+          description: Invalid order request
+        '401':
+          description: Unauthorized
+    get:
+      operationId: listOrders
+      summary: List phone number orders
+      description: Retrieves a list of phone number orders for the account. Supports filtering by order status, date range, and other criteria.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - name: status
+        in: query
+        description: Filter by order status
+        schema:
+          type: string
+          enum:
+          - RECEIVED
+          - PROCESSING
+          - COMPLETE
+          - PARTIAL
+          - FAILED
+      - name: startDate
+        in: query
+        description: Filter orders created on or after this date
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        description: Filter orders created on or before this date
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Orders retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get order details
+      description: Retrieves detailed information about a specific phone number order including its current status and list of numbers ordered.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/orderId'
+      responses:
+        '200':
+          description: Order details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Order not found
+components:
+  parameters:
+    orderId:
+      name: orderId
+      in: path
+      required: true
+      description: The unique identifier for the order
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+  schemas:
+    OrderRequest:
+      type: object
+      description: Request to order phone numbers
+      properties:
+        name:
+          type: string
+          maxLength: 50
+          description: A name for the order (required, max 50 characters)
+        siteId:
+          type: string
+          description: The site to assign the numbers to
+        peerId:
+          type: string
+          description: The SIP peer to assign the numbers to
+        existingTelephoneNumberOrderType:
+          type: object
+          properties:
+            telephoneNumberList:
+              type: array
+              items:
+                type: string
+              description: List of specific phone numbers to order
+    OrderResponse:
+      type: object
+      description: Response containing order details
+      properties:
+        orderId:
+          type: string
+          description: The unique identifier for the order
+        orderStatus:
+          type: string
+          enum:
+          - RECEIVED
+          - PROCESSING
+          - COMPLETE
+          - PARTIAL
+          - FAILED
+          description: The current status of the order
+        orderCreateDate:
+          type: string
+          format: date-time
+          description: The date and time the order was created
+        completedQuantity:
+          type: integer
+          description: Number of phone numbers successfully ordered
+        failedQuantity:
+          type: integer
+          description: Number of phone numbers that failed to order
+        completedNumbers:
+          type: array
+          items:
+            type: string
+          description: List of successfully ordered phone numbers
+    OrderListResponse:
+      type: object
+      description: Response containing a list of orders
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of orders
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderResponse'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

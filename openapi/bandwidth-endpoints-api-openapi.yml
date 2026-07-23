@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers Endpoints API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: Endpoints
+  description: Manage 911 endpoints that represent end users of your service. Endpoints are identified by Alternate End User IDs (AEUIs) and are associated with locations for emergency routing.
+paths:
+  /accounts/{accountId}/e911s:
+    get:
+      operationId: listEndpoints
+      summary: List E911 endpoints
+      description: Retrieves a list of all 911 endpoints provisioned for the account. Each endpoint represents an end user that may place emergency calls.
+      tags:
+      - Endpoints
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: Endpoints retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EndpointListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createEndpoint
+      summary: Create an E911 endpoint
+      description: Provisions a new 911 endpoint for an end user. The endpoint is identified by an Alternate End User ID (AEUI) and must be associated with a validated location for emergency routing.
+      tags:
+      - Endpoints
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Endpoint'
+      responses:
+        '201':
+          description: Endpoint created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        '400':
+          description: Invalid endpoint configuration
+        '401':
+          description: Unauthorized
+  /accounts/{accountId}/e911s/{endpointId}:
+    get:
+      operationId: getEndpoint
+      summary: Get E911 endpoint details
+      description: Retrieves detailed information about a specific 911 endpoint including its associated location and configuration.
+      tags:
+      - Endpoints
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/endpointId'
+      responses:
+        '200':
+          description: Endpoint details retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Endpoint not found
+    put:
+      operationId: updateEndpoint
+      summary: Update an E911 endpoint
+      description: Updates the configuration or location association for a specific 911 endpoint.
+      tags:
+      - Endpoints
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/endpointId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Endpoint'
+      responses:
+        '200':
+          description: Endpoint updated successfully
+        '400':
+          description: Invalid endpoint configuration
+        '401':
+          description: Unauthorized
+        '404':
+          description: Endpoint not found
+    delete:
+      operationId: deleteEndpoint
+      summary: Delete an E911 endpoint
+      description: Removes a 911 endpoint from the account. The endpoint will no longer be able to route emergency calls.
+      tags:
+      - Endpoints
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/endpointId'
+      responses:
+        '200':
+          description: Endpoint deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Endpoint not found
+components:
+  parameters:
+    endpointId:
+      name: endpointId
+      in: path
+      required: true
+      description: The unique identifier for the E911 endpoint
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+  schemas:
+    Endpoint:
+      type: object
+      description: An E911 endpoint representing an end user
+      properties:
+        endpointId:
+          type: string
+          description: The unique identifier for the endpoint
+        alternateEndUserId:
+          type: string
+          description: The Alternate End User ID (AEUI) that identifies the end user
+        callerName:
+          type: string
+          description: The name of the end user for PSAP display
+        locationId:
+          type: string
+          description: The ID of the validated location associated with this endpoint
+        telephoneNumber:
+          type: string
+          description: The phone number associated with this endpoint
+        activated:
+          type: boolean
+          description: Whether the endpoint is currently active
+    EndpointListResponse:
+      type: object
+      description: Response containing a list of E911 endpoints
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of endpoints
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

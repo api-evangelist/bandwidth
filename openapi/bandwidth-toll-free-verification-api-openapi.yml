@@ -1,63 +1,46 @@
 openapi: 3.1.0
 info:
-  title: Bandwidth Toll-Free Verification API
-  description: >-
-    The Bandwidth Toll-Free Verification API enables developers to
-    programmatically submit and manage toll-free number verification
-    requests for A2P messaging compliance. It automates the verification
-    submission process, allowing developers to view and update the
-    verification status of their toll-free numbers. This API helps
-    ensure that toll-free messaging traffic complies with carrier
-    requirements and regulations including the Telephone Consumer
-    Protection Act (TCPA).
+  title: Bandwidth Emergency Calling Available Numbers Toll-Free Verification API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
   version: '1.0'
   contact:
     name: Bandwidth Support
     url: https://support.bandwidth.com
   termsOfService: https://www.bandwidth.com/legal/
-externalDocs:
-  description: Bandwidth Toll-Free Verification API Documentation
-  url: https://dev.bandwidth.com/apis/messaging-apis/toll-free-verification/
 servers:
-  - url: https://dashboard.bandwidth.com/api
-    description: Production Server
-tags:
-  - name: Toll-Free Verification
-    description: >-
-      Submit and manage toll-free number verification requests for A2P
-      messaging compliance. Track verification status and manage
-      submissions throughout the verification lifecycle.
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
 security:
-  - basicAuth: []
+- basicAuth: []
+tags:
+- name: Toll-Free Verification
+  description: Submit and manage toll-free number verification requests for A2P messaging compliance. Track verification status and manage submissions throughout the verification lifecycle.
 paths:
   /accounts/{accountId}/tollFreeVerification:
     get:
       operationId: listTollFreeVerifications
       summary: List toll-free verification requests
-      description: >-
-        Retrieves a list of all toll-free number verification requests
-        for the account. Returns verification status, submission details,
-        and associated toll-free numbers.
+      description: Retrieves a list of all toll-free number verification requests for the account. Returns verification status, submission details, and associated toll-free numbers.
       tags:
-        - Toll-Free Verification
+      - Toll-Free Verification
       parameters:
-        - $ref: '#/components/parameters/accountId'
-        - name: status
-          in: query
-          description: Filter by verification status
-          schema:
-            type: string
-            enum:
-              - PENDING_VERIFICATION
-              - VERIFIED
-              - RESTRICTED
-              - DENIED
-              - SUBMITTED
-        - name: telephoneNumber
-          in: query
-          description: Filter by toll-free telephone number
-          schema:
-            type: string
+      - $ref: '#/components/parameters/accountId'
+      - name: status
+        in: query
+        description: Filter by verification status
+        schema:
+          type: string
+          enum:
+          - PENDING_VERIFICATION
+          - VERIFIED
+          - RESTRICTED
+          - DENIED
+          - SUBMITTED
+      - name: telephoneNumber
+        in: query
+        description: Filter by toll-free telephone number
+        schema:
+          type: string
       responses:
         '200':
           description: Verification requests retrieved successfully
@@ -70,16 +53,11 @@ paths:
     post:
       operationId: createTollFreeVerification
       summary: Submit a toll-free verification request
-      description: >-
-        Submits a new toll-free number verification request to the
-        toll-free aggregator. Once submitted, the number will have a
-        Pending Verification status until the aggregator reviews and
-        approves or denies the request. Status updates are delivered
-        via webhook notifications.
+      description: Submits a new toll-free number verification request to the toll-free aggregator. Once submitted, the number will have a Pending Verification status until the aggregator reviews and approves or denies the request. Status updates are delivered via webhook notifications.
       tags:
-        - Toll-Free Verification
+      - Toll-Free Verification
       parameters:
-        - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/accountId'
       requestBody:
         required: true
         content:
@@ -105,15 +83,12 @@ paths:
     get:
       operationId: getTollFreeVerification
       summary: Get toll-free verification details
-      description: >-
-        Retrieves detailed information about a specific toll-free number
-        verification request including its current status, submission
-        details, and any denial reasons if applicable.
+      description: Retrieves detailed information about a specific toll-free number verification request including its current status, submission details, and any denial reasons if applicable.
       tags:
-        - Toll-Free Verification
+      - Toll-Free Verification
       parameters:
-        - $ref: '#/components/parameters/accountId'
-        - $ref: '#/components/parameters/verificationId'
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/verificationId'
       responses:
         '200':
           description: Verification details retrieved successfully
@@ -128,15 +103,12 @@ paths:
     put:
       operationId: updateTollFreeVerification
       summary: Update a toll-free verification request
-      description: >-
-        Updates an existing toll-free verification request. This can be
-        used to provide additional information or correct details on a
-        pending or denied verification submission.
+      description: Updates an existing toll-free verification request. This can be used to provide additional information or correct details on a pending or denied verification submission.
       tags:
-        - Toll-Free Verification
+      - Toll-Free Verification
       parameters:
-        - $ref: '#/components/parameters/accountId'
-        - $ref: '#/components/parameters/verificationId'
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/verificationId'
       requestBody:
         required: true
         content:
@@ -161,21 +133,7 @@ paths:
         '404':
           description: Verification request not found
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: >-
-        HTTP Basic Authentication using your Bandwidth Dashboard API
-        credentials.
   parameters:
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier for the Bandwidth account
-      schema:
-        type: string
     verificationId:
       name: verificationId
       in: path
@@ -183,38 +141,98 @@ components:
       description: The unique identifier for the verification request
       schema:
         type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
   schemas:
+    VerificationListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of verification requests
+        verifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Verification'
+    Verification:
+      type: object
+      properties:
+        verificationId:
+          type: string
+          description: The unique identifier for the verification request
+        telephoneNumbers:
+          type: array
+          items:
+            type: string
+          description: The toll-free numbers associated with this verification
+        status:
+          type: string
+          enum:
+          - PENDING_VERIFICATION
+          - VERIFIED
+          - RESTRICTED
+          - DENIED
+          - SUBMITTED
+          description: The current verification status
+        businessName:
+          type: string
+          description: The business name on the verification
+        useCase:
+          type: string
+          description: The messaging use case
+        submissionDate:
+          type: string
+          format: date-time
+          description: The date and time the verification was submitted
+        verificationDate:
+          type: string
+          format: date-time
+          description: The date and time the verification was approved or denied
+        denialReason:
+          type: string
+          description: The reason for denial, if the verification was denied
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The error type identifier
+        description:
+          type: string
+          description: A human-readable description of the error
     VerificationRequest:
       type: object
       required:
-        - telephoneNumbers
-        - businessName
-        - businessContact
-        - messageVolume
-        - useCase
-        - useCaseSummary
-        - optInWorkflow
+      - telephoneNumbers
+      - businessName
+      - businessContact
+      - messageVolume
+      - useCase
+      - useCaseSummary
+      - optInWorkflow
       properties:
         telephoneNumbers:
           type: array
           items:
             type: string
-          description: >-
-            List of toll-free numbers to verify in E.164 format
+          description: List of toll-free numbers to verify in E.164 format
           example:
-            - '+18005551234'
+          - '+18005551234'
         businessName:
           type: string
-          description: >-
-            The legal name of the business sending messages from the
-            toll-free number
+          description: The legal name of the business sending messages from the toll-free number
         businessContact:
           type: object
           required:
-            - firstName
-            - lastName
-            - email
-            - phone
+          - firstName
+          - lastName
+          - email
+          - phone
           properties:
             firstName:
               type: string
@@ -236,117 +254,58 @@ components:
         messageVolume:
           type: string
           enum:
-            - '10'
-            - '100'
-            - '1,000'
-            - '10,000'
-            - '100,000'
-            - '250,000'
-            - '500,000'
-            - '750,000'
-            - '1,000,000+'
-          description: >-
-            Estimated monthly message volume
+          - '10'
+          - '100'
+          - 1,000
+          - 10,000
+          - 100,000
+          - 250,000
+          - 500,000
+          - 750,000
+          - 1,000,000+
+          description: Estimated monthly message volume
         useCase:
           type: string
           enum:
-            - TWO_FACTOR_AUTHENTICATION
-            - APP_NOTIFICATIONS
-            - ACCOUNT_NOTIFICATIONS
-            - CUSTOMER_CARE
-            - DELIVERY_NOTIFICATIONS
-            - FRAUD_ALERT_MESSAGING
-            - HIGHER_EDUCATION
-            - MARKETING
-            - POLLING_AND_VOTING
-            - PUBLIC_SERVICE_ANNOUNCEMENT
-            - SECURITY_ALERT
-          description: >-
-            The primary use case for messaging from this toll-free number
+          - TWO_FACTOR_AUTHENTICATION
+          - APP_NOTIFICATIONS
+          - ACCOUNT_NOTIFICATIONS
+          - CUSTOMER_CARE
+          - DELIVERY_NOTIFICATIONS
+          - FRAUD_ALERT_MESSAGING
+          - HIGHER_EDUCATION
+          - MARKETING
+          - POLLING_AND_VOTING
+          - PUBLIC_SERVICE_ANNOUNCEMENT
+          - SECURITY_ALERT
+          description: The primary use case for messaging from this toll-free number
         useCaseSummary:
           type: string
           maxLength: 500
-          description: >-
-            A detailed description of how the toll-free number will be
-            used for messaging (max 500 characters)
+          description: A detailed description of how the toll-free number will be used for messaging (max 500 characters)
         messageContent:
           type: string
           maxLength: 1000
-          description: >-
-            Sample message content that will be sent from the number
+          description: Sample message content that will be sent from the number
         optInWorkflow:
           type: string
           maxLength: 500
-          description: >-
-            Description of how recipients opt in to receive messages
+          description: Description of how recipients opt in to receive messages
         optInWorkflowImageUrls:
           type: array
           items:
             type: string
             format: uri
-          description: >-
-            URLs to images showing the opt-in workflow (screenshots)
+          description: URLs to images showing the opt-in workflow (screenshots)
         additionalInformation:
           type: string
           maxLength: 500
-          description: >-
-            Any additional information to support the verification request
-    Verification:
-      type: object
-      properties:
-        verificationId:
-          type: string
-          description: The unique identifier for the verification request
-        telephoneNumbers:
-          type: array
-          items:
-            type: string
-          description: The toll-free numbers associated with this verification
-        status:
-          type: string
-          enum:
-            - PENDING_VERIFICATION
-            - VERIFIED
-            - RESTRICTED
-            - DENIED
-            - SUBMITTED
-          description: >-
-            The current verification status
-        businessName:
-          type: string
-          description: The business name on the verification
-        useCase:
-          type: string
-          description: The messaging use case
-        submissionDate:
-          type: string
-          format: date-time
-          description: The date and time the verification was submitted
-        verificationDate:
-          type: string
-          format: date-time
-          description: >-
-            The date and time the verification was approved or denied
-        denialReason:
-          type: string
-          description: >-
-            The reason for denial, if the verification was denied
-    VerificationListResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of verification requests
-        verifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Verification'
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The error type identifier
-        description:
-          type: string
-          description: A human-readable description of the error
+          description: Any additional information to support the verification request
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

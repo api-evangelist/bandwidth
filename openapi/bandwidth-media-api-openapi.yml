@@ -1,0 +1,158 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers Media API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: Media
+  description: Upload, retrieve, and manage media files for use in MMS messages. Supports files up to 3.75 MB with 48-hour retention.
+paths:
+  /users/{accountId}/media:
+    get:
+      operationId: listMedia
+      summary: List media files
+      description: Retrieves a list of all media files that have been uploaded to the account. Each request returns a maximum of 1000 media files. Bandwidth retains uploaded media for up to 48 hours.
+      tags:
+      - Media
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - name: continuationToken
+        in: query
+        description: Token for paginating through large media lists
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Media list retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Media'
+        '401':
+          description: Unauthorized
+  /users/{accountId}/media/{mediaName}:
+    put:
+      operationId: uploadMedia
+      summary: Upload a media file
+      description: Uploads a media file for use in MMS messages. Files can be up to 3.75 MB in size. Bandwidth provides free file storage for an unlimited number of files with 48-hour retention.
+      tags:
+      - Media
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - name: mediaName
+        in: path
+        required: true
+        description: The filename to assign to the uploaded media
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: true
+        description: The MIME type of the media file being uploaded
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '204':
+          description: Media uploaded successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+    get:
+      operationId: getMedia
+      summary: Download a media file
+      description: Downloads a specific media file by its name. Returns the binary content of the media file.
+      tags:
+      - Media
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - name: mediaName
+        in: path
+        required: true
+        description: The name of the media file to download
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Media file content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media not found
+    delete:
+      operationId: deleteMedia
+      summary: Delete a media file
+      description: Permanently deletes a specific media file from the account.
+      tags:
+      - Media
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - name: mediaName
+        in: path
+        required: true
+        description: The name of the media file to delete
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Media deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media not found
+components:
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+  schemas:
+    Media:
+      type: object
+      properties:
+        mediaName:
+          type: string
+          description: The name of the media file
+        contentLength:
+          type: integer
+          description: The size of the media file in bytes
+        contentType:
+          type: string
+          description: The MIME type of the media file
+        content:
+          type: string
+          description: The URL to access the media content
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers Emergency Notification Recipients API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: Emergency Notification Recipients
+  description: Configure notification recipients who receive alerts when 911 calls are made from your endpoints.
+paths:
+  /accounts/{accountId}/e911s/notificationRecipients:
+    get:
+      operationId: listNotificationRecipients
+      summary: List emergency notification recipients
+      description: Retrieves a list of configured notification recipients who are alerted when 911 calls are placed from the account's endpoints.
+      tags:
+      - Emergency Notification Recipients
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: Notification recipients retrieved successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NotificationRecipientListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createNotificationRecipient
+      summary: Create a notification recipient
+      description: Configures a new notification recipient to receive alerts when 911 calls are placed from the account's endpoints.
+      tags:
+      - Emergency Notification Recipients
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/NotificationRecipient'
+      responses:
+        '201':
+          description: Notification recipient created successfully
+        '400':
+          description: Invalid notification recipient configuration
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    NotificationRecipientListResponse:
+      type: object
+      description: Response containing a list of notification recipients
+      properties:
+        notificationRecipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRecipient'
+    NotificationRecipient:
+      type: object
+      description: A recipient for emergency call notifications
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the notification recipient
+        emailAddress:
+          type: string
+          format: email
+          description: The email address for notifications
+        phoneNumber:
+          type: string
+          description: The phone number for SMS notifications
+        description:
+          type: string
+          description: A description of the notification recipient
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/

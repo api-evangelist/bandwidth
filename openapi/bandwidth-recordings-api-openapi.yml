@@ -1,0 +1,316 @@
+openapi: 3.1.0
+info:
+  title: Bandwidth Emergency Calling Available Numbers Recordings API
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  version: '1.0'
+  contact:
+    name: Bandwidth Support
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/
+servers:
+- url: https://dashboard.bandwidth.com/api
+  description: Production Server
+security:
+- basicAuth: []
+tags:
+- name: Recordings
+  description: Manage call recordings including retrieval of recording metadata, audio files, and transcription of recorded audio content.
+paths:
+  /accounts/{accountId}/calls/{callId}/recordings:
+    get:
+      operationId: getCallRecordings
+      summary: List call recordings
+      description: Retrieves a list of all recordings associated with a specific call. Each recording includes metadata such as duration, file format, and media URL for downloading the audio file.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/callId'
+      responses:
+        '200':
+          description: Recordings retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recording'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Call not found
+  /accounts/{accountId}/calls/{callId}/recordings/{recordingId}:
+    get:
+      operationId: getCallRecording
+      summary: Get a specific recording
+      description: Retrieves metadata for a specific recording associated with a call.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/callId'
+      - $ref: '#/components/parameters/recordingId'
+      responses:
+        '200':
+          description: Recording metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+    delete:
+      operationId: deleteCallRecording
+      summary: Delete a recording
+      description: Permanently deletes a specific call recording and its associated media file.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/callId'
+      - $ref: '#/components/parameters/recordingId'
+      responses:
+        '204':
+          description: Recording deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+  /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media:
+    get:
+      operationId: getCallRecordingMedia
+      summary: Download recording media
+      description: Downloads the audio file for a specific call recording. Returns the binary audio content in the format specified during recording.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/callId'
+      - $ref: '#/components/parameters/recordingId'
+      responses:
+        '200':
+          description: Recording audio file
+          content:
+            audio/wav:
+              schema:
+                type: string
+                format: binary
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+  /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription:
+    post:
+      operationId: createRecordingTranscription
+      summary: Transcribe a recording
+      description: Initiates a transcription job for a specific call recording. The transcription result will be delivered via a webhook callback to the URL specified in the request or the application's default callback URL.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/callId'
+      - $ref: '#/components/parameters/recordingId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranscriptionRequest'
+      responses:
+        '200':
+          description: Transcription initiated
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+    get:
+      operationId: getRecordingTranscription
+      summary: Get recording transcription
+      description: Retrieves the transcription result for a specific call recording.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/callId'
+      - $ref: '#/components/parameters/recordingId'
+      responses:
+        '200':
+          description: Transcription retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcription'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Transcription not found
+  /accounts/{accountId}/recordings:
+    get:
+      operationId: listAccountRecordings
+      summary: List account recordings
+      description: Retrieves a list of all recordings across all calls for the account. Supports filtering by date range and pagination.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - name: from
+        in: query
+        description: Filter recordings created on or after this date
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: Filter recordings created on or before this date
+        schema:
+          type: string
+          format: date-time
+      - name: minStartTime
+        in: query
+        description: Minimum start time for filtering recordings
+        schema:
+          type: string
+          format: date-time
+      - name: maxStartTime
+        in: query
+        description: Maximum start time for filtering recordings
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Recordings list retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recording'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Recording:
+      type: object
+      properties:
+        recordingId:
+          type: string
+          description: The unique identifier for the recording
+        accountId:
+          type: string
+          description: The Bandwidth account ID
+        callId:
+          type: string
+          description: The call ID associated with this recording
+        applicationId:
+          type: string
+          description: The application ID
+        duration:
+          type: string
+          description: The duration of the recording in ISO 8601 format
+        channels:
+          type: integer
+          description: The number of audio channels in the recording
+        startTime:
+          type: string
+          format: date-time
+          description: The time the recording started
+        endTime:
+          type: string
+          format: date-time
+          description: The time the recording ended
+        fileFormat:
+          type: string
+          enum:
+          - wav
+          - mp3
+          description: The audio format of the recording
+        status:
+          type: string
+          enum:
+          - complete
+          - partial
+          - error
+          description: The status of the recording
+        mediaUrl:
+          type: string
+          format: uri
+          description: The URL to download the recording media
+        transcription:
+          $ref: '#/components/schemas/Transcription'
+    TranscriptionRequest:
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+          description: The URL to send the transcription completed webhook to
+        callbackMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the transcription webhook
+        tag:
+          type: string
+          description: Custom tag for the transcription request
+    Transcription:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the transcription
+        status:
+          type: string
+          enum:
+          - none
+          - available
+          - error
+          description: The status of the transcription
+        completedTime:
+          type: string
+          format: date-time
+          description: The time the transcription was completed
+        url:
+          type: string
+          format: uri
+          description: The URL of the transcription result
+  parameters:
+    recordingId:
+      name: recordingId
+      in: path
+      required: true
+      description: The unique identifier for the recording
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    callId:
+      name: callId
+      in: path
+      required: true
+      description: The unique identifier for the call
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Bandwidth Dashboard API credentials.
+externalDocs:
+  description: Bandwidth Emergency Calling API Documentation
+  url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
