@@ -1,4 +1,18 @@
 aid: bandwidth
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bandwidth.png
 url: https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/apis.yml
 name: Bandwidth
 tags:
@@ -15,57 +29,6 @@ description: Bandwidth is a leading cloud-based communications platform providin
   and toll-free verification APIs. Built on Bandwidth's own Tier 1 network, the platform
   delivers enterprise-grade reliability for CPaaS applications.
 apis:
-- aid: bandwidth:voice-api
-  name: Bandwidth Voice API
-  tags:
-  - Calls
-  - Conferences
-  - CPaaS
-  - Recordings
-  - Telephony
-  - Voice
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://voice.bandwidth.com/api/v2
-  humanURL: https://dev.bandwidth.com/docs/voice/
-  properties:
-  - url: https://dev.bandwidth.com/docs/voice/
-    type: Documentation
-  - url: openapi/bandwidth-voice-api-openapi.yml
-    type: OpenAPI
-  - url: asyncapi/bandwidth-voice-events-asyncapi.yml
-    type: AsyncAPI
-  - url: graphql/bandwidth-graphql.md
-    type: GraphQL
-  description: The Bandwidth Voice API enables developers to programmatically make
-    and receive phone calls, manage call recordings, and create multi-party conferences.
-    It supports advanced call control features including call transfers, bridging,
-    DTMF detection, and text-to-speech. The API uses BXML (Bandwidth XML) verbs for
-    call flow control and provides webhooks for real-time event notifications on call
-    state changes.
-- aid: bandwidth:messaging-api
-  name: Bandwidth Messaging API
-  tags:
-  - CPaaS
-  - Messaging
-  - MMS
-  - SMS
-  - Text Messaging
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://messaging.bandwidth.com/api/v2
-  humanURL: https://dev.bandwidth.com/docs/messaging/
-  properties:
-  - url: https://dev.bandwidth.com/docs/messaging/
-    type: Documentation
-  - url: openapi/bandwidth-messaging-api-openapi.yml
-    type: OpenAPI
-  - url: asyncapi/bandwidth-messaging-events-asyncapi.yml
-    type: AsyncAPI
-  description: The Bandwidth Messaging API allows developers to send and receive SMS
-    and MMS messages programmatically. It supports both toll-free and local number
-    messaging, group messaging, and application-to-person (A2P) messaging workflows.
-    The API provides delivery receipts via webhooks, message status tracking, and
-    media management for MMS attachments. Bandwidth operates its own tier-1 network,
-    providing direct carrier connectivity for reliable message delivery.
 - aid: bandwidth:phone-numbers-api
   name: Bandwidth Phone Numbers API
   tags:
@@ -82,12 +45,12 @@ apis:
     type: Documentation
   - url: openapi/bandwidth-phone-numbers-api-openapi.yml
     type: OpenAPI
-  description: The Bandwidth Phone Numbers API provides programmatic access to search,
-    order, and manage phone numbers across the United States and Canada. Developers
-    can search for available local, toll-free, and short code numbers, initiate number
-    porting requests, and configure number features such as CNAM, directory listings,
-    and line features. The API also supports managing sites, SIP peers, and number
-    assignments for organizing telephony resources within an account.
+  description: >-
+    The Bandwidth Phone Numbers API provides programmatic access to search, order, and manage phone numbers
+    across the United States and Canada. Developers can search for available local, toll-free, and short
+    code numbers, initiate number porting requests, and configure number features such as CNAM, directory
+    listings, and line features. The API also supports managing sites, SIP peers, and number assignments
+    for organizing telephony resources within an account.
 - aid: bandwidth:multi-factor-authentication-api
   name: Bandwidth Multi-Factor Authentication API
   tags:
@@ -104,31 +67,12 @@ apis:
     type: Documentation
   - url: openapi/bandwidth-mfa-api-openapi.yml
     type: OpenAPI
-  description: The Bandwidth Multi-Factor Authentication API allows developers to
-    generate and verify secure MFA codes delivered via voice calls or SMS messages.
-    It leverages Bandwidth's Voice and Messaging APIs under the hood, handling token
-    generation and management automatically. Developers can customize the code length,
-    expiration time, and delivery message template. The API supports both one-time
-    passcode delivery and verification in a simple two-step workflow.
-- aid: bandwidth:emergency-calling-api
-  name: Bandwidth Emergency Calling API
-  tags:
-  - Compliance
-  - E911
-  - Emergency Services
-  - Public Safety
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://dashboard.bandwidth.com/api
-  humanURL: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
-  properties:
-  - url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
-    type: Documentation
-  - url: openapi/bandwidth-emergency-calling-api-openapi.yml
-    type: OpenAPI
-  description: The Bandwidth Emergency Calling API provides programmatic access to
-    provision and manage 911 endpoints and locations for emergency services routing.
-    It supports Dynamic Location Routing (DLR) for real-time address validation and
-    location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements.
+  description: >-
+    The Bandwidth Multi-Factor Authentication API allows developers to generate and verify secure MFA
+    codes delivered via voice calls or SMS messages. It leverages Bandwidth's Voice and Messaging APIs
+    under the hood, handling token generation and management automatically. Developers can customize the
+    code length, expiration time, and delivery message template. The API supports both one-time passcode
+    delivery and verification in a simple two-step workflow.
 - aid: bandwidth:toll-free-verification-api
   name: Bandwidth Toll-Free Verification API
   tags:
@@ -144,11 +88,371 @@ apis:
     type: Documentation
   - url: openapi/bandwidth-toll-free-verification-api-openapi.yml
     type: OpenAPI
-  description: The Bandwidth Toll-Free Verification API enables developers to programmatically
-    submit and manage toll-free number verification requests for A2P messaging compliance.
-    It automates the verification submission process, allowing developers to view
-    and update the verification status of their toll-free numbers.
+  description: >-
+    The Bandwidth Toll-Free Verification API enables developers to programmatically submit and manage
+    toll-free number verification requests for A2P messaging compliance. It automates the verification
+    submission process, allowing developers to view and update the verification status of their toll-free
+    numbers.
+- aid: bandwidth:bandwidth-available-numbers-api
+  name: Bandwidth Available Numbers API
+  description: >-
+    Search for available phone numbers by area code, NPA-NXX, rate center, city, state, or ZIP code. Returns
+    numbers available for ordering.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Available Numbers
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-available-numbers-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-calls-api
+  name: Bandwidth Calls API
+  description: >-
+    Create, retrieve, and manage phone calls. Supports outbound call creation, call state queries, and
+    in-progress call modifications using BXML or redirect URLs.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Calls
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-calls-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-conferences-api
+  name: Bandwidth Conferences API
+  description: >-
+    Create and manage multi-party conference calls. Supports adding and removing members, muting, holding,
+    and playing audio to conferences.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Conferences
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-conferences-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-disconnects-api
+  name: Bandwidth Disconnects API
+  description: Disconnect and release phone numbers that are no longer needed.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Disconnects
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-disconnects-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-emergency-notification-recipients-api
+  name: Bandwidth Emergency Notification Recipients API
+  description: >-
+    Configure notification recipients who receive alerts when 911 calls are made from your endpoints.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Emergency Notification Recipients
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-emergency-notification-recipients-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-endpoints-api
+  name: Bandwidth Endpoints API
+  description: >-
+    Manage 911 endpoints that represent end users of your service. Endpoints are identified by Alternate
+    End User IDs (AEUIs) and are associated with locations for emergency routing.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-endpoints-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-locations-api
+  name: Bandwidth Locations API
+  description: >-
+    Provision and manage physical locations (addresses) for 911 emergency services routing. Locations
+    are validated against the Master Street Address Guide (MSAG) for accuracy.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-locations-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-media-api
+  name: Bandwidth Media API
+  description: >-
+    Upload, retrieve, and manage media files for use in MMS messages. Supports files up to 3.75 MB with
+    48-hour retention.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-media-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-messages-api
+  name: Bandwidth Messages API
+  description: >-
+    Send and retrieve SMS and MMS messages. Supports single and group messaging, delivery receipts, and
+    message history queries.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-messages-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-number-features-api
+  name: Bandwidth Number Features API
+  description: >-
+    Configure phone number features including CNAM (Caller Name), directory listings, and line features
+    for numbers in your inventory.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Number Features
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-number-features-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-orders-api
+  name: Bandwidth Orders API
+  description: >-
+    Create and manage phone number orders. Supports ordering new numbers from available inventory and
+    tracking order status.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-orders-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-port-ins-api
+  name: Bandwidth Port-Ins API
+  description: >-
+    Initiate and manage phone number porting requests to bring existing numbers from other carriers to
+    Bandwidth.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Port-Ins
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-port-ins-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-recordings-api
+  name: Bandwidth Recordings API
+  description: >-
+    Manage call recordings including retrieval of recording metadata, audio files, and transcription of
+    recorded audio content.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Recordings
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-recordings-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-sip-peers-api
+  name: Bandwidth SIP Peers API
+  description: >-
+    Manage SIP peers (locations) within sites. SIP peers define the network endpoints for call routing
+    and number assignment.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - SIP Peers
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-sip-peers-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
+- aid: bandwidth:bandwidth-sites-api
+  name: Bandwidth Sites API
+  description: >-
+    Manage sites (sub-accounts) within a Bandwidth account. Sites represent logical groupings for organizing
+    telephony resources.
+  humanURL: https://dev.bandwidth.com/docs/voice/
+  baseURL: https://voice.bandwidth.com/api/v2
+  tags:
+  - Sites
+  properties:
+  - type: OpenAPI
+    url: openapi/bandwidth-sites-api-openapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/voice/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-voice-events-asyncapi.yml
+  - type: GraphQL
+    url: graphql/bandwidth-graphql.md
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/messaging/
+  - type: AsyncAPI
+    url: asyncapi/bandwidth-messaging-events-asyncapi.yml
+  - type: Documentation
+    url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/bandwidth/overview
 - type: AgenticAccess
   url: agentic-access/bandwidth-agentic-access.yml
 - type: TrustCenter
