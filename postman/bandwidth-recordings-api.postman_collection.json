@@ -1,0 +1,1670 @@
+{
+  "info": {
+    "_postman_id": "087fe8f2-ee07-4b84-82e7-3a1751d6621f",
+    "name": "Bandwidth Emergency Calling Available Numbers Recordings API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:51.000Z",
+    "updatedAt": "2026-07-28T01:11:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-087fe8f2-ee07-4b84-82e7-3a1751d6621f"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "calls",
+              "item": [
+                {
+                  "name": "{callId}",
+                  "item": [
+                    {
+                      "name": "recordings",
+                      "item": [
+                        {
+                          "name": "{recordingId}",
+                          "item": [
+                            {
+                              "name": "media",
+                              "item": [
+                                {
+                                  "name": "Download recording media",
+                                  "id": "71ad55b1-912d-4cdf-ba15-845933a5cb77",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "audio/wav"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/media",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "calls",
+                                        ":callId",
+                                        "recordings",
+                                        ":recordingId",
+                                        "media"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "87c86afe-a4e6-4659-b8af-1555022a3d97",
+                                          "key": "accountId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the Bandwidth account"
+                                        },
+                                        {
+                                          "id": "cd0f42cb-b406-47c1-ac36-9ef3c90515fd",
+                                          "key": "callId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the call"
+                                        },
+                                        {
+                                          "id": "a476a209-e3f1-4ad7-9da3-205ed8675160",
+                                          "key": "recordingId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the recording"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Downloads the audio file for a specific call recording. Returns the binary audio content in the format specified during recording."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "b74afadb-a59e-4115-9746-dea0e3041949",
+                                      "name": "Recording audio file",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "audio/wav"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/media",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "media"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "audio/wav"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "<binary>",
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-b74afadb-a59e-4115-9746-dea0e3041949"
+                                    },
+                                    {
+                                      "id": "cdf7e2b0-1d08-418c-a260-ed7b7ed9ab3f",
+                                      "name": "Unauthorized",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/media",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "media"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-cdf7e2b0-1d08-418c-a260-ed7b7ed9ab3f"
+                                    },
+                                    {
+                                      "id": "a82ccd66-6481-48c2-bb9e-569919bb3b64",
+                                      "name": "Recording not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/media",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "media"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-a82ccd66-6481-48c2-bb9e-569919bb3b64"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:11:51.000Z",
+                                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                                  "uid": "35240-71ad55b1-912d-4cdf-ba15-845933a5cb77"
+                                }
+                              ],
+                              "id": "eeb952f2-8d56-494a-b715-00c6eae32e31",
+                              "createdAt": "2026-07-28T01:11:51.000Z",
+                              "updatedAt": "2026-07-28T01:11:51.000Z",
+                              "uid": "35240-eeb952f2-8d56-494a-b715-00c6eae32e31"
+                            },
+                            {
+                              "name": "transcription",
+                              "item": [
+                                {
+                                  "name": "Transcribe a recording",
+                                  "id": "3a59543c-2aa2-4142-995f-5be853656e9f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"callbackUrl\": \"<uri>\",\n  \"callbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "calls",
+                                        ":callId",
+                                        "recordings",
+                                        ":recordingId",
+                                        "transcription"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "5eab587d-31b4-4ae7-8440-de6d1430e91e",
+                                          "key": "accountId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the Bandwidth account"
+                                        },
+                                        {
+                                          "id": "757dad6a-3bd0-4e68-94a7-3024987dcdca",
+                                          "key": "callId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the call"
+                                        },
+                                        {
+                                          "id": "150deb9a-b8ba-40a0-94d6-6ce7aebacd79",
+                                          "key": "recordingId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the recording"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Initiates a transcription job for a specific call recording. The transcription result will be delivered via a webhook callback to the URL specified in the request or the application's default callback URL."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ce9f7ef7-559e-4c34-bcfb-949360e17fa0",
+                                      "name": "Transcription initiated",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"callbackUrl\": \"<uri>\",\n  \"callbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "transcription"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-ce9f7ef7-559e-4c34-bcfb-949360e17fa0"
+                                    },
+                                    {
+                                      "id": "1ff422c0-c255-4d52-ab8c-1cdf0e8a48b6",
+                                      "name": "Bad request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"callbackUrl\": \"<uri>\",\n  \"callbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "transcription"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-1ff422c0-c255-4d52-ab8c-1cdf0e8a48b6"
+                                    },
+                                    {
+                                      "id": "ad5cc9e2-c131-4ca1-acc3-6f9992e3a760",
+                                      "name": "Unauthorized",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"callbackUrl\": \"<uri>\",\n  \"callbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "transcription"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-ad5cc9e2-c131-4ca1-acc3-6f9992e3a760"
+                                    },
+                                    {
+                                      "id": "0840863a-66ad-4fca-aac9-a5f76c4364d2",
+                                      "name": "Recording not found",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"callbackUrl\": \"<uri>\",\n  \"callbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "transcription"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-0840863a-66ad-4fca-aac9-a5f76c4364d2"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:11:51.000Z",
+                                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                                  "uid": "35240-3a59543c-2aa2-4142-995f-5be853656e9f"
+                                },
+                                {
+                                  "name": "Get recording transcription",
+                                  "id": "98eb0c8a-f79b-495d-9233-fd17f818419a",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "calls",
+                                        ":callId",
+                                        "recordings",
+                                        ":recordingId",
+                                        "transcription"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "3e56d243-22b7-4992-9a73-c92cf4d28d36",
+                                          "key": "accountId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the Bandwidth account"
+                                        },
+                                        {
+                                          "id": "14c9e208-0d74-44b4-a9a8-e408310d47d3",
+                                          "key": "callId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the call"
+                                        },
+                                        {
+                                          "id": "368b2889-d444-4190-8621-a0f45c76cda1",
+                                          "key": "recordingId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the recording"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieves the transcription result for a specific call recording."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "74664fb4-47ec-49bc-9ff3-4a7b206ac09c",
+                                      "name": "Transcription retrieved successfully",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "transcription"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"error\",\n  \"completedTime\": \"<dateTime>\",\n  \"url\": \"<uri>\"\n}",
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-74664fb4-47ec-49bc-9ff3-4a7b206ac09c"
+                                    },
+                                    {
+                                      "id": "cc654e76-c511-4f71-aa0c-3d36f8a2f943",
+                                      "name": "Unauthorized",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "transcription"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-cc654e76-c511-4f71-aa0c-3d36f8a2f943"
+                                    },
+                                    {
+                                      "id": "519e31f7-b6de-4b7c-9b53-9d3598df0120",
+                                      "name": "Transcription not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId/transcription",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "calls",
+                                            ":callId",
+                                            "recordings",
+                                            ":recordingId",
+                                            "transcription"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "callId"
+                                            },
+                                            {
+                                              "key": "recordingId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:11:51.000Z",
+                                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                                      "uid": "35240-519e31f7-b6de-4b7c-9b53-9d3598df0120"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:11:51.000Z",
+                                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                                  "uid": "35240-98eb0c8a-f79b-495d-9233-fd17f818419a"
+                                }
+                              ],
+                              "id": "393e6d37-79a2-42bd-80c7-1146aa9ece37",
+                              "createdAt": "2026-07-28T01:11:51.000Z",
+                              "updatedAt": "2026-07-28T01:11:51.000Z",
+                              "uid": "35240-393e6d37-79a2-42bd-80c7-1146aa9ece37"
+                            },
+                            {
+                              "name": "Get a specific recording",
+                              "id": "e42a51b2-df29-44f5-b7de-98e3c7f95773",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "calls",
+                                    ":callId",
+                                    "recordings",
+                                    ":recordingId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "894c9f4f-2b4d-4f17-8c09-eb7a735d43df",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the Bandwidth account"
+                                    },
+                                    {
+                                      "id": "b3fa5397-17ba-411d-bd20-ea00e0bf8cef",
+                                      "key": "callId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the call"
+                                    },
+                                    {
+                                      "id": "db04e234-feee-4a2c-9aad-1f86e7ae2af1",
+                                      "key": "recordingId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the recording"
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves metadata for a specific recording associated with a call."
+                              },
+                              "response": [
+                                {
+                                  "id": "387ca68d-2eeb-4f71-8832-88d3e43682eb",
+                                  "name": "Recording metadata retrieved successfully",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "calls",
+                                        ":callId",
+                                        "recordings",
+                                        ":recordingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "callId"
+                                        },
+                                        {
+                                          "key": "recordingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"recordingId\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"callId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"duration\": \"<string>\",\n  \"channels\": \"<integer>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"fileFormat\": \"wav\",\n  \"status\": \"partial\",\n  \"mediaUrl\": \"<uri>\",\n  \"transcription\": {\n    \"id\": \"<string>\",\n    \"status\": \"none\",\n    \"completedTime\": \"<dateTime>\",\n    \"url\": \"<uri>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:11:51.000Z",
+                                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                                  "uid": "35240-387ca68d-2eeb-4f71-8832-88d3e43682eb"
+                                },
+                                {
+                                  "id": "d9baf13c-8424-4aea-9f16-7ea945d54a7e",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "calls",
+                                        ":callId",
+                                        "recordings",
+                                        ":recordingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "callId"
+                                        },
+                                        {
+                                          "key": "recordingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:51.000Z",
+                                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                                  "uid": "35240-d9baf13c-8424-4aea-9f16-7ea945d54a7e"
+                                },
+                                {
+                                  "id": "155ae61d-02ff-40ea-a61a-343ff2df2b3d",
+                                  "name": "Recording not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "calls",
+                                        ":callId",
+                                        "recordings",
+                                        ":recordingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "callId"
+                                        },
+                                        {
+                                          "key": "recordingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:51.000Z",
+                                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                                  "uid": "35240-155ae61d-02ff-40ea-a61a-343ff2df2b3d"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:11:51.000Z",
+                              "updatedAt": "2026-07-28T01:11:51.000Z",
+                              "uid": "35240-e42a51b2-df29-44f5-b7de-98e3c7f95773"
+                            },
+                            {
+                              "name": "Delete a recording",
+                              "id": "fda6592f-d8a4-4edf-9c0a-51c6241adc77",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "calls",
+                                    ":callId",
+                                    "recordings",
+                                    ":recordingId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "fb979eac-17f4-4005-b2bc-d03aa6f041a1",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the Bandwidth account"
+                                    },
+                                    {
+                                      "id": "ce524ee2-545b-466d-b09f-4b1abf76caf6",
+                                      "key": "callId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the call"
+                                    },
+                                    {
+                                      "id": "aa189c45-3fae-45a5-9b1d-6fd93d76330e",
+                                      "key": "recordingId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the recording"
+                                    }
+                                  ]
+                                },
+                                "description": "Permanently deletes a specific call recording and its associated media file."
+                              },
+                              "response": [
+                                {
+                                  "id": "fca3abfc-fc5b-4895-8545-d2b992b1049e",
+                                  "name": "Recording deleted successfully",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "calls",
+                                        ":callId",
+                                        "recordings",
+                                        ":recordingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "callId"
+                                        },
+                                        {
+                                          "key": "recordingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:51.000Z",
+                                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                                  "uid": "35240-fca3abfc-fc5b-4895-8545-d2b992b1049e"
+                                },
+                                {
+                                  "id": "810dbc57-4688-42b2-b5de-46e61e71ef4f",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "calls",
+                                        ":callId",
+                                        "recordings",
+                                        ":recordingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "callId"
+                                        },
+                                        {
+                                          "key": "recordingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:51.000Z",
+                                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                                  "uid": "35240-810dbc57-4688-42b2-b5de-46e61e71ef4f"
+                                },
+                                {
+                                  "id": "ae7ddbdb-1e52-4fc9-adce-a5211677bffe",
+                                  "name": "Recording not found",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings/:recordingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "calls",
+                                        ":callId",
+                                        "recordings",
+                                        ":recordingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "callId"
+                                        },
+                                        {
+                                          "key": "recordingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:51.000Z",
+                                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                                  "uid": "35240-ae7ddbdb-1e52-4fc9-adce-a5211677bffe"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:11:51.000Z",
+                              "updatedAt": "2026-07-28T01:11:51.000Z",
+                              "uid": "35240-fda6592f-d8a4-4edf-9c0a-51c6241adc77"
+                            }
+                          ],
+                          "id": "f2022e7d-b10b-4b7c-b0f6-50c2cdf0ff89",
+                          "createdAt": "2026-07-28T01:11:51.000Z",
+                          "updatedAt": "2026-07-28T01:11:51.000Z",
+                          "uid": "35240-f2022e7d-b10b-4b7c-b0f6-50c2cdf0ff89"
+                        },
+                        {
+                          "name": "List call recordings",
+                          "id": "f42dd00b-b8e5-44ec-88a8-d18014d820cd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "calls",
+                                ":callId",
+                                "recordings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cfab3fc4-6582-4ee0-aa46-13a57b6049dc",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the Bandwidth account"
+                                },
+                                {
+                                  "id": "2eef702c-2649-4acd-b5c8-8853747b611c",
+                                  "key": "callId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the call"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves a list of all recordings associated with a specific call. Each recording includes metadata such as duration, file format, and media URL for downloading the audio file."
+                          },
+                          "response": [
+                            {
+                              "id": "7dc7d9fa-e1f6-4a31-93de-0e1b5863c49a",
+                              "name": "Recordings retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "calls",
+                                    ":callId",
+                                    "recordings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "callId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"recordingId\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"callId\": \"<string>\",\n    \"applicationId\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"channels\": \"<integer>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"fileFormat\": \"wav\",\n    \"status\": \"error\",\n    \"mediaUrl\": \"<uri>\",\n    \"transcription\": {\n      \"id\": \"<string>\",\n      \"status\": \"error\",\n      \"completedTime\": \"<dateTime>\",\n      \"url\": \"<uri>\"\n    }\n  },\n  {\n    \"recordingId\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"callId\": \"<string>\",\n    \"applicationId\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"channels\": \"<integer>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"fileFormat\": \"mp3\",\n    \"status\": \"complete\",\n    \"mediaUrl\": \"<uri>\",\n    \"transcription\": {\n      \"id\": \"<string>\",\n      \"status\": \"error\",\n      \"completedTime\": \"<dateTime>\",\n      \"url\": \"<uri>\"\n    }\n  }\n]",
+                              "createdAt": "2026-07-28T01:11:51.000Z",
+                              "updatedAt": "2026-07-28T01:11:51.000Z",
+                              "uid": "35240-7dc7d9fa-e1f6-4a31-93de-0e1b5863c49a"
+                            },
+                            {
+                              "id": "d855df8e-a9f0-410e-9cb0-f61d4edef346",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "calls",
+                                    ":callId",
+                                    "recordings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "callId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:51.000Z",
+                              "updatedAt": "2026-07-28T01:11:51.000Z",
+                              "uid": "35240-d855df8e-a9f0-410e-9cb0-f61d4edef346"
+                            },
+                            {
+                              "id": "e8f11823-6363-4958-9595-14642231aa8b",
+                              "name": "Call not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId/recordings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "calls",
+                                    ":callId",
+                                    "recordings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "callId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:51.000Z",
+                              "updatedAt": "2026-07-28T01:11:51.000Z",
+                              "uid": "35240-e8f11823-6363-4958-9595-14642231aa8b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:11:51.000Z",
+                          "updatedAt": "2026-07-28T01:11:51.000Z",
+                          "uid": "35240-f42dd00b-b8e5-44ec-88a8-d18014d820cd"
+                        }
+                      ],
+                      "id": "8928b15f-658f-4c3f-af9e-4edc1a5a3018",
+                      "createdAt": "2026-07-28T01:11:51.000Z",
+                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                      "uid": "35240-8928b15f-658f-4c3f-af9e-4edc1a5a3018"
+                    }
+                  ],
+                  "id": "83ac735e-82f7-4fce-b9d2-55352a0dee6d",
+                  "createdAt": "2026-07-28T01:11:51.000Z",
+                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                  "uid": "35240-83ac735e-82f7-4fce-b9d2-55352a0dee6d"
+                }
+              ],
+              "id": "d4bb5827-03f0-473a-bfd8-2250b9288d5f",
+              "createdAt": "2026-07-28T01:11:51.000Z",
+              "updatedAt": "2026-07-28T01:11:51.000Z",
+              "uid": "35240-d4bb5827-03f0-473a-bfd8-2250b9288d5f"
+            },
+            {
+              "name": "recordings",
+              "item": [
+                {
+                  "name": "List account recordings",
+                  "id": "0150a270-6ff1-44be-8bed-301f015cbe0a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/recordings?from=<dateTime>&to=<dateTime>&minStartTime=<dateTime>&maxStartTime=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "recordings"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter recordings created on or after this date",
+                          "key": "from",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter recordings created on or before this date",
+                          "key": "to",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Minimum start time for filtering recordings",
+                          "key": "minStartTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Maximum start time for filtering recordings",
+                          "key": "maxStartTime",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "2ab39d4b-7215-46f1-8b2b-d2eb3a78b6ff",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of all recordings across all calls for the account. Supports filtering by date range and pagination."
+                  },
+                  "response": [
+                    {
+                      "id": "78455146-312a-4207-9a23-caca618b7655",
+                      "name": "Recordings list retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/recordings?from=<dateTime>&to=<dateTime>&minStartTime=<dateTime>&maxStartTime=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "recordings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter recordings created on or after this date",
+                              "key": "from",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Filter recordings created on or before this date",
+                              "key": "to",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Minimum start time for filtering recordings",
+                              "key": "minStartTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum start time for filtering recordings",
+                              "key": "maxStartTime",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"recordingId\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"callId\": \"<string>\",\n    \"applicationId\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"channels\": \"<integer>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"fileFormat\": \"wav\",\n    \"status\": \"error\",\n    \"mediaUrl\": \"<uri>\",\n    \"transcription\": {\n      \"id\": \"<string>\",\n      \"status\": \"error\",\n      \"completedTime\": \"<dateTime>\",\n      \"url\": \"<uri>\"\n    }\n  },\n  {\n    \"recordingId\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"callId\": \"<string>\",\n    \"applicationId\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"channels\": \"<integer>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"fileFormat\": \"mp3\",\n    \"status\": \"complete\",\n    \"mediaUrl\": \"<uri>\",\n    \"transcription\": {\n      \"id\": \"<string>\",\n      \"status\": \"error\",\n      \"completedTime\": \"<dateTime>\",\n      \"url\": \"<uri>\"\n    }\n  }\n]",
+                      "createdAt": "2026-07-28T01:11:51.000Z",
+                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                      "uid": "35240-78455146-312a-4207-9a23-caca618b7655"
+                    },
+                    {
+                      "id": "7de99429-2d11-44b0-9e9b-cf3fac9617d5",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/recordings?from=<dateTime>&to=<dateTime>&minStartTime=<dateTime>&maxStartTime=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "recordings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter recordings created on or after this date",
+                              "key": "from",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Filter recordings created on or before this date",
+                              "key": "to",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Minimum start time for filtering recordings",
+                              "key": "minStartTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum start time for filtering recordings",
+                              "key": "maxStartTime",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:51.000Z",
+                      "updatedAt": "2026-07-28T01:11:51.000Z",
+                      "uid": "35240-7de99429-2d11-44b0-9e9b-cf3fac9617d5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:51.000Z",
+                  "updatedAt": "2026-07-28T01:11:51.000Z",
+                  "uid": "35240-0150a270-6ff1-44be-8bed-301f015cbe0a"
+                }
+              ],
+              "id": "3009552e-b99d-4157-ab8f-7eb5da2be047",
+              "createdAt": "2026-07-28T01:11:51.000Z",
+              "updatedAt": "2026-07-28T01:11:51.000Z",
+              "uid": "35240-3009552e-b99d-4157-ab8f-7eb5da2be047"
+            }
+          ],
+          "id": "ec760b4c-6a2c-4c45-af07-a7bf4cfe9060",
+          "createdAt": "2026-07-28T01:11:51.000Z",
+          "updatedAt": "2026-07-28T01:11:51.000Z",
+          "uid": "35240-ec760b4c-6a2c-4c45-af07-a7bf4cfe9060"
+        }
+      ],
+      "id": "f6875ef3-bf30-48ed-91cc-c7e8f09447d1",
+      "createdAt": "2026-07-28T01:11:51.000Z",
+      "updatedAt": "2026-07-28T01:11:51.000Z",
+      "uid": "35240-f6875ef3-bf30-48ed-91cc-c7e8f09447d1"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

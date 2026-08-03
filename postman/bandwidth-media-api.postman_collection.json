@@ -1,0 +1,794 @@
+{
+  "info": {
+    "_postman_id": "0f5978db-8797-42c4-9c6c-8aa7eff23163",
+    "name": "Bandwidth Emergency Calling Available Numbers Media API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:46.000Z",
+    "updatedAt": "2026-07-28T01:11:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f5978db-8797-42c4-9c6c-8aa7eff23163"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "media",
+              "item": [
+                {
+                  "name": "{mediaName}",
+                  "item": [
+                    {
+                      "name": "Upload a media file",
+                      "id": "709a2957-1b1b-4b39-9487-98094e5ff8a5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/octet-stream"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<binary>"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "media",
+                            ":mediaName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e2b4f170-fd53-4a67-903b-f3f2eaf31baa",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "39b76640-bef7-4fbd-9e7c-1dcfab73bbac",
+                              "key": "mediaName",
+                              "value": "<string>",
+                              "description": "(Required) The filename to assign to the uploaded media"
+                            }
+                          ]
+                        },
+                        "description": "Uploads a media file for use in MMS messages. Files can be up to 3.75 MB in size. Bandwidth provides free file storage for an unlimited number of files with 48-hour retention."
+                      },
+                      "response": [
+                        {
+                          "id": "94ba6fd5-557e-4a46-92b7-00b537efe129",
+                          "name": "Media uploaded successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<binary>"
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":accountId",
+                                "media",
+                                ":mediaName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "mediaName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:47.000Z",
+                          "updatedAt": "2026-07-28T01:11:47.000Z",
+                          "uid": "35240-94ba6fd5-557e-4a46-92b7-00b537efe129"
+                        },
+                        {
+                          "id": "1d09d195-2af3-4df2-8c4e-da0602897f60",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<binary>"
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":accountId",
+                                "media",
+                                ":mediaName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "mediaName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:47.000Z",
+                          "updatedAt": "2026-07-28T01:11:47.000Z",
+                          "uid": "35240-1d09d195-2af3-4df2-8c4e-da0602897f60"
+                        },
+                        {
+                          "id": "05e8afc9-6ba9-45d6-97d1-5cf522ea6e21",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<binary>"
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":accountId",
+                                "media",
+                                ":mediaName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "mediaName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:47.000Z",
+                          "updatedAt": "2026-07-28T01:11:47.000Z",
+                          "uid": "35240-05e8afc9-6ba9-45d6-97d1-5cf522ea6e21"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:47.000Z",
+                      "updatedAt": "2026-07-28T01:11:47.000Z",
+                      "uid": "35240-709a2957-1b1b-4b39-9487-98094e5ff8a5"
+                    },
+                    {
+                      "name": "Download a media file",
+                      "id": "be40fe94-1a1e-4f2d-ae80-f52d07d20b89",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "media",
+                            ":mediaName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e802e45e-005c-44fe-8507-5d3b3112776e",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "53e6f657-84c4-45ab-aa43-d93c61530965",
+                              "key": "mediaName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the media file to download"
+                            }
+                          ]
+                        },
+                        "description": "Downloads a specific media file by its name. Returns the binary content of the media file."
+                      },
+                      "response": [
+                        {
+                          "id": "37043729-46f6-488d-b949-77b7d079c678",
+                          "name": "Media file content",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":accountId",
+                                "media",
+                                ":mediaName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "mediaName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/octet-stream"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-07-28T01:11:47.000Z",
+                          "updatedAt": "2026-07-28T01:11:47.000Z",
+                          "uid": "35240-37043729-46f6-488d-b949-77b7d079c678"
+                        },
+                        {
+                          "id": "c15bb60d-f09a-46bd-a050-6a3db4882808",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":accountId",
+                                "media",
+                                ":mediaName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "mediaName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:47.000Z",
+                          "updatedAt": "2026-07-28T01:11:47.000Z",
+                          "uid": "35240-c15bb60d-f09a-46bd-a050-6a3db4882808"
+                        },
+                        {
+                          "id": "f507b378-96b4-4806-96a4-4943547615af",
+                          "name": "Media not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":accountId",
+                                "media",
+                                ":mediaName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "mediaName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:47.000Z",
+                          "updatedAt": "2026-07-28T01:11:47.000Z",
+                          "uid": "35240-f507b378-96b4-4806-96a4-4943547615af"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:47.000Z",
+                      "updatedAt": "2026-07-28T01:11:47.000Z",
+                      "uid": "35240-be40fe94-1a1e-4f2d-ae80-f52d07d20b89"
+                    },
+                    {
+                      "name": "Delete a media file",
+                      "id": "08ed5f1c-bae0-431b-9561-5eb642ddfc7b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "media",
+                            ":mediaName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "33ebc02a-790d-470f-9ff1-71089a41035d",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "4684ea38-c64c-4c18-b744-f2d4347c8cdd",
+                              "key": "mediaName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the media file to delete"
+                            }
+                          ]
+                        },
+                        "description": "Permanently deletes a specific media file from the account."
+                      },
+                      "response": [
+                        {
+                          "id": "bea8535a-672c-49c3-ad57-2ba54b5d4db5",
+                          "name": "Media deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":accountId",
+                                "media",
+                                ":mediaName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "mediaName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:47.000Z",
+                          "updatedAt": "2026-07-28T01:11:47.000Z",
+                          "uid": "35240-bea8535a-672c-49c3-ad57-2ba54b5d4db5"
+                        },
+                        {
+                          "id": "e5d3b38f-b4d2-4032-aeed-35de4ac8e9a6",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":accountId",
+                                "media",
+                                ":mediaName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "mediaName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:47.000Z",
+                          "updatedAt": "2026-07-28T01:11:47.000Z",
+                          "uid": "35240-e5d3b38f-b4d2-4032-aeed-35de4ac8e9a6"
+                        },
+                        {
+                          "id": "ecf72f46-ea13-4b03-aec2-fb5c77149260",
+                          "name": "Media not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:accountId/media/:mediaName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":accountId",
+                                "media",
+                                ":mediaName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "mediaName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:47.000Z",
+                          "updatedAt": "2026-07-28T01:11:47.000Z",
+                          "uid": "35240-ecf72f46-ea13-4b03-aec2-fb5c77149260"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:47.000Z",
+                      "updatedAt": "2026-07-28T01:11:47.000Z",
+                      "uid": "35240-08ed5f1c-bae0-431b-9561-5eb642ddfc7b"
+                    }
+                  ],
+                  "id": "b22d8e96-1a5f-427b-9055-5a02c503233d",
+                  "createdAt": "2026-07-28T01:11:47.000Z",
+                  "updatedAt": "2026-07-28T01:11:47.000Z",
+                  "uid": "35240-b22d8e96-1a5f-427b-9055-5a02c503233d"
+                },
+                {
+                  "name": "List media files",
+                  "id": "ed0ab4cf-fe08-452c-9480-c3788c3faa9b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:accountId/media?continuationToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":accountId",
+                        "media"
+                      ],
+                      "query": [
+                        {
+                          "description": "Token for paginating through large media lists",
+                          "key": "continuationToken",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "36cdbb3a-4aed-4532-be63-b3b0fe024c20",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of all media files that have been uploaded to the account. Each request returns a maximum of 1000 media files. Bandwidth retains uploaded media for up to 48 hours."
+                  },
+                  "response": [
+                    {
+                      "id": "5833e23a-754f-4c26-a951-90b9a1c1d669",
+                      "name": "Media list retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/media?continuationToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "media"
+                          ],
+                          "query": [
+                            {
+                              "description": "Token for paginating through large media lists",
+                              "key": "continuationToken",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"mediaName\": \"<string>\",\n    \"contentLength\": \"<integer>\",\n    \"contentType\": \"<string>\",\n    \"content\": \"<string>\"\n  },\n  {\n    \"mediaName\": \"<string>\",\n    \"contentLength\": \"<integer>\",\n    \"contentType\": \"<string>\",\n    \"content\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:11:47.000Z",
+                      "updatedAt": "2026-07-28T01:11:47.000Z",
+                      "uid": "35240-5833e23a-754f-4c26-a951-90b9a1c1d669"
+                    },
+                    {
+                      "id": "7aaca0da-7969-4fbc-ab82-3df912d11bbd",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/media?continuationToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "media"
+                          ],
+                          "query": [
+                            {
+                              "description": "Token for paginating through large media lists",
+                              "key": "continuationToken",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:47.000Z",
+                      "updatedAt": "2026-07-28T01:11:47.000Z",
+                      "uid": "35240-7aaca0da-7969-4fbc-ab82-3df912d11bbd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:47.000Z",
+                  "updatedAt": "2026-07-28T01:11:47.000Z",
+                  "uid": "35240-ed0ab4cf-fe08-452c-9480-c3788c3faa9b"
+                }
+              ],
+              "id": "cd23fd17-9431-411f-b2eb-7febe9d46757",
+              "createdAt": "2026-07-28T01:11:47.000Z",
+              "updatedAt": "2026-07-28T01:11:47.000Z",
+              "uid": "35240-cd23fd17-9431-411f-b2eb-7febe9d46757"
+            }
+          ],
+          "id": "ab1300ac-6220-4842-810f-46e6a1c1947f",
+          "createdAt": "2026-07-28T01:11:47.000Z",
+          "updatedAt": "2026-07-28T01:11:47.000Z",
+          "uid": "35240-ab1300ac-6220-4842-810f-46e6a1c1947f"
+        }
+      ],
+      "id": "fd366119-b8f1-425a-814a-2d4313e5b5cc",
+      "createdAt": "2026-07-28T01:11:47.000Z",
+      "updatedAt": "2026-07-28T01:11:47.000Z",
+      "uid": "35240-fd366119-b8f1-425a-814a-2d4313e5b5cc"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

@@ -1,0 +1,1269 @@
+{
+  "info": {
+    "_postman_id": "8c056b06-c9be-471d-b53d-77216168bebc",
+    "name": "Bandwidth Emergency Calling Available Numbers Conferences API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:36.000Z",
+    "updatedAt": "2026-07-28T01:11:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8c056b06-c9be-471d-b53d-77216168bebc"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "conferences",
+              "item": [
+                {
+                  "name": "{conferenceId}",
+                  "item": [
+                    {
+                      "name": "members",
+                      "item": [
+                        {
+                          "name": "{memberId}",
+                          "item": [
+                            {
+                              "name": "Update a conference member",
+                              "id": "7c3d6ac7-1471-47f3-960c-ad2050f3dad9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"mute\": \"<boolean>\",\n  \"hold\": \"<boolean>\",\n  \"callIdsToCoach\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId/members/:memberId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "conferences",
+                                    ":conferenceId",
+                                    "members",
+                                    ":memberId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "714b9044-d3d4-432e-bba8-75ffc45176b8",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the Bandwidth account"
+                                    },
+                                    {
+                                      "id": "98abf28e-5382-4c78-9ecc-2c5e5fccb93c",
+                                      "key": "conferenceId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the conference"
+                                    },
+                                    {
+                                      "id": "75023837-7b19-4497-b3ca-b535594ac95f",
+                                      "key": "memberId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the conference member"
+                                    }
+                                  ]
+                                },
+                                "description": "Modifies a specific member of an active conference. Supports muting, unmuting, holding, and removing individual members."
+                              },
+                              "response": [
+                                {
+                                  "id": "9f793ef4-cabd-4e11-9046-1e03b593d05e",
+                                  "name": "Conference member updated successfully",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"mute\": \"<boolean>\",\n  \"hold\": \"<boolean>\",\n  \"callIdsToCoach\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId/members/:memberId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "conferences",
+                                        ":conferenceId",
+                                        "members",
+                                        ":memberId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "conferenceId"
+                                        },
+                                        {
+                                          "key": "memberId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:37.000Z",
+                                  "updatedAt": "2026-07-28T01:11:37.000Z",
+                                  "uid": "35240-9f793ef4-cabd-4e11-9046-1e03b593d05e"
+                                },
+                                {
+                                  "id": "66f9c875-874e-448d-9d2a-19b958af7900",
+                                  "name": "Bad request",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"mute\": \"<boolean>\",\n  \"hold\": \"<boolean>\",\n  \"callIdsToCoach\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId/members/:memberId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "conferences",
+                                        ":conferenceId",
+                                        "members",
+                                        ":memberId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "conferenceId"
+                                        },
+                                        {
+                                          "key": "memberId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:37.000Z",
+                                  "updatedAt": "2026-07-28T01:11:37.000Z",
+                                  "uid": "35240-66f9c875-874e-448d-9d2a-19b958af7900"
+                                },
+                                {
+                                  "id": "6f757a24-30e9-4fc4-b446-2eb198175647",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"mute\": \"<boolean>\",\n  \"hold\": \"<boolean>\",\n  \"callIdsToCoach\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId/members/:memberId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "conferences",
+                                        ":conferenceId",
+                                        "members",
+                                        ":memberId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "conferenceId"
+                                        },
+                                        {
+                                          "key": "memberId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:37.000Z",
+                                  "updatedAt": "2026-07-28T01:11:37.000Z",
+                                  "uid": "35240-6f757a24-30e9-4fc4-b446-2eb198175647"
+                                },
+                                {
+                                  "id": "75d20792-24f3-4a20-8e91-caee406cdc66",
+                                  "name": "Member not found",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"mute\": \"<boolean>\",\n  \"hold\": \"<boolean>\",\n  \"callIdsToCoach\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId/members/:memberId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "conferences",
+                                        ":conferenceId",
+                                        "members",
+                                        ":memberId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "conferenceId"
+                                        },
+                                        {
+                                          "key": "memberId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:37.000Z",
+                                  "updatedAt": "2026-07-28T01:11:37.000Z",
+                                  "uid": "35240-75d20792-24f3-4a20-8e91-caee406cdc66"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:11:37.000Z",
+                              "updatedAt": "2026-07-28T01:11:37.000Z",
+                              "uid": "35240-7c3d6ac7-1471-47f3-960c-ad2050f3dad9"
+                            }
+                          ],
+                          "id": "509356f1-a665-40fe-93f3-0a62596f82ca",
+                          "createdAt": "2026-07-28T01:11:37.000Z",
+                          "updatedAt": "2026-07-28T01:11:37.000Z",
+                          "uid": "35240-509356f1-a665-40fe-93f3-0a62596f82ca"
+                        }
+                      ],
+                      "id": "43cdb9f3-f0e8-4c7e-a29d-b27cff558f9e",
+                      "createdAt": "2026-07-28T01:11:37.000Z",
+                      "updatedAt": "2026-07-28T01:11:37.000Z",
+                      "uid": "35240-43cdb9f3-f0e8-4c7e-a29d-b27cff558f9e"
+                    },
+                    {
+                      "name": "recordings",
+                      "item": [
+                        {
+                          "name": "List conference recordings",
+                          "id": "8cf58b3e-9aab-4aed-9ecb-ef5118da8491",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId/recordings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "conferences",
+                                ":conferenceId",
+                                "recordings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1f418d69-2b0f-45e5-8ace-9cbbc1ae9fc5",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the Bandwidth account"
+                                },
+                                {
+                                  "id": "8858ac32-9ce3-45af-80e5-ef5b64da204b",
+                                  "key": "conferenceId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the conference"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves a list of all recordings associated with a specific conference."
+                          },
+                          "response": [
+                            {
+                              "id": "48958cca-c3b2-487c-84a8-abbe75a263fa",
+                              "name": "Conference recordings retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId/recordings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "conferences",
+                                    ":conferenceId",
+                                    "recordings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "conferenceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"recordingId\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"callId\": \"<string>\",\n    \"applicationId\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"channels\": \"<integer>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"fileFormat\": \"wav\",\n    \"status\": \"partial\",\n    \"mediaUrl\": \"<uri>\",\n    \"transcription\": {\n      \"id\": \"<string>\",\n      \"status\": \"error\",\n      \"completedTime\": \"<dateTime>\",\n      \"url\": \"<uri>\"\n    }\n  },\n  {\n    \"recordingId\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"callId\": \"<string>\",\n    \"applicationId\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"channels\": \"<integer>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"fileFormat\": \"wav\",\n    \"status\": \"complete\",\n    \"mediaUrl\": \"<uri>\",\n    \"transcription\": {\n      \"id\": \"<string>\",\n      \"status\": \"none\",\n      \"completedTime\": \"<dateTime>\",\n      \"url\": \"<uri>\"\n    }\n  }\n]",
+                              "createdAt": "2026-07-28T01:11:37.000Z",
+                              "updatedAt": "2026-07-28T01:11:37.000Z",
+                              "uid": "35240-48958cca-c3b2-487c-84a8-abbe75a263fa"
+                            },
+                            {
+                              "id": "29099e81-21db-4e6c-915f-328fa548876a",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId/recordings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "conferences",
+                                    ":conferenceId",
+                                    "recordings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "conferenceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:37.000Z",
+                              "updatedAt": "2026-07-28T01:11:37.000Z",
+                              "uid": "35240-29099e81-21db-4e6c-915f-328fa548876a"
+                            },
+                            {
+                              "id": "fc99a404-5847-4a80-829d-2c764219ccf3",
+                              "name": "Conference not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId/recordings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "conferences",
+                                    ":conferenceId",
+                                    "recordings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "conferenceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:37.000Z",
+                              "updatedAt": "2026-07-28T01:11:37.000Z",
+                              "uid": "35240-fc99a404-5847-4a80-829d-2c764219ccf3"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:11:37.000Z",
+                          "updatedAt": "2026-07-28T01:11:37.000Z",
+                          "uid": "35240-8cf58b3e-9aab-4aed-9ecb-ef5118da8491"
+                        }
+                      ],
+                      "id": "a44b273a-1e0c-4fa3-b8a0-401e3030bfc5",
+                      "createdAt": "2026-07-28T01:11:37.000Z",
+                      "updatedAt": "2026-07-28T01:11:37.000Z",
+                      "uid": "35240-a44b273a-1e0c-4fa3-b8a0-401e3030bfc5"
+                    },
+                    {
+                      "name": "Get conference information",
+                      "id": "c7274f0f-4480-4fdb-8f20-a91529534db8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "conferences",
+                            ":conferenceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d6ba5693-9ae6-4d36-b640-4f730f5788ca",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "062c25e2-6156-47c1-9806-d3c60ab71497",
+                              "key": "conferenceId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the conference"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves detailed information about a specific conference including its current state and list of members."
+                      },
+                      "response": [
+                        {
+                          "id": "19ef3108-f0c3-4a71-a4af-c3031b1c0642",
+                          "name": "Conference information retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "conferences",
+                                ":conferenceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "conferenceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"createdTime\": \"<dateTime>\",\n  \"completedTime\": \"<dateTime>\",\n  \"tag\": \"<string>\",\n  \"activeMembers\": [\n    {\n      \"callId\": \"<string>\",\n      \"conferenceId\": \"<string>\",\n      \"memberUrl\": \"<uri>\",\n      \"mute\": \"<boolean>\",\n      \"hold\": \"<boolean>\",\n      \"callIdsToCoach\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"callId\": \"<string>\",\n      \"conferenceId\": \"<string>\",\n      \"memberUrl\": \"<uri>\",\n      \"mute\": \"<boolean>\",\n      \"hold\": \"<boolean>\",\n      \"callIdsToCoach\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:11:37.000Z",
+                          "updatedAt": "2026-07-28T01:11:37.000Z",
+                          "uid": "35240-19ef3108-f0c3-4a71-a4af-c3031b1c0642"
+                        },
+                        {
+                          "id": "639d12f7-5730-4a9f-9314-4e33cfdeba78",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "conferences",
+                                ":conferenceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "conferenceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:37.000Z",
+                          "updatedAt": "2026-07-28T01:11:37.000Z",
+                          "uid": "35240-639d12f7-5730-4a9f-9314-4e33cfdeba78"
+                        },
+                        {
+                          "id": "e6a38d89-c35e-45e4-8ebd-1406a6006e76",
+                          "name": "Conference not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "conferences",
+                                ":conferenceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "conferenceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:37.000Z",
+                          "updatedAt": "2026-07-28T01:11:37.000Z",
+                          "uid": "35240-e6a38d89-c35e-45e4-8ebd-1406a6006e76"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:37.000Z",
+                      "updatedAt": "2026-07-28T01:11:37.000Z",
+                      "uid": "35240-c7274f0f-4480-4fdb-8f20-a91529534db8"
+                    },
+                    {
+                      "name": "Update a conference",
+                      "id": "bb24017e-47d5-4577-a23c-50443332b2aa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"status\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "conferences",
+                            ":conferenceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8c8437a9-4cd1-457d-b880-3c617a09a8ed",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "9af6f943-7588-4043-8bd8-134197f27161",
+                              "key": "conferenceId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the conference"
+                            }
+                          ]
+                        },
+                        "description": "Modifies an active conference. Can be used to mute all members, set the conference status to completed (ending the conference), or redirect the conference to a new callback URL."
+                      },
+                      "response": [
+                        {
+                          "id": "eddcd88d-346e-4a07-95a2-c9a71a71963c",
+                          "name": "Conference updated successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "conferences",
+                                ":conferenceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "conferenceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:37.000Z",
+                          "updatedAt": "2026-07-28T01:11:37.000Z",
+                          "uid": "35240-eddcd88d-346e-4a07-95a2-c9a71a71963c"
+                        },
+                        {
+                          "id": "cb80dc96-2dee-4555-9036-aa2b43839f9b",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "conferences",
+                                ":conferenceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "conferenceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:37.000Z",
+                          "updatedAt": "2026-07-28T01:11:37.000Z",
+                          "uid": "35240-cb80dc96-2dee-4555-9036-aa2b43839f9b"
+                        },
+                        {
+                          "id": "3aa1b8f5-9354-45b5-b3f2-c69d0d046329",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "conferences",
+                                ":conferenceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "conferenceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:37.000Z",
+                          "updatedAt": "2026-07-28T01:11:37.000Z",
+                          "uid": "35240-3aa1b8f5-9354-45b5-b3f2-c69d0d046329"
+                        },
+                        {
+                          "id": "a8d96ceb-91f3-447b-87dc-ecdf56cb861f",
+                          "name": "Conference not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/conferences/:conferenceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "conferences",
+                                ":conferenceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "conferenceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:37.000Z",
+                          "updatedAt": "2026-07-28T01:11:37.000Z",
+                          "uid": "35240-a8d96ceb-91f3-447b-87dc-ecdf56cb861f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:37.000Z",
+                      "updatedAt": "2026-07-28T01:11:37.000Z",
+                      "uid": "35240-bb24017e-47d5-4577-a23c-50443332b2aa"
+                    }
+                  ],
+                  "id": "1ac16c1f-8976-4206-b514-f2c886f1e63d",
+                  "createdAt": "2026-07-28T01:11:37.000Z",
+                  "updatedAt": "2026-07-28T01:11:37.000Z",
+                  "uid": "35240-1ac16c1f-8976-4206-b514-f2c886f1e63d"
+                },
+                {
+                  "name": "List conferences",
+                  "id": "85d48d81-a4bf-40d2-b6f9-058e43171301",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/conferences?name=<string>&minCreatedTime=<dateTime>&maxCreatedTime=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "conferences"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter conferences by name",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Minimum creation time for filtering",
+                          "key": "minCreatedTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Maximum creation time for filtering",
+                          "key": "maxCreatedTime",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "0c706652-5495-4429-94a5-8fa8514f61b4",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of conferences associated with the account, including active and completed conferences."
+                  },
+                  "response": [
+                    {
+                      "id": "468d0bf4-d105-4184-bcac-0a719e59614c",
+                      "name": "Conferences retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/conferences?name=<string>&minCreatedTime=<dateTime>&maxCreatedTime=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "conferences"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter conferences by name",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Minimum creation time for filtering",
+                              "key": "minCreatedTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum creation time for filtering",
+                              "key": "maxCreatedTime",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"createdTime\": \"<dateTime>\",\n    \"completedTime\": \"<dateTime>\",\n    \"tag\": \"<string>\",\n    \"activeMembers\": [\n      {\n        \"callId\": \"<string>\",\n        \"conferenceId\": \"<string>\",\n        \"memberUrl\": \"<uri>\",\n        \"mute\": \"<boolean>\",\n        \"hold\": \"<boolean>\",\n        \"callIdsToCoach\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"callId\": \"<string>\",\n        \"conferenceId\": \"<string>\",\n        \"memberUrl\": \"<uri>\",\n        \"mute\": \"<boolean>\",\n        \"hold\": \"<boolean>\",\n        \"callIdsToCoach\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"createdTime\": \"<dateTime>\",\n    \"completedTime\": \"<dateTime>\",\n    \"tag\": \"<string>\",\n    \"activeMembers\": [\n      {\n        \"callId\": \"<string>\",\n        \"conferenceId\": \"<string>\",\n        \"memberUrl\": \"<uri>\",\n        \"mute\": \"<boolean>\",\n        \"hold\": \"<boolean>\",\n        \"callIdsToCoach\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"callId\": \"<string>\",\n        \"conferenceId\": \"<string>\",\n        \"memberUrl\": \"<uri>\",\n        \"mute\": \"<boolean>\",\n        \"hold\": \"<boolean>\",\n        \"callIdsToCoach\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  }\n]",
+                      "createdAt": "2026-07-28T01:11:37.000Z",
+                      "updatedAt": "2026-07-28T01:11:37.000Z",
+                      "uid": "35240-468d0bf4-d105-4184-bcac-0a719e59614c"
+                    },
+                    {
+                      "id": "246bd285-f858-4c2e-a1df-1d9595747d11",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/conferences?name=<string>&minCreatedTime=<dateTime>&maxCreatedTime=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "conferences"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter conferences by name",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Minimum creation time for filtering",
+                              "key": "minCreatedTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum creation time for filtering",
+                              "key": "maxCreatedTime",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:37.000Z",
+                      "updatedAt": "2026-07-28T01:11:37.000Z",
+                      "uid": "35240-246bd285-f858-4c2e-a1df-1d9595747d11"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:37.000Z",
+                  "updatedAt": "2026-07-28T01:11:37.000Z",
+                  "uid": "35240-85d48d81-a4bf-40d2-b6f9-058e43171301"
+                }
+              ],
+              "id": "1c64612a-5c92-4bac-bec7-bd4e2a6c7229",
+              "createdAt": "2026-07-28T01:11:37.000Z",
+              "updatedAt": "2026-07-28T01:11:37.000Z",
+              "uid": "35240-1c64612a-5c92-4bac-bec7-bd4e2a6c7229"
+            }
+          ],
+          "id": "5a4725bc-2e70-4975-9a51-38587e3f8932",
+          "createdAt": "2026-07-28T01:11:37.000Z",
+          "updatedAt": "2026-07-28T01:11:37.000Z",
+          "uid": "35240-5a4725bc-2e70-4975-9a51-38587e3f8932"
+        }
+      ],
+      "id": "08c27a60-1ffd-42c1-a6f4-c71bebf2ea8c",
+      "createdAt": "2026-07-28T01:11:37.000Z",
+      "updatedAt": "2026-07-28T01:11:37.000Z",
+      "uid": "35240-08c27a60-1ffd-42c1-a6f4-c71bebf2ea8c"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

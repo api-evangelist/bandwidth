@@ -1,0 +1,852 @@
+{
+  "info": {
+    "_postman_id": "3defde14-4627-464e-981b-4d59cffb3ca4",
+    "name": "Bandwidth Emergency Calling Available Numbers Calls API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:35.000Z",
+    "updatedAt": "2026-07-28T01:11:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3defde14-4627-464e-981b-4d59cffb3ca4"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "calls",
+              "item": [
+                {
+                  "name": "{callId}",
+                  "item": [
+                    {
+                      "name": "Get call information",
+                      "id": "c2aff7c3-9247-46cc-b594-6b6cef9ef20a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "calls",
+                            ":callId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9053a0b3-7e21-4172-86ce-37543081ea7d",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "7515f531-cee8-4fe5-96a4-bdbd436a66d2",
+                              "key": "callId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the call"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the current state and metadata for a specific call identified by its call ID."
+                      },
+                      "response": [
+                        {
+                          "id": "910d7408-fa95-48f5-9cb2-b21327f16268",
+                          "name": "Call information retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "calls",
+                                ":callId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "callId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"callId\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"direction\": \"inbound\",\n  \"state\": \"initiated\",\n  \"startTime\": \"<dateTime>\",\n  \"answerTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"disconnectCause\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"callUrl\": \"<uri>\"\n}",
+                          "createdAt": "2026-07-28T01:11:36.000Z",
+                          "updatedAt": "2026-07-28T01:11:36.000Z",
+                          "uid": "35240-910d7408-fa95-48f5-9cb2-b21327f16268"
+                        },
+                        {
+                          "id": "c19adab8-c46a-4c0c-bcb2-090814c7cc2f",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "calls",
+                                ":callId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "callId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:36.000Z",
+                          "updatedAt": "2026-07-28T01:11:36.000Z",
+                          "uid": "35240-c19adab8-c46a-4c0c-bcb2-090814c7cc2f"
+                        },
+                        {
+                          "id": "da40997a-9720-4dad-9016-831d3a33a550",
+                          "name": "Call not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "calls",
+                                ":callId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "callId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:36.000Z",
+                          "updatedAt": "2026-07-28T01:11:36.000Z",
+                          "uid": "35240-da40997a-9720-4dad-9016-831d3a33a550"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:36.000Z",
+                      "updatedAt": "2026-07-28T01:11:36.000Z",
+                      "uid": "35240-c2aff7c3-9247-46cc-b594-6b6cef9ef20a"
+                    },
+                    {
+                      "name": "Update a call",
+                      "id": "73dc67e8-6819-4d09-bc03-4ff8e69e6e8f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "calls",
+                            ":callId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6a758f98-0bb6-40f5-b528-44f6b09bde01",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "080ea029-2170-46ec-81ff-81619203f325",
+                              "key": "callId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the call"
+                            }
+                          ]
+                        },
+                        "description": "Modifies an in-progress call by redirecting it to a new BXML document URL or by completing the call. This enables advanced call control scenarios such as transferring, bridging, or terminating calls programmatically."
+                      },
+                      "response": [
+                        {
+                          "id": "e482eb72-d7ea-4a79-a898-c95640da87cb",
+                          "name": "Call updated successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"state\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "calls",
+                                ":callId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "callId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:36.000Z",
+                          "updatedAt": "2026-07-28T01:11:36.000Z",
+                          "uid": "35240-e482eb72-d7ea-4a79-a898-c95640da87cb"
+                        },
+                        {
+                          "id": "c6584375-e04e-49f2-a973-03a80e473ac9",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"state\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "calls",
+                                ":callId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "callId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:11:36.000Z",
+                          "updatedAt": "2026-07-28T01:11:36.000Z",
+                          "uid": "35240-c6584375-e04e-49f2-a973-03a80e473ac9"
+                        },
+                        {
+                          "id": "0df67546-0782-456d-b905-d74b8861e890",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"state\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "calls",
+                                ":callId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "callId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:36.000Z",
+                          "updatedAt": "2026-07-28T01:11:36.000Z",
+                          "uid": "35240-0df67546-0782-456d-b905-d74b8861e890"
+                        },
+                        {
+                          "id": "0c6a1fd9-a637-4607-b34a-8aa0afcc9c1f",
+                          "name": "Call not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"state\": \"active\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/calls/:callId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "calls",
+                                ":callId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "callId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:36.000Z",
+                          "updatedAt": "2026-07-28T01:11:36.000Z",
+                          "uid": "35240-0c6a1fd9-a637-4607-b34a-8aa0afcc9c1f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:36.000Z",
+                      "updatedAt": "2026-07-28T01:11:36.000Z",
+                      "uid": "35240-73dc67e8-6819-4d09-bc03-4ff8e69e6e8f"
+                    }
+                  ],
+                  "id": "0209dac2-bfad-4528-b4bf-a03a86509fc2",
+                  "createdAt": "2026-07-28T01:11:36.000Z",
+                  "updatedAt": "2026-07-28T01:11:36.000Z",
+                  "uid": "35240-0209dac2-bfad-4528-b4bf-a03a86509fc2"
+                },
+                {
+                  "name": "Create a call",
+                  "id": "41454c2a-e9bb-4cf0-ab95-494e5de0f5bb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/calls",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "calls"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e414e952-f677-441a-9323-92e37242be37",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Creates an outbound phone call. The call will be initiated from the specified Bandwidth number to the destination number. The answerUrl will receive a webhook when the call is answered, and your application should respond with BXML to control the call flow."
+                  },
+                  "response": [
+                    {
+                      "id": "43b0a3d5-27b0-4598-a2a6-92cf6326ae1e",
+                      "name": "Call created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/calls",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "calls"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"callId\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"direction\": \"inbound\",\n  \"state\": \"initiated\",\n  \"startTime\": \"<dateTime>\",\n  \"answerTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"disconnectCause\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"callUrl\": \"<uri>\"\n}",
+                      "createdAt": "2026-07-28T01:11:36.000Z",
+                      "updatedAt": "2026-07-28T01:11:36.000Z",
+                      "uid": "35240-43b0a3d5-27b0-4598-a2a6-92cf6326ae1e"
+                    },
+                    {
+                      "id": "d4f36ac4-7604-4109-a8f3-3720a6c3c56d",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/calls",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "calls"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:11:36.000Z",
+                      "updatedAt": "2026-07-28T01:11:36.000Z",
+                      "uid": "35240-d4f36ac4-7604-4109-a8f3-3720a6c3c56d"
+                    },
+                    {
+                      "id": "31de50b7-58db-4836-b1f2-78cacefde981",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/calls",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "calls"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:36.000Z",
+                      "updatedAt": "2026-07-28T01:11:36.000Z",
+                      "uid": "35240-31de50b7-58db-4836-b1f2-78cacefde981"
+                    },
+                    {
+                      "id": "f15fec7b-913d-4f30-ab43-e82abd05ce47",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/calls",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "calls"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:36.000Z",
+                      "updatedAt": "2026-07-28T01:11:36.000Z",
+                      "uid": "35240-f15fec7b-913d-4f30-ab43-e82abd05ce47"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:36.000Z",
+                  "updatedAt": "2026-07-28T01:11:36.000Z",
+                  "uid": "35240-41454c2a-e9bb-4cf0-ab95-494e5de0f5bb"
+                }
+              ],
+              "id": "a2e30fca-2193-4c40-a327-07bb50f2d99f",
+              "createdAt": "2026-07-28T01:11:36.000Z",
+              "updatedAt": "2026-07-28T01:11:36.000Z",
+              "uid": "35240-a2e30fca-2193-4c40-a327-07bb50f2d99f"
+            }
+          ],
+          "id": "7f2edc76-9267-4b52-93ac-e98327fa5341",
+          "createdAt": "2026-07-28T01:11:36.000Z",
+          "updatedAt": "2026-07-28T01:11:36.000Z",
+          "uid": "35240-7f2edc76-9267-4b52-93ac-e98327fa5341"
+        }
+      ],
+      "id": "27129253-f266-44bd-9e34-2e110d32a8eb",
+      "createdAt": "2026-07-28T01:11:36.000Z",
+      "updatedAt": "2026-07-28T01:11:36.000Z",
+      "uid": "35240-27129253-f266-44bd-9e34-2e110d32a8eb"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

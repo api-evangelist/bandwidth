@@ -1,0 +1,667 @@
+{
+  "info": {
+    "_postman_id": "0635f1d3-09af-469e-9992-6774442ca9c6",
+    "name": "Bandwidth Emergency Calling Available Numbers Port-Ins API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:50.000Z",
+    "updatedAt": "2026-07-28T01:11:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0635f1d3-09af-469e-9992-6774442ca9c6"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "portins",
+              "item": [
+                {
+                  "name": "{portInId}",
+                  "item": [
+                    {
+                      "name": "Get port-in request details",
+                      "id": "c8378193-fa23-43cd-8298-ebc1aaf0bd04",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/portins/:portInId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "portins",
+                            ":portInId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ec7af5bc-e727-4cf6-b44f-3585a801622b",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "5a7004c5-e1cc-4269-a108-858ba5832499",
+                              "key": "portInId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the port-in request"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves detailed information about a specific number porting request including its current status and timeline."
+                      },
+                      "response": [
+                        {
+                          "id": "3aa98a07-ab3a-4c37-ac0c-dde4113cc2fe",
+                          "name": "Port-in details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/portins/:portInId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "portins",
+                                ":portInId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "portInId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <portInId>(string)</portInId>\n  <status>(string)</status>\n  <requestedFocDate>(string)</requestedFocDate>\n  <actualFocDate>(string)</actualFocDate>\n</element>",
+                          "createdAt": "2026-07-28T01:11:50.000Z",
+                          "updatedAt": "2026-07-28T01:11:50.000Z",
+                          "uid": "35240-3aa98a07-ab3a-4c37-ac0c-dde4113cc2fe"
+                        },
+                        {
+                          "id": "b6232c51-0bbc-48d1-aa74-5424089ebfb6",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/portins/:portInId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "portins",
+                                ":portInId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "portInId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:50.000Z",
+                          "updatedAt": "2026-07-28T01:11:50.000Z",
+                          "uid": "35240-b6232c51-0bbc-48d1-aa74-5424089ebfb6"
+                        },
+                        {
+                          "id": "0b922771-2647-47df-9e1a-3cd3b6f077cd",
+                          "name": "Port-in request not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/portins/:portInId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "portins",
+                                ":portInId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "portInId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:50.000Z",
+                          "updatedAt": "2026-07-28T01:11:50.000Z",
+                          "uid": "35240-0b922771-2647-47df-9e1a-3cd3b6f077cd"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:50.000Z",
+                      "updatedAt": "2026-07-28T01:11:50.000Z",
+                      "uid": "35240-c8378193-fa23-43cd-8298-ebc1aaf0bd04"
+                    }
+                  ],
+                  "id": "ebacf521-600d-46b2-a100-34adcf894f76",
+                  "createdAt": "2026-07-28T01:11:50.000Z",
+                  "updatedAt": "2026-07-28T01:11:50.000Z",
+                  "uid": "35240-ebacf521-600d-46b2-a100-34adcf894f76"
+                },
+                {
+                  "name": "Create a port-in request",
+                  "id": "ff8b7b69-337a-439f-a7f9-3e5434e5f07a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <siteId>(string)</siteId>\n  <peerId>(string)</peerId>\n  <billingTelephoneNumber>(string)</billingTelephoneNumber>\n  <subscriber>\n    <subscriberType>(string)</subscriberType>\n    <businessName>(string)</businessName>\n    <firstName>(string)</firstName>\n    <lastName>(string)</lastName>\n    <serviceAddress>\n      <houseNumber>(string)</houseNumber>\n      <streetName>(string)</streetName>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <country>(string)</country>\n    </serviceAddress>\n  </subscriber>\n  <losingCarrierName>(string)</losingCarrierName>\n  <listOfPhoneNumbers>(string)</listOfPhoneNumbers>\n  <listOfPhoneNumbers>(string)</listOfPhoneNumbers>\n  <requestedFocDate>(string)</requestedFocDate>\n</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/portins",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "portins"
+                      ],
+                      "variable": [
+                        {
+                          "id": "28c1f691-da87-4311-ab54-a240a3d8cfc3",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Initiates a number porting request to transfer phone numbers from another carrier to Bandwidth. The request includes subscriber information and the list of numbers to port."
+                  },
+                  "response": [
+                    {
+                      "id": "ef09038e-a5c8-4b55-ba91-9b97e7df3e9f",
+                      "name": "Port-in request created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <siteId>(string)</siteId>\n  <peerId>(string)</peerId>\n  <billingTelephoneNumber>(string)</billingTelephoneNumber>\n  <subscriber>\n    <subscriberType>(string)</subscriberType>\n    <businessName>(string)</businessName>\n    <firstName>(string)</firstName>\n    <lastName>(string)</lastName>\n    <serviceAddress>\n      <houseNumber>(string)</houseNumber>\n      <streetName>(string)</streetName>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <country>(string)</country>\n    </serviceAddress>\n  </subscriber>\n  <losingCarrierName>(string)</losingCarrierName>\n  <listOfPhoneNumbers>(string)</listOfPhoneNumbers>\n  <listOfPhoneNumbers>(string)</listOfPhoneNumbers>\n  <requestedFocDate>(string)</requestedFocDate>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/portins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "portins"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <portInId>(string)</portInId>\n  <status>(string)</status>\n  <requestedFocDate>(string)</requestedFocDate>\n  <actualFocDate>(string)</actualFocDate>\n</element>",
+                      "createdAt": "2026-07-28T01:11:50.000Z",
+                      "updatedAt": "2026-07-28T01:11:50.000Z",
+                      "uid": "35240-ef09038e-a5c8-4b55-ba91-9b97e7df3e9f"
+                    },
+                    {
+                      "id": "75216d7f-efd6-4fe7-be1c-4dded0073bd7",
+                      "name": "Invalid port-in request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <siteId>(string)</siteId>\n  <peerId>(string)</peerId>\n  <billingTelephoneNumber>(string)</billingTelephoneNumber>\n  <subscriber>\n    <subscriberType>(string)</subscriberType>\n    <businessName>(string)</businessName>\n    <firstName>(string)</firstName>\n    <lastName>(string)</lastName>\n    <serviceAddress>\n      <houseNumber>(string)</houseNumber>\n      <streetName>(string)</streetName>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <country>(string)</country>\n    </serviceAddress>\n  </subscriber>\n  <losingCarrierName>(string)</losingCarrierName>\n  <listOfPhoneNumbers>(string)</listOfPhoneNumbers>\n  <listOfPhoneNumbers>(string)</listOfPhoneNumbers>\n  <requestedFocDate>(string)</requestedFocDate>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/portins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "portins"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:50.000Z",
+                      "updatedAt": "2026-07-28T01:11:50.000Z",
+                      "uid": "35240-75216d7f-efd6-4fe7-be1c-4dded0073bd7"
+                    },
+                    {
+                      "id": "777725c4-85e5-497e-b82b-e62298e6b6a5",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <siteId>(string)</siteId>\n  <peerId>(string)</peerId>\n  <billingTelephoneNumber>(string)</billingTelephoneNumber>\n  <subscriber>\n    <subscriberType>(string)</subscriberType>\n    <businessName>(string)</businessName>\n    <firstName>(string)</firstName>\n    <lastName>(string)</lastName>\n    <serviceAddress>\n      <houseNumber>(string)</houseNumber>\n      <streetName>(string)</streetName>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <country>(string)</country>\n    </serviceAddress>\n  </subscriber>\n  <losingCarrierName>(string)</losingCarrierName>\n  <listOfPhoneNumbers>(string)</listOfPhoneNumbers>\n  <listOfPhoneNumbers>(string)</listOfPhoneNumbers>\n  <requestedFocDate>(string)</requestedFocDate>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/portins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "portins"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:50.000Z",
+                      "updatedAt": "2026-07-28T01:11:50.000Z",
+                      "uid": "35240-777725c4-85e5-497e-b82b-e62298e6b6a5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:50.000Z",
+                  "updatedAt": "2026-07-28T01:11:50.000Z",
+                  "uid": "35240-ff8b7b69-337a-439f-a7f9-3e5434e5f07a"
+                },
+                {
+                  "name": "List port-in requests",
+                  "id": "dcbca06c-4f30-4bcb-8649-1b499103a33e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/portins?status=<string>&startDate=<date>&endDate=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "portins"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by port-in status",
+                          "key": "status",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter requests created on or after this date",
+                          "key": "startDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter requests created on or before this date",
+                          "key": "endDate",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "80b561c3-c653-467f-b061-f3f3278a02ff",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of number porting requests for the account."
+                  },
+                  "response": [
+                    {
+                      "id": "13dda2e3-0172-4e71-b9cb-a1047127523f",
+                      "name": "Port-in requests retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/portins?status=<string>&startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "portins"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by port-in status",
+                              "key": "status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter requests created on or after this date",
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filter requests created on or before this date",
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <totalCount>(integer)</totalCount>\n  <portIns>\n    <portInId>(string)</portInId>\n    <status>(string)</status>\n    <requestedFocDate>(string)</requestedFocDate>\n    <actualFocDate>(string)</actualFocDate>\n  </portIns>\n  <portIns>\n    <portInId>(string)</portInId>\n    <status>(string)</status>\n    <requestedFocDate>(string)</requestedFocDate>\n    <actualFocDate>(string)</actualFocDate>\n  </portIns>\n</element>",
+                      "createdAt": "2026-07-28T01:11:50.000Z",
+                      "updatedAt": "2026-07-28T01:11:50.000Z",
+                      "uid": "35240-13dda2e3-0172-4e71-b9cb-a1047127523f"
+                    },
+                    {
+                      "id": "f11fb6de-fbbe-4ac2-af8d-610edddeebe1",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/portins?status=<string>&startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "portins"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by port-in status",
+                              "key": "status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter requests created on or after this date",
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filter requests created on or before this date",
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:50.000Z",
+                      "updatedAt": "2026-07-28T01:11:50.000Z",
+                      "uid": "35240-f11fb6de-fbbe-4ac2-af8d-610edddeebe1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:50.000Z",
+                  "updatedAt": "2026-07-28T01:11:50.000Z",
+                  "uid": "35240-dcbca06c-4f30-4bcb-8649-1b499103a33e"
+                }
+              ],
+              "id": "745f5d63-9342-4699-8f41-2d15f9180284",
+              "createdAt": "2026-07-28T01:11:50.000Z",
+              "updatedAt": "2026-07-28T01:11:50.000Z",
+              "uid": "35240-745f5d63-9342-4699-8f41-2d15f9180284"
+            }
+          ],
+          "id": "0956ef39-c884-4889-948e-f8a3b7352426",
+          "createdAt": "2026-07-28T01:11:50.000Z",
+          "updatedAt": "2026-07-28T01:11:50.000Z",
+          "uid": "35240-0956ef39-c884-4889-948e-f8a3b7352426"
+        }
+      ],
+      "id": "bcda13b7-ae43-446b-b8d2-b0285796459e",
+      "createdAt": "2026-07-28T01:11:50.000Z",
+      "updatedAt": "2026-07-28T01:11:50.000Z",
+      "uid": "35240-bcda13b7-ae43-446b-b8d2-b0285796459e"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

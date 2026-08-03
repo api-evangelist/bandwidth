@@ -1,0 +1,1081 @@
+{
+  "info": {
+    "_postman_id": "ef8d71bc-0f55-477d-90dc-da4feb2c9998",
+    "name": "Bandwidth Emergency Calling Available Numbers Sites API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:53.000Z",
+    "updatedAt": "2026-07-28T01:11:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ef8d71bc-0f55-477d-90dc-da4feb2c9998"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "sites",
+              "item": [
+                {
+                  "name": "{siteId}",
+                  "item": [
+                    {
+                      "name": "Get site details",
+                      "id": "b114ea98-1064-44f5-80d3-d0a6927092b1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "sites",
+                            ":siteId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "78862097-3a34-41f0-b214-31bb86e2bbd7",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "3520e20e-1da8-4363-9d8c-755c6a7454f6",
+                              "key": "siteId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the site"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves detailed information about a specific site."
+                      },
+                      "response": [
+                        {
+                          "id": "b47f89fe-b192-40a1-aaa2-c66935873948",
+                          "name": "Site details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-b47f89fe-b192-40a1-aaa2-c66935873948"
+                        },
+                        {
+                          "id": "2286e15a-6a11-48a2-b37c-a83a9ac19b64",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-2286e15a-6a11-48a2-b37c-a83a9ac19b64"
+                        },
+                        {
+                          "id": "733a39db-c9e4-46b6-88d4-f846dce42df5",
+                          "name": "Site not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-733a39db-c9e4-46b6-88d4-f846dce42df5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:53.000Z",
+                      "updatedAt": "2026-07-28T01:11:53.000Z",
+                      "uid": "35240-b114ea98-1064-44f5-80d3-d0a6927092b1"
+                    },
+                    {
+                      "name": "Update a site",
+                      "id": "b1d164c0-0808-434d-9b2b-3c3e435f3b67",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "sites",
+                            ":siteId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2818b63f-0baf-459e-9afe-1632748264ef",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "526d44f0-8783-4628-8bb8-4545ce8e9ac5",
+                              "key": "siteId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the site"
+                            }
+                          ]
+                        },
+                        "description": "Updates the configuration for a specific site."
+                      },
+                      "response": [
+                        {
+                          "id": "925f72ff-06a1-4f33-9e43-2228d13599fa",
+                          "name": "Site updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-925f72ff-06a1-4f33-9e43-2228d13599fa"
+                        },
+                        {
+                          "id": "1add6efe-1168-471b-ab2b-17ddc2b57cf1",
+                          "name": "Invalid site configuration",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-1add6efe-1168-471b-ab2b-17ddc2b57cf1"
+                        },
+                        {
+                          "id": "8acf875a-4a25-4b4c-affe-6a77f02b5581",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-8acf875a-4a25-4b4c-affe-6a77f02b5581"
+                        },
+                        {
+                          "id": "0ad5345a-c811-4de1-b2b5-35b539b2f8d5",
+                          "name": "Site not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-0ad5345a-c811-4de1-b2b5-35b539b2f8d5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:53.000Z",
+                      "updatedAt": "2026-07-28T01:11:53.000Z",
+                      "uid": "35240-b1d164c0-0808-434d-9b2b-3c3e435f3b67"
+                    },
+                    {
+                      "name": "Delete a site",
+                      "id": "ebcc6f74-d6d6-4743-8f30-75747cf3895f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "sites",
+                            ":siteId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "52dfdc59-898c-4f47-8ffa-2a32dcf7e6be",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "e5e9cf27-7cd5-4101-9192-fd9f186389f7",
+                              "key": "siteId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the site"
+                            }
+                          ]
+                        },
+                        "description": "Deletes a specific site. The site must have no active SIP peers or phone numbers assigned to it."
+                      },
+                      "response": [
+                        {
+                          "id": "c1e52f21-f70f-42ef-b076-e54716e022f5",
+                          "name": "Site deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-c1e52f21-f70f-42ef-b076-e54716e022f5"
+                        },
+                        {
+                          "id": "0b681a7f-5d6d-4bdc-be64-97a56310a85a",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-0b681a7f-5d6d-4bdc-be64-97a56310a85a"
+                        },
+                        {
+                          "id": "53fe8123-25da-49c2-a459-5ffedeac20bd",
+                          "name": "Site not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "siteId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:53.000Z",
+                          "updatedAt": "2026-07-28T01:11:53.000Z",
+                          "uid": "35240-53fe8123-25da-49c2-a459-5ffedeac20bd"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:53.000Z",
+                      "updatedAt": "2026-07-28T01:11:53.000Z",
+                      "uid": "35240-ebcc6f74-d6d6-4743-8f30-75747cf3895f"
+                    }
+                  ],
+                  "id": "12d9b9b6-ec9a-4a2b-a873-8b058b973e03",
+                  "createdAt": "2026-07-28T01:11:53.000Z",
+                  "updatedAt": "2026-07-28T01:11:53.000Z",
+                  "uid": "35240-12d9b9b6-ec9a-4a2b-a873-8b058b973e03"
+                },
+                {
+                  "name": "List sites",
+                  "id": "d7abf28f-4f23-42c6-938c-cea4a4a57900",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/sites",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "sites"
+                      ],
+                      "variable": [
+                        {
+                          "id": "22be5fa5-a108-429a-8461-5032abef79a7",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of all sites (sub-accounts) configured within the Bandwidth account."
+                  },
+                  "response": [
+                    {
+                      "id": "48bd255d-1fb4-4d64-ae8f-ed46b33fbd5f",
+                      "name": "Sites retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/sites",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "sites"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <sites>\n    <id>(string)</id>\n    <name>(string)</name>\n    <description>(string)</description>\n    <address>\n      <houseNumber>(string)</houseNumber>\n      <streetName>(string)</streetName>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <country>(string)</country>\n    </address>\n  </sites>\n  <sites>\n    <id>(string)</id>\n    <name>(string)</name>\n    <description>(string)</description>\n    <address>\n      <houseNumber>(string)</houseNumber>\n      <streetName>(string)</streetName>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <country>(string)</country>\n    </address>\n  </sites>\n</element>",
+                      "createdAt": "2026-07-28T01:11:53.000Z",
+                      "updatedAt": "2026-07-28T01:11:53.000Z",
+                      "uid": "35240-48bd255d-1fb4-4d64-ae8f-ed46b33fbd5f"
+                    },
+                    {
+                      "id": "154dd944-e8ac-445e-9f67-1f127e5c1b54",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/sites",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "sites"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:53.000Z",
+                      "updatedAt": "2026-07-28T01:11:53.000Z",
+                      "uid": "35240-154dd944-e8ac-445e-9f67-1f127e5c1b54"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:53.000Z",
+                  "updatedAt": "2026-07-28T01:11:53.000Z",
+                  "uid": "35240-d7abf28f-4f23-42c6-938c-cea4a4a57900"
+                },
+                {
+                  "name": "Create a site",
+                  "id": "289cfbbc-b889-4bcb-a292-c0ede16028b0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/sites",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "sites"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a2c05427-c730-4599-a686-71bf6f31e98b",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new site (sub-account) within the Bandwidth account. Sites provide logical groupings for organizing telephony resources."
+                  },
+                  "response": [
+                    {
+                      "id": "ceeab183-6ac5-4540-9505-82ed6bb1d8e2",
+                      "name": "Site created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/sites",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "sites"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                      "createdAt": "2026-07-28T01:11:53.000Z",
+                      "updatedAt": "2026-07-28T01:11:53.000Z",
+                      "uid": "35240-ceeab183-6ac5-4540-9505-82ed6bb1d8e2"
+                    },
+                    {
+                      "id": "585d10bc-c38f-4b2d-ae35-3044b40d61b1",
+                      "name": "Invalid site configuration",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/sites",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "sites"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:53.000Z",
+                      "updatedAt": "2026-07-28T01:11:53.000Z",
+                      "uid": "35240-585d10bc-c38f-4b2d-ae35-3044b40d61b1"
+                    },
+                    {
+                      "id": "199e3244-d382-4743-a421-4f5ce1282e6f",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/sites",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "sites"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:53.000Z",
+                      "updatedAt": "2026-07-28T01:11:53.000Z",
+                      "uid": "35240-199e3244-d382-4743-a421-4f5ce1282e6f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:53.000Z",
+                  "updatedAt": "2026-07-28T01:11:53.000Z",
+                  "uid": "35240-289cfbbc-b889-4bcb-a292-c0ede16028b0"
+                }
+              ],
+              "id": "a9084745-3196-4766-9519-2999d885fd23",
+              "createdAt": "2026-07-28T01:11:53.000Z",
+              "updatedAt": "2026-07-28T01:11:53.000Z",
+              "uid": "35240-a9084745-3196-4766-9519-2999d885fd23"
+            }
+          ],
+          "id": "ae4cefcf-3246-48a9-ac28-0ac36fbfe557",
+          "createdAt": "2026-07-28T01:11:53.000Z",
+          "updatedAt": "2026-07-28T01:11:53.000Z",
+          "uid": "35240-ae4cefcf-3246-48a9-ac28-0ac36fbfe557"
+        }
+      ],
+      "id": "333d680d-7e0a-45ed-a929-4e88ab9d6a25",
+      "createdAt": "2026-07-28T01:11:53.000Z",
+      "updatedAt": "2026-07-28T01:11:53.000Z",
+      "uid": "35240-333d680d-7e0a-45ed-a929-4e88ab9d6a25"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

@@ -1,0 +1,460 @@
+{
+  "info": {
+    "_postman_id": "982a00c8-e666-459d-bf6e-683d9f33ba33",
+    "name": "Bandwidth Emergency Calling Available Numbers API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:34.000Z",
+    "updatedAt": "2026-07-28T01:11:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-982a00c8-e666-459d-bf6e-683d9f33ba33"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "availableNumbers",
+              "item": [
+                {
+                  "name": "Search available phone numbers",
+                  "id": "c07725c6-ed6d-4a08-962f-bb18c4caa22d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/availableNumbers?areaCode=666&npaNxx=420379&rateCenter=<string>&city=<string>&state=UL&zip=01835&lata=<string>&quantity=5000&tollFreeWildCardPattern=<string>&enableTNDetail=false&localVanity=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "availableNumbers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Three-digit area code to search",
+                          "key": "areaCode",
+                          "value": "666"
+                        },
+                        {
+                          "description": "Six-digit NPA-NXX combination to search",
+                          "key": "npaNxx",
+                          "value": "420379"
+                        },
+                        {
+                          "description": "Rate center name to search",
+                          "key": "rateCenter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "City name to search",
+                          "key": "city",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Two-letter state abbreviation",
+                          "key": "state",
+                          "value": "UL"
+                        },
+                        {
+                          "description": "Five-digit ZIP code to search",
+                          "key": "zip",
+                          "value": "01835"
+                        },
+                        {
+                          "description": "LATA code to search",
+                          "key": "lata",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results to return (1-5000, default 5000)",
+                          "key": "quantity",
+                          "value": "5000"
+                        },
+                        {
+                          "description": "Toll-free number pattern using wildcards (e.g., 8**) for toll-free number searches",
+                          "key": "tollFreeWildCardPattern",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Include detailed information for each number",
+                          "key": "enableTNDetail",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Vanity number search pattern",
+                          "key": "localVanity",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "7409f7db-d8e4-4738-b15a-a4babe8266ae",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Searches Bandwidth's inventory for available phone numbers matching the specified criteria. Supports searches by area code, NPA-NXX, rate center, city, state, ZIP code, and LATA. Returns up to the requested quantity of available numbers."
+                  },
+                  "response": [
+                    {
+                      "id": "18b5ac97-9691-4f17-a83a-295bbeba320c",
+                      "name": "Available numbers found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/availableNumbers?areaCode=666&npaNxx=420379&rateCenter=<string>&city=<string>&state=UL&zip=01835&lata=<string>&quantity=5000&tollFreeWildCardPattern=<string>&enableTNDetail=false&localVanity=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "availableNumbers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Three-digit area code to search",
+                              "key": "areaCode",
+                              "value": "666"
+                            },
+                            {
+                              "description": "Six-digit NPA-NXX combination to search",
+                              "key": "npaNxx",
+                              "value": "420379"
+                            },
+                            {
+                              "description": "Rate center name to search",
+                              "key": "rateCenter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "City name to search",
+                              "key": "city",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Two-letter state abbreviation",
+                              "key": "state",
+                              "value": "UL"
+                            },
+                            {
+                              "description": "Five-digit ZIP code to search",
+                              "key": "zip",
+                              "value": "01835"
+                            },
+                            {
+                              "description": "LATA code to search",
+                              "key": "lata",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of results to return (1-5000, default 5000)",
+                              "key": "quantity",
+                              "value": "5000"
+                            },
+                            {
+                              "description": "Toll-free number pattern using wildcards (e.g., 8**) for toll-free number searches",
+                              "key": "tollFreeWildCardPattern",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include detailed information for each number",
+                              "key": "enableTNDetail",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Vanity number search pattern",
+                              "key": "localVanity",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <resultCount>(integer)</resultCount>\n  <telephoneNumberList>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n  </telephoneNumberList>\n  <telephoneNumberList>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n  </telephoneNumberList>\n</element>",
+                      "createdAt": "2026-07-28T01:11:35.000Z",
+                      "updatedAt": "2026-07-28T01:11:35.000Z",
+                      "uid": "35240-18b5ac97-9691-4f17-a83a-295bbeba320c"
+                    },
+                    {
+                      "id": "ddf8a1ee-50fa-4eb3-a1ad-635131d23135",
+                      "name": "Invalid search parameters",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/availableNumbers?areaCode=666&npaNxx=420379&rateCenter=<string>&city=<string>&state=UL&zip=01835&lata=<string>&quantity=5000&tollFreeWildCardPattern=<string>&enableTNDetail=false&localVanity=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "availableNumbers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Three-digit area code to search",
+                              "key": "areaCode",
+                              "value": "666"
+                            },
+                            {
+                              "description": "Six-digit NPA-NXX combination to search",
+                              "key": "npaNxx",
+                              "value": "420379"
+                            },
+                            {
+                              "description": "Rate center name to search",
+                              "key": "rateCenter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "City name to search",
+                              "key": "city",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Two-letter state abbreviation",
+                              "key": "state",
+                              "value": "UL"
+                            },
+                            {
+                              "description": "Five-digit ZIP code to search",
+                              "key": "zip",
+                              "value": "01835"
+                            },
+                            {
+                              "description": "LATA code to search",
+                              "key": "lata",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of results to return (1-5000, default 5000)",
+                              "key": "quantity",
+                              "value": "5000"
+                            },
+                            {
+                              "description": "Toll-free number pattern using wildcards (e.g., 8**) for toll-free number searches",
+                              "key": "tollFreeWildCardPattern",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include detailed information for each number",
+                              "key": "enableTNDetail",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Vanity number search pattern",
+                              "key": "localVanity",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:35.000Z",
+                      "updatedAt": "2026-07-28T01:11:35.000Z",
+                      "uid": "35240-ddf8a1ee-50fa-4eb3-a1ad-635131d23135"
+                    },
+                    {
+                      "id": "ac39359e-e5e6-4f2f-abe0-40bb12d8cac5",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/availableNumbers?areaCode=666&npaNxx=420379&rateCenter=<string>&city=<string>&state=UL&zip=01835&lata=<string>&quantity=5000&tollFreeWildCardPattern=<string>&enableTNDetail=false&localVanity=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "availableNumbers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Three-digit area code to search",
+                              "key": "areaCode",
+                              "value": "666"
+                            },
+                            {
+                              "description": "Six-digit NPA-NXX combination to search",
+                              "key": "npaNxx",
+                              "value": "420379"
+                            },
+                            {
+                              "description": "Rate center name to search",
+                              "key": "rateCenter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "City name to search",
+                              "key": "city",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Two-letter state abbreviation",
+                              "key": "state",
+                              "value": "UL"
+                            },
+                            {
+                              "description": "Five-digit ZIP code to search",
+                              "key": "zip",
+                              "value": "01835"
+                            },
+                            {
+                              "description": "LATA code to search",
+                              "key": "lata",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of results to return (1-5000, default 5000)",
+                              "key": "quantity",
+                              "value": "5000"
+                            },
+                            {
+                              "description": "Toll-free number pattern using wildcards (e.g., 8**) for toll-free number searches",
+                              "key": "tollFreeWildCardPattern",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include detailed information for each number",
+                              "key": "enableTNDetail",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Vanity number search pattern",
+                              "key": "localVanity",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:35.000Z",
+                      "updatedAt": "2026-07-28T01:11:35.000Z",
+                      "uid": "35240-ac39359e-e5e6-4f2f-abe0-40bb12d8cac5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:35.000Z",
+                  "updatedAt": "2026-07-28T01:11:35.000Z",
+                  "uid": "35240-c07725c6-ed6d-4a08-962f-bb18c4caa22d"
+                }
+              ],
+              "id": "36549730-66c3-4c3f-96d8-16aad997199b",
+              "createdAt": "2026-07-28T01:11:35.000Z",
+              "updatedAt": "2026-07-28T01:11:35.000Z",
+              "uid": "35240-36549730-66c3-4c3f-96d8-16aad997199b"
+            }
+          ],
+          "id": "2f1f030f-1320-4374-91f7-36cdae924b69",
+          "createdAt": "2026-07-28T01:11:35.000Z",
+          "updatedAt": "2026-07-28T01:11:35.000Z",
+          "uid": "35240-2f1f030f-1320-4374-91f7-36cdae924b69"
+        }
+      ],
+      "id": "b08f87e0-1c3c-42ce-ac1d-8db6822baee6",
+      "createdAt": "2026-07-28T01:11:35.000Z",
+      "updatedAt": "2026-07-28T01:11:35.000Z",
+      "uid": "35240-b08f87e0-1c3c-42ce-ac1d-8db6822baee6"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

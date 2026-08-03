@@ -1,0 +1,667 @@
+{
+  "info": {
+    "_postman_id": "bcb535ae-0aa5-4957-8ea9-12b823086dfe",
+    "name": "Bandwidth Emergency Calling Available Numbers Orders API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:49.000Z",
+    "updatedAt": "2026-07-28T01:11:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bcb535ae-0aa5-4957-8ea9-12b823086dfe"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "orders",
+              "item": [
+                {
+                  "name": "{orderId}",
+                  "item": [
+                    {
+                      "name": "Get order details",
+                      "id": "88dedf73-7070-4e62-a4ec-b09f1043a0d5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/orders/:orderId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "orders",
+                            ":orderId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "64f8fbbe-c685-4021-8fa2-e51c82d379d1",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "955de460-937f-4727-9644-acc925ec74e3",
+                              "key": "orderId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the order"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves detailed information about a specific phone number order including its current status and list of numbers ordered."
+                      },
+                      "response": [
+                        {
+                          "id": "3a743b5d-f1e4-4598-9e3c-5f00eab0f451",
+                          "name": "Order details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/orders/:orderId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "orders",
+                                ":orderId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "orderId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <orderId>(string)</orderId>\n  <orderStatus>(string)</orderStatus>\n  <orderCreateDate>(string)</orderCreateDate>\n  <completedQuantity>(integer)</completedQuantity>\n  <failedQuantity>(integer)</failedQuantity>\n  <completedNumbers>(string)</completedNumbers>\n  <completedNumbers>(string)</completedNumbers>\n</element>",
+                          "createdAt": "2026-07-28T01:11:49.000Z",
+                          "updatedAt": "2026-07-28T01:11:49.000Z",
+                          "uid": "35240-3a743b5d-f1e4-4598-9e3c-5f00eab0f451"
+                        },
+                        {
+                          "id": "e9dd77cb-2b01-4079-9259-814aa78b88fe",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/orders/:orderId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "orders",
+                                ":orderId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "orderId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:49.000Z",
+                          "updatedAt": "2026-07-28T01:11:49.000Z",
+                          "uid": "35240-e9dd77cb-2b01-4079-9259-814aa78b88fe"
+                        },
+                        {
+                          "id": "0f353b4d-b191-4a92-ae2a-d0095e1acde0",
+                          "name": "Order not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/orders/:orderId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "orders",
+                                ":orderId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "orderId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:49.000Z",
+                          "updatedAt": "2026-07-28T01:11:49.000Z",
+                          "uid": "35240-0f353b4d-b191-4a92-ae2a-d0095e1acde0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:49.000Z",
+                      "updatedAt": "2026-07-28T01:11:49.000Z",
+                      "uid": "35240-88dedf73-7070-4e62-a4ec-b09f1043a0d5"
+                    }
+                  ],
+                  "id": "58dabfd4-3f0b-49db-98c8-3ec77faf04ad",
+                  "createdAt": "2026-07-28T01:11:49.000Z",
+                  "updatedAt": "2026-07-28T01:11:49.000Z",
+                  "uid": "35240-58dabfd4-3f0b-49db-98c8-3ec77faf04ad"
+                },
+                {
+                  "name": "Create a phone number order",
+                  "id": "de99325a-d153-4d0d-bc39-4836fd0a31c5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <name>(string)</name>\n  <siteId>(string)</siteId>\n  <peerId>(string)</peerId>\n  <existingTelephoneNumberOrderType>\n    <telephoneNumberList>(string)</telephoneNumberList>\n    <telephoneNumberList>(string)</telephoneNumberList>\n  </existingTelephoneNumberOrderType>\n</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "orders"
+                      ],
+                      "variable": [
+                        {
+                          "id": "de958038-3905-44a6-adfa-bbe4dbf41e9f",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new order to purchase phone numbers from Bandwidth's available inventory. The order specifies which numbers to purchase and the site and SIP peer to assign them to. Order status can be tracked via the GET endpoint or webhook callbacks."
+                  },
+                  "response": [
+                    {
+                      "id": "17091bb0-fcc6-4bad-b019-962f26e97e3a",
+                      "name": "Order created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <name>(string)</name>\n  <siteId>(string)</siteId>\n  <peerId>(string)</peerId>\n  <existingTelephoneNumberOrderType>\n    <telephoneNumberList>(string)</telephoneNumberList>\n    <telephoneNumberList>(string)</telephoneNumberList>\n  </existingTelephoneNumberOrderType>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "orders"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <orderId>(string)</orderId>\n  <orderStatus>(string)</orderStatus>\n  <orderCreateDate>(string)</orderCreateDate>\n  <completedQuantity>(integer)</completedQuantity>\n  <failedQuantity>(integer)</failedQuantity>\n  <completedNumbers>(string)</completedNumbers>\n  <completedNumbers>(string)</completedNumbers>\n</element>",
+                      "createdAt": "2026-07-28T01:11:49.000Z",
+                      "updatedAt": "2026-07-28T01:11:49.000Z",
+                      "uid": "35240-17091bb0-fcc6-4bad-b019-962f26e97e3a"
+                    },
+                    {
+                      "id": "75c84698-baf3-4d46-9465-84daa21f369e",
+                      "name": "Invalid order request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <name>(string)</name>\n  <siteId>(string)</siteId>\n  <peerId>(string)</peerId>\n  <existingTelephoneNumberOrderType>\n    <telephoneNumberList>(string)</telephoneNumberList>\n    <telephoneNumberList>(string)</telephoneNumberList>\n  </existingTelephoneNumberOrderType>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "orders"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:49.000Z",
+                      "updatedAt": "2026-07-28T01:11:49.000Z",
+                      "uid": "35240-75c84698-baf3-4d46-9465-84daa21f369e"
+                    },
+                    {
+                      "id": "33713e14-f9e8-44e3-9767-f2efe4ea3643",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <name>(string)</name>\n  <siteId>(string)</siteId>\n  <peerId>(string)</peerId>\n  <existingTelephoneNumberOrderType>\n    <telephoneNumberList>(string)</telephoneNumberList>\n    <telephoneNumberList>(string)</telephoneNumberList>\n  </existingTelephoneNumberOrderType>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "orders"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:49.000Z",
+                      "updatedAt": "2026-07-28T01:11:49.000Z",
+                      "uid": "35240-33713e14-f9e8-44e3-9767-f2efe4ea3643"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:49.000Z",
+                  "updatedAt": "2026-07-28T01:11:49.000Z",
+                  "uid": "35240-de99325a-d153-4d0d-bc39-4836fd0a31c5"
+                },
+                {
+                  "name": "List phone number orders",
+                  "id": "3971f43c-ca44-4b41-a8b3-a1030e052d40",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/orders?status=PARTIAL&startDate=<date>&endDate=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "orders"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by order status",
+                          "key": "status",
+                          "value": "PARTIAL"
+                        },
+                        {
+                          "description": "Filter orders created on or after this date",
+                          "key": "startDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter orders created on or before this date",
+                          "key": "endDate",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "ebfbdc8b-267f-4bb5-aa73-e90b7ff3e944",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of phone number orders for the account. Supports filtering by order status, date range, and other criteria."
+                  },
+                  "response": [
+                    {
+                      "id": "86728b7f-8099-4e6c-9a83-b891b8893be1",
+                      "name": "Orders retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/orders?status=PARTIAL&startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "orders"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by order status",
+                              "key": "status",
+                              "value": "PARTIAL"
+                            },
+                            {
+                              "description": "Filter orders created on or after this date",
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filter orders created on or before this date",
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <totalCount>(integer)</totalCount>\n  <orders>\n    <orderId>(string)</orderId>\n    <orderStatus>(string)</orderStatus>\n    <orderCreateDate>(string)</orderCreateDate>\n    <completedQuantity>(integer)</completedQuantity>\n    <failedQuantity>(integer)</failedQuantity>\n    <completedNumbers>(string)</completedNumbers>\n    <completedNumbers>(string)</completedNumbers>\n  </orders>\n  <orders>\n    <orderId>(string)</orderId>\n    <orderStatus>(string)</orderStatus>\n    <orderCreateDate>(string)</orderCreateDate>\n    <completedQuantity>(integer)</completedQuantity>\n    <failedQuantity>(integer)</failedQuantity>\n    <completedNumbers>(string)</completedNumbers>\n    <completedNumbers>(string)</completedNumbers>\n  </orders>\n</element>",
+                      "createdAt": "2026-07-28T01:11:49.000Z",
+                      "updatedAt": "2026-07-28T01:11:49.000Z",
+                      "uid": "35240-86728b7f-8099-4e6c-9a83-b891b8893be1"
+                    },
+                    {
+                      "id": "0c7fc76e-57a4-4456-a408-b8677b613985",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/orders?status=PARTIAL&startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "orders"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by order status",
+                              "key": "status",
+                              "value": "PARTIAL"
+                            },
+                            {
+                              "description": "Filter orders created on or after this date",
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filter orders created on or before this date",
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:49.000Z",
+                      "updatedAt": "2026-07-28T01:11:49.000Z",
+                      "uid": "35240-0c7fc76e-57a4-4456-a408-b8677b613985"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:49.000Z",
+                  "updatedAt": "2026-07-28T01:11:49.000Z",
+                  "uid": "35240-3971f43c-ca44-4b41-a8b3-a1030e052d40"
+                }
+              ],
+              "id": "c5d23c15-cd95-4dcb-9742-4d7f95c8cf52",
+              "createdAt": "2026-07-28T01:11:49.000Z",
+              "updatedAt": "2026-07-28T01:11:49.000Z",
+              "uid": "35240-c5d23c15-cd95-4dcb-9742-4d7f95c8cf52"
+            }
+          ],
+          "id": "fdd72ecf-4d2a-43ef-941c-447235541d23",
+          "createdAt": "2026-07-28T01:11:49.000Z",
+          "updatedAt": "2026-07-28T01:11:49.000Z",
+          "uid": "35240-fdd72ecf-4d2a-43ef-941c-447235541d23"
+        }
+      ],
+      "id": "6470a5fa-9112-4069-80c7-b63e17d4fdf6",
+      "createdAt": "2026-07-28T01:11:49.000Z",
+      "updatedAt": "2026-07-28T01:11:49.000Z",
+      "uid": "35240-6470a5fa-9112-4069-80c7-b63e17d4fdf6"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

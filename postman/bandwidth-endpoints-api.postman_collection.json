@@ -1,0 +1,1081 @@
+{
+  "info": {
+    "_postman_id": "1d78074f-14b7-42b2-bd8a-a5e65ba4aa4e",
+    "name": "Bandwidth Emergency Calling Available Numbers Endpoints API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:44.000Z",
+    "updatedAt": "2026-07-28T01:11:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1d78074f-14b7-42b2-bd8a-a5e65ba4aa4e"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "e911s",
+              "item": [
+                {
+                  "name": "{endpointId}",
+                  "item": [
+                    {
+                      "name": "Get E911 endpoint details",
+                      "id": "fa14bd23-4cb0-407a-8a57-00035cf26080",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s",
+                            ":endpointId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "67f183e4-98e6-4c5c-ba5c-f580924edd9d",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "283e8317-4e79-4d9a-ad40-e95a65e7a3f5",
+                              "key": "endpointId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the E911 endpoint"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves detailed information about a specific 911 endpoint including its associated location and configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "fc9b2ac5-dbdf-44f9-a7ae-3f374f4a501b",
+                          "name": "Endpoint details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-fc9b2ac5-dbdf-44f9-a7ae-3f374f4a501b"
+                        },
+                        {
+                          "id": "dc6906fa-60e0-44d0-9b99-4a818b973eb9",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-dc6906fa-60e0-44d0-9b99-4a818b973eb9"
+                        },
+                        {
+                          "id": "26f367d3-0c64-4c8f-985b-b6d2d27350f6",
+                          "name": "Endpoint not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-26f367d3-0c64-4c8f-985b-b6d2d27350f6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:45.000Z",
+                      "updatedAt": "2026-07-28T01:11:45.000Z",
+                      "uid": "35240-fa14bd23-4cb0-407a-8a57-00035cf26080"
+                    },
+                    {
+                      "name": "Update an E911 endpoint",
+                      "id": "91954ab5-1dbb-49fb-b6a0-2cd70e928b2b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s",
+                            ":endpointId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "713127a7-bc32-4a55-a5e1-3367dac3df8f",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "a8e1fefb-1baf-4ce5-a9a4-a2e84e50a9fa",
+                              "key": "endpointId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the E911 endpoint"
+                            }
+                          ]
+                        },
+                        "description": "Updates the configuration or location association for a specific 911 endpoint."
+                      },
+                      "response": [
+                        {
+                          "id": "bb65dcb5-865a-445f-9856-394f36c5d592",
+                          "name": "Endpoint updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-bb65dcb5-865a-445f-9856-394f36c5d592"
+                        },
+                        {
+                          "id": "70a2b463-7a9f-49be-8f9f-93b8ebde2ed7",
+                          "name": "Invalid endpoint configuration",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-70a2b463-7a9f-49be-8f9f-93b8ebde2ed7"
+                        },
+                        {
+                          "id": "1b4ba7a2-970a-45c8-b704-90f5b59027e2",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-1b4ba7a2-970a-45c8-b704-90f5b59027e2"
+                        },
+                        {
+                          "id": "af40a558-e32e-4718-a16e-c399709a9e16",
+                          "name": "Endpoint not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-af40a558-e32e-4718-a16e-c399709a9e16"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:45.000Z",
+                      "updatedAt": "2026-07-28T01:11:45.000Z",
+                      "uid": "35240-91954ab5-1dbb-49fb-b6a0-2cd70e928b2b"
+                    },
+                    {
+                      "name": "Delete an E911 endpoint",
+                      "id": "cb3bcda4-1fe9-40f2-a7a9-cf6723d422a9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s",
+                            ":endpointId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ac39b555-23f1-4e7a-890d-1f05d28e4356",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "f7c7fbc0-c0c8-4bcc-a412-ba91d8c40c4e",
+                              "key": "endpointId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the E911 endpoint"
+                            }
+                          ]
+                        },
+                        "description": "Removes a 911 endpoint from the account. The endpoint will no longer be able to route emergency calls."
+                      },
+                      "response": [
+                        {
+                          "id": "eb426fb2-a033-405b-b78e-85e444c17501",
+                          "name": "Endpoint deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-eb426fb2-a033-405b-b78e-85e444c17501"
+                        },
+                        {
+                          "id": "363efb5b-3c57-4dd3-baac-8a67f1d5a285",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-363efb5b-3c57-4dd3-baac-8a67f1d5a285"
+                        },
+                        {
+                          "id": "c2f5f14d-f4a9-475e-8cf1-1386579de842",
+                          "name": "Endpoint not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:45.000Z",
+                          "updatedAt": "2026-07-28T01:11:45.000Z",
+                          "uid": "35240-c2f5f14d-f4a9-475e-8cf1-1386579de842"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:45.000Z",
+                      "updatedAt": "2026-07-28T01:11:45.000Z",
+                      "uid": "35240-cb3bcda4-1fe9-40f2-a7a9-cf6723d422a9"
+                    }
+                  ],
+                  "id": "ea7c098c-0004-4a31-8ff3-f2ce25873276",
+                  "createdAt": "2026-07-28T01:11:45.000Z",
+                  "updatedAt": "2026-07-28T01:11:45.000Z",
+                  "uid": "35240-ea7c098c-0004-4a31-8ff3-f2ce25873276"
+                },
+                {
+                  "name": "List E911 endpoints",
+                  "id": "137437d6-4633-4e5a-b733-d9dffe703ce5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/e911s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "e911s"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a3362b2a-be54-4a9e-a170-ca197b4564a6",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of all 911 endpoints provisioned for the account. Each endpoint represents an end user that may place emergency calls."
+                  },
+                  "response": [
+                    {
+                      "id": "d6467070-2781-43d5-8c99-d5799e9d8b35",
+                      "name": "Endpoints retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <totalCount>(integer)</totalCount>\n  <endpoints>\n    <endpointId>(string)</endpointId>\n    <alternateEndUserId>(string)</alternateEndUserId>\n    <callerName>(string)</callerName>\n    <locationId>(string)</locationId>\n    <telephoneNumber>(string)</telephoneNumber>\n    <activated>(boolean)</activated>\n  </endpoints>\n  <endpoints>\n    <endpointId>(string)</endpointId>\n    <alternateEndUserId>(string)</alternateEndUserId>\n    <callerName>(string)</callerName>\n    <locationId>(string)</locationId>\n    <telephoneNumber>(string)</telephoneNumber>\n    <activated>(boolean)</activated>\n  </endpoints>\n</element>",
+                      "createdAt": "2026-07-28T01:11:45.000Z",
+                      "updatedAt": "2026-07-28T01:11:45.000Z",
+                      "uid": "35240-d6467070-2781-43d5-8c99-d5799e9d8b35"
+                    },
+                    {
+                      "id": "a7322f4f-8e8a-436d-abba-96bb4f805f31",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:45.000Z",
+                      "updatedAt": "2026-07-28T01:11:45.000Z",
+                      "uid": "35240-a7322f4f-8e8a-436d-abba-96bb4f805f31"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:45.000Z",
+                  "updatedAt": "2026-07-28T01:11:45.000Z",
+                  "uid": "35240-137437d6-4633-4e5a-b733-d9dffe703ce5"
+                },
+                {
+                  "name": "Create an E911 endpoint",
+                  "id": "efbb8b85-fb06-4e2d-93d8-6dc57257ece2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/e911s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "e911s"
+                      ],
+                      "variable": [
+                        {
+                          "id": "87862704-fdf2-42dd-bb34-5327a8b8dcf4",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Provisions a new 911 endpoint for an end user. The endpoint is identified by an Alternate End User ID (AEUI) and must be associated with a validated location for emergency routing."
+                  },
+                  "response": [
+                    {
+                      "id": "a5c9eb7a-f2a6-4df6-bc28-dded481fca74",
+                      "name": "Endpoint created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                      "createdAt": "2026-07-28T01:11:45.000Z",
+                      "updatedAt": "2026-07-28T01:11:45.000Z",
+                      "uid": "35240-a5c9eb7a-f2a6-4df6-bc28-dded481fca74"
+                    },
+                    {
+                      "id": "3f14a6dc-620e-4824-a806-fe0ad238410c",
+                      "name": "Invalid endpoint configuration",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:45.000Z",
+                      "updatedAt": "2026-07-28T01:11:45.000Z",
+                      "uid": "35240-3f14a6dc-620e-4824-a806-fe0ad238410c"
+                    },
+                    {
+                      "id": "b09accf4-a403-4de8-a682-b13bd0c02107",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:45.000Z",
+                      "updatedAt": "2026-07-28T01:11:45.000Z",
+                      "uid": "35240-b09accf4-a403-4de8-a682-b13bd0c02107"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:45.000Z",
+                  "updatedAt": "2026-07-28T01:11:45.000Z",
+                  "uid": "35240-efbb8b85-fb06-4e2d-93d8-6dc57257ece2"
+                }
+              ],
+              "id": "4012ad40-4f03-4dbc-b293-b9e9f88df275",
+              "createdAt": "2026-07-28T01:11:45.000Z",
+              "updatedAt": "2026-07-28T01:11:45.000Z",
+              "uid": "35240-4012ad40-4f03-4dbc-b293-b9e9f88df275"
+            }
+          ],
+          "id": "6ac57e79-c302-42fd-a79c-f482d69e5e3c",
+          "createdAt": "2026-07-28T01:11:45.000Z",
+          "updatedAt": "2026-07-28T01:11:45.000Z",
+          "uid": "35240-6ac57e79-c302-42fd-a79c-f482d69e5e3c"
+        }
+      ],
+      "id": "43cbea81-6ce6-4a93-ae27-0e5e86001363",
+      "createdAt": "2026-07-28T01:11:45.000Z",
+      "updatedAt": "2026-07-28T01:11:45.000Z",
+      "uid": "35240-43cbea81-6ce6-4a93-ae27-0e5e86001363"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

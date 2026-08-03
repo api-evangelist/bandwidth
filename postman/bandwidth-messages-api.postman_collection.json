@@ -1,0 +1,667 @@
+{
+  "info": {
+    "_postman_id": "c4966e75-a411-4814-8562-a0fbd4c40006",
+    "name": "Bandwidth Emergency Calling Available Numbers Messages API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:47.000Z",
+    "updatedAt": "2026-07-28T01:11:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c4966e75-a411-4814-8562-a0fbd4c40006"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "messages",
+              "item": [
+                {
+                  "name": "Send a message",
+                  "id": "e6c2e55d-c11f-4314-b49e-a9d638000236",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": [\n    \"<string>\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:accountId/messages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":accountId",
+                        "messages"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f380511-9a98-4ac3-becf-cd250ce0cb04",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Sends an SMS or MMS message from a Bandwidth number. For MMS, include media URLs in the request body. Bandwidth will return an HTTP 202 Accepted indicating the message has been queued for delivery. Delivery status will be provided via webhook callbacks."
+                  },
+                  "response": [
+                    {
+                      "id": "dd523d63-5e51-481d-9e63-7a5a215ed32c",
+                      "name": "Message accepted and queued for delivery",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": [\n    \"<string>\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "messages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"time\": \"<dateTime>\",\n  \"segmentCount\": \"<integer>\",\n  \"direction\": \"out\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"from\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"text\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"priority\": \"high\"\n}",
+                      "createdAt": "2026-07-28T01:11:48.000Z",
+                      "updatedAt": "2026-07-28T01:11:48.000Z",
+                      "uid": "35240-dd523d63-5e51-481d-9e63-7a5a215ed32c"
+                    },
+                    {
+                      "id": "f25a64fe-65be-497b-8147-8e735735e095",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": [\n    \"<string>\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "messages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"fieldErrors\": [\n    {\n      \"fieldName\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"fieldName\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:11:48.000Z",
+                      "updatedAt": "2026-07-28T01:11:48.000Z",
+                      "uid": "35240-f25a64fe-65be-497b-8147-8e735735e095"
+                    },
+                    {
+                      "id": "e19ac612-198a-461d-8dbb-f0cf511a67ab",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": [\n    \"<string>\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "messages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:48.000Z",
+                      "updatedAt": "2026-07-28T01:11:48.000Z",
+                      "uid": "35240-e19ac612-198a-461d-8dbb-f0cf511a67ab"
+                    },
+                    {
+                      "id": "63b17bf4-239b-44fd-a727-e4bc56be5e8c",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": [\n    \"<string>\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "messages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:48.000Z",
+                      "updatedAt": "2026-07-28T01:11:48.000Z",
+                      "uid": "35240-63b17bf4-239b-44fd-a727-e4bc56be5e8c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:48.000Z",
+                  "updatedAt": "2026-07-28T01:11:48.000Z",
+                  "uid": "35240-e6c2e55d-c11f-4314-b49e-a9d638000236"
+                },
+                {
+                  "name": "List messages",
+                  "id": "d321c9ec-36f7-4db1-abb8-9b69666e47e2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:accountId/messages?messageId=<string>&sourceTn=<string>&destinationTn=<string>&messageStatus=FAILED&messageDirection=OUTBOUND&carrierName=<string>&messageType=mms&errorCode=<integer>&fromDateTime=<dateTime>&toDateTime=<dateTime>&pageToken=<string>&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":accountId",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by a specific message ID",
+                          "key": "messageId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by source telephone number in E.164 format",
+                          "key": "sourceTn",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by destination telephone number in E.164 format",
+                          "key": "destinationTn",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by message delivery status",
+                          "key": "messageStatus",
+                          "value": "FAILED"
+                        },
+                        {
+                          "description": "Filter by message direction",
+                          "key": "messageDirection",
+                          "value": "OUTBOUND"
+                        },
+                        {
+                          "description": "Filter by carrier name",
+                          "key": "carrierName",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by message type",
+                          "key": "messageType",
+                          "value": "mms"
+                        },
+                        {
+                          "description": "Filter by error code",
+                          "key": "errorCode",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Filter messages sent on or after this date-time",
+                          "key": "fromDateTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter messages sent on or before this date-time",
+                          "key": "toDateTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Page token for pagination",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of messages to return",
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "be11df02-23b9-4c91-85af-964db7a2e20e",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of message metadata for the account. Bandwidth does not store message content for privacy reasons; only metadata such as sender, recipient, timestamps, and delivery status is returned. Supports filtering by source number, destination number, and date range."
+                  },
+                  "response": [
+                    {
+                      "id": "d501519f-4dd3-46fc-84f3-77cbb4a80933",
+                      "name": "Messages retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/messages?messageId=<string>&sourceTn=<string>&destinationTn=<string>&messageStatus=FAILED&messageDirection=OUTBOUND&carrierName=<string>&messageType=mms&errorCode=<integer>&fromDateTime=<dateTime>&toDateTime=<dateTime>&pageToken=<string>&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by a specific message ID",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by source telephone number in E.164 format",
+                              "key": "sourceTn",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by destination telephone number in E.164 format",
+                              "key": "destinationTn",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by message delivery status",
+                              "key": "messageStatus",
+                              "value": "FAILED"
+                            },
+                            {
+                              "description": "Filter by message direction",
+                              "key": "messageDirection",
+                              "value": "OUTBOUND"
+                            },
+                            {
+                              "description": "Filter by carrier name",
+                              "key": "carrierName",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by message type",
+                              "key": "messageType",
+                              "value": "mms"
+                            },
+                            {
+                              "description": "Filter by error code",
+                              "key": "errorCode",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filter messages sent on or after this date-time",
+                              "key": "fromDateTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Filter messages sent on or before this date-time",
+                              "key": "toDateTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Page token for pagination",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of messages to return",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"totalCount\": \"<integer>\",\n  \"pageInfo\": {\n    \"prevPage\": \"<string>\",\n    \"nextPage\": \"<string>\",\n    \"prevPageToken\": \"<string>\",\n    \"nextPageToken\": \"<string>\"\n  },\n  \"messages\": [\n    {\n      \"id\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"applicationId\": \"<string>\",\n      \"time\": \"<dateTime>\",\n      \"segmentCount\": \"<integer>\",\n      \"direction\": \"out\",\n      \"to\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"from\": \"<string>\",\n      \"media\": [\n        \"<uri>\",\n        \"<uri>\"\n      ],\n      \"text\": \"<string>\",\n      \"tag\": \"<string>\",\n      \"priority\": \"default\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"applicationId\": \"<string>\",\n      \"time\": \"<dateTime>\",\n      \"segmentCount\": \"<integer>\",\n      \"direction\": \"out\",\n      \"to\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"from\": \"<string>\",\n      \"media\": [\n        \"<uri>\",\n        \"<uri>\"\n      ],\n      \"text\": \"<string>\",\n      \"tag\": \"<string>\",\n      \"priority\": \"high\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:11:48.000Z",
+                      "updatedAt": "2026-07-28T01:11:48.000Z",
+                      "uid": "35240-d501519f-4dd3-46fc-84f3-77cbb4a80933"
+                    },
+                    {
+                      "id": "12ac1162-c303-4a9f-9f60-9d059518cb96",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:accountId/messages?messageId=<string>&sourceTn=<string>&destinationTn=<string>&messageStatus=FAILED&messageDirection=OUTBOUND&carrierName=<string>&messageType=mms&errorCode=<integer>&fromDateTime=<dateTime>&toDateTime=<dateTime>&pageToken=<string>&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":accountId",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by a specific message ID",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by source telephone number in E.164 format",
+                              "key": "sourceTn",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by destination telephone number in E.164 format",
+                              "key": "destinationTn",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by message delivery status",
+                              "key": "messageStatus",
+                              "value": "FAILED"
+                            },
+                            {
+                              "description": "Filter by message direction",
+                              "key": "messageDirection",
+                              "value": "OUTBOUND"
+                            },
+                            {
+                              "description": "Filter by carrier name",
+                              "key": "carrierName",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by message type",
+                              "key": "messageType",
+                              "value": "mms"
+                            },
+                            {
+                              "description": "Filter by error code",
+                              "key": "errorCode",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filter messages sent on or after this date-time",
+                              "key": "fromDateTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Filter messages sent on or before this date-time",
+                              "key": "toDateTime",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Page token for pagination",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of messages to return",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:48.000Z",
+                      "updatedAt": "2026-07-28T01:11:48.000Z",
+                      "uid": "35240-12ac1162-c303-4a9f-9f60-9d059518cb96"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:48.000Z",
+                  "updatedAt": "2026-07-28T01:11:48.000Z",
+                  "uid": "35240-d321c9ec-36f7-4db1-abb8-9b69666e47e2"
+                }
+              ],
+              "id": "1b409d77-41b5-4c81-8a91-e027d822bbdd",
+              "createdAt": "2026-07-28T01:11:48.000Z",
+              "updatedAt": "2026-07-28T01:11:48.000Z",
+              "uid": "35240-1b409d77-41b5-4c81-8a91-e027d822bbdd"
+            }
+          ],
+          "id": "0af7581b-7354-4534-9348-c2c291401d51",
+          "createdAt": "2026-07-28T01:11:48.000Z",
+          "updatedAt": "2026-07-28T01:11:48.000Z",
+          "uid": "35240-0af7581b-7354-4534-9348-c2c291401d51"
+        }
+      ],
+      "id": "3c7b48a1-5853-434f-8c52-fd44fa83d323",
+      "createdAt": "2026-07-28T01:11:48.000Z",
+      "updatedAt": "2026-07-28T01:11:48.000Z",
+      "uid": "35240-3c7b48a1-5853-434f-8c52-fd44fa83d323"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

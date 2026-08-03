@@ -1,0 +1,421 @@
+{
+  "info": {
+    "_postman_id": "d2e89235-1f97-44a6-8a60-539440f57425",
+    "name": "Bandwidth Emergency Calling Available Numbers Emergency Notification Recipients API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:38.000Z",
+    "updatedAt": "2026-07-28T01:11:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d2e89235-1f97-44a6-8a60-539440f57425"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "e911s",
+              "item": [
+                {
+                  "name": "notificationRecipients",
+                  "item": [
+                    {
+                      "name": "List emergency notification recipients",
+                      "id": "536e30e6-41c3-4c76-bc3a-ee54c5afcd79",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s/notificationRecipients",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s",
+                            "notificationRecipients"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0f1d50e5-b5b9-42e6-8567-11591df6d2fa",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a list of configured notification recipients who are alerted when 911 calls are placed from the account's endpoints."
+                      },
+                      "response": [
+                        {
+                          "id": "f0d8490d-4a76-4040-aa44-6bf196683fe8",
+                          "name": "Notification recipients retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/notificationRecipients",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "notificationRecipients"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <notificationRecipients>\n    <id>(string)</id>\n    <emailAddress>(string)</emailAddress>\n    <phoneNumber>(string)</phoneNumber>\n    <description>(string)</description>\n  </notificationRecipients>\n  <notificationRecipients>\n    <id>(string)</id>\n    <emailAddress>(string)</emailAddress>\n    <phoneNumber>(string)</phoneNumber>\n    <description>(string)</description>\n  </notificationRecipients>\n</element>",
+                          "createdAt": "2026-07-28T01:11:39.000Z",
+                          "updatedAt": "2026-07-28T01:11:39.000Z",
+                          "uid": "35240-f0d8490d-4a76-4040-aa44-6bf196683fe8"
+                        },
+                        {
+                          "id": "ba49afeb-0b8b-410c-ab1f-c6f540d32e80",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/notificationRecipients",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "notificationRecipients"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:39.000Z",
+                          "updatedAt": "2026-07-28T01:11:39.000Z",
+                          "uid": "35240-ba49afeb-0b8b-410c-ab1f-c6f540d32e80"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:39.000Z",
+                      "updatedAt": "2026-07-28T01:11:39.000Z",
+                      "uid": "35240-536e30e6-41c3-4c76-bc3a-ee54c5afcd79"
+                    },
+                    {
+                      "name": "Create a notification recipient",
+                      "id": "29c145e6-41bc-41e7-ae46-fca00d6bc9dd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <emailAddress>(string)</emailAddress>\n  <phoneNumber>(string)</phoneNumber>\n  <description>(string)</description>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s/notificationRecipients",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s",
+                            "notificationRecipients"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e0ec1b8f-5039-41c9-b6cb-88600d2be224",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            }
+                          ]
+                        },
+                        "description": "Configures a new notification recipient to receive alerts when 911 calls are placed from the account's endpoints."
+                      },
+                      "response": [
+                        {
+                          "id": "9ad5a0e9-8764-4696-9be3-d28e7ee1cd52",
+                          "name": "Notification recipient created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <emailAddress>(string)</emailAddress>\n  <phoneNumber>(string)</phoneNumber>\n  <description>(string)</description>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/notificationRecipients",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "notificationRecipients"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:39.000Z",
+                          "updatedAt": "2026-07-28T01:11:39.000Z",
+                          "uid": "35240-9ad5a0e9-8764-4696-9be3-d28e7ee1cd52"
+                        },
+                        {
+                          "id": "e9a0174d-8541-45ff-bd36-76e9dabac848",
+                          "name": "Invalid notification recipient configuration",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <emailAddress>(string)</emailAddress>\n  <phoneNumber>(string)</phoneNumber>\n  <description>(string)</description>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/notificationRecipients",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "notificationRecipients"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:39.000Z",
+                          "updatedAt": "2026-07-28T01:11:39.000Z",
+                          "uid": "35240-e9a0174d-8541-45ff-bd36-76e9dabac848"
+                        },
+                        {
+                          "id": "6eeb4c47-4ca3-4b9a-897e-33a1985702d2",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <emailAddress>(string)</emailAddress>\n  <phoneNumber>(string)</phoneNumber>\n  <description>(string)</description>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/notificationRecipients",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "notificationRecipients"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:39.000Z",
+                          "updatedAt": "2026-07-28T01:11:39.000Z",
+                          "uid": "35240-6eeb4c47-4ca3-4b9a-897e-33a1985702d2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:39.000Z",
+                      "updatedAt": "2026-07-28T01:11:39.000Z",
+                      "uid": "35240-29c145e6-41bc-41e7-ae46-fca00d6bc9dd"
+                    }
+                  ],
+                  "id": "160f5c66-e288-4f54-9dc0-01cbd79ba2d2",
+                  "createdAt": "2026-07-28T01:11:38.000Z",
+                  "updatedAt": "2026-07-28T01:11:38.000Z",
+                  "uid": "35240-160f5c66-e288-4f54-9dc0-01cbd79ba2d2"
+                }
+              ],
+              "id": "35e29ba1-cc79-44fc-b9fe-b305169cefaf",
+              "createdAt": "2026-07-28T01:11:38.000Z",
+              "updatedAt": "2026-07-28T01:11:38.000Z",
+              "uid": "35240-35e29ba1-cc79-44fc-b9fe-b305169cefaf"
+            }
+          ],
+          "id": "9c87316e-f44e-4f8f-bab2-3af5c923e3bb",
+          "createdAt": "2026-07-28T01:11:38.000Z",
+          "updatedAt": "2026-07-28T01:11:38.000Z",
+          "uid": "35240-9c87316e-f44e-4f8f-bab2-3af5c923e3bb"
+        }
+      ],
+      "id": "019a6883-5f7c-4dc7-a6e5-41dcb4b2b9e6",
+      "createdAt": "2026-07-28T01:11:38.000Z",
+      "updatedAt": "2026-07-28T01:11:38.000Z",
+      "uid": "35240-019a6883-5f7c-4dc7-a6e5-41dcb4b2b9e6"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

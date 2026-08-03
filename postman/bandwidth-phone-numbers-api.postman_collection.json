@@ -1,0 +1,471 @@
+{
+  "info": {
+    "_postman_id": "6d65b776-1799-4b66-adb7-94e2562d8098",
+    "name": "Bandwidth Emergency Calling Available Numbers Phone Numbers API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:32.000Z",
+    "updatedAt": "2026-07-28T01:11:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6d65b776-1799-4b66-adb7-94e2562d8098"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "tns",
+              "item": [
+                {
+                  "name": "{phoneNumber}",
+                  "item": [
+                    {
+                      "name": "Get phone number details",
+                      "id": "9c9348e6-dc5f-4734-a186-5c18348ad0c3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tns/:phoneNumber",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tns",
+                            ":phoneNumber"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0d49ad44-7a78-42e4-9673-022e747ea244",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "b2df1328-3456-4655-922c-42d4841c5f30",
+                              "key": "phoneNumber",
+                              "value": "<string>",
+                              "description": "(Required) The phone number to look up (digits only)"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves detailed information about a specific phone number including its assignment, features, and configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "6c7bb09f-5462-4459-8962-96b9f88fcae0",
+                          "name": "Phone number details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tns/:phoneNumber",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tns",
+                                ":phoneNumber"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "phoneNumber"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <fullNumber>(string)</fullNumber>\n  <city>(string)</city>\n  <state>(string)</state>\n  <lata>(string)</lata>\n  <rateCenter>(string)</rateCenter>\n  <status>(string)</status>\n  <siteId>(string)</siteId>\n  <sipPeerId>(string)</sipPeerId>\n</element>",
+                          "createdAt": "2026-07-28T01:11:32.000Z",
+                          "updatedAt": "2026-07-28T01:11:32.000Z",
+                          "uid": "35240-6c7bb09f-5462-4459-8962-96b9f88fcae0"
+                        },
+                        {
+                          "id": "4c647be2-9373-4900-a46b-b3f8d752a4ba",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tns/:phoneNumber",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tns",
+                                ":phoneNumber"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "phoneNumber"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:32.000Z",
+                          "updatedAt": "2026-07-28T01:11:32.000Z",
+                          "uid": "35240-4c647be2-9373-4900-a46b-b3f8d752a4ba"
+                        },
+                        {
+                          "id": "9a8f6c9c-ae01-47e9-84f6-e13d991da86d",
+                          "name": "Phone number not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tns/:phoneNumber",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tns",
+                                ":phoneNumber"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "phoneNumber"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:32.000Z",
+                          "updatedAt": "2026-07-28T01:11:32.000Z",
+                          "uid": "35240-9a8f6c9c-ae01-47e9-84f6-e13d991da86d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:32.000Z",
+                      "updatedAt": "2026-07-28T01:11:32.000Z",
+                      "uid": "35240-9c9348e6-dc5f-4734-a186-5c18348ad0c3"
+                    }
+                  ],
+                  "id": "00c7cab4-8f20-4a50-b435-7efa6e3eb2dd",
+                  "createdAt": "2026-07-28T01:11:32.000Z",
+                  "updatedAt": "2026-07-28T01:11:32.000Z",
+                  "uid": "35240-00c7cab4-8f20-4a50-b435-7efa6e3eb2dd"
+                },
+                {
+                  "name": "List phone numbers",
+                  "id": "5c69ee63-14c1-42d7-93f3-4ef84cd8bac3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/tns?page=<integer>&size=<integer>&city=<string>&state=<string>&lata=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "tns"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number for pagination",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "size",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Filter by city",
+                          "key": "city",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by state abbreviation",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by LATA code",
+                          "key": "lata",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "4224ccd1-ca49-4626-b250-941fcb0daacf",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of phone numbers assigned to the account. Supports filtering by various criteria including city, state, and LATA."
+                  },
+                  "response": [
+                    {
+                      "id": "5dc3ec37-d3ec-4e73-9f94-09702e5b71ed",
+                      "name": "Phone numbers retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tns?page=<integer>&size=<integer>&city=<string>&state=<string>&lata=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tns"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of results per page",
+                              "key": "size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filter by city",
+                              "key": "city",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by state abbreviation",
+                              "key": "state",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by LATA code",
+                              "key": "lata",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <totalCount>(integer)</totalCount>\n  <telephoneNumbers>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n    <status>(string)</status>\n    <siteId>(string)</siteId>\n    <sipPeerId>(string)</sipPeerId>\n  </telephoneNumbers>\n  <telephoneNumbers>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n    <status>(string)</status>\n    <siteId>(string)</siteId>\n    <sipPeerId>(string)</sipPeerId>\n  </telephoneNumbers>\n</element>",
+                      "createdAt": "2026-07-28T01:11:32.000Z",
+                      "updatedAt": "2026-07-28T01:11:32.000Z",
+                      "uid": "35240-5dc3ec37-d3ec-4e73-9f94-09702e5b71ed"
+                    },
+                    {
+                      "id": "d5e812cf-b8dd-426c-bb86-058daa0b868c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tns?page=<integer>&size=<integer>&city=<string>&state=<string>&lata=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tns"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of results per page",
+                              "key": "size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filter by city",
+                              "key": "city",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by state abbreviation",
+                              "key": "state",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by LATA code",
+                              "key": "lata",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:32.000Z",
+                      "updatedAt": "2026-07-28T01:11:32.000Z",
+                      "uid": "35240-d5e812cf-b8dd-426c-bb86-058daa0b868c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:32.000Z",
+                  "updatedAt": "2026-07-28T01:11:32.000Z",
+                  "uid": "35240-5c69ee63-14c1-42d7-93f3-4ef84cd8bac3"
+                }
+              ],
+              "id": "6343058c-7f2d-465b-a475-1de4a055ed40",
+              "createdAt": "2026-07-28T01:11:32.000Z",
+              "updatedAt": "2026-07-28T01:11:32.000Z",
+              "uid": "35240-6343058c-7f2d-465b-a475-1de4a055ed40"
+            }
+          ],
+          "id": "86a8e6e9-b615-4eef-8778-64c227e9a0b8",
+          "createdAt": "2026-07-28T01:11:32.000Z",
+          "updatedAt": "2026-07-28T01:11:32.000Z",
+          "uid": "35240-86a8e6e9-b615-4eef-8778-64c227e9a0b8"
+        }
+      ],
+      "id": "4375f915-30f9-4f68-b959-424244973dc0",
+      "createdAt": "2026-07-28T01:11:32.000Z",
+      "updatedAt": "2026-07-28T01:11:32.000Z",
+      "uid": "35240-4375f915-30f9-4f68-b959-424244973dc0"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

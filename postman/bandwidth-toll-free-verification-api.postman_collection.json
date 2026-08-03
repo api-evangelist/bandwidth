@@ -1,0 +1,973 @@
+{
+  "info": {
+    "_postman_id": "b35b6b5d-1cc9-47a6-9f3f-e2ccfc184f79",
+    "name": "Bandwidth Emergency Calling Available Numbers Toll-Free Verification API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:33.000Z",
+    "updatedAt": "2026-07-28T01:11:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b35b6b5d-1cc9-47a6-9f3f-e2ccfc184f79"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "tollFreeVerification",
+              "item": [
+                {
+                  "name": "{verificationId}",
+                  "item": [
+                    {
+                      "name": "Get toll-free verification details",
+                      "id": "d5f0362d-77d0-40fe-92f4-53a5153573a6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification/:verificationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tollFreeVerification",
+                            ":verificationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "42d9f0cb-4b19-40ae-9db6-e506b95a3682",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "e7fd206e-f046-4832-b49c-f78e8a6178a6",
+                              "key": "verificationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the verification request"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves detailed information about a specific toll-free number verification request including its current status, submission details, and any denial reasons if applicable."
+                      },
+                      "response": [
+                        {
+                          "id": "14c58d2c-1394-4aae-8438-9c19636fe556",
+                          "name": "Verification details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification/:verificationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tollFreeVerification",
+                                ":verificationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"verificationId\": \"<string>\",\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"submissionDate\": \"<dateTime>\",\n  \"verificationDate\": \"<dateTime>\",\n  \"denialReason\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:11:34.000Z",
+                          "updatedAt": "2026-07-28T01:11:34.000Z",
+                          "uid": "35240-14c58d2c-1394-4aae-8438-9c19636fe556"
+                        },
+                        {
+                          "id": "aba25b02-20d0-4c44-90d1-9f1e06392c16",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification/:verificationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tollFreeVerification",
+                                ":verificationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:34.000Z",
+                          "updatedAt": "2026-07-28T01:11:34.000Z",
+                          "uid": "35240-aba25b02-20d0-4c44-90d1-9f1e06392c16"
+                        },
+                        {
+                          "id": "9915e5e4-a2e5-4b10-85b2-a4f8d0627771",
+                          "name": "Verification request not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification/:verificationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tollFreeVerification",
+                                ":verificationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:34.000Z",
+                          "updatedAt": "2026-07-28T01:11:34.000Z",
+                          "uid": "35240-9915e5e4-a2e5-4b10-85b2-a4f8d0627771"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:34.000Z",
+                      "updatedAt": "2026-07-28T01:11:34.000Z",
+                      "uid": "35240-d5f0362d-77d0-40fe-92f4-53a5153573a6"
+                    },
+                    {
+                      "name": "Update a toll-free verification request",
+                      "id": "420e331c-595a-4338-a4df-5671dca74106",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"100,000\",\n  \"useCase\": \"DELIVERY_NOTIFICATIONS\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification/:verificationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tollFreeVerification",
+                            ":verificationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e6e0880f-636a-4846-b319-8eba6a6ddfcd",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            },
+                            {
+                              "id": "94920af1-83dc-444d-9fe2-ac9ff7789f1a",
+                              "key": "verificationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the verification request"
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing toll-free verification request. This can be used to provide additional information or correct details on a pending or denied verification submission."
+                      },
+                      "response": [
+                        {
+                          "id": "37d44310-bd9f-408a-8485-d342b308f152",
+                          "name": "Verification request updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"100,000\",\n  \"useCase\": \"DELIVERY_NOTIFICATIONS\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification/:verificationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tollFreeVerification",
+                                ":verificationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"verificationId\": \"<string>\",\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"submissionDate\": \"<dateTime>\",\n  \"verificationDate\": \"<dateTime>\",\n  \"denialReason\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:11:34.000Z",
+                          "updatedAt": "2026-07-28T01:11:34.000Z",
+                          "uid": "35240-37d44310-bd9f-408a-8485-d342b308f152"
+                        },
+                        {
+                          "id": "748a23ed-480f-4ec9-ab89-7ac823ae7f6b",
+                          "name": "Invalid update request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"100,000\",\n  \"useCase\": \"DELIVERY_NOTIFICATIONS\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification/:verificationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tollFreeVerification",
+                                ":verificationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:11:34.000Z",
+                          "updatedAt": "2026-07-28T01:11:34.000Z",
+                          "uid": "35240-748a23ed-480f-4ec9-ab89-7ac823ae7f6b"
+                        },
+                        {
+                          "id": "a551d487-8c21-4a48-98f9-ab2d6eef5e5c",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"100,000\",\n  \"useCase\": \"DELIVERY_NOTIFICATIONS\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification/:verificationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tollFreeVerification",
+                                ":verificationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:34.000Z",
+                          "updatedAt": "2026-07-28T01:11:34.000Z",
+                          "uid": "35240-a551d487-8c21-4a48-98f9-ab2d6eef5e5c"
+                        },
+                        {
+                          "id": "60c63304-ae18-407d-b357-38b6bdf0ae21",
+                          "name": "Verification request not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"100,000\",\n  \"useCase\": \"DELIVERY_NOTIFICATIONS\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification/:verificationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tollFreeVerification",
+                                ":verificationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:34.000Z",
+                          "updatedAt": "2026-07-28T01:11:34.000Z",
+                          "uid": "35240-60c63304-ae18-407d-b357-38b6bdf0ae21"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:34.000Z",
+                      "updatedAt": "2026-07-28T01:11:34.000Z",
+                      "uid": "35240-420e331c-595a-4338-a4df-5671dca74106"
+                    }
+                  ],
+                  "id": "6fbcd8ce-ecbf-484c-b222-2b3de3ebac67",
+                  "createdAt": "2026-07-28T01:11:34.000Z",
+                  "updatedAt": "2026-07-28T01:11:34.000Z",
+                  "uid": "35240-6fbcd8ce-ecbf-484c-b222-2b3de3ebac67"
+                },
+                {
+                  "name": "List toll-free verification requests",
+                  "id": "29b27d85-9c30-4aad-a43d-e57b43a43fe9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification?status=SUBMITTED&telephoneNumber=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "tollFreeVerification"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by verification status",
+                          "key": "status",
+                          "value": "SUBMITTED"
+                        },
+                        {
+                          "description": "Filter by toll-free telephone number",
+                          "key": "telephoneNumber",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c9a6c468-faf2-4f10-a176-9a4665638608",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of all toll-free number verification requests for the account. Returns verification status, submission details, and associated toll-free numbers."
+                  },
+                  "response": [
+                    {
+                      "id": "36aa0a46-0fd4-4541-bb6c-d5fea1199db2",
+                      "name": "Verification requests retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification?status=SUBMITTED&telephoneNumber=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tollFreeVerification"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by verification status",
+                              "key": "status",
+                              "value": "SUBMITTED"
+                            },
+                            {
+                              "description": "Filter by toll-free telephone number",
+                              "key": "telephoneNumber",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"totalCount\": \"<integer>\",\n  \"verifications\": [\n    {\n      \"verificationId\": \"<string>\",\n      \"telephoneNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"DENIED\",\n      \"businessName\": \"<string>\",\n      \"useCase\": \"<string>\",\n      \"submissionDate\": \"<dateTime>\",\n      \"verificationDate\": \"<dateTime>\",\n      \"denialReason\": \"<string>\"\n    },\n    {\n      \"verificationId\": \"<string>\",\n      \"telephoneNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"VERIFIED\",\n      \"businessName\": \"<string>\",\n      \"useCase\": \"<string>\",\n      \"submissionDate\": \"<dateTime>\",\n      \"verificationDate\": \"<dateTime>\",\n      \"denialReason\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:11:34.000Z",
+                      "updatedAt": "2026-07-28T01:11:34.000Z",
+                      "uid": "35240-36aa0a46-0fd4-4541-bb6c-d5fea1199db2"
+                    },
+                    {
+                      "id": "a06ecb65-7269-4918-9280-cce45edd49df",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification?status=SUBMITTED&telephoneNumber=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tollFreeVerification"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by verification status",
+                              "key": "status",
+                              "value": "SUBMITTED"
+                            },
+                            {
+                              "description": "Filter by toll-free telephone number",
+                              "key": "telephoneNumber",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:34.000Z",
+                      "updatedAt": "2026-07-28T01:11:34.000Z",
+                      "uid": "35240-a06ecb65-7269-4918-9280-cce45edd49df"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:34.000Z",
+                  "updatedAt": "2026-07-28T01:11:34.000Z",
+                  "uid": "35240-29b27d85-9c30-4aad-a43d-e57b43a43fe9"
+                },
+                {
+                  "name": "Submit a toll-free verification request",
+                  "id": "6f9499bc-3b31-46a9-9467-247a853b9dca",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"100,000\",\n  \"useCase\": \"DELIVERY_NOTIFICATIONS\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "tollFreeVerification"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6bc2c554-698a-448b-b98b-29bcf35d0c5d",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Submits a new toll-free number verification request to the toll-free aggregator. Once submitted, the number will have a Pending Verification status until the aggregator reviews and approves or denies the request. Status updates are delivered via webhook notifications."
+                  },
+                  "response": [
+                    {
+                      "id": "6b11e3e9-30e1-425e-842d-fa9b3c9d8440",
+                      "name": "Verification request submitted successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"100,000\",\n  \"useCase\": \"DELIVERY_NOTIFICATIONS\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tollFreeVerification"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"verificationId\": \"<string>\",\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"submissionDate\": \"<dateTime>\",\n  \"verificationDate\": \"<dateTime>\",\n  \"denialReason\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:11:34.000Z",
+                      "updatedAt": "2026-07-28T01:11:34.000Z",
+                      "uid": "35240-6b11e3e9-30e1-425e-842d-fa9b3c9d8440"
+                    },
+                    {
+                      "id": "e68c37e7-f173-4317-904f-09e8fbd5e7fd",
+                      "name": "Invalid verification request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"100,000\",\n  \"useCase\": \"DELIVERY_NOTIFICATIONS\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tollFreeVerification"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:11:34.000Z",
+                      "updatedAt": "2026-07-28T01:11:34.000Z",
+                      "uid": "35240-e68c37e7-f173-4317-904f-09e8fbd5e7fd"
+                    },
+                    {
+                      "id": "1645d468-b75b-41dd-91d7-980a8769d44e",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"100,000\",\n  \"useCase\": \"DELIVERY_NOTIFICATIONS\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/tollFreeVerification",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "tollFreeVerification"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:34.000Z",
+                      "updatedAt": "2026-07-28T01:11:34.000Z",
+                      "uid": "35240-1645d468-b75b-41dd-91d7-980a8769d44e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:34.000Z",
+                  "updatedAt": "2026-07-28T01:11:34.000Z",
+                  "uid": "35240-6f9499bc-3b31-46a9-9467-247a853b9dca"
+                }
+              ],
+              "id": "618e63fd-506d-4a20-8882-bc84d4ab94f9",
+              "createdAt": "2026-07-28T01:11:34.000Z",
+              "updatedAt": "2026-07-28T01:11:34.000Z",
+              "uid": "35240-618e63fd-506d-4a20-8882-bc84d4ab94f9"
+            }
+          ],
+          "id": "516b9496-c992-4e60-b966-4e9a24584837",
+          "createdAt": "2026-07-28T01:11:34.000Z",
+          "updatedAt": "2026-07-28T01:11:34.000Z",
+          "uid": "35240-516b9496-c992-4e60-b966-4e9a24584837"
+        }
+      ],
+      "id": "7e1e3c53-3823-4f31-9e52-5b0082257510",
+      "createdAt": "2026-07-28T01:11:34.000Z",
+      "updatedAt": "2026-07-28T01:11:34.000Z",
+      "uid": "35240-7e1e3c53-3823-4f31-9e52-5b0082257510"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

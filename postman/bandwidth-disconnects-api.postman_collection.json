@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "992599ec-c75f-4d72-960a-bdfc411b73b6",
+    "name": "Bandwidth Emergency Calling Available Numbers Disconnects API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:37.000Z",
+    "updatedAt": "2026-07-28T01:11:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-992599ec-c75f-4d72-960a-bdfc411b73b6"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "disconnects",
+              "item": [
+                {
+                  "name": "Disconnect phone numbers",
+                  "id": "9b044cc5-ebc9-4e48-82b1-ee241b118f36",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <name>(string)</name>\n  <disconnectTelephoneNumberOrderType>\n    <telephoneNumberList>(string)</telephoneNumberList>\n    <telephoneNumberList>(string)</telephoneNumberList>\n  </disconnectTelephoneNumberOrderType>\n</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/disconnects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "disconnects"
+                      ],
+                      "variable": [
+                        {
+                          "id": "13ba922e-34f7-4090-b943-222168b3b423",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the Bandwidth account"
+                        }
+                      ]
+                    },
+                    "description": "Creates a request to disconnect and release phone numbers from the account. Disconnected numbers are returned to Bandwidth's available inventory."
+                  },
+                  "response": [
+                    {
+                      "id": "10913851-b19e-43e1-976a-4a799f4d9393",
+                      "name": "Disconnect request created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <name>(string)</name>\n  <disconnectTelephoneNumberOrderType>\n    <telephoneNumberList>(string)</telephoneNumberList>\n    <telephoneNumberList>(string)</telephoneNumberList>\n  </disconnectTelephoneNumberOrderType>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/disconnects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "disconnects"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <orderId>(string)</orderId>\n  <orderStatus>(string)</orderStatus>\n</element>",
+                      "createdAt": "2026-07-28T01:11:38.000Z",
+                      "updatedAt": "2026-07-28T01:11:38.000Z",
+                      "uid": "35240-10913851-b19e-43e1-976a-4a799f4d9393"
+                    },
+                    {
+                      "id": "fefe22ec-733f-4c08-9cc1-58ff51cc8943",
+                      "name": "Invalid disconnect request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <name>(string)</name>\n  <disconnectTelephoneNumberOrderType>\n    <telephoneNumberList>(string)</telephoneNumberList>\n    <telephoneNumberList>(string)</telephoneNumberList>\n  </disconnectTelephoneNumberOrderType>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/disconnects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "disconnects"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:38.000Z",
+                      "updatedAt": "2026-07-28T01:11:38.000Z",
+                      "uid": "35240-fefe22ec-733f-4c08-9cc1-58ff51cc8943"
+                    },
+                    {
+                      "id": "907f2913-16a7-4240-9590-85a3bfc9ae4e",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <name>(string)</name>\n  <disconnectTelephoneNumberOrderType>\n    <telephoneNumberList>(string)</telephoneNumberList>\n    <telephoneNumberList>(string)</telephoneNumberList>\n  </disconnectTelephoneNumberOrderType>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/disconnects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "disconnects"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:11:38.000Z",
+                      "updatedAt": "2026-07-28T01:11:38.000Z",
+                      "uid": "35240-907f2913-16a7-4240-9590-85a3bfc9ae4e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:11:38.000Z",
+                  "updatedAt": "2026-07-28T01:11:38.000Z",
+                  "uid": "35240-9b044cc5-ebc9-4e48-82b1-ee241b118f36"
+                }
+              ],
+              "id": "60cdbff6-328d-4e30-9556-b3a0c76c0a5c",
+              "createdAt": "2026-07-28T01:11:38.000Z",
+              "updatedAt": "2026-07-28T01:11:38.000Z",
+              "uid": "35240-60cdbff6-328d-4e30-9556-b3a0c76c0a5c"
+            }
+          ],
+          "id": "891e571b-ee4c-4dc7-bf61-51c0c145ab6c",
+          "createdAt": "2026-07-28T01:11:38.000Z",
+          "updatedAt": "2026-07-28T01:11:38.000Z",
+          "uid": "35240-891e571b-ee4c-4dc7-bf61-51c0c145ab6c"
+        }
+      ],
+      "id": "0e5c7e01-7c7e-427b-bdc0-443a9574d164",
+      "createdAt": "2026-07-28T01:11:38.000Z",
+      "updatedAt": "2026-07-28T01:11:38.000Z",
+      "uid": "35240-0e5c7e01-7c7e-427b-bdc0-443a9574d164"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

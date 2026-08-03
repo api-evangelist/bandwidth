@@ -1,0 +1,1389 @@
+{
+  "info": {
+    "_postman_id": "6808dbe5-b135-4b94-9a38-21985f29176e",
+    "name": "Bandwidth Emergency Calling Available Numbers SIP Peers API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:52.000Z",
+    "updatedAt": "2026-07-28T01:11:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6808dbe5-b135-4b94-9a38-21985f29176e"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "sites",
+              "item": [
+                {
+                  "name": "{siteId}",
+                  "item": [
+                    {
+                      "name": "sippeers",
+                      "item": [
+                        {
+                          "name": "{sipPeerId}",
+                          "item": [
+                            {
+                              "name": "tns",
+                              "item": [
+                                {
+                                  "name": "List SIP peer phone numbers",
+                                  "id": "76a62afe-268e-406e-aa03-25df3a8a308c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/xml"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId/tns",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId",
+                                        "tns"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "5e36acc2-35f8-44e9-a4eb-133ec40b91ac",
+                                          "key": "accountId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the Bandwidth account"
+                                        },
+                                        {
+                                          "id": "750084e5-2b70-4aff-ae3a-9c495e95e321",
+                                          "key": "siteId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the site"
+                                        },
+                                        {
+                                          "id": "bae72dc6-3273-422c-968e-bc854a7c4d8c",
+                                          "key": "sipPeerId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier for the SIP peer"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieves a list of phone numbers assigned to a specific SIP peer within a site."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "47f2fc56-a89d-493e-ad3e-27095d24ae7f",
+                                      "name": "Phone numbers retrieved successfully",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/xml"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId/tns",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "sites",
+                                            ":siteId",
+                                            "sippeers",
+                                            ":sipPeerId",
+                                            "tns"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "siteId"
+                                            },
+                                            {
+                                              "key": "sipPeerId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "xml",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/xml"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <totalCount>(integer)</totalCount>\n  <telephoneNumbers>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n    <status>(string)</status>\n    <siteId>(string)</siteId>\n    <sipPeerId>(string)</sipPeerId>\n  </telephoneNumbers>\n  <telephoneNumbers>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n    <status>(string)</status>\n    <siteId>(string)</siteId>\n    <sipPeerId>(string)</sipPeerId>\n  </telephoneNumbers>\n</element>",
+                                      "createdAt": "2026-07-28T01:11:52.000Z",
+                                      "updatedAt": "2026-07-28T01:11:52.000Z",
+                                      "uid": "35240-47f2fc56-a89d-493e-ad3e-27095d24ae7f"
+                                    },
+                                    {
+                                      "id": "21079417-bab1-4df6-a3e8-6842bb2dc5bb",
+                                      "name": "Unauthorized",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId/tns",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "sites",
+                                            ":siteId",
+                                            "sippeers",
+                                            ":sipPeerId",
+                                            "tns"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "siteId"
+                                            },
+                                            {
+                                              "key": "sipPeerId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:11:52.000Z",
+                                      "updatedAt": "2026-07-28T01:11:52.000Z",
+                                      "uid": "35240-21079417-bab1-4df6-a3e8-6842bb2dc5bb"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-76a62afe-268e-406e-aa03-25df3a8a308c"
+                                }
+                              ],
+                              "id": "b5eef78c-11e3-498d-951d-4ef69802ea5f",
+                              "createdAt": "2026-07-28T01:11:52.000Z",
+                              "updatedAt": "2026-07-28T01:11:52.000Z",
+                              "uid": "35240-b5eef78c-11e3-498d-951d-4ef69802ea5f"
+                            },
+                            {
+                              "name": "Get SIP peer details",
+                              "id": "cd67547f-8b8e-4ebc-acf6-a93caf1286b4",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/xml"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "sites",
+                                    ":siteId",
+                                    "sippeers",
+                                    ":sipPeerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0816c166-4c0a-480c-8db9-d29ee5935856",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the Bandwidth account"
+                                    },
+                                    {
+                                      "id": "4ed107e5-ee2f-474c-9b27-b76ae4c15cfa",
+                                      "key": "siteId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the site"
+                                    },
+                                    {
+                                      "id": "46dd878f-991f-447f-8dd5-ec178a6f6b3d",
+                                      "key": "sipPeerId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the SIP peer"
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves detailed information about a specific SIP peer."
+                              },
+                              "response": [
+                                {
+                                  "id": "9c42afc3-e731-4c63-a11c-cfdb1bbcda0a",
+                                  "name": "SIP peer details retrieved successfully",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/xml"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "xml",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/xml"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-9c42afc3-e731-4c63-a11c-cfdb1bbcda0a"
+                                },
+                                {
+                                  "id": "4298a039-49bc-496c-babd-f59dedeb8236",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-4298a039-49bc-496c-babd-f59dedeb8236"
+                                },
+                                {
+                                  "id": "1a239faf-5d79-4ff6-8efb-5d39bbe1a76e",
+                                  "name": "SIP peer not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-1a239faf-5d79-4ff6-8efb-5d39bbe1a76e"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:11:52.000Z",
+                              "updatedAt": "2026-07-28T01:11:52.000Z",
+                              "uid": "35240-cd67547f-8b8e-4ebc-acf6-a93caf1286b4"
+                            },
+                            {
+                              "name": "Update a SIP peer",
+                              "id": "738ebb2c-058f-480d-ba9a-52fc5c0fa97b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "sites",
+                                    ":siteId",
+                                    "sippeers",
+                                    ":sipPeerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d8bf1b4c-127f-45cc-be5e-f7b8d6fad46b",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the Bandwidth account"
+                                    },
+                                    {
+                                      "id": "20b7b033-c0e5-4e28-be60-147ceaef1ba1",
+                                      "key": "siteId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the site"
+                                    },
+                                    {
+                                      "id": "70e8a7ca-596a-4bc8-9ced-b7fa2dfc555c",
+                                      "key": "sipPeerId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the SIP peer"
+                                    }
+                                  ]
+                                },
+                                "description": "Updates the configuration for a specific SIP peer."
+                              },
+                              "response": [
+                                {
+                                  "id": "2c9ed04f-4635-4acf-9b75-0870dedf6ec7",
+                                  "name": "SIP peer updated successfully",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/xml"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "xml",
+                                          "language": "xml"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-2c9ed04f-4635-4acf-9b75-0870dedf6ec7"
+                                },
+                                {
+                                  "id": "559ce075-352b-4b02-86eb-56ef27e06c71",
+                                  "name": "Invalid SIP peer configuration",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/xml"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "xml",
+                                          "language": "xml"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-559ce075-352b-4b02-86eb-56ef27e06c71"
+                                },
+                                {
+                                  "id": "f7a3fe82-69f0-4c05-8f64-2b2d1643b853",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/xml"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "xml",
+                                          "language": "xml"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-f7a3fe82-69f0-4c05-8f64-2b2d1643b853"
+                                },
+                                {
+                                  "id": "e748598a-53fb-4d40-87ba-b8b4acfb5a9a",
+                                  "name": "SIP peer not found",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/xml"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "xml",
+                                          "language": "xml"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-e748598a-53fb-4d40-87ba-b8b4acfb5a9a"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:11:52.000Z",
+                              "updatedAt": "2026-07-28T01:11:52.000Z",
+                              "uid": "35240-738ebb2c-058f-480d-ba9a-52fc5c0fa97b"
+                            },
+                            {
+                              "name": "Delete a SIP peer",
+                              "id": "02f26624-3bb7-49db-b14d-54bc6c1b38bf",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "sites",
+                                    ":siteId",
+                                    "sippeers",
+                                    ":sipPeerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9d03a94e-72f6-4007-a5d2-ba917b3438f7",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the Bandwidth account"
+                                    },
+                                    {
+                                      "id": "8d897696-e856-48f2-bb2b-c01d3517bc6f",
+                                      "key": "siteId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the site"
+                                    },
+                                    {
+                                      "id": "cd64b4e9-81f2-4a6c-9be5-5bbf10d5b672",
+                                      "key": "sipPeerId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier for the SIP peer"
+                                    }
+                                  ]
+                                },
+                                "description": "Deletes a specific SIP peer. The SIP peer must have no active phone numbers assigned to it."
+                              },
+                              "response": [
+                                {
+                                  "id": "7233a290-bb1b-4ed1-9962-389befcc3f09",
+                                  "name": "SIP peer deleted successfully",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-7233a290-bb1b-4ed1-9962-389befcc3f09"
+                                },
+                                {
+                                  "id": "0f2fdadb-3f99-4ed7-be1c-6097bec73b70",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-0f2fdadb-3f99-4ed7-be1c-6097bec73b70"
+                                },
+                                {
+                                  "id": "77e7924c-48a4-4fe0-95f2-1af6d85ec103",
+                                  "name": "SIP peer not found",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "sites",
+                                        ":siteId",
+                                        "sippeers",
+                                        ":sipPeerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "siteId"
+                                        },
+                                        {
+                                          "key": "sipPeerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:11:52.000Z",
+                                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                                  "uid": "35240-77e7924c-48a4-4fe0-95f2-1af6d85ec103"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:11:52.000Z",
+                              "updatedAt": "2026-07-28T01:11:52.000Z",
+                              "uid": "35240-02f26624-3bb7-49db-b14d-54bc6c1b38bf"
+                            }
+                          ],
+                          "id": "960960c4-9131-417d-b7e2-cc3dfca609ec",
+                          "createdAt": "2026-07-28T01:11:52.000Z",
+                          "updatedAt": "2026-07-28T01:11:52.000Z",
+                          "uid": "35240-960960c4-9131-417d-b7e2-cc3dfca609ec"
+                        },
+                        {
+                          "name": "List SIP peers",
+                          "id": "1f8ab66f-a1dd-4ded-af25-215858e19619",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId",
+                                "sippeers"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fa497fef-5be3-41fe-887c-bec7499e93f6",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the Bandwidth account"
+                                },
+                                {
+                                  "id": "066b7fe8-0c5b-43da-af67-5380f9e9be01",
+                                  "key": "siteId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the site"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves a list of SIP peers (locations) configured within a specific site."
+                          },
+                          "response": [
+                            {
+                              "id": "6adc3980-9100-445d-bea6-6c3c8236f58b",
+                              "name": "SIP peers retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "sites",
+                                    ":siteId",
+                                    "sippeers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "siteId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "xml",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/xml"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <sipPeers>\n    <peerId>(string)</peerId>\n    <peerName>(string)</peerName>\n    <description>(string)</description>\n    <isDefaultPeer>(boolean)</isDefaultPeer>\n  </sipPeers>\n  <sipPeers>\n    <peerId>(string)</peerId>\n    <peerName>(string)</peerName>\n    <description>(string)</description>\n    <isDefaultPeer>(boolean)</isDefaultPeer>\n  </sipPeers>\n</element>",
+                              "createdAt": "2026-07-28T01:11:52.000Z",
+                              "updatedAt": "2026-07-28T01:11:52.000Z",
+                              "uid": "35240-6adc3980-9100-445d-bea6-6c3c8236f58b"
+                            },
+                            {
+                              "id": "3b7c2d00-bf91-4ed6-abef-6af44552479e",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "sites",
+                                    ":siteId",
+                                    "sippeers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "siteId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:52.000Z",
+                              "updatedAt": "2026-07-28T01:11:52.000Z",
+                              "uid": "35240-3b7c2d00-bf91-4ed6-abef-6af44552479e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:11:52.000Z",
+                          "updatedAt": "2026-07-28T01:11:52.000Z",
+                          "uid": "35240-1f8ab66f-a1dd-4ded-af25-215858e19619"
+                        },
+                        {
+                          "name": "Create a SIP peer",
+                          "id": "d3a5a341-4b3a-4dea-a653-93dbbca629f2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "sites",
+                                ":siteId",
+                                "sippeers"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ea10878b-cf08-4bd3-9da0-b962844c9a42",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the Bandwidth account"
+                                },
+                                {
+                                  "id": "d9090dd3-7edc-413b-b855-2b91b0c0d3a5",
+                                  "key": "siteId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the site"
+                                }
+                              ]
+                            },
+                            "description": "Creates a new SIP peer (location) within a site. SIP peers define the network endpoints for call routing and number assignment."
+                          },
+                          "response": [
+                            {
+                              "id": "16c03c56-c1df-4584-956c-b04a0873ea3b",
+                              "name": "SIP peer created successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "sites",
+                                    ":siteId",
+                                    "sippeers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "siteId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "xml",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/xml"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                              "createdAt": "2026-07-28T01:11:52.000Z",
+                              "updatedAt": "2026-07-28T01:11:52.000Z",
+                              "uid": "35240-16c03c56-c1df-4584-956c-b04a0873ea3b"
+                            },
+                            {
+                              "id": "ce9eb429-507f-4951-8b1d-e5ad95ffa457",
+                              "name": "Invalid SIP peer configuration",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "sites",
+                                    ":siteId",
+                                    "sippeers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "siteId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:52.000Z",
+                              "updatedAt": "2026-07-28T01:11:52.000Z",
+                              "uid": "35240-ce9eb429-507f-4951-8b1d-e5ad95ffa457"
+                            },
+                            {
+                              "id": "f04de179-d355-42ab-a8d2-3ae7e66cf167",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <peerId>(string)</peerId>\n  <peerName>(string)</peerName>\n  <description>(string)</description>\n  <isDefaultPeer>(boolean)</isDefaultPeer>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/sites/:siteId/sippeers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "sites",
+                                    ":siteId",
+                                    "sippeers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "siteId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:52.000Z",
+                              "updatedAt": "2026-07-28T01:11:52.000Z",
+                              "uid": "35240-f04de179-d355-42ab-a8d2-3ae7e66cf167"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:11:52.000Z",
+                          "updatedAt": "2026-07-28T01:11:52.000Z",
+                          "uid": "35240-d3a5a341-4b3a-4dea-a653-93dbbca629f2"
+                        }
+                      ],
+                      "id": "754e20ad-1db8-41da-b90c-7ba9c0ff1e0e",
+                      "createdAt": "2026-07-28T01:11:52.000Z",
+                      "updatedAt": "2026-07-28T01:11:52.000Z",
+                      "uid": "35240-754e20ad-1db8-41da-b90c-7ba9c0ff1e0e"
+                    }
+                  ],
+                  "id": "faf36978-2350-4388-b79c-1d63a2addf17",
+                  "createdAt": "2026-07-28T01:11:52.000Z",
+                  "updatedAt": "2026-07-28T01:11:52.000Z",
+                  "uid": "35240-faf36978-2350-4388-b79c-1d63a2addf17"
+                }
+              ],
+              "id": "ebacf55c-9d1f-447d-9049-d2469fde87c0",
+              "createdAt": "2026-07-28T01:11:52.000Z",
+              "updatedAt": "2026-07-28T01:11:52.000Z",
+              "uid": "35240-ebacf55c-9d1f-447d-9049-d2469fde87c0"
+            }
+          ],
+          "id": "27049049-3c74-49e0-892c-9794aa41cfc6",
+          "createdAt": "2026-07-28T01:11:52.000Z",
+          "updatedAt": "2026-07-28T01:11:52.000Z",
+          "uid": "35240-27049049-3c74-49e0-892c-9794aa41cfc6"
+        }
+      ],
+      "id": "1417060a-e5bb-4da4-8d90-914f8f2f7c5f",
+      "createdAt": "2026-07-28T01:11:52.000Z",
+      "updatedAt": "2026-07-28T01:11:52.000Z",
+      "uid": "35240-1417060a-e5bb-4da4-8d90-914f8f2f7c5f"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

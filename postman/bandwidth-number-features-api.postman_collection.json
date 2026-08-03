@@ -1,0 +1,375 @@
+{
+  "info": {
+    "_postman_id": "c8152407-52b8-4a5a-b1dc-3384b5d10f9f",
+    "name": "Bandwidth Emergency Calling Available Numbers Number Features API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:48.000Z",
+    "updatedAt": "2026-07-28T01:11:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c8152407-52b8-4a5a-b1dc-3384b5d10f9f"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "tns",
+              "item": [
+                {
+                  "name": "{phoneNumber}",
+                  "item": [
+                    {
+                      "name": "tnfeatureorder",
+                      "item": [
+                        {
+                          "name": "Update phone number features",
+                          "id": "0a0b3807-e9a4-4fc5-84df-cf7ad76ee82e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <callingNameDisplay>\n    <enabled>(boolean)</enabled>\n    <callingName>(string)</callingName>\n  </callingNameDisplay>\n  <directoryListing>\n    <listed>(boolean)</listed>\n    <listingType>(string)</listingType>\n    <listingName>(string)</listingName>\n    <listAddress>(boolean)</listAddress>\n  </directoryListing>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/tns/:phoneNumber/tnfeatureorder",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "tns",
+                                ":phoneNumber",
+                                "tnfeatureorder"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5a1f59cb-d37c-46f8-a23e-8eb866e455fa",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the Bandwidth account"
+                                },
+                                {
+                                  "id": "2d34e0d2-ac92-42aa-8542-b15ec8dfcabf",
+                                  "key": "phoneNumber",
+                                  "value": "<string>",
+                                  "description": "(Required) The phone number to update features for"
+                                }
+                              ]
+                            },
+                            "description": "Creates a feature order to configure features such as CNAM, directory listings, and line features for a specific phone number."
+                          },
+                          "response": [
+                            {
+                              "id": "d07b619e-df2d-440f-b6a0-e7c0d30e185b",
+                              "name": "Feature order created successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <callingNameDisplay>\n    <enabled>(boolean)</enabled>\n    <callingName>(string)</callingName>\n  </callingNameDisplay>\n  <directoryListing>\n    <listed>(boolean)</listed>\n    <listingType>(string)</listingType>\n    <listingName>(string)</listingName>\n    <listAddress>(boolean)</listAddress>\n  </directoryListing>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/tns/:phoneNumber/tnfeatureorder",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "tns",
+                                    ":phoneNumber",
+                                    "tnfeatureorder"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "phoneNumber"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:48.000Z",
+                              "updatedAt": "2026-07-28T01:11:48.000Z",
+                              "uid": "35240-d07b619e-df2d-440f-b6a0-e7c0d30e185b"
+                            },
+                            {
+                              "id": "de42cee4-5c59-4e87-9aa8-28de594a36c1",
+                              "name": "Invalid feature order request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <callingNameDisplay>\n    <enabled>(boolean)</enabled>\n    <callingName>(string)</callingName>\n  </callingNameDisplay>\n  <directoryListing>\n    <listed>(boolean)</listed>\n    <listingType>(string)</listingType>\n    <listingName>(string)</listingName>\n    <listAddress>(boolean)</listAddress>\n  </directoryListing>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/tns/:phoneNumber/tnfeatureorder",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "tns",
+                                    ":phoneNumber",
+                                    "tnfeatureorder"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "phoneNumber"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:48.000Z",
+                              "updatedAt": "2026-07-28T01:11:48.000Z",
+                              "uid": "35240-de42cee4-5c59-4e87-9aa8-28de594a36c1"
+                            },
+                            {
+                              "id": "0d92b798-db68-491c-bba2-be1bef9cca43",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <callingNameDisplay>\n    <enabled>(boolean)</enabled>\n    <callingName>(string)</callingName>\n  </callingNameDisplay>\n  <directoryListing>\n    <listed>(boolean)</listed>\n    <listingType>(string)</listingType>\n    <listingName>(string)</listingName>\n    <listAddress>(boolean)</listAddress>\n  </directoryListing>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/tns/:phoneNumber/tnfeatureorder",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "tns",
+                                    ":phoneNumber",
+                                    "tnfeatureorder"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "phoneNumber"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:48.000Z",
+                              "updatedAt": "2026-07-28T01:11:48.000Z",
+                              "uid": "35240-0d92b798-db68-491c-bba2-be1bef9cca43"
+                            },
+                            {
+                              "id": "d62109ed-b00c-4316-be7d-a7530f5cc857",
+                              "name": "Phone number not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <callingNameDisplay>\n    <enabled>(boolean)</enabled>\n    <callingName>(string)</callingName>\n  </callingNameDisplay>\n  <directoryListing>\n    <listed>(boolean)</listed>\n    <listingType>(string)</listingType>\n    <listingName>(string)</listingName>\n    <listAddress>(boolean)</listAddress>\n  </directoryListing>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/tns/:phoneNumber/tnfeatureorder",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "tns",
+                                    ":phoneNumber",
+                                    "tnfeatureorder"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "phoneNumber"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:48.000Z",
+                              "updatedAt": "2026-07-28T01:11:48.000Z",
+                              "uid": "35240-d62109ed-b00c-4316-be7d-a7530f5cc857"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:11:48.000Z",
+                          "updatedAt": "2026-07-28T01:11:48.000Z",
+                          "uid": "35240-0a0b3807-e9a4-4fc5-84df-cf7ad76ee82e"
+                        }
+                      ],
+                      "id": "88dc4634-9726-41f8-a762-5cd3ce7c8a24",
+                      "createdAt": "2026-07-28T01:11:48.000Z",
+                      "updatedAt": "2026-07-28T01:11:48.000Z",
+                      "uid": "35240-88dc4634-9726-41f8-a762-5cd3ce7c8a24"
+                    }
+                  ],
+                  "id": "167a081a-fe15-4233-9331-ae11c26ebcfd",
+                  "createdAt": "2026-07-28T01:11:48.000Z",
+                  "updatedAt": "2026-07-28T01:11:48.000Z",
+                  "uid": "35240-167a081a-fe15-4233-9331-ae11c26ebcfd"
+                }
+              ],
+              "id": "0c13157e-4860-4c20-869e-bb5828462a02",
+              "createdAt": "2026-07-28T01:11:48.000Z",
+              "updatedAt": "2026-07-28T01:11:48.000Z",
+              "uid": "35240-0c13157e-4860-4c20-869e-bb5828462a02"
+            }
+          ],
+          "id": "1d152fd1-adac-448a-98cd-27fc49ace713",
+          "createdAt": "2026-07-28T01:11:48.000Z",
+          "updatedAt": "2026-07-28T01:11:48.000Z",
+          "uid": "35240-1d152fd1-adac-448a-98cd-27fc49ace713"
+        }
+      ],
+      "id": "71d6475d-68a6-4a4b-891d-9c2e07229bf2",
+      "createdAt": "2026-07-28T01:11:48.000Z",
+      "updatedAt": "2026-07-28T01:11:48.000Z",
+      "uid": "35240-71d6475d-68a6-4a4b-891d-9c2e07229bf2"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}

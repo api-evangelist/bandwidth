@@ -1,0 +1,1110 @@
+{
+  "info": {
+    "_postman_id": "67d1d57d-61f5-4108-bc88-cadc7fe0b6f0",
+    "name": "Bandwidth Emergency Calling Available Numbers Locations API",
+    "description": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:11:45.000Z",
+    "updatedAt": "2026-07-28T01:11:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-67d1d57d-61f5-4108-bc88-cadc7fe0b6f0"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "e911s",
+              "item": [
+                {
+                  "name": "locations",
+                  "item": [
+                    {
+                      "name": "{locationId}",
+                      "item": [
+                        {
+                          "name": "Get E911 location details",
+                          "id": "63903a16-cac3-4e9d-8c27-9b88077834c4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "locations",
+                                ":locationId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "22859b50-1040-4fd0-8138-35266aea6a1a",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the Bandwidth account"
+                                },
+                                {
+                                  "id": "0b18a85e-517f-47a6-8aa9-35093bd530ff",
+                                  "key": "locationId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the E911 location"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves detailed information about a specific validated location."
+                          },
+                          "response": [
+                            {
+                              "id": "db185042-62d3-4ce4-99e8-33d7e566c8ec",
+                              "name": "Location details retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "xml",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/xml"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-db185042-62d3-4ce4-99e8-33d7e566c8ec"
+                            },
+                            {
+                              "id": "19703fd0-a47c-4be6-b80f-739499979595",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-19703fd0-a47c-4be6-b80f-739499979595"
+                            },
+                            {
+                              "id": "58d6168e-c96a-4663-8cf4-a9aa50e40fee",
+                              "name": "Location not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-58d6168e-c96a-4663-8cf4-a9aa50e40fee"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:11:46.000Z",
+                          "updatedAt": "2026-07-28T01:11:46.000Z",
+                          "uid": "35240-63903a16-cac3-4e9d-8c27-9b88077834c4"
+                        },
+                        {
+                          "name": "Update an E911 location",
+                          "id": "76dd0dd0-65d5-42f0-9094-f12cc4f29d9b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "locations",
+                                ":locationId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "db66f5a4-7db9-4826-847f-cb75b5d33ca5",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the Bandwidth account"
+                                },
+                                {
+                                  "id": "e01a0298-451d-4e0a-a5c6-988a7c234740",
+                                  "key": "locationId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the E911 location"
+                                }
+                              ]
+                            },
+                            "description": "Updates a specific location. The new address will be re-validated against the MSAG."
+                          },
+                          "response": [
+                            {
+                              "id": "824f6dd9-42b3-4327-b386-e11fe71637b0",
+                              "name": "Location updated successfully",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-824f6dd9-42b3-4327-b386-e11fe71637b0"
+                            },
+                            {
+                              "id": "97a83de8-a1b4-41ef-8c07-e28eafa37b5c",
+                              "name": "Invalid location or address validation failed",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-97a83de8-a1b4-41ef-8c07-e28eafa37b5c"
+                            },
+                            {
+                              "id": "25f7b6e7-6388-439c-af70-d365044d0ca9",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-25f7b6e7-6388-439c-af70-d365044d0ca9"
+                            },
+                            {
+                              "id": "7ca5e39e-28a4-4710-aac9-670373243173",
+                              "name": "Location not found",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/xml"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "xml",
+                                      "language": "xml"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-7ca5e39e-28a4-4710-aac9-670373243173"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:11:46.000Z",
+                          "updatedAt": "2026-07-28T01:11:46.000Z",
+                          "uid": "35240-76dd0dd0-65d5-42f0-9094-f12cc4f29d9b"
+                        },
+                        {
+                          "name": "Delete an E911 location",
+                          "id": "4489c640-c14a-451c-8f74-a00984792c06",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "locations",
+                                ":locationId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e1714249-8510-4a0b-a885-1d75fb9e8151",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the Bandwidth account"
+                                },
+                                {
+                                  "id": "4419c64d-7467-4560-ac13-33216ad71349",
+                                  "key": "locationId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier for the E911 location"
+                                }
+                              ]
+                            },
+                            "description": "Removes a location from the account. The location must not be currently associated with any active endpoints."
+                          },
+                          "response": [
+                            {
+                              "id": "af574c6a-b27e-4957-af53-c04a15f026d9",
+                              "name": "Location deleted successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-af574c6a-b27e-4957-af53-c04a15f026d9"
+                            },
+                            {
+                              "id": "aea81c59-0321-4d07-96e7-a2e9415d899b",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-aea81c59-0321-4d07-96e7-a2e9415d899b"
+                            },
+                            {
+                              "id": "5df86c1c-1acf-458b-b5b5-26824275245c",
+                              "name": "Location not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations/:locationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "e911s",
+                                    "locations",
+                                    ":locationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "locationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:11:46.000Z",
+                              "updatedAt": "2026-07-28T01:11:46.000Z",
+                              "uid": "35240-5df86c1c-1acf-458b-b5b5-26824275245c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:11:46.000Z",
+                          "updatedAt": "2026-07-28T01:11:46.000Z",
+                          "uid": "35240-4489c640-c14a-451c-8f74-a00984792c06"
+                        }
+                      ],
+                      "id": "3429f7c5-ac42-4665-9c3b-831e11793481",
+                      "createdAt": "2026-07-28T01:11:46.000Z",
+                      "updatedAt": "2026-07-28T01:11:46.000Z",
+                      "uid": "35240-3429f7c5-ac42-4665-9c3b-831e11793481"
+                    },
+                    {
+                      "name": "List E911 locations",
+                      "id": "0bc40cc8-a0f5-47bd-accd-4a409640fbb0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s",
+                            "locations"
+                          ],
+                          "variable": [
+                            {
+                              "id": "32a0f0bb-ef9d-47b8-9680-bd5e97bf38eb",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a list of all validated locations provisioned for emergency calling within the account."
+                      },
+                      "response": [
+                        {
+                          "id": "5bfb3571-0caa-4bcf-9d15-f4ae2cadaaf5",
+                          "name": "Locations retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "locations"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <totalCount>(integer)</totalCount>\n  <locations>\n    <locationId>(string)</locationId>\n    <description>(string)</description>\n    <address>\n      <houseNumber>(string)</houseNumber>\n      <houseSuffix>(string)</houseSuffix>\n      <prefixDirectional>(string)</prefixDirectional>\n      <streetName>(string)</streetName>\n      <streetSuffix>(string)</streetSuffix>\n      <postDirectional>(string)</postDirectional>\n      <addressLine2>(string)</addressLine2>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <plusFour>(string)</plusFour>\n      <country>(string)</country>\n    </address>\n    <status>(string)</status>\n    <latitude>(number)</latitude>\n    <longitude>(number)</longitude>\n  </locations>\n  <locations>\n    <locationId>(string)</locationId>\n    <description>(string)</description>\n    <address>\n      <houseNumber>(string)</houseNumber>\n      <houseSuffix>(string)</houseSuffix>\n      <prefixDirectional>(string)</prefixDirectional>\n      <streetName>(string)</streetName>\n      <streetSuffix>(string)</streetSuffix>\n      <postDirectional>(string)</postDirectional>\n      <addressLine2>(string)</addressLine2>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <plusFour>(string)</plusFour>\n      <country>(string)</country>\n    </address>\n    <status>(string)</status>\n    <latitude>(number)</latitude>\n    <longitude>(number)</longitude>\n  </locations>\n</element>",
+                          "createdAt": "2026-07-28T01:11:46.000Z",
+                          "updatedAt": "2026-07-28T01:11:46.000Z",
+                          "uid": "35240-5bfb3571-0caa-4bcf-9d15-f4ae2cadaaf5"
+                        },
+                        {
+                          "id": "93f79ad0-f2b0-4a7f-8175-ab1579b912ed",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "locations"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:46.000Z",
+                          "updatedAt": "2026-07-28T01:11:46.000Z",
+                          "uid": "35240-93f79ad0-f2b0-4a7f-8175-ab1579b912ed"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:46.000Z",
+                      "updatedAt": "2026-07-28T01:11:46.000Z",
+                      "uid": "35240-0bc40cc8-a0f5-47bd-accd-4a409640fbb0"
+                    },
+                    {
+                      "name": "Create an E911 location",
+                      "id": "6af1fc29-cc81-4764-b06b-7192ddf09ab4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "e911s",
+                            "locations"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0e6d671a-46c8-402a-a1b0-6382bb6473dd",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the Bandwidth account"
+                            }
+                          ]
+                        },
+                        "description": "Provisions a new location for emergency calling. The address is validated against the Master Street Address Guide (MSAG) to ensure it can be properly routed to the correct PSAP. Bandwidth can generate a location ID automatically, or you can provide your own custom location ID."
+                      },
+                      "response": [
+                        {
+                          "id": "1c33e45f-d745-4bec-b4de-498496d51e0e",
+                          "name": "Location created and validated successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "locations"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                          "createdAt": "2026-07-28T01:11:46.000Z",
+                          "updatedAt": "2026-07-28T01:11:46.000Z",
+                          "uid": "35240-1c33e45f-d745-4bec-b4de-498496d51e0e"
+                        },
+                        {
+                          "id": "d1bef168-4ea1-456b-b271-f64c9b1a1e5c",
+                          "name": "Invalid location or address validation failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "locations"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:46.000Z",
+                          "updatedAt": "2026-07-28T01:11:46.000Z",
+                          "uid": "35240-d1bef168-4ea1-456b-b271-f64c9b1a1e5c"
+                        },
+                        {
+                          "id": "b8772a38-db37-4daf-a9d2-19935cd60a6b",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "xml",
+                                  "language": "xml"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/e911s/locations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "e911s",
+                                "locations"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:11:46.000Z",
+                          "updatedAt": "2026-07-28T01:11:46.000Z",
+                          "uid": "35240-b8772a38-db37-4daf-a9d2-19935cd60a6b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:11:46.000Z",
+                      "updatedAt": "2026-07-28T01:11:46.000Z",
+                      "uid": "35240-6af1fc29-cc81-4764-b06b-7192ddf09ab4"
+                    }
+                  ],
+                  "id": "8d6d7155-5539-433a-8392-8c3ed8b5d1f8",
+                  "createdAt": "2026-07-28T01:11:46.000Z",
+                  "updatedAt": "2026-07-28T01:11:46.000Z",
+                  "uid": "35240-8d6d7155-5539-433a-8392-8c3ed8b5d1f8"
+                }
+              ],
+              "id": "41b23257-821d-4416-81a6-f5aec76bfaa6",
+              "createdAt": "2026-07-28T01:11:46.000Z",
+              "updatedAt": "2026-07-28T01:11:46.000Z",
+              "uid": "35240-41b23257-821d-4416-81a6-f5aec76bfaa6"
+            }
+          ],
+          "id": "b4742c33-1847-40d8-a9b9-d4ed8c2aead4",
+          "createdAt": "2026-07-28T01:11:46.000Z",
+          "updatedAt": "2026-07-28T01:11:46.000Z",
+          "uid": "35240-b4742c33-1847-40d8-a9b9-d4ed8c2aead4"
+        }
+      ],
+      "id": "43ecdced-50e6-401c-bd00-b9b708c6d818",
+      "createdAt": "2026-07-28T01:11:46.000Z",
+      "updatedAt": "2026-07-28T01:11:46.000Z",
+      "uid": "35240-43ecdced-50e6-401c-bd00-b9b708c6d818"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dashboard.bandwidth.com/api"
+    }
+  ]
+}
