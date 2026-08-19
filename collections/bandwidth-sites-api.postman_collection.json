@@ -1,45 +1,32 @@
 {
   "item": [
     {
-      "id": "62783a72-6ec6-48bf-b2b2-fb93192b0b8b",
-      "name": "Toll-Free Verification",
+      "id": "ef37d7e5-e90e-4b0e-86e5-f2a7bd09bc24",
+      "name": "Sites",
       "description": {
-        "content": "Submit and manage toll-free number verification requests for A2P messaging compliance. Track verification status and manage submissions throughout the verification lifecycle.",
+        "content": "Manage sites (sub-accounts) within a Bandwidth account. Sites represent logical groupings for organizing telephony resources.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e8b698f5-7d90-421e-8ca9-e190bf99e2f7",
-          "name": "List toll-free verification requests",
+          "id": "2db1c6a4-2a4e-443c-8151-eac560e9d4b3",
+          "name": "List sites",
           "request": {
-            "name": "List toll-free verification requests",
+            "name": "List sites",
             "description": {
-              "content": "Retrieves a list of all toll-free number verification requests for the account. Returns verification status, submission details, and associated toll-free numbers.",
+              "content": "Retrieves a list of all sites (sub-accounts) configured within the Bandwidth account.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification"
+                "sites"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>",
-                  "description": "Filter by verification status"
-                },
-                {
-                  "disabled": false,
-                  "key": "telephoneNumber",
-                  "value": "<string>",
-                  "description": "Filter by toll-free telephone number"
-                }
-              ],
+              "query": [],
               "variable": [
                 {
                   "disabled": false,
@@ -53,7 +40,7 @@
             "header": [
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "GET",
@@ -61,28 +48,19 @@
           },
           "response": [
             {
-              "id": "82347217-4dc2-482e-8b6a-a23cb62be296",
-              "name": "Verification requests retrieved successfully",
+              "id": "aabbe275-e1f6-4678-86aa-2fe6015580ba",
+              "name": "Sites retrieved successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "sites"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
-                      "value": "<string>"
-                    }
-                  ],
+                  "query": [],
                   "variable": [
                     {
                       "disabled": false,
@@ -104,7 +82,7 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/xml"
                   }
                 ],
                 "method": "GET",
@@ -115,36 +93,27 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/xml"
                 }
               ],
-              "body": "{\n  \"totalCount\": 589,\n  \"verifications\": [\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"VERIFIED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1995-01-16T05:39:06.073Z\",\n      \"verificationDate\": \"1951-01-29T06:32:17.706Z\",\n      \"denialReason\": \"string\"\n    },\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"RESTRICTED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1988-04-22T07:28:56.680Z\",\n      \"verificationDate\": \"1988-06-13T23:24:05.798Z\",\n      \"denialReason\": \"string\"\n    }\n  ]\n}",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <sites>\n    <id>(string)</id>\n    <name>(string)</name>\n    <description>(string)</description>\n    <address>\n      <houseNumber>(string)</houseNumber>\n      <streetName>(string)</streetName>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <country>(string)</country>\n    </address>\n  </sites>\n  <sites>\n    <id>(string)</id>\n    <name>(string)</name>\n    <description>(string)</description>\n    <address>\n      <houseNumber>(string)</houseNumber>\n      <streetName>(string)</streetName>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <country>(string)</country>\n    </address>\n  </sites>\n</element>",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "xml"
             },
             {
-              "id": "fd56c04d-ece8-4776-9293-561dd0ec2ed6",
+              "id": "58b57379-3fde-4b88-8d32-02c0b6ba3f1b",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "sites"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
-                      "value": "<string>"
-                    }
-                  ],
+                  "query": [],
                   "variable": [
                     {
                       "disabled": false,
@@ -187,19 +156,19 @@
           }
         },
         {
-          "id": "c4cfa22e-f3ca-4e14-9912-0abb36ec914b",
-          "name": "Submit a toll-free verification request",
+          "id": "7f6ef144-bfc7-4b7a-9b38-a433d68c72b4",
+          "name": "Create a site",
           "request": {
-            "name": "Submit a toll-free verification request",
+            "name": "Create a site",
             "description": {
-              "content": "Submits a new toll-free number verification request to the toll-free aggregator. Once submitted, the number will have a Pending Verification status until the aggregator reviews and approves or denies the request. Status updates are delivered via webhook notifications.",
+              "content": "Creates a new site (sub-account) within the Bandwidth account. Sites provide logical groupings for organizing telephony resources.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification"
+                "sites"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -218,35 +187,35 @@
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/json"
+                "value": "application/xml"
               },
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "POST",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
               "options": {
                 "raw": {
-                  "language": "json"
+                  "language": "xml"
                 }
               }
             }
           },
           "response": [
             {
-              "id": "b348eb00-ccc3-4789-9c2c-311e8eaa0421",
-              "name": "Verification request submitted successfully",
+              "id": "be5007e2-f0aa-49a1-a667-dd6eb8f56938",
+              "name": "Site created successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "sites"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -273,16 +242,16 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/xml"
                   }
                 ],
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -292,22 +261,22 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/xml"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "xml"
             },
             {
-              "id": "653caf8f-bfc3-4da3-983d-7d8328029b20",
-              "name": "Invalid verification request",
+              "id": "3264abc2-cb2a-4cfb-9403-658e41cb0c93",
+              "name": "Invalid site configuration",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "sites"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -331,19 +300,15 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -353,22 +318,22 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "61cbb805-3a2b-4a92-8cd8-bb851248df92",
+              "id": "1459d09a-e57d-4a7a-bd4d-e044f4cb7ed4",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "sites"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -397,10 +362,10 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -424,20 +389,20 @@
           }
         },
         {
-          "id": "20c4d00a-da3a-4614-81e4-e80327ebbc7b",
-          "name": "Get toll-free verification details",
+          "id": "20eab338-a4f2-4fda-b942-aad1fcb80d90",
+          "name": "Get site details",
           "request": {
-            "name": "Get toll-free verification details",
+            "name": "Get site details",
             "description": {
-              "content": "Retrieves detailed information about a specific toll-free number verification request including its current status, submission details, and any denial reasons if applicable.",
+              "content": "Retrieves detailed information about a specific site.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "sites",
+                ":siteId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -455,15 +420,15 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "siteId",
+                  "description": "(Required) The unique identifier for the site"
                 }
               ]
             },
             "header": [
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "GET",
@@ -471,15 +436,15 @@
           },
           "response": [
             {
-              "id": "7d24f42a-cc30-48d9-b1e0-f777bc4d6b45",
-              "name": "Verification details retrieved successfully",
+              "id": "7107ce11-f28d-4178-944c-dcc841d389c2",
+              "name": "Site details retrieved successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "sites",
+                    ":siteId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -497,8 +462,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
                     }
                   ]
                 },
@@ -513,7 +478,7 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/xml"
                   }
                 ],
                 "method": "GET",
@@ -524,23 +489,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/xml"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "xml"
             },
             {
-              "id": "6a2665ce-4c97-4ea3-a55d-d55e781ac375",
+              "id": "b316fec8-6758-48c7-92a8-ddeb66bceedd",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "sites",
+                    ":siteId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -558,8 +523,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
                     }
                   ]
                 },
@@ -589,15 +554,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "32113eac-8cba-441c-942e-2c2a1907565d",
-              "name": "Verification request not found",
+              "id": "6e221a4a-e954-43f1-baa8-86d4782ce828",
+              "name": "Site not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "sites",
+                    ":siteId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -615,8 +580,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
                     }
                   ]
                 },
@@ -652,20 +617,20 @@
           }
         },
         {
-          "id": "57d05165-950f-4285-81ef-9cb6f63adbeb",
-          "name": "Update a toll-free verification request",
+          "id": "4d9bdd49-8738-44e5-b472-00d0a5cb3c0b",
+          "name": "Update a site",
           "request": {
-            "name": "Update a toll-free verification request",
+            "name": "Update a site",
             "description": {
-              "content": "Updates an existing toll-free verification request. This can be used to provide additional information or correct details on a pending or denied verification submission.",
+              "content": "Updates the configuration for a specific site.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "sites",
+                ":siteId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -683,44 +648,40 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "siteId",
+                  "description": "(Required) The unique identifier for the site"
                 }
               ]
             },
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "PUT",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
               "options": {
                 "raw": {
-                  "language": "json"
+                  "language": "xml"
                 }
               }
             }
           },
           "response": [
             {
-              "id": "ca6bede4-0548-47a0-9c8c-0f357d9f7474",
-              "name": "Verification request updated successfully",
+              "id": "517dc58b-b577-4101-8124-dd62c69f83b1",
+              "name": "Site updated successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "sites",
+                    ":siteId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -738,8 +699,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
                     }
                   ]
                 },
@@ -751,19 +712,15 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -773,23 +730,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "1872245d-3f8b-4f8e-b823-c7b708a52e40",
-              "name": "Invalid update request",
+              "id": "5e975bf9-2764-492f-b372-65b3b52dc937",
+              "name": "Invalid site configuration",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "sites",
+                    ":siteId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -807,8 +764,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
                     }
                   ]
                 },
@@ -820,19 +777,15 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -842,23 +795,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "69538931-2d4b-4d0a-ab65-5eb255bc9182",
+              "id": "310559bf-0570-4879-a27f-aa83fb2ebab3",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "sites",
+                    ":siteId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -876,8 +829,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
                     }
                   ]
                 },
@@ -894,10 +847,10 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -915,15 +868,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "086e948d-efcc-4803-bcc4-f743caf51345",
-              "name": "Verification request not found",
+              "id": "fb872c09-150a-4116-b0dd-a5a6447b0a6f",
+              "name": "Site not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "sites",
+                    ":siteId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -941,8 +894,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
                     }
                   ]
                 },
@@ -959,13 +912,231 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <name>(string)</name>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <streetName>(string)</streetName>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <country>(string)</country>\n  </address>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de3f1891-a985-416b-a72f-3f7632c8b8e3",
+          "name": "Delete a site",
+          "request": {
+            "name": "Delete a site",
+            "description": {
+              "content": "Deletes a specific site. The site must have no active SIP peers or phone numbers assigned to it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "sites",
+                ":siteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteId",
+                  "description": "(Required) The unique identifier for the site"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90d8b3ed-f36a-4f77-9f63-526346aefa12",
+              "name": "Site deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae33185f-8cc1-4d91-9ef8-23286e7cf227",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da7e0c40-0355-4040-8964-3e34b2c96e2d",
+              "name": "Site not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) The unique identifier for the site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
               },
               "status": "Not Found",
               "code": 404,
@@ -1011,8 +1182,8 @@
     ]
   },
   "info": {
-    "_postman_id": "7326d2c7-ee4b-48d2-b9d0-6ce76a4f8777",
-    "name": "Bandwidth Emergency Calling Available Numbers Toll-Free Verification API",
+    "_postman_id": "26b0a31b-fd51-46ad-b8e0-c744f0c042a1",
+    "name": "Bandwidth Emergency Calling Available Numbers Sites API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",

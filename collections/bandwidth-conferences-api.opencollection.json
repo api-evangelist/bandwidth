@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers Conferences API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conferences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List conferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/conferences",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter conferences by name"
+              },
+              {
+                "name": "minCreatedTime",
+                "value": "",
+                "type": "query",
+                "description": "Minimum creation time for filtering"
+              },
+              {
+                "name": "maxCreatedTime",
+                "value": "",
+                "type": "query",
+                "description": "Maximum creation time for filtering"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of conferences associated with the account, including active and completed conferences."
+        },
+        {
+          "info": {
+            "name": "Get conference information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/conferences/:conferenceId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "conferenceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the conference"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific conference including its current state and list of members."
+        },
+        {
+          "info": {
+            "name": "Update a conference",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/conferences/:conferenceId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "conferenceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the conference"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies an active conference. Can be used to mute all members, set the conference status to completed (ending the conference), or redirect the conference to a new callback URL."
+        },
+        {
+          "info": {
+            "name": "Update a conference member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/conferences/:conferenceId/members/:memberId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "conferenceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the conference"
+              },
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conference member"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies a specific member of an active conference. Supports muting, unmuting, holding, and removing individual members."
+        },
+        {
+          "info": {
+            "name": "List conference recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/conferences/:conferenceId/recordings",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "conferenceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the conference"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all recordings associated with a specific conference."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

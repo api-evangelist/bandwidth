@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers Sites API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all sites (sub-accounts) configured within the Bandwidth account."
+        },
+        {
+          "info": {
+            "name": "Create a site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Creates a new site (sub-account) within the Bandwidth account. Sites provide logical groupings for organizing telephony resources."
+        },
+        {
+          "info": {
+            "name": "Get site details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific site."
+        },
+        {
+          "info": {
+            "name": "Update a site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Updates the configuration for a specific site."
+        },
+        {
+          "info": {
+            "name": "Delete a site",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Deletes a specific site. The site must have no active SIP peers or phone numbers assigned to it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

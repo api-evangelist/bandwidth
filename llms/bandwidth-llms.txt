@@ -1,0 +1,605 @@
+# Bandwidth API Docs
+
+> Bandwidth API Reference, documentation, SDKs, guides, examples and more. Get everything you need to build with Bandwidth.
+
+- [Bandwidth Developer Documentation](/index.md)
+
+## apis
+
+Bandwidth API Reference.
+
+- [API Reference](/apis.md): Bandwidth API Reference.
+
+### account-management-apis
+
+Bandwidth API Reference.
+
+- [Account Management APIs](/apis/account-management-apis.md): Bandwidth API Reference.
+- [Accounts API Reference](/apis/account-management-apis/accounts.md): Everything you'll need to start managing your account.
+- [Applications API Reference](/apis/account-management-apis/applications.md): Managing applications within the Bandwidth platform. Everything you'll need to start working with our Applications API.
+- [Audit Log API Reference](/apis/account-management-apis/audit-log.md): Query audit log events for your Bandwidth account.
+- [API Authentication](/apis/account-management-apis/authentication.md): Everything you'll need to authenticate with your API Credentials.
+- [Billing Model API Reference](/apis/account-management-apis/billing-model.md): Everything you'll need to start managing your capacity billing.
+- [API Credential Management](/apis/account-management-apis/credential-management.md): Everything you'll need to provision API Credentials.
+- [Subscriptions API Reference](/apis/account-management-apis/subscriptions.md): Subscribing to events in the Bandwidth system. Everything you'll need to start working with our Subscriptions API.
+- [User Management](/apis/account-management-apis/user-management.md): Everything you'll need to manage users.
+
+### brtc-apis
+
+Bandwidth API Reference.
+
+- [BRTC APIs](/apis/brtc-apis.md): Bandwidth API Reference.
+- [Bandwidth RTC API Reference](/apis/brtc-apis/brtc.md): SIP, WebRTC, and Websocket Endpoint provisioning. Everything you'll need to start working with our BRTC API.
+
+### emergency-apis
+
+Bandwidth API Reference.
+
+- [Emergency APIs](/apis/emergency-apis.md): Bandwidth API Reference.
+- [DASH API Reference](/apis/emergency-apis/dash.md): Authentication, URIs, and Location. Everything you'll need to start working with our DASH API.
+- [DASH Notifications API Reference](/apis/emergency-apis/dash-notifications.md): Authentication and Notifications. Everything you'll need to start working with our DASH Notifications API.
+- [Emergency Provisioning API Reference](/apis/emergency-apis/emergency-provisioning.md): Emergency Provisioning API Reference
+- [PSAP Outage Alerts API Reference](/apis/emergency-apis/psap-alerts.md): Emergency PSAP Outage Alerts API Reference
+- [Wireless Provisioning API Reference](/apis/emergency-apis/wireless-provisioning.md): Emergency Wireless Provisioning API Reference
+
+### insights-apis
+
+Bandwidth API Reference.
+
+- [Insights APIs](/apis/insights-apis.md): Bandwidth API Reference.
+- [Insights APIs](/apis/insights-apis/insights.md): Insights API Reference.
+
+### legacy-apis
+
+Bandwidth API Reference.
+
+- [Legacy APIs](/apis/legacy-apis.md): Bandwidth API Reference.
+- [Global API V1 Reference](/apis/legacy-apis/global.md)
+- [Global API Beta Reference](/apis/legacy-apis/global/beta.md)
+- [Global API V2 Reference](/apis/legacy-apis/global/v2.md)
+- [Global API V3 Reference](/apis/legacy-apis/global/v3.md)
+- [International Messaging API Reference](/apis/legacy-apis/messaging-international.md): Authentication and Messages. Everything you'll need to start working with our International Messaging API.
+
+### messaging-apis
+
+Bandwidth API Reference.
+
+- [Messaging API](/apis/messaging-apis.md): Bandwidth API Reference.
+- [Messaging API Reference](/apis/messaging-apis/messaging.md): Authentication, Media, and Messages. Everything you'll need to start working with our Messaging API.
+- [Messaging Transfers](/apis/messaging-apis/messaging-transfer.md): APIs to manage internal and external requests to host messaging for telephone numbers.
+- [Short Codes API Reference](/apis/messaging-apis/shortcodes.md): APIs to provision short codes and short code campaigns for messaging.
+- [A2P Campaign Management (10DLC)](/apis/messaging-apis/tendlc.md): APIs to manage A2P brands, campaigns, and 10DLC phone numbers for A2P messaging in the North American market.
+- [Toll-Free Verification API Reference](/apis/messaging-apis/toll-free-verification.md): APIs to view and update the verification status of toll-free numbers.
+
+### mfa-apis
+
+Bandwidth API Reference.
+
+- [MFA API](/apis/mfa-apis.md): Bandwidth API Reference.
+- [Multi-Factor Authentication API Reference](/apis/mfa-apis/multi-factor-auth.md): Voice & Messaging MFA and MFA Verification. Everything you'll need to start working with our MFA API.
+
+### numbers-apis
+
+Bandwidth API Reference.
+
+- [Numbers APIs](/apis/numbers-apis.md): Bandwidth API Reference.
+- [End User Management API Reference](/apis/numbers-apis/end-user-management.md): Everything you'll need to start working with our End User Management API.
+- [Hosted Number Management API Reference](/apis/numbers-apis/hosted-number-management.md): Everything you'll need to start working with our Hosted Number Management API.
+- [Line Features API V2 Reference](/apis/numbers-apis/line-features.md): Everything you'll need to start working with our Line Features API.
+- [My Numbers API V2 Reference](/apis/numbers-apis/my-numbers.md): Read-only inventory and reporting endpoints for phone numbers in your Bandwidth account.
+- [Number Acquisition API V2 Reference](/apis/numbers-apis/number-acquisition.md): Everything you'll need to start working with our Number Acquisition API.
+- [Number Management API V2 Reference](/apis/numbers-apis/number-management.md): Managing your phone numbers with Bandwidth's Number Management API.
+- [Numbers API V2 Reference](/apis/numbers-apis/numbers.md): Everything you'll need to start working with our Numbers API.
+- [Numbers API V1 Reference](/apis/numbers-apis/numbers/v1.md): Everything you'll need to start working with our Numbers API.
+- [Phone Number Lookup API V2 Reference](/apis/numbers-apis/phone-number-lookup.md): Authentication and Number Lookup. Everything you'll need to start working with our Phone Number Lookup API.
+- [Phone Number Lookup API V1 Reference](/apis/numbers-apis/phone-number-lookup/v1.md): Authentication and Number Lookup. Everything you'll need to start working with our Phone Number Lookup API.
+- [Porting APIs](/apis/numbers-apis/porting.md): Bandwidth Porting API Reference.
+- [Bulk Port-ins API Reference](/apis/numbers-apis/porting/bulk-portins.md): Everything you'll need to start working with our Bulk Port-ins API.
+- [Port-ins API V2 Reference](/apis/numbers-apis/porting/portins.md): Everything you'll need to start working with our Port-ins API.
+- [Port-outs API V2 Reference](/apis/numbers-apis/porting/portouts.md): Everything you'll need to start working with our Port-outs API.
+- [Number Reputation Management API V2 Reference](/apis/numbers-apis/reputation-management.md): Verify and take action on phone numbers status
+
+### universal-platform-apis
+
+Bandwidth API Reference.
+
+- [Universal Platform APIs](/apis/universal-platform-apis.md): Bandwidth API Reference.
+
+### universal-platform
+
+- [LRN Configuration API Reference](/apis/universal-platform/lrn-configuration.md): Everything you'll need to start working with our LRN API's.
+- [Voice Configuration Package API Reference](/apis/universal-platform/voice-configuration-packages.md): Everything you'll need to start working with our Voice Configuration Package API.
+- [Voice Provisioning API Reference](/apis/universal-platform/voice-provisioning.md): Everything you'll need to start working with our Voice Provisioning API.
+
+### voice-apis
+
+Bandwidth API Reference.
+
+- [Voice APIs](/apis/voice-apis.md): Bandwidth API Reference.
+- [Call Verification API Reference](/apis/voice-apis/active-call-info.md): The Bandwidth Call Verification API can be used to retrieve fraud and spoofing risk scores for specific phone calls that are currently active on the Bandwidth network.
+- [Call Intelligence API Reference](/apis/voice-apis/call-intelligence.md): API Specification for Call Intelligence
+- [Voice API Reference](/apis/voice-apis/voice.md): Authentication, Calls, Recordings, and Conferences. Everything you'll need to start working with our Voice API.
+- [Voice Application Management API Reference](/apis/voice-apis/voice-application-management.md): Manage your Voice Applications.
+- [Voice Integrations API Reference](/apis/voice-apis/voice-integrations.md): Everything you'll need to start working with our Voice Integrations API.
+- [Voice Stir/Shaken API Reference](/apis/voice-apis/voice-stir-shaken.md): Everything you'll need to start working with our Voice Stir/Shaken API.
+- [IP Whitelist API Reference](/apis/voice-apis/voice-whitelist.md): Everything you'll need to start IP whitelisting.
+
+## samples
+
+Bandwidth Sample Apps.
+
+- [Bandwidth Sample Apps](/samples.md): Bandwidth Sample Apps.
+
+## search
+
+- [Search the documentation](/search.md)
+
+## tools
+
+Bandwidth Developer Tools
+
+- [Developer Tools](/tools.md): Bandwidth Developer Tools
+
+### cli
+
+Bandwidth CLI
+
+- [Command the networkfrom your terminal.](/tools/cli.md): Bandwidth CLI
+- [Bandwidth CLI Reference](/tools/cli/reference.md): Bandwidth CLI — manage voice, messaging, numbers, and more from the command line
+- [band account](/tools/cli/reference/band_account.md): Manage Bandwidth account registration
+- [band account register](/tools/cli/reference/band_account_register.md): Create a new Bandwidth Build account
+- [band app](/tools/cli/reference/band_app.md): Manage Bandwidth applications
+- [band app assign](/tools/cli/reference/band_app_assign.md): Link a messaging application to a location
+- [band app create](/tools/cli/reference/band_app_create.md): Create a new application
+- [band app delete](/tools/cli/reference/band_app_delete.md): Delete an application by ID
+- [band app get](/tools/cli/reference/band_app_get.md): Get an application by ID
+- [band app list](/tools/cli/reference/band_app_list.md): List all applications
+- [band app peers](/tools/cli/reference/band_app_peers.md): List SIP peers (locations) associated with an application
+- [band app update](/tools/cli/reference/band_app_update.md): Update an application's settings
+- [band auth](/tools/cli/reference/band_auth.md): Manage authentication credentials
+- [band auth login](/tools/cli/reference/band_auth_login.md): Log in with Bandwidth OAuth2 client credentials
+- [band auth logout](/tools/cli/reference/band_auth_logout.md): Log out and remove stored credentials
+- [band auth profiles](/tools/cli/reference/band_auth_profiles.md): List all credential profiles
+- [band auth status](/tools/cli/reference/band_auth_status.md): Show current authentication status
+- [band auth switch](/tools/cli/reference/band_auth_switch.md): Switch the active account
+- [band auth use](/tools/cli/reference/band_auth_use.md): Switch to a different credential profile
+- [band bxml](/tools/cli/reference/band_bxml.md): Generate Bandwidth XML (BXML) snippets
+- [band bxml gather](/tools/cli/reference/band_bxml_gather.md): Generate a Gather BXML verb
+- [band bxml raw](/tools/cli/reference/band_bxml_raw.md): Validate and pretty-print a BXML string
+- [band bxml record](/tools/cli/reference/band_bxml_record.md): Generate a Record BXML verb
+- [band bxml speak](/tools/cli/reference/band_bxml_speak.md): Generate a SpeakSentence BXML verb
+- [band bxml transfer](/tools/cli/reference/band_bxml_transfer.md): Generate a Transfer BXML verb
+- [band call](/tools/cli/reference/band_call.md): Manage Bandwidth voice calls
+- [band call create](/tools/cli/reference/band_call_create.md): Make an outbound voice call
+- [band call get](/tools/cli/reference/band_call_get.md): Get the state of a call
+- [band call hangup](/tools/cli/reference/band_call_hangup.md): Hang up an active call
+- [band call list](/tools/cli/reference/band_call_list.md): List active and recent calls
+- [band call update](/tools/cli/reference/band_call_update.md): Redirect an active call to a new URL
+- [band location](/tools/cli/reference/band_location.md): Manage locations (SIP peers) under sub-accounts
+- [band location create](/tools/cli/reference/band_location_create.md): Create a new location (SIP peer) under a sub-account
+- [band location list](/tools/cli/reference/band_location_list.md): List all locations (SIP peers) under a sub-account
+- [band message](/tools/cli/reference/band_message.md): Send and manage SMS/MMS messages
+- [band message get](/tools/cli/reference/band_message_get.md): Get message metadata by ID
+- [band message list](/tools/cli/reference/band_message_list.md): List messages with optional filters
+- [band message media](/tools/cli/reference/band_message_media.md): Manage MMS media files
+- [band message media delete](/tools/cli/reference/band_message_media_delete.md): Delete a media file
+- [band message media get](/tools/cli/reference/band_message_media_get.md): Download a media file
+- [band message media list](/tools/cli/reference/band_message_media_list.md): List uploaded media files
+- [band message media upload](/tools/cli/reference/band_message_media_upload.md): Upload a media file for MMS
+- [band message send](/tools/cli/reference/band_message_send.md): Send an SMS or MMS message
+- [band number](/tools/cli/reference/band_number.md): Manage Bandwidth phone numbers
+- [band number activate](/tools/cli/reference/band_number_activate.md): Activate voice or messaging services on phone numbers
+- [band number deactivate](/tools/cli/reference/band_number_deactivate.md): Deactivate voice or messaging services on phone numbers
+- [band number get](/tools/cli/reference/band_number_get.md): Get voice configuration details for a phone number
+- [band number list](/tools/cli/reference/band_number_list.md): List phone numbers on the account
+- [band number order](/tools/cli/reference/band_number_order.md): Order one or more phone numbers
+- [band number release](/tools/cli/reference/band_number_release.md): Release a phone number
+- [band number search](/tools/cli/reference/band_number_search.md): Search available phone numbers
+- [band quickstart](/tools/cli/reference/band_quickstart.md): One-command setup: create app, VCP, and order a phone number
+- [band recording](/tools/cli/reference/band_recording.md): Manage call recordings
+- [band recording delete](/tools/cli/reference/band_recording_delete.md): Delete a recording
+- [band recording download](/tools/cli/reference/band_recording_download.md): Download a recording to a file
+- [band recording get](/tools/cli/reference/band_recording_get.md): Get metadata for a specific recording
+- [band recording list](/tools/cli/reference/band_recording_list.md): List recordings for a call
+- [band recording pause](/tools/cli/reference/band_recording_pause.md): Pause the active recording on a live call
+- [band recording resume](/tools/cli/reference/band_recording_resume.md): Resume a paused recording on a live call
+- [band shortcode](/tools/cli/reference/band_shortcode.md): View short code registrations and carrier status
+- [band shortcode get](/tools/cli/reference/band_shortcode_get.md): Get short code details and carrier status
+- [band shortcode list](/tools/cli/reference/band_shortcode_list.md): List short codes on this account
+- [band subaccount](/tools/cli/reference/band_subaccount.md): Manage sub-accounts
+- [band subaccount create](/tools/cli/reference/band_subaccount_create.md): Create a new sub-account
+- [band subaccount delete](/tools/cli/reference/band_subaccount_delete.md): Delete a sub-account by ID
+- [band subaccount get](/tools/cli/reference/band_subaccount_get.md): Get a sub-account by ID
+- [band subaccount list](/tools/cli/reference/band_subaccount_list.md): List all sub-accounts
+- [band tendlc](/tools/cli/reference/band_tendlc.md): 10DLC campaign and number registration status
+- [band tendlc campaigns](/tools/cli/reference/band_tendlc_campaigns.md): List 10DLC campaigns on this account
+- [band tendlc campaigns numbers](/tools/cli/reference/band_tendlc_campaigns_numbers.md): List phone numbers assigned to a campaign
+- [band tendlc number](/tools/cli/reference/band_tendlc_number.md): Get 10DLC registration details for a phone number
+- [band tendlc numbers](/tools/cli/reference/band_tendlc_numbers.md): List 10DLC registered phone numbers
+- [band tfv](/tools/cli/reference/band_tfv.md): Toll-free verification management
+- [band tfv get](/tools/cli/reference/band_tfv_get.md): Get toll-free verification status
+- [band tfv submit](/tools/cli/reference/band_tfv_submit.md): Submit a toll-free verification request
+- [band tnoption](/tools/cli/reference/band_tnoption.md): Manage TN Option Orders (assign numbers to campaigns, set SMS/CNAM options)
+- [band tnoption assign](/tools/cli/reference/band_tnoption_assign.md): Assign phone numbers to a 10DLC campaign
+- [band tnoption get](/tools/cli/reference/band_tnoption_get.md): Get the status of a TN Option Order
+- [band tnoption list](/tools/cli/reference/band_tnoption_list.md): List TN Option Orders
+- [band transcription](/tools/cli/reference/band_transcription.md): Manage call recording transcriptions
+- [band transcription create](/tools/cli/reference/band_transcription_create.md): Request a transcription for a recording
+- [band transcription get](/tools/cli/reference/band_transcription_get.md): Get the transcription for a recording
+- [band vcp](/tools/cli/reference/band_vcp.md): Manage Voice Configuration Packages (Universal Platform)
+- [band vcp assign](/tools/cli/reference/band_vcp_assign.md): Assign phone numbers to a VCP
+- [band vcp create](/tools/cli/reference/band_vcp_create.md): Create a Voice Configuration Package
+- [band vcp delete](/tools/cli/reference/band_vcp_delete.md): Delete a Voice Configuration Package
+- [band vcp get](/tools/cli/reference/band_vcp_get.md): Get a Voice Configuration Package
+- [band vcp list](/tools/cli/reference/band_vcp_list.md): List Voice Configuration Packages
+- [band vcp numbers](/tools/cli/reference/band_vcp_numbers.md): List phone numbers assigned to a VCP
+- [band vcp update](/tools/cli/reference/band_vcp_update.md): Update a Voice Configuration Package
+- [band version](/tools/cli/reference/band_version.md): Print CLI version
+
+### sdks
+
+Bandwidth SDKs.
+
+- [Bandwidth SDKs](/tools/sdks.md): Bandwidth SDKs.
+- [C# SDK](/tools/sdks/csharp.md): A list of resources for the C# SDK.
+- [Java SDK](/tools/sdks/java.md): A list of resources for the Java SDK.
+- [Node SDK](/tools/sdks/node.md): A list of resources for the Node.js SDK.
+- [PHP SDK](/tools/sdks/php.md): A list of resources for the PHP SDK.
+- [Python SDK](/tools/sdks/python.md): A list of resources for the Python SDK.
+- [Ruby SDK](/tools/sdks/ruby.md): A list of resources for the Ruby SDK.
+
+## docs
+
+A general overview of Bandwidth's documentation
+
+- [Bandwidth API Documentation](/docs.md): A general overview of Bandwidth's documentation
+
+### account
+
+A general overview of Bandwidth's account services
+
+- [Account](/docs/account.md): A general overview of Bandwidth's account services
+- [Setup an Existing Account](/docs/account/app-setup.md): Set up your existing Bandwidth account for use with our Voice, Messaging, and Number Management APIs — via the Bandwidth App or programmatically via the API.
+- [How to manage Applications](/docs/account/applications.md): A general overview of Bandwidth's account applications
+- [Legacy Credentials](/docs/account/credentials/legacy.md): A general overview of Bandwidth's Legacy API Users
+- [Credential Management](/docs/account/credentials/management.md): A general overview of how to manage Bandwidth API credentials
+- [API User Migration](/docs/account/credentials/migration.md): A general overview of how to migrate from API Users to API Credentials
+- [How to setup SIP Registration](/docs/account/sipRegistrar.md): A guide to set up your account for Sip Registrar
+- [Structure](/docs/account/structure.md): A general overview of Bandwidth's account structure
+- [Subscriptions v1](/docs/account/subscriptions-1.md): Subscriptions (v1) for number management and porting event webhooks
+- [Subscriptions v2](/docs/account/subscriptions-2.md): The latest evolution of Bandwidth's notification platform, with greater flexibility and a modernized API approach
+- [Migrating from Subscriptions v1 to v2](/docs/account/subscriptions-migration.md): A step-by-step guide for migrating from legacy Subscriptions v1 to the modern Subscriptions v2 platform
+- [Subscriptions Overview](/docs/account/subscriptions-overview.md): A general overview of Bandwidth's subscription services
+- [User Management](/docs/account/users/management.md): A general overview of how to manage Bandwidth users
+
+### brtc
+
+A general overview of Bandwidth's Real-Time Communications Platform
+
+- [Bandwidth Real-Time Communications (BRTC)](/docs/brtc.md): A general overview of Bandwidth's Real-Time Communications Platform
+- [Endpoints](/docs/brtc/endpoints.md): A general overview of Endpoints in Bandwidth's Real-Time Communications Platform
+- [Quick Start](/docs/brtc/quick-start.md): A quick start guide to Bandwidth's Real-Time Communications Platform, including how to make your first call and manage your endpoints.
+- [Javascript](/docs/brtc/sdks/javascript.md): Learn how to use Bandwidth's Real-Time Communications Platform with our Javascript SDK.
+- [Kotlin](/docs/brtc/sdks/kotlin.md): Learn how to use Bandwidth's Real-Time Communications Platform with our Kotlin SDK for Android.
+- [Swift](/docs/brtc/sdks/swift.md): Learn how to use Bandwidth's Real-Time Communications Platform with our Swift SDK for iOS.
+- [Webhooks](/docs/brtc/webhooks.md): A general overview of webhooks in Bandwidth's Real-Time Communications Platform
+- [WebRTC](/docs/brtc/webrtc.md): A general overview of WebRTC and how it is used in Bandwidth's Real-Time Communications Platform
+
+### emergency
+
+A general overview of Bandwidth's Emergency Services APIs
+
+- [Emergency Services](/docs/emergency.md): A general overview of Bandwidth's Emergency Services APIs
+- [Errors and Limits](/docs/emergency/dash/errors.md): A general overview of Bandwidth's 911 Access Dashboard API Errors
+- [DASH](/docs/emergency/dash/overview.md): A general overview of Bandwidth's 911 Access Dashboard API
+- [SOAP](/docs/emergency/dash/soap.md): A general overview of Bandwidth's 911 Access Dashboard API SOAP API
+- [Usage Guide](/docs/emergency/dash/usage.md): A general overview of how to utilize Bandwidth's 911 Access Dashboard API
+- [Dynamic Location Routing](/docs/emergency/dashboard/dlr.md): A general overview of Dynamic Location Routing
+- [Notifications](/docs/emergency/dashboard/notifications.md): A general overview of Emergency Notifications using the Bandwidth App
+- [Dashboard](/docs/emergency/dashboard/overview.md): A general overview of the emergency provisioning endpoints in Bandwidth's Dashboard API
+- [Migrating from 911 Access Dashboard (DASH)](/docs/emergency/dashboard/upgrading-from-dash.md): Migrating from the 911 Access Dashboard (DASH) to the Bandwidth App
+- [Emergency Calling API](/docs/emergency/emergencyCallingApi.md): A general overview of Bandwidth's Emergency Calling API
+
+### in-app-calling
+
+A general overview of Bandwidth's In App Calling Product
+
+- [In App Calling](/docs/in-app-calling.md): A general overview of Bandwidth's In App Calling Product
+- [Quick Start Guide](/docs/in-app-calling/quick-start.md): In-App Calling Quick Start Guide
+- [Javascript (Web/Browser)](/docs/in-app-calling/sdks/javascript.md): In-App Calling Javascript SDK
+
+### insights
+
+A general overview of Bandwidth's Insights platform
+
+- [Insights](/docs/insights.md): A general overview of Bandwidth's Insights platform
+- [Reports Overview](/docs/insights/reports/overview.md): An overview of Bandwidth Insights Reports, including the Usage, Charges, and Number Details report categories.
+- [Reports Quick Start](/docs/insights/reports/quickStart.md): A quick start guide for creating, tracking, and downloading Bandwidth Insights Reports using the Reporting API.
+- [Synchronous Reports Quick Start](/docs/insights/reports/synchronous-reports.md): A quick start guide for retrieving Bandwidth Insights report results synchronously, a page at a time, using the Reporting API.
+
+### messaging
+
+A general overview of Bandwidth's Messaging API
+
+- [Messaging](/docs/messaging.md): A general overview of Bandwidth's Messaging API
+- [Bandwidth Campaign Management Guides](/docs/messaging/campaign-management.md): A general overview of Bandwidth's 10DLC Campaigns
+- [Bandwidth CSP Campaigns](/docs/messaging/campaign-management/csp.md): A general overview of Bandwidth's 10DLC CSP Campaigns
+- [Brand Vetting API](/docs/messaging/campaign-management/csp/brand-vetting-api.md): How to re-vet and externally vet your brands using Bandwidth APIs
+- [Bandwidth CSP Campaign API](/docs/messaging/campaign-management/csp/campaign-api.md): How to provision and manage your 10DLC campaigns using Bandwidth APIs
+- [Campaign FAQs](/docs/messaging/campaign-management/csp/faq.md): 10DLC CSP Campaigns Frequently Asked Questions
+- [Reseller And Brand API](/docs/messaging/campaign-management/csp/reseller-brand-api.md): How to provision, manage and view your brands using Bandwidth APIs
+- [Bandwidth Campaign Imports](/docs/messaging/campaign-management/imports.md): A general overview of importing 10DLC Campaigns via Bandwidths Campaign Imports
+- [Imports FAQs](/docs/messaging/campaign-management/imports/faq.md): Import Campaigns Frequently Asked Questions
+- [Bandwidth 10DLC Campaigns Import API Guide](/docs/messaging/campaign-management/imports/imports-api.md): How to import and view your 10DLC campaigns using Bandwidth APIs
+- [Bandwidth 10DLC Campaigns Import UI Guide](/docs/messaging/campaign-management/imports/imports-ui.md): How to import and view your 10DLC campaigns using the Bandwidth App
+- [Managing Multiple CSP IDs Guide](/docs/messaging/campaign-management/imports/manage-multiple-csp.md): How to manage multiple CSP IDs and share campaigns to your CSP ID
+- [Send Messages](/docs/messaging/createMessage.md): Send text messages with Bandwidth's Messaging API
+- [Errors](/docs/messaging/errors.md): Bandwidth's Messaging API Errors
+- [Get Message Information](/docs/messaging/getMessage.md): Get message metadata using Bandwidth's API
+- [Salesforce Integration](/docs/messaging/integrations/salesforce.md): A guide to integrating Bandwidth Messaging with Salesforce
+- [ServiceNow Integration](/docs/messaging/integrations/servicenow.md): A guide to integrating Bandwidth Messaging with ServiceNow
+- [ZenDesk Integration](/docs/messaging/integrations/zendesk.md): A guide to integrating Bandwidth Messaging with ZenDesk
+- [Bandwidth International A2P Messaging](/docs/messaging/international.md): Send SMS over HTTP/HTTPS and receive Delivery Reports (DLRs) over via HTTP callbacks.
+- [Media](/docs/messaging/media.md): Manage text message media using Bandwidth's Messaging API
+- [Manage Messaging Transfer Confirmation](/docs/messaging/messagingTransfer.md): Subscribe to and approve/deny requests to take messaging using Bandwidth's API
+- [Quick Start Guide](/docs/messaging/quickStart.md): A Quick Start Guide for using the Messaging API
+- [Rate Limits](/docs/messaging/rateLimits.md): How to handle rate limiting in Bandwidth's Messaging API
+- [Webhooks](/docs/messaging/webhooks.md): The Webhooks sent from Bandwidth's Messaging API
+
+### mfa
+
+A general overview of Bandwidth's MFA
+
+- [Multi-factor Authentication](/docs/mfa.md): A general overview of Bandwidth's MFA
+- [Errors](/docs/mfa/errors.md): Bandwidth's MFA Errors
+- [Rate Limits](/docs/mfa/rateLimits.md): Bandwidth's MFA Rate Limits
+- [Two-Factor Authentication Webhooks](/docs/mfa/webhooks.md): About Bandwidth's MFA Webhooks
+- [International - Message Delivered](/docs/mfa/webhooks/international/message-delivered.md): About Bandwidth's MFA International Message Delivered Webhooks
+- [International - Message Failed](/docs/mfa/webhooks/international/message-failed.md): About Bandwidth's MFA International Message Failed Webhooks
+- [North America - Message Delivered](/docs/mfa/webhooks/north-america/message-delivered.md): About Bandwidth's MFA North America Message Delivered Webhooks
+- [North America - Message Failed](/docs/mfa/webhooks/north-america/message-failed.md): About Bandwidth's MFA North America Message Failed Webhooks
+
+### numbers
+
+A general overview of Bandwidth's account services
+
+- [Numbers](/docs/numbers.md): A general overview of Bandwidth's account services
+- [agingDurations](/docs/numbers/agingDurations.md): | countryname          | country | tntype     | aging_days |
+- [Errors](/docs/numbers/errors.md): A list of errors that the API could return
+- [How to disconnect phone numbers](/docs/numbers/guides/disconnectNumbers.md): How to disconnect numbers from account using the Bandwidth API
+- [How to host phone numbers for messaging](/docs/numbers/guides/hostingNumbers.md): How to host numbers for messaging using the Bandwidth APIs
+- [How to use phone number lookup](/docs/numbers/guides/lookupNumbers.md): How to look up external numbers using the Bandwidth API
+- [Apply Options and Features to Numbers](/docs/numbers/guides/manage-inventory/applyTnOptionsAndFeatures.md): How to apply options and features to your numbers
+- [Moving Phone Numbers](/docs/numbers/guides/manage-inventory/movingNumbers.md): How to move phone numbers within and across accounts
+- [Search your Numbers](/docs/numbers/guides/manage-inventory/searchingNumbers.md): How to search Numbers across your Bandwidth account
+- [Set Final Destination URI](/docs/numbers/guides/manage-inventory/setFailoverUri.md): How to set failover uri on locations/numbers
+- [Manage Number Features](/docs/numbers/guides/manageNumberFeatures.md): How to change/manage number features using the Bandwidth APIs
+- [Integrating Number Reputation Management (NRM) into Your Platform](/docs/numbers/guides/nrmResellerIntegration.md): How to integrate Number Reputation Management into your platform using the Bandwidth APIs
+- [How to search and order a phone number](/docs/numbers/guides/searchingForNumbers.md): How to search for available numbers using the Bandwidth API
+- [How to request account reports](/docs/numbers/guides/setup-reports/accountReports.md): How to request and download account reports using the Bandwidth APIs
+- [How to request billing reports](/docs/numbers/guides/setup-reports/billingReports.md): How to request and download billing reports using the Bandwidth APIs
+- [JSON Support in the Bandwidth App](/docs/numbers/json-support.md): JSON Support in the Bandwidth App
+- [Bandwidth Porting Overview](/docs/numbers/porting.md): A general overview of Bandwidth's porting services
+- [Order Model](/docs/numbers/porting/orderModel.md): Information about Bandwidth's Order Model.
+- [Port-Ins](/docs/numbers/porting/port-ins.md): How to bring your Numbers to Bandwidth
+- [Bulk Port-Ins](/docs/numbers/porting/port-ins/bulkPortins.md): A general overview of Bandwidth's Bulk Port-In Process
+- [CSR Requests](/docs/numbers/porting/port-ins/csrs.md): A general overview of Bandwidth's Porting CSRs - bandwidth - numbers - porting - port - port in - csr
+- [OnePort Portability Checker](/docs/numbers/porting/port-ins/onePortPortabilityChecker.md): A general overview of Bandwidth's OnePort Portability Checker
+- [Stand-Alone Port-Ins](/docs/numbers/porting/port-ins/stand-alone-port-ins.md): A general overview of Bandwidth's Stand Alone Port-Ins
+- [Checking Portability for Regular Numbers](/docs/numbers/porting/port-ins/stand-alone-portins/lnpChecker.md): A general overview of Bandwidth's LNP Checker API
+- [Toll Free Automated Activation](/docs/numbers/porting/port-ins/stand-alone-portins/tollFreeAutomationPortIn.md): On-demand activation for automated toll free port-in orders
+- [Checking Portability for Toll Free Numbers](/docs/numbers/porting/port-ins/stand-alone-portins/tollFreePortingValidations.md): How to check if toll free numbers are portable
+- [Stand Alone Non-NANP Port-Ins](/docs/numbers/porting/port-ins/standalone-non-nanp-port-ins.md): A general overview of Bandwidth's Stand Alone Non-NANP Port-Ins
+- [Port-Outs](/docs/numbers/porting/port-outs.md): A general overview of Bandwidth's Port-Out Process
+- [LSRs](/docs/numbers/porting/port-outs/lsrs.md): A general overview of Bandwidth's Port-Out LSRs
+- [Port-Out Notifications](/docs/numbers/porting/port-outs/port-out-notifications.md): A general overview of Bandwidth's Port-Out Notifications
+- [Porting Terminology](/docs/numbers/porting/terminology.md): Acronyms and terms used in Bandwidth porting
+- [About](/docs/numbers/webhooks.md): A general overview of Bandwidth's number API webhooks
+- [Event Webhook](/docs/numbers/webhooks/eventWebhook.md): A general overview of Bandwidth's Event Notification Webhook
+- [Order Webhook](/docs/numbers/webhooks/orderWebhook.md): A general overview of Bandwidth's Order Notification Webhook
+- [Portout Validation Webhook](/docs/numbers/webhooks/portoutValidationWebhook.md): A general overview of Bandwidth's Event Notification Webhook
+
+### tools
+
+An overview of Bandwidth's Developer Tools
+
+- [Bandwidth Developer Tools](/docs/tools.md): An overview of Bandwidth's Developer Tools
+- [Bandwidth CLI](/docs/tools/cli.md): An overview of Bandwidth's CLI
+- [Getting Started](/docs/tools/cli/quickStart.md): A Quick Start Guide for using the Bandwidth CLI
+- [Example Use Cases](/docs/tools/cli/useCases.md): A few example use cases for the Bandwidth CLI
+- [Bandwidth MCP Server](/docs/tools/mcp.md): An overview of Bandwidth's MCP Server Package
+- [Getting Started](/docs/tools/mcp/quickStart.md): A Quick Start Guide for Bandwidth's MCP Server Package
+- [Example Use Cases](/docs/tools/mcp/useCases.md): A few example use cases for Bandwidth's MCP Server
+- [Migration Toolkit](/docs/tools/migration-toolkit.md): An overview of the Bandwidth Migration Toolkit for Twilio → Bandwidth voice migrations
+- [Getting Started](/docs/tools/migration-toolkit/quickStart.md): A Quick Start Guide for the Bandwidth Migration Toolkit
+- [Twilio Migration Examples](/docs/tools/migration-toolkit/useCases.md): Migration walkthroughs and workflows for the Bandwidth Migration Toolkit
+- [Bandwidth OpenAPI Specs](/docs/tools/openapi-specs.md): Download the latest OpenAPI specifications for Bandwidth's APIs.
+
+### universal-platform
+
+A general overview of Bandwidth's Universal Platform
+
+- [Universal Platform](/docs/universal-platform.md): A general overview of Bandwidth's Universal Platform
+- [Breaking Changes](/docs/universal-platform/breaking-changes.md): Breaking Changes on Bandwidth's Universal Platform
+- [Create a Requirements Package](/docs/universal-platform/create-a-rp.md): How to create a Requirements Package (RP) in Bandwidth's Universal Platform
+- [Create a Voice Configuration Package](/docs/universal-platform/create-a-vcp.md): How to create a Voice Configuration Package (VCP) in Bandwidth's Universal Platform
+- [Create Addresses](/docs/universal-platform/create-addresses.md): How to create Addresses in Bandwidth's Universal Platform
+- [Emergency Services](/docs/universal-platform/emergency-services.md): How to provision Emergency Services in Bandwidth's Universal Platform
+- [Getting Started](/docs/universal-platform/getting-started.md): How to Get Started with Bandwidth's Universal Platform
+- [Order Numbers](/docs/universal-platform/order-numbers.md): How to create Order Numbers in Bandwidth's Universal Platform
+- [Service Activation](/docs/universal-platform/service-activation.md): How to manage Service Activation in Bandwidth's Universal Platform
+- [Overview](/docs/universal-platform/upgrade.md): Upgrading to Bandwidth's Universal Platform
+- [Upgrading from Legacy](/docs/universal-platform/upgrade/upgrading-from-legacy.md): Upgrading from Legacy to Bandwidth's Universal Platform
+- [Upgrading from Legacy Global API](/docs/universal-platform/upgrade/upgrading-from-legacy-global.md): Upgrading from Legacy Global API to Bandwidth's Universal Platform
+- [Upgrading to E.164](/docs/universal-platform/upgrade/upgrading-to-e164.md): Upgrading to E.164 on Bandwidth's Universal Platform
+
+### voice
+
+A general overview of Bandwidth's Voice Services
+
+- [Voice Services](/docs/voice.md): A general overview of Bandwidth's Voice Services
+- [CNAM Per DIP](/docs/voice/cnam-per-dip.md): How to handle rate limiting in Bandwidth's Voice API
+- [Cartesia Integration](/docs/voice/integrations/cartesia.md): A guide to building real-time voice AI agents on Bandwidth's Voice Network using Cartesia STT and TTS
+- [Deepgram Voice Agent Integration](/docs/voice/integrations/deepgram.md): A guide to building real-time voice AI agents on Bandwidth's Voice Network using the Deepgram Voice Agent API
+- [ElevenLabs Integration](/docs/voice/integrations/elevenlabs.md): A guide to connecting Bandwidth SIP trunking with ElevenLabs Agents for voice AI phone calls
+- [OpenAI Realtime SIP Integration](/docs/voice/integrations/openai/realtime/sip.md): A guide to integrating Bandwidth Voice with OpenAI's Realtime SIP Interface
+- [OpenAI Realtime WebSocket Integration](/docs/voice/integrations/openai/realtime/websockets.md): A guide to integrating Bandwidth's Programmable Voice with OpenAI's Realtime Websocket Interface
+- [Pipecat Integration](/docs/voice/integrations/pipecat.md): A guide to building real-time voice AI agents on Bandwidth's Voice Network using the Pipecat framework
+- [Programmable Voice API](/docs/voice/programmable-voice.md): A general overview of Bandwidth's Programmable Voice API
+- [Try Bandwidth Build](/docs/voice/programmable-voice/build-free-trial.md): Try Bandwidth's Programmable Voice API for free — get a real phone number, a ready-to-use voice app, and 3000 credits to start building immediately.
+- [BXML](/docs/voice/programmable-voice/bxml.md): A general overview of Bandwidth's Programmable Voice BXML
+- [Bridge](/docs/voice/programmable-voice/bxml/bridge.md): A general overview of Bandwidth's Bridge BXML Verb
+- [Conference](/docs/voice/programmable-voice/bxml/conference.md): A general overview of Bandwidth's Conference BXML Verb
+- [Connect](/docs/voice/programmable-voice/bxml/connect.md): A general overview of Bandwidth's Connect BXML Verb
+- [Forward](/docs/voice/programmable-voice/bxml/forward.md): A general overview of Bandwidth's Forward BXML Verb
+- [Gather](/docs/voice/programmable-voice/bxml/gather.md): A general overview of Bandwidth's Gather BXML Verb
+- [Hangup](/docs/voice/programmable-voice/bxml/hangup.md): A general overview of Bandwidth's Hangup BXML Verb
+- [Pause](/docs/voice/programmable-voice/bxml/pause.md): A general overview of Bandwidth's Pause BXML Verb
+- [Pause Recording](/docs/voice/programmable-voice/bxml/pauseRecording.md): A general overview of Bandwidth's PauseRecording BXML Verb
+- [Play Audio](/docs/voice/programmable-voice/bxml/playAudio.md): A general overview of Bandwidth's PlayAudio BXML Verb
+- [Record](/docs/voice/programmable-voice/bxml/record.md): A general overview of Bandwidth's Record BXML Verb
+- [Redirect](/docs/voice/programmable-voice/bxml/redirect.md): A general overview of Bandwidth's Redirect BXML Verb
+- [Refer](/docs/voice/programmable-voice/bxml/refer.md): A general overview of Bandwidth's Refer BXML Verb
+- [Resume Recording](/docs/voice/programmable-voice/bxml/resumeRecording.md): A general overview of Bandwidth's ResumeRecording BXML Verb
+- [Ring](/docs/voice/programmable-voice/bxml/ring.md): A general overview of Bandwidth's Ring BXML Verb
+- [Send DTMF](/docs/voice/programmable-voice/bxml/sendDtmf.md): A general overview of Bandwidth's Ring SendDTMF Verb
+- [Speak Sentence](/docs/voice/programmable-voice/bxml/speakSentence.md): A general overview of Bandwidth's Ring SpeakSentence Verb
+- [Start Gather](/docs/voice/programmable-voice/bxml/startGather.md): A general overview of Bandwidth's Ring StartGather Verb
+- [Start Recording](/docs/voice/programmable-voice/bxml/startRecording.md): A general overview of Bandwidth's StartRecording BXML Verb
+- [Start Stream](/docs/voice/programmable-voice/bxml/startStream.md): A general overview of Bandwidth's StartStream BXML Verb
+- [Start Transcription](/docs/voice/programmable-voice/bxml/startTranscription.md): A general overview of Bandwidth's startTranscription BXML Verb
+- [Stop Gather](/docs/voice/programmable-voice/bxml/stopGather.md): A general overview of Bandwidth's Ring StopGather Verb
+- [Stop Recording](/docs/voice/programmable-voice/bxml/stopRecording.md): A general overview of Bandwidth's Ring StopRecording Verb
+- [Stop Stream](/docs/voice/programmable-voice/bxml/stopStream.md): A general overview of Bandwidth's StopStream BXML Verb
+- [Stop Transcription](/docs/voice/programmable-voice/bxml/stopTranscription.md): A general overview of Bandwidth's StopTranscription BXML Verb
+- [Tag](/docs/voice/programmable-voice/bxml/tag.md): A general overview of Bandwidth's Ring Tag Verb
+- [Transfer](/docs/voice/programmable-voice/bxml/transfer.md): A general overview of Bandwidth's Ring Transfer Verb
+- [Errors](/docs/voice/programmable-voice/errors.md): Bandwidth's Programmable Voice API Errors
+- [How to Retrieve Call Information](/docs/voice/programmable-voice/guides/callInformation.md): How to get the call information from a finished call.
+- [How to Manage Queued Calls](/docs/voice/programmable-voice/guides/callQueueing.md): How to queue outbound calls to stay under your account's CPS limit.
+- [How to create Conference Calls](/docs/voice/programmable-voice/guides/conference.md): How to create a conference to link calls.
+- [How to Gather User Input (IVR)](/docs/voice/programmable-voice/guides/interactiveVoiceResponse.md): How to collect data from clients and use it in real time
+- [How to use Voicemail Detection](/docs/voice/programmable-voice/guides/machineDetection.md): How to use Bandwidth's Programmable Voice API Answering Machine Detection Feature
+- [How to Play Media and use Text-to-Speech](/docs/voice/programmable-voice/guides/mediaAndTTS.md): How to play media and use Bandwidth's text-to-speech (TTS) on a call.
+- [How to Modify Calls in Progress](/docs/voice/programmable-voice/guides/modifyInProgressCall.md): How to modify calls with a post request
+- [How to make Outbound Calls](/docs/voice/programmable-voice/guides/outboundCall.md): How to place a call to the outside world
+- [How to Record Calls and Transcribe](/docs/voice/programmable-voice/guides/recording.md): How to record using Bandwidth's Programmable Voice API
+- [How to Transfer a Call](/docs/voice/programmable-voice/guides/transfer.md): How to use Bandwidth's Programmable Voice API to transfer a call to another number.
+- [Inbound SIP URI](/docs/voice/programmable-voice/inbound-sip-uri.md): A general overview of Bandwidth's Inbound SIP URI product offering, which exposes a SIP endpoint on a Voice Application so standards-compliant SIP clients can originate calls into the Bandwidth voice network.
+- [Quick Start Guide](/docs/voice/programmable-voice/inbound-sip-uri/quick-start.md): Inbound SIP URI Quick Start Guide. Enable, configure, and authenticate a SIP URI on a Bandwidth Voice Application.
+- [Quick Start Guide](/docs/voice/programmable-voice/quickStart.md): A Quick Start Guide for using the Voice API
+- [Rate Limits](/docs/voice/programmable-voice/rateLimits.md): How to handle rate limiting in Bandwidth's Programmable Voice API
+- [Twilio Migration Guide](/docs/voice/programmable-voice/twilioVoiceMigration.md): A Quick guide on how to migrate from Twilio to Bandwidth's Voice API
+- [Webhooks](/docs/voice/programmable-voice/webhooks.md): A general overview of Bandwidth's Answer Webhook
+- [Answer](/docs/voice/programmable-voice/webhooks/answer.md): A general overview of Bandwidth's Answer Webhook
+- [Bridge Complete](/docs/voice/programmable-voice/webhooks/bridgeComplete.md): A general overview of Bandwidth's Bridge Complete Webhook
+- [Bridge Target Complete](/docs/voice/programmable-voice/webhooks/bridgeTargetComplete.md): A general overview of Bandwidth's Bridge Target Complete Webhook
+- [Conference Completed](/docs/voice/programmable-voice/webhooks/conferenceCompleted.md): A general overview of Bandwidth's Conference Completed Webhook
+- [Conference Created](/docs/voice/programmable-voice/webhooks/conferenceCreated.md): A general overview of Bandwidth's Conference Created Webhook
+- [Conference Member Exit](/docs/voice/programmable-voice/webhooks/conferenceMemberExit.md): A general overview of Bandwidth's Conference Member Exit Webhook
+- [Conference Member Join](/docs/voice/programmable-voice/webhooks/conferenceMemberJoin.md): A general overview of Bandwidth's Conference Member Join Webhook
+- [Conference Recording Available](/docs/voice/programmable-voice/webhooks/conferenceRecordingAvailable.md): A general overview of Bandwidth's Conference Recording Available Webhook
+- [Conference Redirect](/docs/voice/programmable-voice/webhooks/conferenceRedirect.md): A general overview of Bandwidth's Conference Redirect Webhook
+- [Disconnect](/docs/voice/programmable-voice/webhooks/disconnect.md): A general overview of Bandwidth's Disconnect Webhook
+- [DTMF](/docs/voice/programmable-voice/webhooks/dtmf.md): A general overview of Bandwidth's DTMF Webhook
+- [Gather](/docs/voice/programmable-voice/webhooks/gather.md): A general overview of Bandwidth's Gather Webhook
+- [Initiate](/docs/voice/programmable-voice/webhooks/initiate.md): A general overview of Bandwidth's Initiate Webhook
+- [Machine Detection Complete](/docs/voice/programmable-voice/webhooks/machineDetectionComplete.md): A general overview of Bandwidth's Machine Detection Complete Webhook
+- [Media Stream Rejected](/docs/voice/programmable-voice/webhooks/mediaStreamRejected.md): A general overview of Bandwidth's Media Stream Rejected Webhook
+- [Media Stream Started](/docs/voice/programmable-voice/webhooks/mediaStreamStarted.md): A general overview of Bandwidth's Media Stream Started Webhook
+- [Media Stream Stopped](/docs/voice/programmable-voice/webhooks/mediaStreamStopped.md): A general overview of Bandwidth's Media Stream Stopped Webhook
+- [Partial Gather](/docs/voice/programmable-voice/webhooks/partialGather.md): A general overview of Bandwidth's Partial Gather Webhook
+- [Real-Time Transcription Available](/docs/voice/programmable-voice/webhooks/realTimeTranscriptionAvailable.md): A general overview of Bandwidth's Real-Time Transcription Available Webhook
+- [Real-Time Transcription Rejected](/docs/voice/programmable-voice/webhooks/realTimeTranscriptionRejected.md): A general overview of Bandwidth's Real-Time Transcription Rejected Webhook
+- [Real-Time Transcription Started](/docs/voice/programmable-voice/webhooks/realTimeTranscriptionStarted.md): A general overview of Bandwidth's Real-Time Transcription Started Webhook
+- [Real-Time Transcription Stopped](/docs/voice/programmable-voice/webhooks/realTimeTranscriptionStopped.md): A general overview of Bandwidth's Real-Time Transcription Stopped Webhook
+- [Record Complete](/docs/voice/programmable-voice/webhooks/recordComplete.md): A general overview of Bandwidth's Record Complete Webhook
+- [Recording Available](/docs/voice/programmable-voice/webhooks/recordingAvailable.md): A general overview of Bandwidth's Recording Available Webhook
+- [Redirect](/docs/voice/programmable-voice/webhooks/redirect.md): A general overview of Bandwidth's Redirect Webhook
+- [Refer Complete](/docs/voice/programmable-voice/webhooks/referComplete.md): A general overview of Bandwidth's Refer Complete Webhook
+- [Transcription Available](/docs/voice/programmable-voice/webhooks/transcriptionAvailable.md): A general overview of Bandwidth's Transcription Available Webhook
+- [Transfer Answer](/docs/voice/programmable-voice/webhooks/transferAnswer.md): A general overview of Bandwidth's Transfer Answer Webhook
+- [Transfer Complete](/docs/voice/programmable-voice/webhooks/transferComplete.md): A general overview of Bandwidth's Transfer Complete Webhook
+- [Transfer Disconnect](/docs/voice/programmable-voice/webhooks/transferDisconnect.md): A general overview of Bandwidth's Transfer Disconnect Webhook
+- [STIR/SHAKEN](/docs/voice/stir-shaken.md): A general overview of Bandwidth's Voice STIR/SHAKEN API
+- [France Hosted Signing Service](/docs/voice/stir-shaken/france-hosted-signing-service.md): France STIR/SHAKEN Certificate Management
+- [US Hosted Signing Service](/docs/voice/stir-shaken/hosted-signing-service.md): STIR/SHAKEN Certificate Management
+- [IP Whitelist](/docs/voice/whitelist.md): Manage IP address whitelists for voice services
+
+## migration-guides
+
+Bandwidth's Developer Docs
+
+- [Migration Guides](/migration-guides.md): Bandwidth's Developer Docs
+
+### csharp
+
+C# SDK Migration Guides
+
+- [C#](/migration-guides/csharp.md): C# SDK Migration Guides
+- [v10 -> v11](/migration-guides/csharp/v10-to-v11.md): C# v10 to v11 Migration Guide
+- [v11 -> v12](/migration-guides/csharp/v11-to-v12.md): C# v11 to v12 Migration Guide
+- [v12 -> v13](/migration-guides/csharp/v12-to-v13.md): C# v12 to v13 Migration Guide
+- [v13 -> v14](/migration-guides/csharp/v13-to-v14.md): C# v13 to v14 Migration Guide
+- [v14 -> v15](/migration-guides/csharp/v14-to-v15.md): C# v14 to v15 Migration Guide
+- [v15 -> v16](/migration-guides/csharp/v15-to-v16.md): C# v15 to v16 Migration Guide
+- [v16 -> v17](/migration-guides/csharp/v16-to-v17.md): C# v16 to v17 Migration Guide
+
+### java
+
+Java SDK Migration Guides
+
+- [Java](/migration-guides/java.md): Java SDK Migration Guides
+- [v10 -> v11](/migration-guides/java/v10-to-v11.md): Java v10 to v11 Migration Guide
+- [v11 -> v12](/migration-guides/java/v11-to-v12.md): Java v11 to v12 Migration Guide
+- [v12 -> v13](/migration-guides/java/v12-to-v13.md): Java v12 to v13 Migration Guide
+- [v13 -> v14](/migration-guides/java/v13-to-v14.md): Java v13 to v14 Migration Guide
+- [v14 -> v15](/migration-guides/java/v14-to-v15.md): Java v14 to v15 Migration Guide
+- [v15 -> v16](/migration-guides/java/v15-to-v16.md): Java v15 to v16 Migration Guide
+- [v16 -> v17](/migration-guides/java/v16-to-v17.md): Java v16 to v17 Migration Guide
+- [v17 -> v18](/migration-guides/java/v17-to-v18.md): Java v17 to v18 Migration Guide
+- [v8 -> v9](/migration-guides/java/v8-to-v9.md): Java v8 to v9 Migration Guide
+- [v9 -> v10](/migration-guides/java/v9-to-v10.md): Java v9 to v10 Migration Guide
+
+### node
+
+Node SDK Migration Guides
+
+- [Node](/migration-guides/node.md): Node SDK Migration Guides
+- [New Node SDK](/migration-guides/node/v1.md): Node Old to New Migration Guide
+- [v1 -> v2](/migration-guides/node/v1-to-v2.md): Node v1 to v2 Migration Guide
+- [v2 -> v3](/migration-guides/node/v2-to-v3.md): Node v2 to v3 Migration Guide
+- [v3 -> v4](/migration-guides/node/v3-to-v4.md): Node v3 to v4 Migration Guide
+- [v4 -> v5](/migration-guides/node/v4-to-v5.md): Node v4 to v5 Migration Guide
+- [v5 -> v6](/migration-guides/node/v5-to-v6.md): Node v5 to v6 Migration Guide
+- [v6 -> v7](/migration-guides/node/v6-to-v7.md): Node v6 to v7 Migration Guide
+- [v7 -> v8](/migration-guides/node/v7-to-v8.md): Node v7 to v8 Migration Guide
+
+### python
+
+Python SDK Migration Guides
+
+- [Python](/migration-guides/python.md): Python SDK Migration Guides
+- [v14 -> v15](/migration-guides/python/v14-to-v15.md): Python v14 to v15 Migration Guide
+- [v15 -> v16](/migration-guides/python/v15-to-v16.md): Python v15 to v16 Migration Guide
+- [v16 -> v17](/migration-guides/python/v16-to-v17.md): Python v16 to v17 Migration Guide
+- [v17 -> v18](/migration-guides/python/v17-to-v18.md): Python v17 to v18 Migration Guide
+- [v18 -> v19](/migration-guides/python/v18-to-v19.md): Python v18 to v19 Migration Guide
+- [v19 -> v20](/migration-guides/python/v19-to-v20.md): Python v19 to v20 Migration Guide
+- [v20 -> v21](/migration-guides/python/v20-to-v21.md): Python v20 to v21 Migration Guide
+- [v21 -> v22](/migration-guides/python/v21-to-v22.md): Python v21 to v22 Migration Guide
+- [v22 -> v23](/migration-guides/python/v22-to-v23.md): Python v22 to v23 Migration Guide
+
+### ruby
+
+Ruby SDK Migration Guides
+
+- [Ruby](/migration-guides/ruby.md): Ruby SDK Migration Guides
+- [v10 -> v11](/migration-guides/ruby/v10-to-v11.md): Ruby v10 to v11 Migration Guide
+- [v11 -> v12](/migration-guides/ruby/v11-to-v12.md): Ruby v11 to v12 Migration Guide
+- [v12 -> v13](/migration-guides/ruby/v12-to-v13.md): Ruby v12 to v13 Migration Guide
+- [v13 -> v14](/migration-guides/ruby/v13-to-v14.md): Ruby v13 to v14 Migration Guide
+- [v14 -> v15](/migration-guides/ruby/v14-to-v15.md): Ruby v14 to v15 Migration Guide
+- [v15 -> v16](/migration-guides/ruby/v15-to-v16.md): Ruby v15 to v16 Migration Guide
+- [v16 -> v17](/migration-guides/ruby/v16-to-v17.md): Ruby v16 to v17 Migration Guide
+- [v17 -> v18](/migration-guides/ruby/v17-to-v18.md): Ruby v17 to v18 Migration Guide

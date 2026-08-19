@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Available Numbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search available phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/availableNumbers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "areaCode",
+                "value": "",
+                "type": "query",
+                "description": "Three-digit area code to search"
+              },
+              {
+                "name": "npaNxx",
+                "value": "",
+                "type": "query",
+                "description": "Six-digit NPA-NXX combination to search"
+              },
+              {
+                "name": "rateCenter",
+                "value": "",
+                "type": "query",
+                "description": "Rate center name to search"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "City name to search"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter state abbreviation"
+              },
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query",
+                "description": "Five-digit ZIP code to search"
+              },
+              {
+                "name": "lata",
+                "value": "",
+                "type": "query",
+                "description": "LATA code to search"
+              },
+              {
+                "name": "quantity",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return (1-5000, default 5000)"
+              },
+              {
+                "name": "tollFreeWildCardPattern",
+                "value": "",
+                "type": "query",
+                "description": "Toll-free number pattern using wildcards (e.g., 8**) for toll-free number searches"
+              },
+              {
+                "name": "enableTNDetail",
+                "value": "",
+                "type": "query",
+                "description": "Include detailed information for each number"
+              },
+              {
+                "name": "localVanity",
+                "value": "",
+                "type": "query",
+                "description": "Vanity number search pattern"
+              }
+            ]
+          },
+          "docs": "Searches Bandwidth's inventory for available phone numbers matching the specified criteria. Supports searches by area code, NPA-NXX, rate center, city, state, ZIP code, and LATA. Returns up to the requested quantity of available numbers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

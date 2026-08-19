@@ -1,45 +1,32 @@
 {
   "item": [
     {
-      "id": "62783a72-6ec6-48bf-b2b2-fb93192b0b8b",
-      "name": "Toll-Free Verification",
+      "id": "9464e636-3558-4244-83d3-2bb073eb57c6",
+      "name": "Endpoints",
       "description": {
-        "content": "Submit and manage toll-free number verification requests for A2P messaging compliance. Track verification status and manage submissions throughout the verification lifecycle.",
+        "content": "Manage 911 endpoints that represent end users of your service. Endpoints are identified by Alternate End User IDs (AEUIs) and are associated with locations for emergency routing.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e8b698f5-7d90-421e-8ca9-e190bf99e2f7",
-          "name": "List toll-free verification requests",
+          "id": "fc241342-b4fb-4ef7-9941-f7d0abd8a6d0",
+          "name": "List E911 endpoints",
           "request": {
-            "name": "List toll-free verification requests",
+            "name": "List E911 endpoints",
             "description": {
-              "content": "Retrieves a list of all toll-free number verification requests for the account. Returns verification status, submission details, and associated toll-free numbers.",
+              "content": "Retrieves a list of all 911 endpoints provisioned for the account. Each endpoint represents an end user that may place emergency calls.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification"
+                "e911s"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>",
-                  "description": "Filter by verification status"
-                },
-                {
-                  "disabled": false,
-                  "key": "telephoneNumber",
-                  "value": "<string>",
-                  "description": "Filter by toll-free telephone number"
-                }
-              ],
+              "query": [],
               "variable": [
                 {
                   "disabled": false,
@@ -53,7 +40,7 @@
             "header": [
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "GET",
@@ -61,28 +48,19 @@
           },
           "response": [
             {
-              "id": "82347217-4dc2-482e-8b6a-a23cb62be296",
-              "name": "Verification requests retrieved successfully",
+              "id": "fc603a5a-1e4d-415b-b8fe-faa91bbaf5b2",
+              "name": "Endpoints retrieved successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
-                      "value": "<string>"
-                    }
-                  ],
+                  "query": [],
                   "variable": [
                     {
                       "disabled": false,
@@ -104,7 +82,7 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/xml"
                   }
                 ],
                 "method": "GET",
@@ -115,36 +93,27 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/xml"
                 }
               ],
-              "body": "{\n  \"totalCount\": 589,\n  \"verifications\": [\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"VERIFIED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1995-01-16T05:39:06.073Z\",\n      \"verificationDate\": \"1951-01-29T06:32:17.706Z\",\n      \"denialReason\": \"string\"\n    },\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"RESTRICTED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1988-04-22T07:28:56.680Z\",\n      \"verificationDate\": \"1988-06-13T23:24:05.798Z\",\n      \"denialReason\": \"string\"\n    }\n  ]\n}",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <totalCount>(integer)</totalCount>\n  <endpoints>\n    <endpointId>(string)</endpointId>\n    <alternateEndUserId>(string)</alternateEndUserId>\n    <callerName>(string)</callerName>\n    <locationId>(string)</locationId>\n    <telephoneNumber>(string)</telephoneNumber>\n    <activated>(boolean)</activated>\n  </endpoints>\n  <endpoints>\n    <endpointId>(string)</endpointId>\n    <alternateEndUserId>(string)</alternateEndUserId>\n    <callerName>(string)</callerName>\n    <locationId>(string)</locationId>\n    <telephoneNumber>(string)</telephoneNumber>\n    <activated>(boolean)</activated>\n  </endpoints>\n</element>",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "xml"
             },
             {
-              "id": "fd56c04d-ece8-4776-9293-561dd0ec2ed6",
+              "id": "e8d4f835-4d95-43bb-bd19-5788338b3553",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
-                      "value": "<string>"
-                    }
-                  ],
+                  "query": [],
                   "variable": [
                     {
                       "disabled": false,
@@ -187,19 +156,19 @@
           }
         },
         {
-          "id": "c4cfa22e-f3ca-4e14-9912-0abb36ec914b",
-          "name": "Submit a toll-free verification request",
+          "id": "83adeb62-6ca0-4c3c-af5f-1ed28d7cca3c",
+          "name": "Create an E911 endpoint",
           "request": {
-            "name": "Submit a toll-free verification request",
+            "name": "Create an E911 endpoint",
             "description": {
-              "content": "Submits a new toll-free number verification request to the toll-free aggregator. Once submitted, the number will have a Pending Verification status until the aggregator reviews and approves or denies the request. Status updates are delivered via webhook notifications.",
+              "content": "Provisions a new 911 endpoint for an end user. The endpoint is identified by an Alternate End User ID (AEUI) and must be associated with a validated location for emergency routing.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification"
+                "e911s"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -218,35 +187,35 @@
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/json"
+                "value": "application/xml"
               },
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "POST",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
               "options": {
                 "raw": {
-                  "language": "json"
+                  "language": "xml"
                 }
               }
             }
           },
           "response": [
             {
-              "id": "b348eb00-ccc3-4789-9c2c-311e8eaa0421",
-              "name": "Verification request submitted successfully",
+              "id": "0fd94470-49ec-4fed-bfc0-7b3852eee0ea",
+              "name": "Endpoint created successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -273,16 +242,16 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/xml"
                   }
                 ],
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -292,22 +261,22 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/xml"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "xml"
             },
             {
-              "id": "653caf8f-bfc3-4da3-983d-7d8328029b20",
-              "name": "Invalid verification request",
+              "id": "a21806c7-2978-48c4-9cf2-298341a3164b",
+              "name": "Invalid endpoint configuration",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -331,19 +300,15 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -353,22 +318,22 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "61cbb805-3a2b-4a92-8cd8-bb851248df92",
+              "id": "0012d722-fcfc-48ac-a4ba-b02c1c4529ec",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -397,10 +362,10 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -424,20 +389,20 @@
           }
         },
         {
-          "id": "20c4d00a-da3a-4614-81e4-e80327ebbc7b",
-          "name": "Get toll-free verification details",
+          "id": "08f08dcb-cbca-4cda-86d3-2f6339ccfa21",
+          "name": "Get E911 endpoint details",
           "request": {
-            "name": "Get toll-free verification details",
+            "name": "Get E911 endpoint details",
             "description": {
-              "content": "Retrieves detailed information about a specific toll-free number verification request including its current status, submission details, and any denial reasons if applicable.",
+              "content": "Retrieves detailed information about a specific 911 endpoint including its associated location and configuration.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "e911s",
+                ":endpointId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -455,15 +420,15 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "endpointId",
+                  "description": "(Required) The unique identifier for the E911 endpoint"
                 }
               ]
             },
             "header": [
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "GET",
@@ -471,15 +436,15 @@
           },
           "response": [
             {
-              "id": "7d24f42a-cc30-48d9-b1e0-f777bc4d6b45",
-              "name": "Verification details retrieved successfully",
+              "id": "16bac7fd-16a3-4be7-9fbb-79b338ebf87e",
+              "name": "Endpoint details retrieved successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    ":endpointId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -497,8 +462,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
                     }
                   ]
                 },
@@ -513,7 +478,7 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/xml"
                   }
                 ],
                 "method": "GET",
@@ -524,23 +489,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/xml"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "xml"
             },
             {
-              "id": "6a2665ce-4c97-4ea3-a55d-d55e781ac375",
+              "id": "b4e2f88b-af7e-464d-8fa4-e3d85a444535",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    ":endpointId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -558,8 +523,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
                     }
                   ]
                 },
@@ -589,15 +554,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "32113eac-8cba-441c-942e-2c2a1907565d",
-              "name": "Verification request not found",
+              "id": "4ab1efb1-3e6f-45a1-8813-a60d5eeddbfd",
+              "name": "Endpoint not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    ":endpointId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -615,8 +580,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
                     }
                   ]
                 },
@@ -652,20 +617,20 @@
           }
         },
         {
-          "id": "57d05165-950f-4285-81ef-9cb6f63adbeb",
-          "name": "Update a toll-free verification request",
+          "id": "138cad12-d660-4b08-87c3-5c53c9982021",
+          "name": "Update an E911 endpoint",
           "request": {
-            "name": "Update a toll-free verification request",
+            "name": "Update an E911 endpoint",
             "description": {
-              "content": "Updates an existing toll-free verification request. This can be used to provide additional information or correct details on a pending or denied verification submission.",
+              "content": "Updates the configuration or location association for a specific 911 endpoint.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "e911s",
+                ":endpointId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -683,44 +648,40 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "endpointId",
+                  "description": "(Required) The unique identifier for the E911 endpoint"
                 }
               ]
             },
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "PUT",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
               "options": {
                 "raw": {
-                  "language": "json"
+                  "language": "xml"
                 }
               }
             }
           },
           "response": [
             {
-              "id": "ca6bede4-0548-47a0-9c8c-0f357d9f7474",
-              "name": "Verification request updated successfully",
+              "id": "1ed47122-c4a3-48b5-80cd-399f3d7cdeb3",
+              "name": "Endpoint updated successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    ":endpointId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -738,8 +699,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
                     }
                   ]
                 },
@@ -751,19 +712,15 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -773,23 +730,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "1872245d-3f8b-4f8e-b823-c7b708a52e40",
-              "name": "Invalid update request",
+              "id": "cdb7ae8c-b118-454d-9ea4-a6fb02ca7dae",
+              "name": "Invalid endpoint configuration",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    ":endpointId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -807,8 +764,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
                     }
                   ]
                 },
@@ -820,19 +777,15 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -842,23 +795,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "69538931-2d4b-4d0a-ab65-5eb255bc9182",
+              "id": "24d9a35e-7a40-4020-a8ba-8af2371386d4",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    ":endpointId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -876,8 +829,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
                     }
                   ]
                 },
@@ -894,10 +847,10 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -915,15 +868,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "086e948d-efcc-4803-bcc4-f743caf51345",
-              "name": "Verification request not found",
+              "id": "daec9d9b-69d4-4a83-942d-d2d0b3e80a68",
+              "name": "Endpoint not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    ":endpointId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -941,8 +894,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
                     }
                   ]
                 },
@@ -959,13 +912,231 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <endpointId>(string)</endpointId>\n  <alternateEndUserId>(string)</alternateEndUserId>\n  <callerName>(string)</callerName>\n  <locationId>(string)</locationId>\n  <telephoneNumber>(string)</telephoneNumber>\n  <activated>(boolean)</activated>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb2b42f2-a561-4a34-b965-a9ac6f3c09dc",
+          "name": "Delete an E911 endpoint",
+          "request": {
+            "name": "Delete an E911 endpoint",
+            "description": {
+              "content": "Removes a 911 endpoint from the account. The endpoint will no longer be able to route emergency calls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "e911s",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) The unique identifier for the E911 endpoint"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6dfd2354-f6a7-4202-b404-ecf40c10e8f2",
+              "name": "Endpoint deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "e911s",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d0a6541-ee57-4c49-9afb-559941ca16de",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "e911s",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a15ff26-ff5a-48be-a594-95884d800898",
+              "name": "Endpoint not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "e911s",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) The unique identifier for the E911 endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
               },
               "status": "Not Found",
               "code": 404,
@@ -1011,8 +1182,8 @@
     ]
   },
   "info": {
-    "_postman_id": "7326d2c7-ee4b-48d2-b9d0-6ce76a4f8777",
-    "name": "Bandwidth Emergency Calling Available Numbers Toll-Free Verification API",
+    "_postman_id": "30b05994-9c75-438c-b220-2a35448d1b4b",
+    "name": "Bandwidth Emergency Calling Available Numbers Endpoints API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",

@@ -1,0 +1,443 @@
+{
+  "item": [
+    {
+      "id": "71ab6a49-fa76-4ecb-bdbb-827546273bb4",
+      "name": "Available Numbers",
+      "description": {
+        "content": "Search for available phone numbers by area code, NPA-NXX, rate center, city, state, or ZIP code. Returns numbers available for ordering.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e7dfe653-a07b-4edc-a154-b8d5cef7caf0",
+          "name": "Search available phone numbers",
+          "request": {
+            "name": "Search available phone numbers",
+            "description": {
+              "content": "Searches Bandwidth's inventory for available phone numbers matching the specified criteria. Supports searches by area code, NPA-NXX, rate center, city, state, ZIP code, and LATA. Returns up to the requested quantity of available numbers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "availableNumbers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "areaCode",
+                  "value": "<string>",
+                  "description": "Three-digit area code to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "npaNxx",
+                  "value": "<string>",
+                  "description": "Six-digit NPA-NXX combination to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "rateCenter",
+                  "value": "<string>",
+                  "description": "Rate center name to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "City name to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Two-letter state abbreviation"
+                },
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "<string>",
+                  "description": "Five-digit ZIP code to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "lata",
+                  "value": "<string>",
+                  "description": "LATA code to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "quantity",
+                  "value": "5000",
+                  "description": "Number of results to return (1-5000, default 5000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tollFreeWildCardPattern",
+                  "value": "<string>",
+                  "description": "Toll-free number pattern using wildcards (e.g., 8**) for toll-free number searches"
+                },
+                {
+                  "disabled": false,
+                  "key": "enableTNDetail",
+                  "value": "false",
+                  "description": "Include detailed information for each number"
+                },
+                {
+                  "disabled": false,
+                  "key": "localVanity",
+                  "value": "<string>",
+                  "description": "Vanity number search pattern"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e5a8e6a-1022-4d75-b197-4ca9fd250edc",
+              "name": "Available numbers found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "availableNumbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "areaCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "npaNxx",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rateCenter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lata",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "quantity",
+                      "value": "5000"
+                    },
+                    {
+                      "key": "tollFreeWildCardPattern",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enableTNDetail",
+                      "value": "false"
+                    },
+                    {
+                      "key": "localVanity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <resultCount>(integer)</resultCount>\n  <telephoneNumberList>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n  </telephoneNumberList>\n  <telephoneNumberList>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n  </telephoneNumberList>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "ba56b9b7-8dba-4083-ac87-6bb9c0a322b9",
+              "name": "Invalid search parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "availableNumbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "areaCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "npaNxx",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rateCenter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lata",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "quantity",
+                      "value": "5000"
+                    },
+                    {
+                      "key": "tollFreeWildCardPattern",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enableTNDetail",
+                      "value": "false"
+                    },
+                    {
+                      "key": "localVanity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0913d550-0ffb-44ea-aa96-9565b909dfa0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "availableNumbers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "areaCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "npaNxx",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rateCenter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lata",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "quantity",
+                      "value": "5000"
+                    },
+                    {
+                      "key": "tollFreeWildCardPattern",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enableTNDetail",
+                      "value": "false"
+                    },
+                    {
+                      "key": "localVanity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dashboard.bandwidth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2f92aad8-19c2-4c6d-a771-8a92832456c2",
+    "name": "Bandwidth Emergency Calling Available Numbers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers Orders API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List phone number orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/orders",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders created on or after this date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders created on or before this date"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of phone number orders for the account. Supports filtering by order status, date range, and other criteria."
+        },
+        {
+          "info": {
+            "name": "Create a phone number order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/orders",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Creates a new order to purchase phone numbers from Bandwidth's available inventory. The order specifies which numbers to purchase and the site and SIP peer to assign them to. Order status can be tracked via the GET endpoint or webhook callbacks."
+        },
+        {
+          "info": {
+            "name": "Get order details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/orders/:orderId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the order"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific phone number order including its current status and list of numbers ordered."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

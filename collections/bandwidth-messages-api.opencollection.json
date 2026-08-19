@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers Messages API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/users/:accountId/messages",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a specific message ID"
+              },
+              {
+                "name": "sourceTn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source telephone number in E.164 format"
+              },
+              {
+                "name": "destinationTn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by destination telephone number in E.164 format"
+              },
+              {
+                "name": "messageStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by message delivery status"
+              },
+              {
+                "name": "messageDirection",
+                "value": "",
+                "type": "query",
+                "description": "Filter by message direction"
+              },
+              {
+                "name": "carrierName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by carrier name"
+              },
+              {
+                "name": "messageType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by message type"
+              },
+              {
+                "name": "errorCode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by error code"
+              },
+              {
+                "name": "fromDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Filter messages sent on or after this date-time"
+              },
+              {
+                "name": "toDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Filter messages sent on or before this date-time"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Page token for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of message metadata for the account. Bandwidth does not store message content for privacy reasons; only metadata such as sender, recipient, timestamps, and delivery status is returned. Supports filtering by source number, destination number, and date range."
+        },
+        {
+          "info": {
+            "name": "Send a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/users/:accountId/messages",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an SMS or MMS message from a Bandwidth number. For MMS, include media URLs in the request body. Bandwidth will return an HTTP 202 Accepted indicating the message has been queued for delivery. Delivery status will be provided via webhook callbacks."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

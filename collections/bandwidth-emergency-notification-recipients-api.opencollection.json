@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers Emergency Notification Recipients API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Emergency Notification Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List emergency notification recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/notificationRecipients",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of configured notification recipients who are alerted when 911 calls are placed from the account's endpoints."
+        },
+        {
+          "info": {
+            "name": "Create a notification recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/notificationRecipients",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Configures a new notification recipient to receive alerts when 911 calls are placed from the account's endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

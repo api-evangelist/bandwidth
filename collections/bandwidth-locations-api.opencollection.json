@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers Locations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List E911 locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all validated locations provisioned for emergency calling within the account."
+        },
+        {
+          "info": {
+            "name": "Create an E911 location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Provisions a new location for emergency calling. The address is validated against the Master Street Address Guide (MSAG) to ensure it can be properly routed to the correct PSAP. Bandwidth can generate a location ID automatically, or you can provide your own custom location ID."
+        },
+        {
+          "info": {
+            "name": "Get E911 location details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations/:locationId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 location"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific validated location."
+        },
+        {
+          "info": {
+            "name": "Update an E911 location",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations/:locationId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 location"
+              }
+            ]
+          },
+          "docs": "Updates a specific location. The new address will be re-validated against the MSAG."
+        },
+        {
+          "info": {
+            "name": "Delete an E911 location",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/locations/:locationId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 location"
+              }
+            ]
+          },
+          "docs": "Removes a location from the account. The location must not be currently associated with any active endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

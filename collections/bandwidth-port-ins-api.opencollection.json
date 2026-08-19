@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers Port-Ins API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Port-Ins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List port-in requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/portins",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by port-in status"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter requests created on or after this date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter requests created on or before this date"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of number porting requests for the account."
+        },
+        {
+          "info": {
+            "name": "Create a port-in request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/portins",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Initiates a number porting request to transfer phone numbers from another carrier to Bandwidth. The request includes subscriber information and the list of numbers to port."
+        },
+        {
+          "info": {
+            "name": "Get port-in request details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/portins/:portInId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "portInId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the port-in request"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific number porting request including its current status and timeline."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers SIP Peers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SIP Peers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SIP peers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of SIP peers (locations) configured within a specific site."
+        },
+        {
+          "info": {
+            "name": "Create a SIP peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              }
+            ]
+          },
+          "docs": "Creates a new SIP peer (location) within a site. SIP peers define the network endpoints for call routing and number assignment."
+        },
+        {
+          "info": {
+            "name": "Get SIP peer details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              },
+              {
+                "name": "sipPeerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SIP peer"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific SIP peer."
+        },
+        {
+          "info": {
+            "name": "Update a SIP peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              },
+              {
+                "name": "sipPeerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SIP peer"
+              }
+            ]
+          },
+          "docs": "Updates the configuration for a specific SIP peer."
+        },
+        {
+          "info": {
+            "name": "Delete a SIP peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              },
+              {
+                "name": "sipPeerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SIP peer"
+              }
+            ]
+          },
+          "docs": "Deletes a specific SIP peer. The SIP peer must have no active phone numbers assigned to it."
+        },
+        {
+          "info": {
+            "name": "List SIP peer phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/sites/:siteId/sippeers/:sipPeerId/tns",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the site"
+              },
+              {
+                "name": "sipPeerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SIP peer"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of phone numbers assigned to a specific SIP peer within a site."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

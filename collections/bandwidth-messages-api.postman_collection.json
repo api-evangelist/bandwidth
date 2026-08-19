@@ -1,0 +1,657 @@
+{
+  "item": [
+    {
+      "id": "444b8314-6a29-40d8-82ce-8b20685a3c24",
+      "name": "Messages",
+      "description": {
+        "content": "Send and retrieve SMS and MMS messages. Supports single and group messaging, delivery receipts, and message history queries.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2cf9f38-1567-4d20-9464-6bf34a2e3a6f",
+          "name": "Send a message",
+          "request": {
+            "name": "Send a message",
+            "description": {
+              "content": "Sends an SMS or MMS message from a Bandwidth number. For MMS, include media URLs in the request body. Bandwidth will return an HTTP 202 Accepted indicating the message has been queued for delivery. Delivery status will be provided via webhook callbacks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":accountId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": [\n    \"<string>\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c971563e-05f9-4aa0-a68c-edc6c9bffba2",
+              "name": "Message accepted and queued for delivery",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": [\n    \"+19195554321\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"owner\": \"string\",\n  \"applicationId\": \"string\",\n  \"time\": \"1946-08-31T23:49:50.642Z\",\n  \"segmentCount\": 6469,\n  \"direction\": \"out\",\n  \"to\": [\n    \"string\",\n    \"string\"\n  ],\n  \"from\": \"string\",\n  \"media\": [\n    \"http://MuLktJVqZqRYAbCZcKjjgYIXsf.viln602P-teN1O5H9OX5z0e4x4hrz\",\n    \"http://QQFyQeyRGznPgWFDQCAG.euCluMrWs5w5D3uFCn0SP1n1IySfShospNtGW\"\n  ],\n  \"text\": \"string\",\n  \"tag\": \"string\",\n  \"priority\": \"default\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcd06b71-aed4-45ca-812d-4684b3e2f767",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": [\n    \"+19195554321\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\",\n  \"fieldErrors\": [\n    {\n      \"fieldName\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"fieldName\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7ce2eba-a142-41c7-a31d-e04073eda06a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": [\n    \"+19195554321\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cd9de9b0-74b2-4fc5-ad35-25be29e55c3a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": [\n    \"+19195554321\"\n  ],\n  \"text\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"media\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"tag\": \"<string>\",\n  \"priority\": \"default\",\n  \"expiration\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82cdfcce-0b11-4602-9799-b9d6f4da4ec3",
+          "name": "List messages",
+          "request": {
+            "name": "List messages",
+            "description": {
+              "content": "Retrieves a list of message metadata for the account. Bandwidth does not store message content for privacy reasons; only metadata such as sender, recipient, timestamps, and delivery status is returned. Supports filtering by source number, destination number, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":accountId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "messageId",
+                  "value": "<string>",
+                  "description": "Filter by a specific message ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceTn",
+                  "value": "<string>",
+                  "description": "Filter by source telephone number in E.164 format"
+                },
+                {
+                  "disabled": false,
+                  "key": "destinationTn",
+                  "value": "<string>",
+                  "description": "Filter by destination telephone number in E.164 format"
+                },
+                {
+                  "disabled": false,
+                  "key": "messageStatus",
+                  "value": "<string>",
+                  "description": "Filter by message delivery status"
+                },
+                {
+                  "disabled": false,
+                  "key": "messageDirection",
+                  "value": "<string>",
+                  "description": "Filter by message direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "carrierName",
+                  "value": "<string>",
+                  "description": "Filter by carrier name"
+                },
+                {
+                  "disabled": false,
+                  "key": "messageType",
+                  "value": "<string>",
+                  "description": "Filter by message type"
+                },
+                {
+                  "disabled": false,
+                  "key": "errorCode",
+                  "value": "<integer>",
+                  "description": "Filter by error code"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDateTime",
+                  "value": "<dateTime>",
+                  "description": "Filter messages sent on or after this date-time"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDateTime",
+                  "value": "<dateTime>",
+                  "description": "Filter messages sent on or before this date-time"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Page token for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of messages to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04d1a1eb-c3e6-4510-ad05-b45c2f50eaf9",
+              "name": "Messages retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceTn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destinationTn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "carrierName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "errorCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fromDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "toDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 3923,\n  \"pageInfo\": {\n    \"prevPage\": \"string\",\n    \"nextPage\": \"string\",\n    \"prevPageToken\": \"string\",\n    \"nextPageToken\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"id\": \"string\",\n      \"owner\": \"string\",\n      \"applicationId\": \"string\",\n      \"time\": \"2014-12-11T02:07:36.053Z\",\n      \"segmentCount\": 556,\n      \"direction\": \"in\",\n      \"to\": [\n        \"string\",\n        \"string\"\n      ],\n      \"from\": \"string\",\n      \"media\": [\n        \"http://uHXkhlegVpFiDs.xnnMV5kQfn0VmPslmEARz9OtymMtPCKcR\",\n        \"http://Bka.suuhQNvMSbhKY\"\n      ],\n      \"text\": \"string\",\n      \"tag\": \"string\",\n      \"priority\": \"default\"\n    },\n    {\n      \"id\": \"string\",\n      \"owner\": \"string\",\n      \"applicationId\": \"string\",\n      \"time\": \"2026-06-16T20:04:29.041Z\",\n      \"segmentCount\": 2203,\n      \"direction\": \"out\",\n      \"to\": [\n        \"string\",\n        \"string\"\n      ],\n      \"from\": \"string\",\n      \"media\": [\n        \"http://nFFvVcZFuH.cfcOlMkuihY1Yvb5,,g\",\n        \"http://kAVBRmaQ.pvYWXtm9rKI4u,rL0Dw7scFFBBDMTyB-\"\n      ],\n      \"text\": \"string\",\n      \"tag\": \"string\",\n      \"priority\": \"default\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbebbe80-0b34-45f5-abf0-fb24f1460785",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":accountId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceTn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destinationTn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "carrierName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "errorCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fromDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "toDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dashboard.bandwidth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4753753e-d3bc-4411-bb09-c2956542f5df",
+    "name": "Bandwidth Emergency Calling Available Numbers Messages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers Media API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List media files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/users/:accountId/media",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "continuationToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for paginating through large media lists"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all media files that have been uploaded to the account. Each request returns a maximum of 1000 media files. Bandwidth retains uploaded media for up to 48 hours."
+        },
+        {
+          "info": {
+            "name": "Download a media file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/users/:accountId/media/:mediaName",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "mediaName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the media file to download"
+              }
+            ]
+          },
+          "docs": "Downloads a specific media file by its name. Returns the binary content of the media file."
+        },
+        {
+          "info": {
+            "name": "Upload a media file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/users/:accountId/media/:mediaName",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "mediaName",
+                "value": "",
+                "type": "path",
+                "description": "The filename to assign to the uploaded media"
+              }
+            ]
+          },
+          "docs": "Uploads a media file for use in MMS messages. Files can be up to 3.75 MB in size. Bandwidth provides free file storage for an unlimited number of files with 48-hour retention."
+        },
+        {
+          "info": {
+            "name": "Delete a media file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dashboard.bandwidth.com/api/users/:accountId/media/:mediaName",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "mediaName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the media file to delete"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a specific media file from the account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

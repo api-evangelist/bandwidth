@@ -1,205 +1,27 @@
 {
   "item": [
     {
-      "id": "62783a72-6ec6-48bf-b2b2-fb93192b0b8b",
-      "name": "Toll-Free Verification",
+      "id": "952d180c-f97b-45d7-b1a4-e39b6bc6d745",
+      "name": "Calls",
       "description": {
-        "content": "Submit and manage toll-free number verification requests for A2P messaging compliance. Track verification status and manage submissions throughout the verification lifecycle.",
+        "content": "Create, retrieve, and manage phone calls. Supports outbound call creation, call state queries, and in-progress call modifications using BXML or redirect URLs.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e8b698f5-7d90-421e-8ca9-e190bf99e2f7",
-          "name": "List toll-free verification requests",
+          "id": "779117fa-b322-40f4-9965-349dd4643c84",
+          "name": "Create a call",
           "request": {
-            "name": "List toll-free verification requests",
+            "name": "Create a call",
             "description": {
-              "content": "Retrieves a list of all toll-free number verification requests for the account. Returns verification status, submission details, and associated toll-free numbers.",
+              "content": "Creates an outbound phone call. The call will be initiated from the specified Bandwidth number to the destination number. The answerUrl will receive a webhook when the call is answered, and your application should respond with BXML to control the call flow.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>",
-                  "description": "Filter by verification status"
-                },
-                {
-                  "disabled": false,
-                  "key": "telephoneNumber",
-                  "value": "<string>",
-                  "description": "Filter by toll-free telephone number"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) The unique identifier for the Bandwidth account"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "82347217-4dc2-482e-8b6a-a23cb62be296",
-              "name": "Verification requests retrieved successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "tollFreeVerification"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) The unique identifier for the Bandwidth account"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"totalCount\": 589,\n  \"verifications\": [\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"VERIFIED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1995-01-16T05:39:06.073Z\",\n      \"verificationDate\": \"1951-01-29T06:32:17.706Z\",\n      \"denialReason\": \"string\"\n    },\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"RESTRICTED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1988-04-22T07:28:56.680Z\",\n      \"verificationDate\": \"1988-06-13T23:24:05.798Z\",\n      \"denialReason\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fd56c04d-ece8-4776-9293-561dd0ec2ed6",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "tollFreeVerification"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) The unique identifier for the Bandwidth account"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c4cfa22e-f3ca-4e14-9912-0abb36ec914b",
-          "name": "Submit a toll-free verification request",
-          "request": {
-            "name": "Submit a toll-free verification request",
-            "description": {
-              "content": "Submits a new toll-free number verification request to the toll-free aggregator. Once submitted, the number will have a Pending Verification status until the aggregator reviews and approves or denies the request. Status updates are delivered via webhook notifications.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "tollFreeVerification"
+                "calls"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -229,7 +51,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -239,14 +61,14 @@
           },
           "response": [
             {
-              "id": "b348eb00-ccc3-4789-9c2c-311e8eaa0421",
-              "name": "Verification request submitted successfully",
+              "id": "f2ba0e2a-20b2-4295-aa47-c288d245aeb5",
+              "name": "Call created successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "calls"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -279,7 +101,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": \"+19195554321\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -295,19 +117,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "{\n  \"callId\": \"string\",\n  \"accountId\": \"string\",\n  \"applicationId\": \"string\",\n  \"to\": \"string\",\n  \"from\": \"string\",\n  \"direction\": \"outbound\",\n  \"state\": \"initiated\",\n  \"startTime\": \"1963-04-19T17:29:39.472Z\",\n  \"answerTime\": \"1948-12-01T14:30:58.784Z\",\n  \"endTime\": \"1947-05-31T17:21:14.394Z\",\n  \"disconnectCause\": \"string\",\n  \"tag\": \"string\",\n  \"callUrl\": \"https://WroABtcjFdQhBLkIocwPn.uxxfyLfrDQa4QgCRzmeD683MaLsShzoHKr7,eFdqkV2SU9kMAa8vBwH,g2-NocN2bO9WO\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "653caf8f-bfc3-4da3-983d-7d8328029b20",
-              "name": "Invalid verification request",
+              "id": "4d6b8cd8-0157-426f-87c5-cb81d54cdfe4",
+              "name": "Bad request",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "calls"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -340,7 +162,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": \"+19195554321\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -356,19 +178,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\",\n  \"id\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "61cbb805-3a2b-4a92-8cd8-bb851248df92",
+              "id": "a905e199-78eb-4dd3-afc9-fb718a944009",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "calls"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -397,7 +219,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": \"+19195554321\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -416,6 +238,63 @@
               "body": "",
               "cookie": [],
               "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd780958-ea1f-4d49-8289-54ae7f8a3ceb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"+19195551234\",\n  \"to\": \"+19195554321\",\n  \"answerUrl\": \"<uri>\",\n  \"applicationId\": \"<string>\",\n  \"answerMethod\": \"POST\",\n  \"answerFallbackUrl\": \"<uri>\",\n  \"answerFallbackMethod\": \"POST\",\n  \"disconnectUrl\": \"<uri>\",\n  \"disconnectMethod\": \"POST\",\n  \"tag\": \"<string>\",\n  \"callTimeout\": 30,\n  \"callbackTimeout\": 15\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -424,20 +303,20 @@
           }
         },
         {
-          "id": "20c4d00a-da3a-4614-81e4-e80327ebbc7b",
-          "name": "Get toll-free verification details",
+          "id": "0199c2ef-0a55-4671-94e5-9bce605cb677",
+          "name": "Get call information",
           "request": {
-            "name": "Get toll-free verification details",
+            "name": "Get call information",
             "description": {
-              "content": "Retrieves detailed information about a specific toll-free number verification request including its current status, submission details, and any denial reasons if applicable.",
+              "content": "Retrieves the current state and metadata for a specific call identified by its call ID.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "calls",
+                ":callId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -455,8 +334,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "callId",
+                  "description": "(Required) The unique identifier for the call"
                 }
               ]
             },
@@ -471,15 +350,15 @@
           },
           "response": [
             {
-              "id": "7d24f42a-cc30-48d9-b1e0-f777bc4d6b45",
-              "name": "Verification details retrieved successfully",
+              "id": "63670d56-a1a1-462a-b7f6-5d9c1e898fde",
+              "name": "Call information retrieved successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "calls",
+                    ":callId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -497,8 +376,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "callId",
+                      "description": "(Required) The unique identifier for the call"
                     }
                   ]
                 },
@@ -527,20 +406,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "{\n  \"callId\": \"string\",\n  \"accountId\": \"string\",\n  \"applicationId\": \"string\",\n  \"to\": \"string\",\n  \"from\": \"string\",\n  \"direction\": \"outbound\",\n  \"state\": \"initiated\",\n  \"startTime\": \"1963-04-19T17:29:39.472Z\",\n  \"answerTime\": \"1948-12-01T14:30:58.784Z\",\n  \"endTime\": \"1947-05-31T17:21:14.394Z\",\n  \"disconnectCause\": \"string\",\n  \"tag\": \"string\",\n  \"callUrl\": \"https://WroABtcjFdQhBLkIocwPn.uxxfyLfrDQa4QgCRzmeD683MaLsShzoHKr7,eFdqkV2SU9kMAa8vBwH,g2-NocN2bO9WO\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "6a2665ce-4c97-4ea3-a55d-d55e781ac375",
+              "id": "8a9e4ae0-fe69-4fac-8442-030a54350b7c",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "calls",
+                    ":callId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -558,8 +437,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "callId",
+                      "description": "(Required) The unique identifier for the call"
                     }
                   ]
                 },
@@ -589,15 +468,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "32113eac-8cba-441c-942e-2c2a1907565d",
-              "name": "Verification request not found",
+              "id": "baf680b1-de09-45e9-9598-2ee1882e0c90",
+              "name": "Call not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "calls",
+                    ":callId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -615,8 +494,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "callId",
+                      "description": "(Required) The unique identifier for the call"
                     }
                   ]
                 },
@@ -652,20 +531,20 @@
           }
         },
         {
-          "id": "57d05165-950f-4285-81ef-9cb6f63adbeb",
-          "name": "Update a toll-free verification request",
+          "id": "d4a17a14-af8c-42a6-8641-5604067d33f3",
+          "name": "Update a call",
           "request": {
-            "name": "Update a toll-free verification request",
+            "name": "Update a call",
             "description": {
-              "content": "Updates an existing toll-free verification request. This can be used to provide additional information or correct details on a pending or denied verification submission.",
+              "content": "Modifies an in-progress call by redirecting it to a new BXML document URL or by completing the call. This enables advanced call control scenarios such as transferring, bridging, or terminating calls programmatically.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "calls",
+                ":callId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -683,8 +562,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "callId",
+                  "description": "(Required) The unique identifier for the call"
                 }
               ]
             },
@@ -698,11 +577,11 @@
                 "value": "application/json"
               }
             ],
-            "method": "PUT",
+            "method": "POST",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+              "raw": "{\n  \"state\": \"<string>\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -712,15 +591,15 @@
           },
           "response": [
             {
-              "id": "ca6bede4-0548-47a0-9c8c-0f357d9f7474",
-              "name": "Verification request updated successfully",
+              "id": "45b4b055-36db-4375-813a-4aa085999d3d",
+              "name": "Call updated successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "calls",
+                    ":callId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -738,8 +617,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "callId",
+                      "description": "(Required) The unique identifier for the call"
                     }
                   ]
                 },
@@ -751,16 +630,12 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
-                "method": "PUT",
+                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -773,23 +648,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "1872245d-3f8b-4f8e-b823-c7b708a52e40",
-              "name": "Invalid update request",
+              "id": "16f0d2b1-dd4f-4582-b2c2-dded89ccac98",
+              "name": "Bad request",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "calls",
+                    ":callId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -807,8 +682,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "callId",
+                      "description": "(Required) The unique identifier for the call"
                     }
                   ]
                 },
@@ -826,10 +701,10 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "PUT",
+                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -845,20 +720,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\",\n  \"id\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "69538931-2d4b-4d0a-ab65-5eb255bc9182",
+              "id": "a2c9ac4e-6c1a-40d5-b6ad-29a18831e123",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "calls",
+                    ":callId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -876,8 +751,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "callId",
+                      "description": "(Required) The unique identifier for the call"
                     }
                   ]
                 },
@@ -891,10 +766,10 @@
                     "value": "Basic <credentials>"
                   }
                 ],
-                "method": "PUT",
+                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -915,15 +790,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "086e948d-efcc-4803-bcc4-f743caf51345",
-              "name": "Verification request not found",
+              "id": "9fe87b45-e65b-4251-9d25-1610deecf772",
+              "name": "Call not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "calls",
+                    ":callId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -941,8 +816,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "callId",
+                      "description": "(Required) The unique identifier for the call"
                     }
                   ]
                 },
@@ -956,10 +831,10 @@
                     "value": "Basic <credentials>"
                   }
                 ],
-                "method": "PUT",
+                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"redirectUrl\": \"<uri>\",\n  \"redirectMethod\": \"POST\",\n  \"redirectFallbackUrl\": \"<uri>\",\n  \"redirectFallbackMethod\": \"POST\",\n  \"tag\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1011,8 +886,8 @@
     ]
   },
   "info": {
-    "_postman_id": "7326d2c7-ee4b-48d2-b9d0-6ce76a4f8777",
-    "name": "Bandwidth Emergency Calling Available Numbers Toll-Free Verification API",
+    "_postman_id": "ef5dbe39-12d1-4812-9e6d-0dd2e8efa095",
+    "name": "Bandwidth Emergency Calling Available Numbers Calls API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",

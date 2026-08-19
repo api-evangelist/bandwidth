@@ -1,63 +1,33 @@
 {
   "item": [
     {
-      "id": "bdc59b3f-dba6-446a-a74a-f12ad646b892",
-      "name": "Phone Numbers",
+      "id": "9d831542-916e-4f10-94cd-0a2f3ea37d54",
+      "name": "Emergency Notification Recipients",
       "description": {
-        "content": "Search and manage phone numbers currently assigned to your account, including configuring number features and assignments.",
+        "content": "Configure notification recipients who receive alerts when 911 calls are made from your endpoints.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "5b7d0bd0-268f-4462-97d7-eb271cda5c1d",
-          "name": "List phone numbers",
+          "id": "4137137b-a879-401a-9c66-76a1b741968c",
+          "name": "List emergency notification recipients",
           "request": {
-            "name": "List phone numbers",
+            "name": "List emergency notification recipients",
             "description": {
-              "content": "Retrieves a list of phone numbers assigned to the account. Supports filtering by various criteria including city, state, and LATA.",
+              "content": "Retrieves a list of configured notification recipients who are alerted when 911 calls are placed from the account's endpoints.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tns"
+                "e911s",
+                "notificationRecipients"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "<integer>",
-                  "description": "Page number for pagination"
-                },
-                {
-                  "disabled": false,
-                  "key": "size",
-                  "value": "<integer>",
-                  "description": "Number of results per page"
-                },
-                {
-                  "disabled": false,
-                  "key": "city",
-                  "value": "<string>",
-                  "description": "Filter by city"
-                },
-                {
-                  "disabled": false,
-                  "key": "state",
-                  "value": "<string>",
-                  "description": "Filter by state abbreviation"
-                },
-                {
-                  "disabled": false,
-                  "key": "lata",
-                  "value": "<string>",
-                  "description": "Filter by LATA code"
-                }
-              ],
+              "query": [],
               "variable": [
                 {
                   "disabled": false,
@@ -79,40 +49,20 @@
           },
           "response": [
             {
-              "id": "8ecd37b9-b35e-43e7-8d56-d8702713c776",
-              "name": "Phone numbers retrieved successfully",
+              "id": "74c4a91a-612d-4d79-84f0-71093ae80334",
+              "name": "Notification recipients retrieved successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tns"
+                    "e911s",
+                    "notificationRecipients"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "size",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "city",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "state",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "lata",
-                      "value": "<string>"
-                    }
-                  ],
+                  "query": [],
                   "variable": [
                     {
                       "disabled": false,
@@ -148,45 +98,25 @@
                   "value": "application/xml"
                 }
               ],
-              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <totalCount>(integer)</totalCount>\n  <telephoneNumbers>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n    <status>(string)</status>\n    <siteId>(string)</siteId>\n    <sipPeerId>(string)</sipPeerId>\n  </telephoneNumbers>\n  <telephoneNumbers>\n    <fullNumber>(string)</fullNumber>\n    <city>(string)</city>\n    <state>(string)</state>\n    <lata>(string)</lata>\n    <rateCenter>(string)</rateCenter>\n    <status>(string)</status>\n    <siteId>(string)</siteId>\n    <sipPeerId>(string)</sipPeerId>\n  </telephoneNumbers>\n</element>",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <notificationRecipients>\n    <id>(string)</id>\n    <emailAddress>(string)</emailAddress>\n    <phoneNumber>(string)</phoneNumber>\n    <description>(string)</description>\n  </notificationRecipients>\n  <notificationRecipients>\n    <id>(string)</id>\n    <emailAddress>(string)</emailAddress>\n    <phoneNumber>(string)</phoneNumber>\n    <description>(string)</description>\n  </notificationRecipients>\n</element>",
               "cookie": [],
               "_postman_previewlanguage": "xml"
             },
             {
-              "id": "10d6f5db-ce71-4416-8e52-240cd69e7bea",
+              "id": "20729c2f-8869-4588-82af-970f836faf8b",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tns"
+                    "e911s",
+                    "notificationRecipients"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "size",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "city",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "state",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "lata",
-                      "value": "<string>"
-                    }
-                  ],
+                  "query": [],
                   "variable": [
                     {
                       "disabled": false,
@@ -229,20 +159,20 @@
           }
         },
         {
-          "id": "056bd234-411f-4f81-84a5-7ee6ed119e66",
-          "name": "Get phone number details",
+          "id": "cb2469ce-ea5c-4eab-8dac-54e8a71293ba",
+          "name": "Create a notification recipient",
           "request": {
-            "name": "Get phone number details",
+            "name": "Create a notification recipient",
             "description": {
-              "content": "Retrieves detailed information about a specific phone number including its assignment, features, and configuration.",
+              "content": "Configures a new notification recipient to receive alerts when 911 calls are placed from the account's endpoints.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tns",
-                ":phoneNumber"
+                "e911s",
+                "notificationRecipients"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -255,36 +185,38 @@
                   "value": "<string>",
                   "key": "accountId",
                   "description": "(Required) The unique identifier for the Bandwidth account"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "phoneNumber",
-                  "description": "(Required) The phone number to look up (digits only)"
                 }
               ]
             },
             "header": [
               {
-                "key": "Accept",
+                "key": "Content-Type",
                 "value": "application/xml"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <emailAddress>(string)</emailAddress>\n  <phoneNumber>(string)</phoneNumber>\n  <description>(string)</description>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
           },
           "response": [
             {
-              "id": "0877412f-7b37-48a0-bac7-6c2b8456ff4c",
-              "name": "Phone number details retrieved successfully",
+              "id": "5121ebc8-7f8d-4f97-bb23-3bc89fb286e3",
+              "name": "Notification recipient created successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tns",
-                    ":phoneNumber"
+                    "e911s",
+                    "notificationRecipients"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -297,13 +229,6 @@
                       "value": "<string>",
                       "key": "accountId",
                       "description": "(Required) The unique identifier for the Bandwidth account"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "phoneNumber",
-                      "description": "(Required) The phone number to look up (digits only)"
                     }
                   ]
                 },
@@ -315,74 +240,21 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/xml"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/xml"
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <emailAddress>(string)</emailAddress>\n  <phoneNumber>(string)</phoneNumber>\n  <description>(string)</description>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
                 }
-              ],
-              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <fullNumber>(string)</fullNumber>\n  <city>(string)</city>\n  <state>(string)</state>\n  <lata>(string)</lata>\n  <rateCenter>(string)</rateCenter>\n  <status>(string)</status>\n  <siteId>(string)</siteId>\n  <sipPeerId>(string)</sipPeerId>\n</element>",
-              "cookie": [],
-              "_postman_previewlanguage": "xml"
-            },
-            {
-              "id": "34c68e24-9879-44ab-ac95-9d4c68f1cf3b",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "tns",
-                    ":phoneNumber"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) The unique identifier for the Bandwidth account"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "phoneNumber",
-                      "description": "(Required) The phone number to look up (digits only)"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
               },
-              "status": "Unauthorized",
-              "code": 401,
+              "status": "Created",
+              "code": 201,
               "header": [
                 {
                   "key": "Content-Type",
@@ -394,15 +266,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "dbd7b65e-fbe3-404b-b269-912821153cf2",
-              "name": "Phone number not found",
+              "id": "832e40dc-b7a7-4329-b51e-68b4efc876b7",
+              "name": "Invalid notification recipient configuration",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tns",
-                    ":phoneNumber"
+                    "e911s",
+                    "notificationRecipients"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -415,13 +287,6 @@
                       "value": "<string>",
                       "key": "accountId",
                       "description": "(Required) The unique identifier for the Bandwidth account"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "phoneNumber",
-                      "description": "(Required) The phone number to look up (digits only)"
                     }
                   ]
                 },
@@ -435,11 +300,77 @@
                     "value": "Basic <credentials>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <emailAddress>(string)</emailAddress>\n  <phoneNumber>(string)</phoneNumber>\n  <description>(string)</description>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
               },
-              "status": "Not Found",
-              "code": 404,
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15aae9bf-0c48-4eed-9569-e41fc48c6d7b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "e911s",
+                    "notificationRecipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <id>(string)</id>\n  <emailAddress>(string)</emailAddress>\n  <phoneNumber>(string)</phoneNumber>\n  <description>(string)</description>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
               "header": [
                 {
                   "key": "Content-Type",
@@ -482,8 +413,8 @@
     ]
   },
   "info": {
-    "_postman_id": "3d476389-0fa6-41df-a47d-579f39dd80a0",
-    "name": "Bandwidth Emergency Calling Available Numbers Phone Numbers API",
+    "_postman_id": "ac6b04bb-cc24-4f0c-9c83-61d700681b5d",
+    "name": "Bandwidth Emergency Calling Available Numbers Emergency Notification Recipients API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",

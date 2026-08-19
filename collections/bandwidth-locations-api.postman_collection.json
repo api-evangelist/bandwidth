@@ -1,45 +1,33 @@
 {
   "item": [
     {
-      "id": "62783a72-6ec6-48bf-b2b2-fb93192b0b8b",
-      "name": "Toll-Free Verification",
+      "id": "624d1665-5355-48c8-a43e-c12111dfe25e",
+      "name": "Locations",
       "description": {
-        "content": "Submit and manage toll-free number verification requests for A2P messaging compliance. Track verification status and manage submissions throughout the verification lifecycle.",
+        "content": "Provision and manage physical locations (addresses) for 911 emergency services routing. Locations are validated against the Master Street Address Guide (MSAG) for accuracy.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e8b698f5-7d90-421e-8ca9-e190bf99e2f7",
-          "name": "List toll-free verification requests",
+          "id": "611ab077-a084-45c1-9a0e-90f5aa6f07ee",
+          "name": "List E911 locations",
           "request": {
-            "name": "List toll-free verification requests",
+            "name": "List E911 locations",
             "description": {
-              "content": "Retrieves a list of all toll-free number verification requests for the account. Returns verification status, submission details, and associated toll-free numbers.",
+              "content": "Retrieves a list of all validated locations provisioned for emergency calling within the account.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification"
+                "e911s",
+                "locations"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>",
-                  "description": "Filter by verification status"
-                },
-                {
-                  "disabled": false,
-                  "key": "telephoneNumber",
-                  "value": "<string>",
-                  "description": "Filter by toll-free telephone number"
-                }
-              ],
+              "query": [],
               "variable": [
                 {
                   "disabled": false,
@@ -53,7 +41,7 @@
             "header": [
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "GET",
@@ -61,28 +49,20 @@
           },
           "response": [
             {
-              "id": "82347217-4dc2-482e-8b6a-a23cb62be296",
-              "name": "Verification requests retrieved successfully",
+              "id": "11aa27a4-de64-4608-b424-9b49070d8591",
+              "name": "Locations retrieved successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s",
+                    "locations"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
-                      "value": "<string>"
-                    }
-                  ],
+                  "query": [],
                   "variable": [
                     {
                       "disabled": false,
@@ -104,7 +84,7 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/xml"
                   }
                 ],
                 "method": "GET",
@@ -115,36 +95,28 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/xml"
                 }
               ],
-              "body": "{\n  \"totalCount\": 589,\n  \"verifications\": [\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"VERIFIED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1995-01-16T05:39:06.073Z\",\n      \"verificationDate\": \"1951-01-29T06:32:17.706Z\",\n      \"denialReason\": \"string\"\n    },\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"RESTRICTED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1988-04-22T07:28:56.680Z\",\n      \"verificationDate\": \"1988-06-13T23:24:05.798Z\",\n      \"denialReason\": \"string\"\n    }\n  ]\n}",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <totalCount>(integer)</totalCount>\n  <locations>\n    <locationId>(string)</locationId>\n    <description>(string)</description>\n    <address>\n      <houseNumber>(string)</houseNumber>\n      <houseSuffix>(string)</houseSuffix>\n      <prefixDirectional>(string)</prefixDirectional>\n      <streetName>(string)</streetName>\n      <streetSuffix>(string)</streetSuffix>\n      <postDirectional>(string)</postDirectional>\n      <addressLine2>(string)</addressLine2>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <plusFour>(string)</plusFour>\n      <country>(string)</country>\n    </address>\n    <status>(string)</status>\n    <latitude>(number)</latitude>\n    <longitude>(number)</longitude>\n  </locations>\n  <locations>\n    <locationId>(string)</locationId>\n    <description>(string)</description>\n    <address>\n      <houseNumber>(string)</houseNumber>\n      <houseSuffix>(string)</houseSuffix>\n      <prefixDirectional>(string)</prefixDirectional>\n      <streetName>(string)</streetName>\n      <streetSuffix>(string)</streetSuffix>\n      <postDirectional>(string)</postDirectional>\n      <addressLine2>(string)</addressLine2>\n      <city>(string)</city>\n      <stateCode>(string)</stateCode>\n      <zip>(string)</zip>\n      <plusFour>(string)</plusFour>\n      <country>(string)</country>\n    </address>\n    <status>(string)</status>\n    <latitude>(number)</latitude>\n    <longitude>(number)</longitude>\n  </locations>\n</element>",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "xml"
             },
             {
-              "id": "fd56c04d-ece8-4776-9293-561dd0ec2ed6",
+              "id": "5c0b0d2f-1850-4d9e-9f3c-577f548d1a71",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s",
+                    "locations"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
-                      "value": "<string>"
-                    }
-                  ],
+                  "query": [],
                   "variable": [
                     {
                       "disabled": false,
@@ -187,19 +159,20 @@
           }
         },
         {
-          "id": "c4cfa22e-f3ca-4e14-9912-0abb36ec914b",
-          "name": "Submit a toll-free verification request",
+          "id": "599c350b-fb90-46b7-b206-e9eb557c21e4",
+          "name": "Create an E911 location",
           "request": {
-            "name": "Submit a toll-free verification request",
+            "name": "Create an E911 location",
             "description": {
-              "content": "Submits a new toll-free number verification request to the toll-free aggregator. Once submitted, the number will have a Pending Verification status until the aggregator reviews and approves or denies the request. Status updates are delivered via webhook notifications.",
+              "content": "Provisions a new location for emergency calling. The address is validated against the Master Street Address Guide (MSAG) to ensure it can be properly routed to the correct PSAP. Bandwidth can generate a location ID automatically, or you can provide your own custom location ID.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification"
+                "e911s",
+                "locations"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -218,35 +191,36 @@
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/json"
+                "value": "application/xml"
               },
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "POST",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
               "options": {
                 "raw": {
-                  "language": "json"
+                  "language": "xml"
                 }
               }
             }
           },
           "response": [
             {
-              "id": "b348eb00-ccc3-4789-9c2c-311e8eaa0421",
-              "name": "Verification request submitted successfully",
+              "id": "f013cd3c-c426-4bf3-94b1-d675d2c0bcd9",
+              "name": "Location created and validated successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s",
+                    "locations"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -273,16 +247,16 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/xml"
                   }
                 ],
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -292,22 +266,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/xml"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "xml"
             },
             {
-              "id": "653caf8f-bfc3-4da3-983d-7d8328029b20",
-              "name": "Invalid verification request",
+              "id": "984b5089-8aa2-4b94-bad9-40cc9e0e5bd3",
+              "name": "Invalid location or address validation failed",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s",
+                    "locations"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -331,19 +306,15 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -353,22 +324,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "61cbb805-3a2b-4a92-8cd8-bb851248df92",
+              "id": "9002dfb2-b8c2-4930-a5f3-0d15c15bbc7a",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification"
+                    "e911s",
+                    "locations"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -397,10 +369,10 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -424,20 +396,21 @@
           }
         },
         {
-          "id": "20c4d00a-da3a-4614-81e4-e80327ebbc7b",
-          "name": "Get toll-free verification details",
+          "id": "a46dfbf5-fd21-4dce-8ec1-9ce623d0968d",
+          "name": "Get E911 location details",
           "request": {
-            "name": "Get toll-free verification details",
+            "name": "Get E911 location details",
             "description": {
-              "content": "Retrieves detailed information about a specific toll-free number verification request including its current status, submission details, and any denial reasons if applicable.",
+              "content": "Retrieves detailed information about a specific validated location.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "e911s",
+                "locations",
+                ":locationId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -455,15 +428,15 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "locationId",
+                  "description": "(Required) The unique identifier for the E911 location"
                 }
               ]
             },
             "header": [
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "GET",
@@ -471,15 +444,16 @@
           },
           "response": [
             {
-              "id": "7d24f42a-cc30-48d9-b1e0-f777bc4d6b45",
-              "name": "Verification details retrieved successfully",
+              "id": "18217058-6ceb-4075-ac2d-cdee6cb8019a",
+              "name": "Location details retrieved successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    "locations",
+                    ":locationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -497,8 +471,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
                     }
                   ]
                 },
@@ -513,7 +487,7 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/xml"
                   }
                 ],
                 "method": "GET",
@@ -524,23 +498,24 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/xml"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "xml"
             },
             {
-              "id": "6a2665ce-4c97-4ea3-a55d-d55e781ac375",
+              "id": "31552122-aae0-4374-a741-343dacebab7f",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    "locations",
+                    ":locationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -558,8 +533,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
                     }
                   ]
                 },
@@ -589,15 +564,16 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "32113eac-8cba-441c-942e-2c2a1907565d",
-              "name": "Verification request not found",
+              "id": "a05a7b53-de49-472a-a8ed-8aca92f4b8b4",
+              "name": "Location not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    "locations",
+                    ":locationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -615,8 +591,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
                     }
                   ]
                 },
@@ -652,20 +628,21 @@
           }
         },
         {
-          "id": "57d05165-950f-4285-81ef-9cb6f63adbeb",
-          "name": "Update a toll-free verification request",
+          "id": "0729e575-4f9e-4bc2-a294-d2347f42678e",
+          "name": "Update an E911 location",
           "request": {
-            "name": "Update a toll-free verification request",
+            "name": "Update an E911 location",
             "description": {
-              "content": "Updates an existing toll-free verification request. This can be used to provide additional information or correct details on a pending or denied verification submission.",
+              "content": "Updates a specific location. The new address will be re-validated against the MSAG.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "accounts",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "e911s",
+                "locations",
+                ":locationId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -683,44 +660,41 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "locationId",
+                  "description": "(Required) The unique identifier for the E911 location"
                 }
               ]
             },
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
+                "value": "application/xml"
               }
             ],
             "method": "PUT",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
               "options": {
                 "raw": {
-                  "language": "json"
+                  "language": "xml"
                 }
               }
             }
           },
           "response": [
             {
-              "id": "ca6bede4-0548-47a0-9c8c-0f357d9f7474",
-              "name": "Verification request updated successfully",
+              "id": "292ea304-db81-4a55-bc9a-a899684f2d65",
+              "name": "Location updated successfully",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    "locations",
+                    ":locationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -738,8 +712,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
                     }
                   ]
                 },
@@ -751,19 +725,15 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -773,23 +743,24 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "1872245d-3f8b-4f8e-b823-c7b708a52e40",
-              "name": "Invalid update request",
+              "id": "6ba0a2a2-3a90-4dc0-9726-779296805015",
+              "name": "Invalid location or address validation failed",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    "locations",
+                    ":locationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -807,8 +778,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
                     }
                   ]
                 },
@@ -820,19 +791,15 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -842,23 +809,24 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "69538931-2d4b-4d0a-ab65-5eb255bc9182",
+              "id": "496636fc-b428-4378-ab5d-cd26e74cf127",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    "locations",
+                    ":locationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -876,8 +844,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
                     }
                   ]
                 },
@@ -894,10 +862,10 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
@@ -915,15 +883,16 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "086e948d-efcc-4803-bcc4-f743caf51345",
-              "name": "Verification request not found",
+              "id": "3f5df171-ef1e-4bd5-bcac-5b4fe0d92786",
+              "name": "Location not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "accounts",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "e911s",
+                    "locations",
+                    ":locationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -941,8 +910,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
                     }
                   ]
                 },
@@ -959,13 +928,235 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <locationId>(string)</locationId>\n  <description>(string)</description>\n  <address>\n    <houseNumber>(string)</houseNumber>\n    <houseSuffix>(string)</houseSuffix>\n    <prefixDirectional>(string)</prefixDirectional>\n    <streetName>(string)</streetName>\n    <streetSuffix>(string)</streetSuffix>\n    <postDirectional>(string)</postDirectional>\n    <addressLine2>(string)</addressLine2>\n    <city>(string)</city>\n    <stateCode>(string)</stateCode>\n    <zip>(string)</zip>\n    <plusFour>(string)</plusFour>\n    <country>(string)</country>\n  </address>\n  <status>(string)</status>\n  <latitude>(number)</latitude>\n  <longitude>(number)</longitude>\n</element>",
                   "options": {
                     "raw": {
-                      "language": "json"
+                      "language": "xml"
                     }
                   }
                 }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "733bab98-c4ac-45e1-81d9-d159ac9c2d15",
+          "name": "Delete an E911 location",
+          "request": {
+            "name": "Delete an E911 location",
+            "description": {
+              "content": "Removes a location from the account. The location must not be currently associated with any active endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "e911s",
+                "locations",
+                ":locationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique identifier for the Bandwidth account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "locationId",
+                  "description": "(Required) The unique identifier for the E911 location"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68e5bd20-02cb-4d72-8459-a7ac79ef2e09",
+              "name": "Location deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "e911s",
+                    "locations",
+                    ":locationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61d5dfcb-b794-4c88-9375-61b52d560838",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "e911s",
+                    "locations",
+                    ":locationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2cd09e06-de25-44af-a239-799773635863",
+              "name": "Location not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "e911s",
+                    "locations",
+                    ":locationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the E911 location"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
               },
               "status": "Not Found",
               "code": 404,
@@ -1011,8 +1202,8 @@
     ]
   },
   "info": {
-    "_postman_id": "7326d2c7-ee4b-48d2-b9d0-6ce76a4f8777",
-    "name": "Bandwidth Emergency Calling Available Numbers Toll-Free Verification API",
+    "_postman_id": "69666333-b1be-4e27-b53b-40223dca7fae",
+    "name": "Bandwidth Emergency Calling Available Numbers Locations API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",

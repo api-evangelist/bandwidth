@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bandwidth Emergency Calling Available Numbers Endpoints API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List E911 endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all 911 endpoints provisioned for the account. Each endpoint represents an end user that may place emergency calls."
+        },
+        {
+          "info": {
+            "name": "Create an E911 endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              }
+            ]
+          },
+          "docs": "Provisions a new 911 endpoint for an end user. The endpoint is identified by an Alternate End User ID (AEUI) and must be associated with a validated location for emergency routing."
+        },
+        {
+          "info": {
+            "name": "Get E911 endpoint details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/:endpointId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 endpoint"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific 911 endpoint including its associated location and configuration."
+        },
+        {
+          "info": {
+            "name": "Update an E911 endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/:endpointId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 endpoint"
+              }
+            ]
+          },
+          "docs": "Updates the configuration or location association for a specific 911 endpoint."
+        },
+        {
+          "info": {
+            "name": "Delete an E911 endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dashboard.bandwidth.com/api/accounts/:accountId/e911s/:endpointId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the Bandwidth account"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the E911 endpoint"
+              }
+            ]
+          },
+          "docs": "Removes a 911 endpoint from the account. The endpoint will no longer be able to route emergency calls."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

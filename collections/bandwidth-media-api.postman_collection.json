@@ -1,27 +1,27 @@
 {
   "item": [
     {
-      "id": "62783a72-6ec6-48bf-b2b2-fb93192b0b8b",
-      "name": "Toll-Free Verification",
+      "id": "bfcad8a3-2788-40ce-97d2-6997f1dc46c4",
+      "name": "Media",
       "description": {
-        "content": "Submit and manage toll-free number verification requests for A2P messaging compliance. Track verification status and manage submissions throughout the verification lifecycle.",
+        "content": "Upload, retrieve, and manage media files for use in MMS messages. Supports files up to 3.75 MB with 48-hour retention.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e8b698f5-7d90-421e-8ca9-e190bf99e2f7",
-          "name": "List toll-free verification requests",
+          "id": "2cd42d2a-7e26-4b9d-b322-02188a5b21b8",
+          "name": "List media files",
           "request": {
-            "name": "List toll-free verification requests",
+            "name": "List media files",
             "description": {
-              "content": "Retrieves a list of all toll-free number verification requests for the account. Returns verification status, submission details, and associated toll-free numbers.",
+              "content": "Retrieves a list of all media files that have been uploaded to the account. Each request returns a maximum of 1000 media files. Bandwidth retains uploaded media for up to 48 hours.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "accounts",
+                "users",
                 ":accountId",
-                "tollFreeVerification"
+                "media"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -29,15 +29,9 @@
               "query": [
                 {
                   "disabled": false,
-                  "key": "status",
+                  "key": "continuationToken",
                   "value": "<string>",
-                  "description": "Filter by verification status"
-                },
-                {
-                  "disabled": false,
-                  "key": "telephoneNumber",
-                  "value": "<string>",
-                  "description": "Filter by toll-free telephone number"
+                  "description": "Token for paginating through large media lists"
                 }
               ],
               "variable": [
@@ -61,25 +55,21 @@
           },
           "response": [
             {
-              "id": "82347217-4dc2-482e-8b6a-a23cb62be296",
-              "name": "Verification requests retrieved successfully",
+              "id": "cb4ecda9-e7f6-4e84-9b73-4176f204a420",
+              "name": "Media list retrieved successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification"
+                    "media"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [
                     {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
+                      "key": "continuationToken",
                       "value": "<string>"
                     }
                   ],
@@ -118,30 +108,26 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"totalCount\": 589,\n  \"verifications\": [\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"VERIFIED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1995-01-16T05:39:06.073Z\",\n      \"verificationDate\": \"1951-01-29T06:32:17.706Z\",\n      \"denialReason\": \"string\"\n    },\n    {\n      \"verificationId\": \"string\",\n      \"telephoneNumbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"RESTRICTED\",\n      \"businessName\": \"string\",\n      \"useCase\": \"string\",\n      \"submissionDate\": \"1988-04-22T07:28:56.680Z\",\n      \"verificationDate\": \"1988-06-13T23:24:05.798Z\",\n      \"denialReason\": \"string\"\n    }\n  ]\n}",
+              "body": "[\n  {\n    \"mediaName\": \"string\",\n    \"contentLength\": 5405,\n    \"contentType\": \"string\",\n    \"content\": \"string\"\n  },\n  {\n    \"mediaName\": \"string\",\n    \"contentLength\": 7783,\n    \"contentType\": \"string\",\n    \"content\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "fd56c04d-ece8-4776-9293-561dd0ec2ed6",
+              "id": "8770b279-811c-434f-a52f-6b94d9e9c4fd",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification"
+                    "media"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [
                     {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "telephoneNumber",
+                      "key": "continuationToken",
                       "value": "<string>"
                     }
                   ],
@@ -187,19 +173,20 @@
           }
         },
         {
-          "id": "c4cfa22e-f3ca-4e14-9912-0abb36ec914b",
-          "name": "Submit a toll-free verification request",
+          "id": "1c235b71-ea21-4ce5-9e08-7a37b042ca21",
+          "name": "Upload a media file",
           "request": {
-            "name": "Submit a toll-free verification request",
+            "name": "Upload a media file",
             "description": {
-              "content": "Submits a new toll-free number verification request to the toll-free aggregator. Once submitted, the number will have a Pending Verification status until the aggregator reviews and approves or denies the request. Status updates are delivered via webhook notifications.",
+              "content": "Uploads a media file for use in MMS messages. Files can be up to 3.75 MB in size. Bandwidth provides free file storage for an unlimited number of files with 48-hour retention.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "accounts",
+                "users",
                 ":accountId",
-                "tollFreeVerification"
+                "media",
+                ":mediaName"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -212,41 +199,40 @@
                   "value": "<string>",
                   "key": "accountId",
                   "description": "(Required) The unique identifier for the Bandwidth account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mediaName",
+                  "description": "(Required) The filename to assign to the uploaded media"
                 }
               ]
             },
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
+                "value": "application/octet-stream"
               }
             ],
-            "method": "POST",
+            "method": "PUT",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
+              "raw": "<binary>"
             }
           },
           "response": [
             {
-              "id": "b348eb00-ccc3-4789-9c2c-311e8eaa0421",
-              "name": "Verification request submitted successfully",
+              "id": "06718391-3e45-4715-8b52-e6d2279092b6",
+              "name": "Media uploaded successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification"
+                    "media",
+                    ":mediaName"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -259,6 +245,13 @@
                       "value": "<string>",
                       "key": "accountId",
                       "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The filename to assign to the uploaded media"
                     }
                   ]
                 },
@@ -272,42 +265,40 @@
                     "value": "Basic <credentials>"
                   },
                   {
-                    "key": "Accept",
-                    "value": "application/json"
+                    "disabled": false,
+                    "description": "(Required) The MIME type of the media file being uploaded",
+                    "key": "Content-Type",
+                    "value": "string"
                   }
                 ],
-                "method": "POST",
+                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  "raw": "<binary>"
                 }
               },
-              "status": "Created",
-              "code": 201,
+              "status": "No Content",
+              "code": 204,
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "653caf8f-bfc3-4da3-983d-7d8328029b20",
-              "name": "Invalid verification request",
+              "id": "f0937988-5df2-4564-9a8b-fc85d21ca9ae",
+              "name": "Bad request",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification"
+                    "media",
+                    ":mediaName"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -320,6 +311,13 @@
                       "value": "<string>",
                       "key": "accountId",
                       "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The filename to assign to the uploaded media"
                     }
                   ]
                 },
@@ -333,19 +331,16 @@
                     "value": "Basic <credentials>"
                   },
                   {
-                    "key": "Accept",
-                    "value": "application/json"
+                    "disabled": false,
+                    "description": "(Required) The MIME type of the media file being uploaded",
+                    "key": "Content-Type",
+                    "value": "string"
                   }
                 ],
-                "method": "POST",
+                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  "raw": "<binary>"
                 }
               },
               "status": "Bad Request",
@@ -353,22 +348,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "61cbb805-3a2b-4a92-8cd8-bb851248df92",
+              "id": "558f8293-295c-42ac-ab7d-62a30d0747c7",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification"
+                    "media",
+                    ":mediaName"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -381,6 +377,13 @@
                       "value": "<string>",
                       "key": "accountId",
                       "description": "(Required) The unique identifier for the Bandwidth account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaName",
+                      "description": "(Required) The filename to assign to the uploaded media"
                     }
                   ]
                 },
@@ -392,17 +395,18 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The MIME type of the media file being uploaded",
+                    "key": "Content-Type",
+                    "value": "string"
                   }
                 ],
-                "method": "POST",
+                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  "raw": "<binary>"
                 }
               },
               "status": "Unauthorized",
@@ -424,20 +428,20 @@
           }
         },
         {
-          "id": "20c4d00a-da3a-4614-81e4-e80327ebbc7b",
-          "name": "Get toll-free verification details",
+          "id": "92355fe6-04d0-4d09-a87c-dc318610fca1",
+          "name": "Download a media file",
           "request": {
-            "name": "Get toll-free verification details",
+            "name": "Download a media file",
             "description": {
-              "content": "Retrieves detailed information about a specific toll-free number verification request including its current status, submission details, and any denial reasons if applicable.",
+              "content": "Downloads a specific media file by its name. Returns the binary content of the media file.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "accounts",
+                "users",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "media",
+                ":mediaName"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -455,15 +459,15 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "mediaName",
+                  "description": "(Required) The name of the media file to download"
                 }
               ]
             },
             "header": [
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "application/octet-stream"
               }
             ],
             "method": "GET",
@@ -471,15 +475,15 @@
           },
           "response": [
             {
-              "id": "7d24f42a-cc30-48d9-b1e0-f777bc4d6b45",
-              "name": "Verification details retrieved successfully",
+              "id": "cfad5858-040b-4e9a-9ae4-c838685861af",
+              "name": "Media file content",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "media",
+                    ":mediaName"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -497,8 +501,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to download"
                     }
                   ]
                 },
@@ -513,7 +517,7 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "application/octet-stream"
                   }
                 ],
                 "method": "GET",
@@ -524,23 +528,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "application/octet-stream"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "string",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "6a2665ce-4c97-4ea3-a55d-d55e781ac375",
+              "id": "364d2959-3478-4c75-807d-bba9e778bfb3",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "media",
+                    ":mediaName"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -558,8 +562,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to download"
                     }
                   ]
                 },
@@ -589,15 +593,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "32113eac-8cba-441c-942e-2c2a1907565d",
-              "name": "Verification request not found",
+              "id": "b0339d63-d3be-4425-a0f2-ce88b6542314",
+              "name": "Media not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "media",
+                    ":mediaName"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -615,8 +619,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to download"
                     }
                   ]
                 },
@@ -652,20 +656,20 @@
           }
         },
         {
-          "id": "57d05165-950f-4285-81ef-9cb6f63adbeb",
-          "name": "Update a toll-free verification request",
+          "id": "7a3a09eb-8721-419c-96c3-77f8580be93b",
+          "name": "Delete a media file",
           "request": {
-            "name": "Update a toll-free verification request",
+            "name": "Delete a media file",
             "description": {
-              "content": "Updates an existing toll-free verification request. This can be used to provide additional information or correct details on a pending or denied verification submission.",
+              "content": "Permanently deletes a specific media file from the account.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "accounts",
+                "users",
                 ":accountId",
-                "tollFreeVerification",
-                ":verificationId"
+                "media",
+                ":mediaName"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -683,44 +687,25 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) The unique identifier for the verification request"
+                  "key": "mediaName",
+                  "description": "(Required) The name of the media file to delete"
                 }
               ]
             },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"telephoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "DELETE",
+            "auth": null
           },
           "response": [
             {
-              "id": "ca6bede4-0548-47a0-9c8c-0f357d9f7474",
-              "name": "Verification request updated successfully",
+              "id": "237564b8-d48e-4182-95ef-0c39e6d56a57",
+              "name": "Media deleted successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "media",
+                    ":mediaName"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -738,8 +723,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to delete"
                     }
                   ]
                 },
@@ -751,114 +736,33 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "DELETE",
+                "body": {}
               },
-              "status": "OK",
-              "code": 200,
+              "status": "No Content",
+              "code": 204,
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"verificationId\": \"string\",\n  \"telephoneNumbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"RESTRICTED\",\n  \"businessName\": \"string\",\n  \"useCase\": \"string\",\n  \"submissionDate\": \"2018-10-14T05:09:55.346Z\",\n  \"verificationDate\": \"2022-03-19T04:29:57.022Z\",\n  \"denialReason\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "1872245d-3f8b-4f8e-b823-c7b708a52e40",
-              "name": "Invalid update request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) The unique identifier for the Bandwidth account"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "69538931-2d4b-4d0a-ab65-5eb255bc9182",
+              "id": "ad8d1f21-092f-41dc-8251-8677ccb66a28",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "media",
+                    ":mediaName"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -876,8 +780,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to delete"
                     }
                   ]
                 },
@@ -891,16 +795,8 @@
                     "value": "Basic <credentials>"
                   }
                 ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "DELETE",
+                "body": {}
               },
               "status": "Unauthorized",
               "code": 401,
@@ -915,15 +811,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "086e948d-efcc-4803-bcc4-f743caf51345",
-              "name": "Verification request not found",
+              "id": "b1cf3301-e644-4850-8d8f-549fa918b8e1",
+              "name": "Media not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "accounts",
+                    "users",
                     ":accountId",
-                    "tollFreeVerification",
-                    ":verificationId"
+                    "media",
+                    ":mediaName"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -941,8 +837,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) The unique identifier for the verification request"
+                      "key": "mediaName",
+                      "description": "(Required) The name of the media file to delete"
                     }
                   ]
                 },
@@ -956,16 +852,8 @@
                     "value": "Basic <credentials>"
                   }
                 ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"telephoneNumbers\": [\n    \"+18005551234\"\n  ],\n  \"businessName\": \"<string>\",\n  \"businessContact\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\"\n  },\n  \"messageVolume\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"useCaseSummary\": \"<string>\",\n  \"optInWorkflow\": \"<string>\",\n  \"businessWebsite\": \"<uri>\",\n  \"messageContent\": \"<string>\",\n  \"optInWorkflowImageUrls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "DELETE",
+                "body": {}
               },
               "status": "Not Found",
               "code": 404,
@@ -1011,8 +899,8 @@
     ]
   },
   "info": {
-    "_postman_id": "7326d2c7-ee4b-48d2-b9d0-6ce76a4f8777",
-    "name": "Bandwidth Emergency Calling Available Numbers Toll-Free Verification API",
+    "_postman_id": "f063c178-c8e8-404b-8cf2-edb8c5ffa35d",
+    "name": "Bandwidth Emergency Calling Available Numbers Media API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",

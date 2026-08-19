@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "3bcf8a6e-f3bc-497c-bbd2-b060b00ab7a1",
+      "id": "e770fae2-eb1f-45c8-ad0e-802abe9b7df7",
       "name": "MFA",
       "description": {
         "content": "Generate and verify multi-factor authentication codes via SMS messaging or voice calls. Supports customizable code length, expiration, and delivery templates.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "1d8e71d9-02ce-458d-9c60-27899e1198e1",
+          "id": "bbdcc910-98b0-4947-9e16-a3faacf71207",
           "name": "Send MFA code via SMS",
           "request": {
             "name": "Send MFA code via SMS",
@@ -62,7 +62,7 @@
           },
           "response": [
             {
-              "id": "14492d2c-694a-4750-ba25-89a17c464359",
+              "id": "b6ab43c8-36d6-4cea-902c-fd94ae44d090",
               "name": "MFA code sent successfully via SMS",
               "originalRequest": {
                 "url": {
@@ -124,7 +124,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "96f56e74-07d8-4eb2-aa3c-7d70cb90daff",
+              "id": "194017dd-2138-41cb-aeba-d33810a26164",
               "name": "Bad request",
               "originalRequest": {
                 "url": {
@@ -186,7 +186,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "e82749d3-d6bb-4483-a1ee-004e2c3fc2be",
+              "id": "203cb10c-9424-42af-baf6-d285563f5c8b",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
@@ -244,7 +244,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a4a22884-33c0-4750-8014-4509883767ab",
+              "id": "0ac970c0-6e36-4d54-a5f4-3bdd103cbf62",
               "name": "Forbidden",
               "originalRequest": {
                 "url": {
@@ -308,7 +308,7 @@
           }
         },
         {
-          "id": "35069b02-5889-42d1-9746-14837a2a74a9",
+          "id": "9e0bb51f-19fe-48ad-bccc-041adbcc59dd",
           "name": "Send MFA code via voice call",
           "request": {
             "name": "Send MFA code via voice call",
@@ -361,7 +361,7 @@
           },
           "response": [
             {
-              "id": "3e0fde60-3536-4de4-82cd-333212f887d5",
+              "id": "ee2dbc2d-33e4-4a41-a46f-eadf84caaa94",
               "name": "MFA code sent successfully via voice call",
               "originalRequest": {
                 "url": {
@@ -423,7 +423,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b5f12870-cabc-4a83-abb7-39c54adc9ab1",
+              "id": "a9b2a781-1bea-430b-a989-14c54ba24fb0",
               "name": "Bad request",
               "originalRequest": {
                 "url": {
@@ -485,7 +485,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "1a6e1f3a-9900-492b-8870-15edbd8adb42",
+              "id": "4a5ca58c-87ad-4412-a545-c93f7ace9308",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
@@ -543,7 +543,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "0b40ee33-a45f-46bb-a5f3-4fa4532a8770",
+              "id": "f5a48c28-e69b-48c5-8c33-849424d4b36f",
               "name": "Forbidden",
               "originalRequest": {
                 "url": {
@@ -607,7 +607,7 @@
           }
         },
         {
-          "id": "b7500285-c41f-4d1b-8fdd-a13788514e86",
+          "id": "0d5dcf8c-3163-44f3-bc81-89d4a7455b4c",
           "name": "Verify MFA code",
           "request": {
             "name": "Verify MFA code",
@@ -660,7 +660,7 @@
           },
           "response": [
             {
-              "id": "ee96b963-0d2e-4806-8983-60111156c514",
+              "id": "6bf65996-1703-4191-82da-15a885ec62ae",
               "name": "Verification result",
               "originalRequest": {
                 "url": {
@@ -722,7 +722,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "dd311b84-e19a-4fcf-a626-015f66c19bf6",
+              "id": "3d16e3ef-205f-494d-8413-01aacd7c1519",
               "name": "Bad request",
               "originalRequest": {
                 "url": {
@@ -784,7 +784,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "ecc0d2ca-d9cb-4303-bdeb-01719a8c2a93",
+              "id": "fb3e72bb-6a32-4e57-af3b-2889f4ad511b",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
@@ -842,7 +842,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "8b8ae761-af4a-4609-8d42-0bd5401c6666",
+              "id": "34139ac2-3f05-4b50-aab0-b37d221ce18e",
               "name": "Forbidden",
               "originalRequest": {
                 "url": {
@@ -913,7 +913,7 @@
   "variable": [
     {
       "type": "string",
-      "value": "https://mfa.bandwidth.com/api/v1",
+      "value": "https://dashboard.bandwidth.com/api",
       "key": "baseUrl"
     }
   ],
@@ -931,11 +931,11 @@
     ]
   },
   "info": {
-    "_postman_id": "09ec3218-0445-4fb5-ba8d-049d460e5bb5",
-    "name": "Bandwidth Multi-Factor Authentication API",
+    "_postman_id": "40076569-5c4e-44d0-bfcd-c417f73a1b7d",
+    "name": "Bandwidth Emergency Calling Available Numbers MFA API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The Bandwidth Multi-Factor Authentication API allows developers to generate and verify secure MFA codes delivered via voice calls or SMS messages. It leverages Bandwidth's Voice and Messaging APIs under the hood, handling token generation and management automatically. Developers can customize the code length, expiration time, and delivery message template. The API supports both one-time passcode delivery and verification in a simple two-step workflow.\n\nContact Support:\n Name: Bandwidth Support",
+      "content": "The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.\n\nContact Support:\n Name: Bandwidth Support",
       "type": "text/plain"
     }
   }
