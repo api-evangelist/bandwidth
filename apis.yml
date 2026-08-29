@@ -236,6 +236,9 @@ apis:
   - type: Documentation
     url: https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/
 common:
+- type: CapabilityMap
+  url: capabilities/bandwidth-capability-edges.yml
+  name: Bandwidth Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/bandwidth/overview
 - type: AgenticAccess

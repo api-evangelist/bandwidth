@@ -1,0 +1,45 @@
+slug: bandwidth
+provider: Bandwidth
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Endpoints
+  spec_file: bandwidth-endpoints-api-openapi.yml
+  capability_id: BC-2700.40
+  capability_id_l1: BC-2700
+  capability_name: Emergency Services Management
+  confidence: 0.85
+  evidence: listEndpoints  List E911 endpoints ... provision and manage 911 endpoints and locations for
+    emergency services routing
+  reason: Provisioning of E911 endpoints for emergency services routing to PSAPs is Emergency Services
+    Management, a mandated telecom regulatory capability.
+- tag: Locations
+  spec_file: bandwidth-locations-api-openapi.yml
+  capability_id: BC-2700.40
+  capability_id_l1: BC-2700
+  capability_name: Emergency Services Management
+  confidence: 0.85
+  evidence: createLocation  Create an E911 location ... Dynamic Location Routing (DLR) for real-time address
+    validation and location updates
+  reason: E911 location records support emergency-call location delivery — Emergency Services Management,
+    not generic address management.
+- tag: Emergency Notification Recipients
+  spec_file: bandwidth-emergency-notification-recipients-api-openapi.yml
+  capability_id: BC-2700.40
+  capability_id_l1: BC-2700
+  capability_name: Emergency Services Management
+  confidence: 0.8
+  evidence: List emergency notification recipients ... /accounts/{accountId}/e911s/notificationRecipients
+    ... ensuring compliance with Kari's Law and RAY BAUM's Act requirements
+  reason: E911 notification recipients are the Kari's Law mandated emergency-call notification capability
+    — squarely telecom Emergency Services Management under regulatory compliance.
