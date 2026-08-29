@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Bandwidth Emergency Calling Available Numbers SIP Peers API
   description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
@@ -146,37 +146,7 @@ paths:
         '401':
           description: Unauthorized
 components:
-  parameters:
-    sipPeerId:
-      name: sipPeerId
-      in: path
-      required: true
-      description: The unique identifier for the SIP peer
-      schema:
-        type: string
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier for the Bandwidth account
-      schema:
-        type: string
-    siteId:
-      name: siteId
-      in: path
-      required: true
-      description: The unique identifier for the site
-      schema:
-        type: string
   schemas:
-    SipPeerListResponse:
-      type: object
-      description: Response containing a list of SIP peers
-      properties:
-        sipPeers:
-          type: array
-          items:
-            $ref: '#/components/schemas/SipPeer'
     PhoneNumberListResponse:
       type: object
       description: Response containing a list of phone numbers
@@ -188,22 +158,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PhoneNumber'
-    SipPeer:
-      type: object
-      description: A SIP peer (location) within a site
-      properties:
-        peerId:
-          type: string
-          description: The unique identifier for the SIP peer
-        peerName:
-          type: string
-          description: The name of the SIP peer
-        description:
-          type: string
-          description: A description of the SIP peer
-        isDefaultPeer:
-          type: boolean
-          description: Whether this is the default SIP peer for the site
     PhoneNumber:
       type: object
       description: A phone number assigned to the account
@@ -232,6 +186,52 @@ components:
         sipPeerId:
           type: string
           description: The SIP peer the number is assigned to
+    SipPeer:
+      type: object
+      description: A SIP peer (location) within a site
+      properties:
+        peerId:
+          type: string
+          description: The unique identifier for the SIP peer
+        peerName:
+          type: string
+          description: The name of the SIP peer
+        description:
+          type: string
+          description: A description of the SIP peer
+        isDefaultPeer:
+          type: boolean
+          description: Whether this is the default SIP peer for the site
+    SipPeerListResponse:
+      type: object
+      description: Response containing a list of SIP peers
+      properties:
+        sipPeers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SipPeer'
+  parameters:
+    sipPeerId:
+      name: sipPeerId
+      in: path
+      required: true
+      description: The unique identifier for the SIP peer
+      schema:
+        type: string
+    siteId:
+      name: siteId
+      in: path
+      required: true
+      description: The unique identifier for the site
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Bandwidth Emergency Calling Available Numbers Sites API
   description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
@@ -122,21 +122,6 @@ paths:
           description: Site not found
 components:
   schemas:
-    Site:
-      type: object
-      description: A site (sub-account) within a Bandwidth account
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the site
-        name:
-          type: string
-          description: The name of the site
-        description:
-          type: string
-          description: A description of the site
-        address:
-          $ref: '#/components/schemas/Address'
     Address:
       type: object
       description: A physical address
@@ -167,19 +152,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Site'
+    Site:
+      type: object
+      description: A site (sub-account) within a Bandwidth account
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the site
+        name:
+          type: string
+          description: The name of the site
+        description:
+          type: string
+          description: A description of the site
+        address:
+          $ref: '#/components/schemas/Address'
   parameters:
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier for the Bandwidth account
-      schema:
-        type: string
     siteId:
       name: siteId
       in: path
       required: true
       description: The unique identifier for the site
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
       schema:
         type: string
   securitySchemes:

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Bandwidth Emergency Calling Available Numbers MFA API
   description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
@@ -114,51 +114,12 @@ paths:
           description: Forbidden
 components:
   schemas:
-    MfaMessagingResponse:
+    MfaVoiceResponse:
       type: object
       properties:
-        messageId:
+        callId:
           type: string
-          description: The unique identifier for the SMS message sent with the MFA code
-    MfaMessagingRequest:
-      type: object
-      required:
-      - from
-      - to
-      - applicationId
-      - message
-      - digits
-      properties:
-        from:
-          type: string
-          description: The Bandwidth phone number to send the SMS from, in E.164 format
-          example: '+19195551234'
-        to:
-          type: string
-          description: The destination phone number to send the MFA code to, in E.164 format
-          example: '+19195554321'
-        applicationId:
-          type: string
-          description: The ID of the Bandwidth messaging application to use for sending the SMS
-        scope:
-          type: string
-          description: An optional field to denote what scope or action the MFA code is for. This is returned during verification.
-        message:
-          type: string
-          description: The message template to send. Use {CODE} as a placeholder for the generated MFA code.
-          example: Your verification code is {CODE}
-        digits:
-          type: integer
-          minimum: 4
-          maximum: 8
-          description: The number of digits in the generated MFA code (4-8)
-          example: 6
-        expirationTimeInMinutes:
-          type: number
-          minimum: 1
-          maximum: 15
-          default: 3
-          description: The time in minutes before the MFA code expires (1-15, default 3 minutes)
+          description: The unique identifier for the voice call made with the MFA code
     MfaVoiceRequest:
       type: object
       required:
@@ -198,18 +159,6 @@ components:
           maximum: 15
           default: 3
           description: The time in minutes before the MFA code expires (1-15, default 3 minutes)
-    MfaVoiceResponse:
-      type: object
-      properties:
-        callId:
-          type: string
-          description: The unique identifier for the voice call made with the MFA code
-    MfaVerifyResponse:
-      type: object
-      properties:
-        valid:
-          type: boolean
-          description: Whether the MFA code is valid and has not expired
     Error:
       type: object
       properties:
@@ -219,6 +168,57 @@ components:
         description:
           type: string
           description: A human-readable description of the error
+    MfaVerifyResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the MFA code is valid and has not expired
+    MfaMessagingRequest:
+      type: object
+      required:
+      - from
+      - to
+      - applicationId
+      - message
+      - digits
+      properties:
+        from:
+          type: string
+          description: The Bandwidth phone number to send the SMS from, in E.164 format
+          example: '+19195551234'
+        to:
+          type: string
+          description: The destination phone number to send the MFA code to, in E.164 format
+          example: '+19195554321'
+        applicationId:
+          type: string
+          description: The ID of the Bandwidth messaging application to use for sending the SMS
+        scope:
+          type: string
+          description: An optional field to denote what scope or action the MFA code is for. This is returned during verification.
+        message:
+          type: string
+          description: The message template to send. Use {CODE} as a placeholder for the generated MFA code.
+          example: Your verification code is {CODE}
+        digits:
+          type: integer
+          minimum: 4
+          maximum: 8
+          description: The number of digits in the generated MFA code (4-8)
+          example: 6
+        expirationTimeInMinutes:
+          type: number
+          minimum: 1
+          maximum: 15
+          default: 3
+          description: The time in minutes before the MFA code expires (1-15, default 3 minutes)
+    MfaMessagingResponse:
+      type: object
+      properties:
+        messageId:
+          type: string
+          description: The unique identifier for the SMS message sent with the MFA code
     MfaVerifyRequest:
       type: object
       required:

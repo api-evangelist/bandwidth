@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Bandwidth Emergency Calling Available Numbers Phone Numbers API
   description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
@@ -90,17 +90,6 @@ paths:
           description: Phone number not found
 components:
   schemas:
-    PhoneNumberListResponse:
-      type: object
-      description: Response containing a list of phone numbers
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of phone numbers
-        telephoneNumbers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PhoneNumber'
     PhoneNumber:
       type: object
       description: A phone number assigned to the account
@@ -129,6 +118,17 @@ components:
         sipPeerId:
           type: string
           description: The SIP peer the number is assigned to
+    PhoneNumberListResponse:
+      type: object
+      description: Response containing a list of phone numbers
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of phone numbers
+        telephoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
   parameters:
     accountId:
       name: accountId

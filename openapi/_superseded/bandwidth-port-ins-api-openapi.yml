@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bandwidth Emergency Calling Available Numbers Port-Ins API
+  title: Bandwidth Emergency Calling Available Numbers Port Ins API
   description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
   version: '1.0'
   contact:
@@ -104,24 +104,17 @@ paths:
           description: Port-in request not found
 components:
   schemas:
-    PortInResponse:
+    PortInListResponse:
       type: object
-      description: Response containing port-in request details
+      description: Response containing a list of port-in requests
       properties:
-        portInId:
-          type: string
-          description: The unique identifier for the port-in request
-        status:
-          type: string
-          description: The current status of the port-in request
-        requestedFocDate:
-          type: string
-          format: date
-          description: The requested FOC date
-        actualFocDate:
-          type: string
-          format: date
-          description: The actual FOC date assigned by the carrier
+        totalCount:
+          type: integer
+          description: Total number of port-in requests
+        portIns:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortInResponse'
     Address:
       type: object
       description: A physical address
@@ -189,17 +182,24 @@ components:
           type: string
           format: date
           description: Requested Firm Order Commitment date
-    PortInListResponse:
+    PortInResponse:
       type: object
-      description: Response containing a list of port-in requests
+      description: Response containing port-in request details
       properties:
-        totalCount:
-          type: integer
-          description: Total number of port-in requests
-        portIns:
-          type: array
-          items:
-            $ref: '#/components/schemas/PortInResponse'
+        portInId:
+          type: string
+          description: The unique identifier for the port-in request
+        status:
+          type: string
+          description: The current status of the port-in request
+        requestedFocDate:
+          type: string
+          format: date
+          description: The requested FOC date
+        actualFocDate:
+          type: string
+          format: date
+          description: The actual FOC date assigned by the carrier
   parameters:
     accountId:
       name: accountId

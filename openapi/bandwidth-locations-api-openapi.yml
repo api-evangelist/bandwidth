@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bandwidth Emergency Calling Available Numbers Locations API
+  title: Bandwidth Emergency Calling Locations API
   description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
   version: '1.0'
   contact:
@@ -198,18 +198,18 @@ components:
           items:
             $ref: '#/components/schemas/Location'
   parameters:
-    locationId:
-      name: locationId
-      in: path
-      required: true
-      description: The unique identifier for the E911 location
-      schema:
-        type: string
     accountId:
       name: accountId
       in: path
       required: true
       description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    locationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the E911 location
       schema:
         type: string
   securitySchemes:
