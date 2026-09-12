@@ -2,21 +2,21 @@
   "repo": "bandwidth",
   "feeds": [
     {
-      "source": "https://www.bandwidth.com/feed/",
-      "feed_url": "https://www.bandwidth.com/feed/",
-      "title": "",
-      "saved": 0,
-      "method": "feed"
-    },
-    {
       "source": "https://app.bandwidth.com/signup",
       "feed_url": "https://app.bandwidth.com/signup",
       "title": "",
       "saved": 0,
       "method": "none"
+    },
+    {
+      "source": "https://www.bandwidth.com/feed/",
+      "feed_url": "https://www.bandwidth.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 1,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
