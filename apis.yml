@@ -146,6 +146,8 @@ apis:
   humanURL: https://dev.bandwidth.com/docs/voice/
   baseURL: https://voice.bandwidth.com/api/v2
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
@@ -220,6 +222,8 @@ apis:
   humanURL: https://dev.bandwidth.com/docs/voice/
   baseURL: https://voice.bandwidth.com/api/v2
   tags:
+  - Recording
+  tags_raw:
   - Recordings
   properties:
   - type: OpenAPI
