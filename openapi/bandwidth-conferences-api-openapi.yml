@@ -153,69 +153,22 @@ paths:
         '404':
           description: Conference not found
 components:
+  parameters:
+    conferenceId:
+      name: conferenceId
+      in: path
+      required: true
+      description: The unique identifier for the conference
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
   schemas:
-    UpdateConferenceMemberRequest:
-      type: object
-      properties:
-        mute:
-          type: boolean
-          description: Whether to mute the member
-        hold:
-          type: boolean
-          description: Whether to place the member on hold
-        callIdsToCoach:
-          type: array
-          items:
-            type: string
-          description: List of call IDs that this member should coach
-    Conference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the conference
-        name:
-          type: string
-          description: The user-defined name of the conference
-        createdTime:
-          type: string
-          format: date-time
-          description: The time the conference was created
-        completedTime:
-          type: string
-          format: date-time
-          description: The time the conference ended
-        tag:
-          type: string
-          description: Custom tag attached to the conference
-        activeMembers:
-          type: array
-          description: List of currently active conference members
-          items:
-            $ref: '#/components/schemas/ConferenceMember'
-    UpdateConferenceRequest:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - active
-          - completed
-          description: Set to completed to end the conference and disconnect all members
-        redirectUrl:
-          type: string
-          format: uri
-          description: URL to redirect the conference to for new BXML instructions
-        redirectMethod:
-          type: string
-          enum:
-          - POST
-          - GET
-          default: POST
-          description: The HTTP method for the redirect webhook
-        tag:
-          type: string
-          description: Custom tag for the conference
     ConferenceMember:
       type: object
       properties:
@@ -240,6 +193,43 @@ components:
           items:
             type: string
           description: List of call IDs that this member is coaching
+    UpdateConferenceMemberRequest:
+      type: object
+      properties:
+        mute:
+          type: boolean
+          description: Whether to mute the member
+        hold:
+          type: boolean
+          description: Whether to place the member on hold
+        callIdsToCoach:
+          type: array
+          items:
+            type: string
+          description: List of call IDs that this member should coach
+    UpdateConferenceRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - active
+          - completed
+          description: Set to completed to end the conference and disconnect all members
+        redirectUrl:
+          type: string
+          format: uri
+          description: URL to redirect the conference to for new BXML instructions
+        redirectMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the redirect webhook
+        tag:
+          type: string
+          description: Custom tag for the conference
     Transcription:
       type: object
       properties:
@@ -309,21 +299,31 @@ components:
           description: The URL to download the recording media
         transcription:
           $ref: '#/components/schemas/Transcription'
-  parameters:
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier for the Bandwidth account
-      schema:
-        type: string
-    conferenceId:
-      name: conferenceId
-      in: path
-      required: true
-      description: The unique identifier for the conference
-      schema:
-        type: string
+    Conference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the conference
+        name:
+          type: string
+          description: The user-defined name of the conference
+        createdTime:
+          type: string
+          format: date-time
+          description: The time the conference was created
+        completedTime:
+          type: string
+          format: date-time
+          description: The time the conference ended
+        tag:
+          type: string
+          description: Custom tag attached to the conference
+        activeMembers:
+          type: array
+          description: List of currently active conference members
+          items:
+            $ref: '#/components/schemas/ConferenceMember'
   securitySchemes:
     basicAuth:
       type: http

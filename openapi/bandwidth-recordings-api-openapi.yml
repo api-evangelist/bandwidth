@@ -197,6 +197,28 @@ paths:
         '401':
           description: Unauthorized
 components:
+  parameters:
+    callId:
+      name: callId
+      in: path
+      required: true
+      description: The unique identifier for the call
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    recordingId:
+      name: recordingId
+      in: path
+      required: true
+      description: The unique identifier for the recording
+      schema:
+        type: string
   schemas:
     TranscriptionRequest:
       type: object
@@ -284,28 +306,6 @@ components:
           description: The URL to download the recording media
         transcription:
           $ref: '#/components/schemas/Transcription'
-  parameters:
-    callId:
-      name: callId
-      in: path
-      required: true
-      description: The unique identifier for the call
-      schema:
-        type: string
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier for the Bandwidth account
-      schema:
-        type: string
-    recordingId:
-      name: recordingId
-      in: path
-      required: true
-      description: The unique identifier for the recording
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -99,6 +99,94 @@ paths:
           description: Call not found
 components:
   schemas:
+    UpdateCallRequest:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - active
+          - completed
+          description: Set to completed to hang up the call
+        redirectUrl:
+          type: string
+          format: uri
+          description: The URL to redirect the call to for new BXML instructions
+        redirectMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the redirect webhook
+        redirectFallbackUrl:
+          type: string
+          format: uri
+          description: Fallback URL if the primary redirect URL fails
+        redirectFallbackMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the fallback redirect webhook
+        tag:
+          type: string
+          maxLength: 256
+          description: A custom string to attach to the call for tracking purposes
+    Call:
+      type: object
+      properties:
+        callId:
+          type: string
+          description: The unique identifier for the call
+        accountId:
+          type: string
+          description: The Bandwidth account ID
+        applicationId:
+          type: string
+          description: The application ID associated with the call
+        to:
+          type: string
+          description: The destination phone number
+        from:
+          type: string
+          description: The originating phone number
+        direction:
+          type: string
+          enum:
+          - inbound
+          - outbound
+          description: The direction of the call
+        state:
+          type: string
+          enum:
+          - initiated
+          - answered
+          - completed
+          description: The current state of the call
+        startTime:
+          type: string
+          format: date-time
+          description: The time the call was initiated
+        answerTime:
+          type: string
+          format: date-time
+          description: The time the call was answered
+        endTime:
+          type: string
+          format: date-time
+          description: The time the call ended
+        disconnectCause:
+          type: string
+          description: The reason the call was disconnected
+        tag:
+          type: string
+          description: Custom tag attached to the call
+        callUrl:
+          type: string
+          format: uri
+          description: The URL for this call resource
     Error:
       type: object
       properties:
@@ -179,94 +267,6 @@ components:
           maximum: 25
           default: 15
           description: The timeout in seconds for webhook callback requests
-    Call:
-      type: object
-      properties:
-        callId:
-          type: string
-          description: The unique identifier for the call
-        accountId:
-          type: string
-          description: The Bandwidth account ID
-        applicationId:
-          type: string
-          description: The application ID associated with the call
-        to:
-          type: string
-          description: The destination phone number
-        from:
-          type: string
-          description: The originating phone number
-        direction:
-          type: string
-          enum:
-          - inbound
-          - outbound
-          description: The direction of the call
-        state:
-          type: string
-          enum:
-          - initiated
-          - answered
-          - completed
-          description: The current state of the call
-        startTime:
-          type: string
-          format: date-time
-          description: The time the call was initiated
-        answerTime:
-          type: string
-          format: date-time
-          description: The time the call was answered
-        endTime:
-          type: string
-          format: date-time
-          description: The time the call ended
-        disconnectCause:
-          type: string
-          description: The reason the call was disconnected
-        tag:
-          type: string
-          description: Custom tag attached to the call
-        callUrl:
-          type: string
-          format: uri
-          description: The URL for this call resource
-    UpdateCallRequest:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - active
-          - completed
-          description: Set to completed to hang up the call
-        redirectUrl:
-          type: string
-          format: uri
-          description: The URL to redirect the call to for new BXML instructions
-        redirectMethod:
-          type: string
-          enum:
-          - POST
-          - GET
-          default: POST
-          description: The HTTP method for the redirect webhook
-        redirectFallbackUrl:
-          type: string
-          format: uri
-          description: Fallback URL if the primary redirect URL fails
-        redirectFallbackMethod:
-          type: string
-          enum:
-          - POST
-          - GET
-          default: POST
-          description: The HTTP method for the fallback redirect webhook
-        tag:
-          type: string
-          maxLength: 256
-          description: A custom string to attach to the call for tracking purposes
   parameters:
     callId:
       name: callId

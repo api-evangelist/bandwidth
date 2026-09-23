@@ -124,6 +124,14 @@ paths:
         '404':
           description: Media not found
 components:
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
   schemas:
     Media:
       type: object
@@ -140,14 +148,6 @@ components:
         content:
           type: string
           description: The URL to access the media content
-  parameters:
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier for the Bandwidth account
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

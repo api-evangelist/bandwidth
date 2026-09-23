@@ -147,26 +147,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The error type identifier
-        description:
-          type: string
-          description: A human-readable description of the error
-        fieldErrors:
-          type: array
-          items:
-            type: object
-            properties:
-              fieldName:
-                type: string
-                description: The field that caused the error
-              description:
-                type: string
-                description: Description of the field error
     Message:
       type: object
       properties:
@@ -291,6 +271,26 @@ components:
           type: string
           format: date-time
           description: The expiration time for the message. Messages not delivered by this time will be discarded.
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The error type identifier
+        description:
+          type: string
+          description: A human-readable description of the error
+        fieldErrors:
+          type: array
+          items:
+            type: object
+            properties:
+              fieldName:
+                type: string
+                description: The field that caused the error
+              description:
+                type: string
+                description: Description of the field error
   parameters:
     accountId:
       name: accountId

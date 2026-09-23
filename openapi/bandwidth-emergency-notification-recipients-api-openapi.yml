@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Bandwidth Emergency Calling Emergency Notification Recipients API
-  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements. Bandwidth is the only CPaaS provider that also operates its own emergency services network, providing direct connectivity to public safety answering points (PSAPs) across the United States and Canada.
+  title: Bandwidth Emergency Calling Emergency Notification…
+  description: The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing.
   version: '1.0'
   contact:
     name: Bandwidth Support
@@ -57,14 +57,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    NotificationRecipientListResponse:
-      type: object
-      description: Response containing a list of notification recipients
-      properties:
-        notificationRecipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationRecipient'
     NotificationRecipient:
       type: object
       description: A recipient for emergency call notifications
@@ -82,6 +74,14 @@ components:
         description:
           type: string
           description: A description of the notification recipient
+    NotificationRecipientListResponse:
+      type: object
+      description: Response containing a list of notification recipients
+      properties:
+        notificationRecipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRecipient'
   parameters:
     accountId:
       name: accountId
