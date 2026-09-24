@@ -39,6 +39,7 @@ tags:
 - Telephony
 - SMS
 - MFA
+- Telecommunications
 modified: '2026-05-19'
 description: Bandwidth is a leading cloud-based communications platform providing
   voice, messaging, emergency calling, phone number management, multi-factor authentication,
@@ -61,8 +62,6 @@ apis:
     url: https://dev.bandwidth.com/docs/voice/
   - type: AsyncAPI
     url: asyncapi/bandwidth-voice-events-asyncapi.yml
-  - type: GraphQL
-    url: graphql/bandwidth-graphql.md
   - type: Documentation
     url: https://dev.bandwidth.com/docs/messaging/
   - type: AsyncAPI
@@ -85,8 +84,6 @@ apis:
     url: https://dev.bandwidth.com/docs/voice/
   - type: AsyncAPI
     url: asyncapi/bandwidth-voice-events-asyncapi.yml
-  - type: GraphQL
-    url: graphql/bandwidth-graphql.md
   - type: Documentation
     url: https://dev.bandwidth.com/docs/messaging/
   - type: AsyncAPI
@@ -108,8 +105,6 @@ apis:
     url: https://dev.bandwidth.com/docs/voice/
   - type: AsyncAPI
     url: asyncapi/bandwidth-voice-events-asyncapi.yml
-  - type: GraphQL
-    url: graphql/bandwidth-graphql.md
   - type: Documentation
     url: https://dev.bandwidth.com/docs/messaging/
   - type: AsyncAPI
@@ -133,8 +128,6 @@ apis:
     url: https://dev.bandwidth.com/docs/voice/
   - type: AsyncAPI
     url: asyncapi/bandwidth-voice-events-asyncapi.yml
-  - type: GraphQL
-    url: graphql/bandwidth-graphql.md
   - type: Documentation
     url: https://dev.bandwidth.com/docs/messaging/
   - type: AsyncAPI
@@ -159,8 +152,6 @@ apis:
     url: https://dev.bandwidth.com/docs/voice/
   - type: AsyncAPI
     url: asyncapi/bandwidth-voice-events-asyncapi.yml
-  - type: GraphQL
-    url: graphql/bandwidth-graphql.md
   - type: Documentation
     url: https://dev.bandwidth.com/docs/messaging/
   - type: AsyncAPI
@@ -183,8 +174,6 @@ apis:
     url: https://dev.bandwidth.com/docs/voice/
   - type: AsyncAPI
     url: asyncapi/bandwidth-voice-events-asyncapi.yml
-  - type: GraphQL
-    url: graphql/bandwidth-graphql.md
   - type: Documentation
     url: https://dev.bandwidth.com/docs/messaging/
   - type: AsyncAPI
@@ -209,8 +198,6 @@ apis:
     url: https://dev.bandwidth.com/docs/voice/
   - type: AsyncAPI
     url: asyncapi/bandwidth-voice-events-asyncapi.yml
-  - type: GraphQL
-    url: graphql/bandwidth-graphql.md
   - type: Documentation
     url: https://dev.bandwidth.com/docs/messaging/
   - type: AsyncAPI
@@ -235,8 +222,6 @@ apis:
     url: https://dev.bandwidth.com/docs/voice/
   - type: AsyncAPI
     url: asyncapi/bandwidth-voice-events-asyncapi.yml
-  - type: GraphQL
-    url: graphql/bandwidth-graphql.md
   - type: Documentation
     url: https://dev.bandwidth.com/docs/messaging/
   - type: AsyncAPI
