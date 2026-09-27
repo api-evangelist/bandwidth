@@ -197,67 +197,7 @@ paths:
         '401':
           description: Unauthorized
 components:
-  parameters:
-    callId:
-      name: callId
-      in: path
-      required: true
-      description: The unique identifier for the call
-      schema:
-        type: string
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier for the Bandwidth account
-      schema:
-        type: string
-    recordingId:
-      name: recordingId
-      in: path
-      required: true
-      description: The unique identifier for the recording
-      schema:
-        type: string
   schemas:
-    TranscriptionRequest:
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-          description: The URL to send the transcription completed webhook to
-        callbackMethod:
-          type: string
-          enum:
-          - POST
-          - GET
-          default: POST
-          description: The HTTP method for the transcription webhook
-        tag:
-          type: string
-          description: Custom tag for the transcription request
-    Transcription:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the transcription
-        status:
-          type: string
-          enum:
-          - none
-          - available
-          - error
-          description: The status of the transcription
-        completedTime:
-          type: string
-          format: date-time
-          description: The time the transcription was completed
-        url:
-          type: string
-          format: uri
-          description: The URL of the transcription result
     Recording:
       type: object
       properties:
@@ -306,6 +246,66 @@ components:
           description: The URL to download the recording media
         transcription:
           $ref: '#/components/schemas/Transcription'
+    TranscriptionRequest:
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+          description: The URL to send the transcription completed webhook to
+        callbackMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the transcription webhook
+        tag:
+          type: string
+          description: Custom tag for the transcription request
+    Transcription:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the transcription
+        status:
+          type: string
+          enum:
+          - none
+          - available
+          - error
+          description: The status of the transcription
+        completedTime:
+          type: string
+          format: date-time
+          description: The time the transcription was completed
+        url:
+          type: string
+          format: uri
+          description: The URL of the transcription result
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    recordingId:
+      name: recordingId
+      in: path
+      required: true
+      description: The unique identifier for the recording
+      schema:
+        type: string
+    callId:
+      name: callId
+      in: path
+      required: true
+      description: The unique identifier for the call
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http
