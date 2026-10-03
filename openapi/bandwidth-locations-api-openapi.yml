@@ -122,18 +122,18 @@ paths:
           description: Location not found
 components:
   parameters:
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier for the Bandwidth account
-      schema:
-        type: string
     locationId:
       name: locationId
       in: path
       required: true
       description: The unique identifier for the E911 location
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
       schema:
         type: string
   schemas:

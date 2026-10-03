@@ -246,23 +246,6 @@ components:
           description: The URL to download the recording media
         transcription:
           $ref: '#/components/schemas/Transcription'
-    TranscriptionRequest:
-      type: object
-      properties:
-        callbackUrl:
-          type: string
-          format: uri
-          description: The URL to send the transcription completed webhook to
-        callbackMethod:
-          type: string
-          enum:
-          - POST
-          - GET
-          default: POST
-          description: The HTTP method for the transcription webhook
-        tag:
-          type: string
-          description: Custom tag for the transcription request
     Transcription:
       type: object
       properties:
@@ -284,6 +267,23 @@ components:
           type: string
           format: uri
           description: The URL of the transcription result
+    TranscriptionRequest:
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+          description: The URL to send the transcription completed webhook to
+        callbackMethod:
+          type: string
+          enum:
+          - POST
+          - GET
+          default: POST
+          description: The HTTP method for the transcription webhook
+        tag:
+          type: string
+          description: Custom tag for the transcription request
   parameters:
     accountId:
       name: accountId

@@ -167,6 +167,18 @@ components:
           maximum: 25
           default: 15
           description: The timeout in seconds for webhook callback requests
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The error type URI
+        description:
+          type: string
+          description: A human-readable description of the error
+        id:
+          type: string
+          description: The unique error identifier
     Call:
       type: object
       properties:
@@ -255,18 +267,6 @@ components:
           type: string
           maxLength: 256
           description: A custom string to attach to the call for tracking purposes
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The error type URI
-        description:
-          type: string
-          description: A human-readable description of the error
-        id:
-          type: string
-          description: The unique error identifier
   parameters:
     accountId:
       name: accountId
