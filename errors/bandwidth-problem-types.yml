@@ -1,0 +1,45 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/bandwidth-calls-api-openapi.yml
+- openapi/bandwidth-conferences-api-openapi.yml
+- openapi/bandwidth-emergency-notification-recipients-api-openapi.yml
+- openapi/bandwidth-endpoints-api-openapi.yml
+- openapi/bandwidth-locations-api-openapi.yml
+- openapi/bandwidth-media-api-openapi.yml
+- openapi/bandwidth-messages-api-openapi.yml
+- openapi/bandwidth-recordings-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: Error
+coverage:
+  operations: 33
+  statuses_declared: 4
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request
+  operations: 12
+  media_types:
+  - application/json
+  schema: Error
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  operations: 33
+  media_types: []
+  schema: null
+- status: 403
+  title: Forbidden
+  description: Forbidden
+  operations: 2
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: Recording not found
+  operations: 20
+  media_types: []
+  schema: null

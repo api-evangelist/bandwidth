@@ -121,21 +121,6 @@ paths:
         '404':
           description: Endpoint not found
 components:
-  parameters:
-    endpointId:
-      name: endpointId
-      in: path
-      required: true
-      description: The unique identifier for the E911 endpoint
-      schema:
-        type: string
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier for the Bandwidth account
-      schema:
-        type: string
   schemas:
     EndpointListResponse:
       type: object
@@ -170,6 +155,21 @@ components:
         activated:
           type: boolean
           description: Whether the endpoint is currently active
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier for the Bandwidth account
+      schema:
+        type: string
+    endpointId:
+      name: endpointId
+      in: path
+      required: true
+      description: The unique identifier for the E911 endpoint
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

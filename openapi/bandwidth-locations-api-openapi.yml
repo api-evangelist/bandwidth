@@ -122,13 +122,6 @@ paths:
           description: Location not found
 components:
   parameters:
-    locationId:
-      name: locationId
-      in: path
-      required: true
-      description: The unique identifier for the E911 location
-      schema:
-        type: string
     accountId:
       name: accountId
       in: path
@@ -136,7 +129,25 @@ components:
       description: The unique identifier for the Bandwidth account
       schema:
         type: string
+    locationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the E911 location
+      schema:
+        type: string
   schemas:
+    LocationListResponse:
+      type: object
+      description: Response containing a list of E911 locations
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of locations
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
     Location:
       type: object
       description: A validated physical location for E911 emergency routing
@@ -201,17 +212,6 @@ components:
           type: number
           format: double
           description: The longitude coordinate of the location
-    LocationListResponse:
-      type: object
-      description: Response containing a list of E911 locations
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of locations
-        locations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Location'
   securitySchemes:
     basicAuth:
       type: http

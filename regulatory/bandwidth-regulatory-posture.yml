@@ -1,0 +1,26 @@
+generated: '2026-10-04'
+method: probed
+source:
+  - https://www.bandwidth.com/legal/privacy/
+signals:
+  data_subject_request:
+    evidence:
+      - source: https://www.bandwidth.com/legal/privacy/
+        http_status: 200
+        fetched: /tmp/bw_privacy.html
+        quote: "you may give us information about you by filling in forms, engaging in chat on the Website, accessing or utilizing any of the services on our Website, opening an account with us, requesting support, subscribing to our newsletters, requesting information or materials (e.g., whitepapers or ebooks), registering for events or webinars, visiting our booth at a trade show or other event, participating in surveys or evaluations, submitting questions or comments, or by corresponding with us by phone, email, video, or otherwise."
+    note: Describes how users can submit requests and interact, indicating a data subject request process.
+  data_retention:
+    evidence:
+      - source: https://www.bandwidth.com/legal/privacy/
+        http_status: 200
+        fetched: /tmp/bw_privacy.html
+        quote: "To determine the appropriate retention period for personal data, we consider the amount, nature and sensitivity of the personal data, the potential risk of harm from unauthorized use or disclosure of your personal data, the purposes for which we process your personal data and whether we can achieve those purposes through other means and the applicable legal, regulatory, tax, accounting or other requirements. After expiration of the applicable retention periods, your personal data will be deleted or anonymized. If there is any personal data that we are unable, for technical reasons, to delete entirely from our systems, we will put in place appropriate measures to prevent any further use of such personal data."
+    note: Outlines retention policy and deletion.
+  incident_notification:
+    evidence:
+      - source: https://www.bandwidth.com/legal/privacy/
+        http_status: 200
+        fetched: /tmp/bw_privacy.html
+        quote: "To respond to law enforcement requests and as required by applicable law, court order, governmental regulations, or other legal process."
+    note: Indicates willingness to disclose data to authorities, implying incident response.

@@ -1,0 +1,44 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/bandwidth-calls-api-openapi.yml
+skills:
+- file: skills/bandwidth-create-call.md
+  name: bandwidth-create-call
+  api: openapi/bandwidth-calls-api-openapi.yml
+  operations:
+  - createCall
+  - getCall
+  - updateCall
+- file: skills/bandwidth-send-and-list-messages.md
+  name: bandwidth-send-and-list-messages
+  api: openapi/bandwidth-messages-api-openapi.yml
+  operations:
+  - createMessage
+  - listMessages
+- file: skills/bandwidth-manage-conferences.md
+  name: bandwidth-manage-conferences
+  api: openapi/bandwidth-conferences-api-openapi.yml
+  operations:
+  - listConferences
+  - getConference
+  - updateConference
+  - updateConferenceMember
+  - getConferenceRecordings
+- file: skills/bandwidth-recordings-download-and-transcribe.md
+  name: bandwidth-recordings-download-and-transcribe
+  api: openapi/bandwidth-recordings-api-openapi.yml
+  operations:
+  - listAccountRecordings
+  - getCallRecording
+  - getCallRecordingMedia
+  - createRecordingTranscription
+  - getRecordingTranscription
+- file: skills/bandwidth-manage-e911-endpoint.md
+  name: bandwidth-manage-e911-endpoint
+  api: openapi/bandwidth-endpoints-api-openapi.yml
+  operations:
+  - createEndpoint
+  - getEndpoint
+  - updateEndpoint
+  - deleteEndpoint

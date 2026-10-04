@@ -21,6 +21,7 @@ Bandwidth API Reference.
 - [API Authentication](/apis/account-management-apis/authentication.md): Everything you'll need to authenticate with your API Credentials.
 - [Billing Model API Reference](/apis/account-management-apis/billing-model.md): Everything you'll need to start managing your capacity billing.
 - [API Credential Management](/apis/account-management-apis/credential-management.md): Everything you'll need to provision API Credentials.
+- [Product Settings API Reference](/apis/account-management-apis/product-settings.md): Bandwidth's Product Settings API manages account-level product settings for Edge Management, Toll-Free, and UC Trunking.
 - [Subscriptions API Reference](/apis/account-management-apis/subscriptions.md): Subscribing to events in the Bandwidth system. Everything you'll need to start working with our Subscriptions API.
 - [User Management](/apis/account-management-apis/user-management.md): Everything you'll need to manage users.
 
@@ -48,6 +49,7 @@ Bandwidth API Reference.
 
 - [Insights APIs](/apis/insights-apis.md): Bandwidth API Reference.
 - [Insights APIs](/apis/insights-apis/insights.md): Insights API Reference.
+- [Voice Debug Logs API Reference](/apis/insights-apis/voice-debug-logs.md): HTTP transaction debug logs for Programmable Voice (Beta). Search, retrieve, and export the API calls and webhooks Bandwidth captured for your calls.
 
 ### legacy-apis
 
@@ -175,6 +177,22 @@ Bandwidth CLI
 - [band call hangup](/tools/cli/reference/band_call_hangup.md): Hang up an active call
 - [band call list](/tools/cli/reference/band_call_list.md): List active and recent calls
 - [band call update](/tools/cli/reference/band_call_update.md): Redirect an active call to a new URL
+- [band customer-profile](/tools/cli/reference/band_customer-profile.md): Manage customer profiles
+- [band customer-profile create](/tools/cli/reference/band_customer-profile_create.md): Create a customer profile
+- [band customer-profile delete](/tools/cli/reference/band_customer-profile_delete.md): Soft-delete a customer profile
+- [band customer-profile get](/tools/cli/reference/band_customer-profile_get.md): Get a customer profile
+- [band customer-profile history](/tools/cli/reference/band_customer-profile_history.md): Inspect a customer profile's version history
+- [band customer-profile history get](/tools/cli/reference/band_customer-profile_history_get.md): Get one version of a customer profile
+- [band customer-profile history list](/tools/cli/reference/band_customer-profile_history_list.md): List a customer profile's versions
+- [band customer-profile list](/tools/cli/reference/band_customer-profile_list.md): List customer profiles
+- [band customer-profile restore](/tools/cli/reference/band_customer-profile_restore.md): Restore a soft-deleted customer profile
+- [band customer-profile update](/tools/cli/reference/band_customer-profile_update.md): Update a customer profile
+- [band insights](/tools/cli/reference/band_insights.md): Voice usage and quality aggregates (minutes of use, call counts, connection rates)
+- [band insights average-durations](/tools/cli/reference/band_insights_average-durations.md): Average call durations per time slice
+- [band insights completed-calls](/tools/cli/reference/band_insights_completed-calls.md): Completed call counts per time slice
+- [band insights connection-rates](/tools/cli/reference/band_insights_connection-rates.md): Call connection rates per time slice
+- [band insights failed-calls](/tools/cli/reference/band_insights_failed-calls.md): Failed call counts per time slice
+- [band insights minutes-of-use](/tools/cli/reference/band_insights_minutes-of-use.md): Aggregated minutes of use per time slice
 - [band location](/tools/cli/reference/band_location.md): Manage locations (SIP peers) under sub-accounts
 - [band location create](/tools/cli/reference/band_location_create.md): Create a new location (SIP peer) under a sub-account
 - [band location list](/tools/cli/reference/band_location_list.md): List all locations (SIP peers) under a sub-account
@@ -189,12 +207,33 @@ Bandwidth CLI
 - [band message send](/tools/cli/reference/band_message_send.md): Send an SMS or MMS message
 - [band number](/tools/cli/reference/band_number.md): Manage Bandwidth phone numbers
 - [band number activate](/tools/cli/reference/band_number_activate.md): Activate voice or messaging services on phone numbers
+- [band number count](/tools/cli/reference/band_number_count.md): Count phone numbers without listing them
 - [band number deactivate](/tools/cli/reference/band_number_deactivate.md): Deactivate voice or messaging services on phone numbers
+- [band number details](/tools/cli/reference/band_number_details.md): Get the full Dashboard view of a phone number
 - [band number get](/tools/cli/reference/band_number_get.md): Get voice configuration details for a phone number
 - [band number list](/tools/cli/reference/band_number_list.md): List phone numbers on the account
+- [band number nnroutes](/tools/cli/reference/band_number_nnroutes.md): List the NetNumber routes available to a phone number
 - [band number order](/tools/cli/reference/band_number_order.md): Order one or more phone numbers
 - [band number release](/tools/cli/reference/band_number_release.md): Release a phone number
 - [band number search](/tools/cli/reference/band_number_search.md): Search available phone numbers
+- [band portin](/tools/cli/reference/band_portin.md): Manage port-in orders (single, bulk, toll-free)
+- [band portin bulk](/tools/cli/reference/band_portin_bulk.md): Manage bulk port-in orders
+- [band portin bulk create](/tools/cli/reference/band_portin_bulk_create.md): Create a bulk port-in order with a large TN list
+- [band portin bulk get](/tools/cli/reference/band_portin_bulk_get.md): Get the current state of a bulk port-in order
+- [band portin bulk get-tns](/tools/cli/reference/band_portin_bulk_get-tns.md): Poll the TN-list validation for a bulk port-in order
+- [band portin bulk list](/tools/cli/reference/band_portin_bulk_list.md): List bulk port-in orders
+- [band portin cancel](/tools/cli/reference/band_portin_cancel.md): Cancel a port-in order
+- [band portin create](/tools/cli/reference/band_portin_create.md): Create a draft port-in order
+- [band portin get](/tools/cli/reference/band_portin_get.md): Get the current status of a port-in order
+- [band portin history](/tools/cli/reference/band_portin_history.md): Get the state-change history for a port-in order
+- [band portin list](/tools/cli/reference/band_portin_list.md): List port-in orders on the active account
+- [band portin notes](/tools/cli/reference/band_portin_notes.md): Add or list notes on a port-in order (used to communicate with Bandwidth's LNP team)
+- [band portin notes add](/tools/cli/reference/band_portin_notes_add.md): Add a note to a port-in order
+- [band portin notes list](/tools/cli/reference/band_portin_notes_list.md): List notes on a port-in order
+- [band portin submit](/tools/cli/reference/band_portin_submit.md): Submit a draft port-in order to Neustar / SOMOS
+- [band portin supp](/tools/cli/reference/band_portin_supp.md): Supplement an existing port-in order (change FOC, site, peer, etc.)
+- [band portin upload-loa](/tools/cli/reference/band_portin_upload-loa.md): Upload an LOA or supporting document to a port-in order
+- [band portin validate-tf](/tools/cli/reference/band_portin_validate-tf.md): Check whether toll-free numbers can be ported
 - [band quickstart](/tools/cli/reference/band_quickstart.md): One-command setup: create app, VCP, and order a phone number
 - [band recording](/tools/cli/reference/band_recording.md): Manage call recordings
 - [band recording delete](/tools/cli/reference/band_recording_delete.md): Delete a recording
@@ -206,16 +245,55 @@ Bandwidth CLI
 - [band shortcode](/tools/cli/reference/band_shortcode.md): View short code registrations and carrier status
 - [band shortcode get](/tools/cli/reference/band_shortcode_get.md): Get short code details and carrier status
 - [band shortcode list](/tools/cli/reference/band_shortcode_list.md): List short codes on this account
+- [band sip](/tools/cli/reference/band_sip.md): Manage SIP trunk authentication (realms and credentials)
+- [band sip credential](/tools/cli/reference/band_sip_credential.md): Manage SIP digest credentials
+- [band sip credential create](/tools/cli/reference/band_sip_credential_create.md): Create a SIP digest credential
+- [band sip credential delete](/tools/cli/reference/band_sip_credential_delete.md): Delete a SIP digest credential
+- [band sip credential get](/tools/cli/reference/band_sip_credential_get.md): Get a SIP digest credential
+- [band sip credential list](/tools/cli/reference/band_sip_credential_list.md): List a realm's SIP credentials
+- [band sip credential rotate](/tools/cli/reference/band_sip_credential_rotate.md): Rotate a SIP credential's password
+- [band sip realm](/tools/cli/reference/band_sip_realm.md): Manage SIP authentication realms
+- [band sip realm create](/tools/cli/reference/band_sip_realm_create.md): Create a SIP authentication realm
+- [band sip realm delete](/tools/cli/reference/band_sip_realm_delete.md): Delete a SIP authentication realm
+- [band sip realm get](/tools/cli/reference/band_sip_realm_get.md): Get a SIP authentication realm
+- [band sip realm list](/tools/cli/reference/band_sip_realm_list.md): List SIP authentication realms
+- [band sip realm update](/tools/cli/reference/band_sip_realm_update.md): Update a SIP realm's default flag or description
+- [band sip status](/tools/cli/reference/band_sip_status.md): Check whether this account can use SIP provisioning
 - [band subaccount](/tools/cli/reference/band_subaccount.md): Manage sub-accounts
 - [band subaccount create](/tools/cli/reference/band_subaccount_create.md): Create a new sub-account
 - [band subaccount delete](/tools/cli/reference/band_subaccount_delete.md): Delete a sub-account by ID
 - [band subaccount get](/tools/cli/reference/band_subaccount_get.md): Get a sub-account by ID
 - [band subaccount list](/tools/cli/reference/band_subaccount_list.md): List all sub-accounts
 - [band tendlc](/tools/cli/reference/band_tendlc.md): 10DLC campaign and number registration status
-- [band tendlc campaigns](/tools/cli/reference/band_tendlc_campaigns.md): List 10DLC campaigns on this account
-- [band tendlc campaigns numbers](/tools/cli/reference/band_tendlc_campaigns_numbers.md): List phone numbers assigned to a campaign
-- [band tendlc number](/tools/cli/reference/band_tendlc_number.md): Get 10DLC registration details for a phone number
-- [band tendlc numbers](/tools/cli/reference/band_tendlc_numbers.md): List 10DLC registered phone numbers
+- [band tendlc brand](/tools/cli/reference/band_tendlc_brand.md): Manage 10DLC brands
+- [band tendlc brand create](/tools/cli/reference/band_tendlc_brand_create.md): Register a 10DLC brand
+- [band tendlc brand delete](/tools/cli/reference/band_tendlc_brand_delete.md): Permanently delete a 10DLC brand
+- [band tendlc brand get](/tools/cli/reference/band_tendlc_brand_get.md): Get a 10DLC brand
+- [band tendlc brand history](/tools/cli/reference/band_tendlc_brand_history.md): Show a brand's activity log
+- [band tendlc brand list](/tools/cli/reference/band_tendlc_brand_list.md): List 10DLC brands
+- [band tendlc brand refresh](/tools/cli/reference/band_tendlc_brand_refresh.md): Re-pull a brand's current state from TCR
+- [band tendlc brand resend-2fa](/tools/cli/reference/band_tendlc_brand_resend-2fa.md): Re-send the Business Authentication 2FA email
+- [band tendlc brand reverify](/tools/cli/reference/band_tendlc_brand_reverify.md): Resubmit a brand for identity verification
+- [band tendlc brand update](/tools/cli/reference/band_tendlc_brand_update.md): Update a 10DLC brand
+- [band tendlc campaign](/tools/cli/reference/band_tendlc_campaign.md): Manage 10DLC campaigns
+- [band tendlc campaign create](/tools/cli/reference/band_tendlc_campaign_create.md): Register a 10DLC campaign
+- [band tendlc campaign deactivate](/tools/cli/reference/band_tendlc_campaign_deactivate.md): Permanently deactivate a 10DLC campaign
+- [band tendlc campaign get](/tools/cli/reference/band_tendlc_campaign_get.md): Get a 10DLC campaign
+- [band tendlc campaign history](/tools/cli/reference/band_tendlc_campaign_history.md): Show a campaign's activity log
+- [band tendlc campaign list](/tools/cli/reference/band_tendlc_campaign_list.md): List 10DLC campaigns
+- [band tendlc campaign nudge](/tools/cli/reference/band_tendlc_campaign_nudge.md): Ask TCR to re-evaluate a campaign
+- [band tendlc campaign numbers](/tools/cli/reference/band_tendlc_campaign_numbers.md): List phone numbers assigned to a campaign
+- [band tendlc campaign sync](/tools/cli/reference/band_tendlc_campaign_sync.md): Re-pull a campaign's current state from TCR
+- [band tendlc campaign update](/tools/cli/reference/band_tendlc_campaign_update.md): Update a 10DLC campaign
+- [band tendlc number](/tools/cli/reference/band_tendlc_number.md): Manage 10DLC phone number registrations
+- [band tendlc number get](/tools/cli/reference/band_tendlc_number_get.md): Get 10DLC registration details for a phone number
+- [band tendlc number history](/tools/cli/reference/band_tendlc_number_history.md): Show a phone number's activity log
+- [band tendlc number list](/tools/cli/reference/band_tendlc_number_list.md): List 10DLC registered phone numbers
+- [band tendlc status](/tools/cli/reference/band_tendlc_status.md): Check whether this account can use the 10DLC Registration Center
+- [band tendlc vetting](/tools/cli/reference/band_tendlc_vetting.md): Order and record external vettings on a 10DLC brand
+- [band tendlc vetting import](/tools/cli/reference/band_tendlc_vetting_import.md): Record an already-performed external vetting against a brand
+- [band tendlc vetting list](/tools/cli/reference/band_tendlc_vetting_list.md): List the external vettings recorded against a brand
+- [band tendlc vetting request](/tools/cli/reference/band_tendlc_vetting_request.md): Order a new external vetting for a brand
 - [band tfv](/tools/cli/reference/band_tfv.md): Toll-free verification management
 - [band tfv get](/tools/cli/reference/band_tfv_get.md): Get toll-free verification status
 - [band tfv submit](/tools/cli/reference/band_tfv_submit.md): Submit a toll-free verification request
@@ -223,6 +301,8 @@ Bandwidth CLI
 - [band tnoption assign](/tools/cli/reference/band_tnoption_assign.md): Assign phone numbers to a 10DLC campaign
 - [band tnoption get](/tools/cli/reference/band_tnoption_get.md): Get the status of a TN Option Order
 - [band tnoption list](/tools/cli/reference/band_tnoption_list.md): List TN Option Orders
+- [band tollfree](/tools/cli/reference/band_tollfree.md): Toll-free routing reads
+- [band tollfree template](/tools/cli/reference/band_tollfree_template.md): Look up the routing template assigned to toll-free numbers
 - [band transcription](/tools/cli/reference/band_transcription.md): Manage call recording transcriptions
 - [band transcription create](/tools/cli/reference/band_transcription_create.md): Request a transcription for a recording
 - [band transcription get](/tools/cli/reference/band_transcription_get.md): Get the transcription for a recording
@@ -278,6 +358,7 @@ A general overview of Bandwidth's Real-Time Communications Platform
 
 - [Bandwidth Real-Time Communications (BRTC)](/docs/brtc.md): A general overview of Bandwidth's Real-Time Communications Platform
 - [Endpoints](/docs/brtc/endpoints.md): A general overview of Endpoints in Bandwidth's Real-Time Communications Platform
+- [BRTC FAQs](/docs/brtc/faq.md): Bandwidth Real-Time Communications (BRTC) Frequently Asked Questions
 - [Quick Start](/docs/brtc/quick-start.md): A quick start guide to Bandwidth's Real-Time Communications Platform, including how to make your first call and manage your endpoints.
 - [Javascript](/docs/brtc/sdks/javascript.md): Learn how to use Bandwidth's Real-Time Communications Platform with our Javascript SDK.
 - [Kotlin](/docs/brtc/sdks/kotlin.md): Learn how to use Bandwidth's Real-Time Communications Platform with our Kotlin SDK for Android.
@@ -313,6 +394,7 @@ A general overview of Bandwidth's In App Calling Product
 A general overview of Bandwidth's Insights platform
 
 - [Insights](/docs/insights.md): A general overview of Bandwidth's Insights platform
+- [Voice Monitoring](/docs/insights/monitoring-api/overview.md): A general overview of Voice Monitoring API
 - [Reports Overview](/docs/insights/reports/overview.md): An overview of Bandwidth Insights Reports, including the Usage, Charges, and Number Details report categories.
 - [Reports Quick Start](/docs/insights/reports/quickStart.md): A quick start guide for creating, tracking, and downloading Bandwidth Insights Reports using the Reporting API.
 - [Synchronous Reports Quick Start](/docs/insights/reports/synchronous-reports.md): A quick start guide for retrieving Bandwidth Insights report results synchronously, a page at a time, using the Reporting API.
@@ -442,9 +524,12 @@ A general overview of Bandwidth's Voice Services
 - [Cartesia Integration](/docs/voice/integrations/cartesia.md): A guide to building real-time voice AI agents on Bandwidth's Voice Network using Cartesia STT and TTS
 - [Deepgram Voice Agent Integration](/docs/voice/integrations/deepgram.md): A guide to building real-time voice AI agents on Bandwidth's Voice Network using the Deepgram Voice Agent API
 - [ElevenLabs Integration](/docs/voice/integrations/elevenlabs.md): A guide to connecting Bandwidth SIP trunking with ElevenLabs Agents for voice AI phone calls
+- [OpenAI Live SIP Integration](/docs/voice/integrations/openai/live/sip.md): A guide to integrating Bandwidth Voice with OpenAI's Live API SIP Connector
+- [OpenAI Live WebSocket Integration](/docs/voice/integrations/openai/live/websockets.md): A guide to integrating Bandwidth's Programmable Voice with OpenAI's GPT-Live Websocket Interface
 - [OpenAI Realtime SIP Integration](/docs/voice/integrations/openai/realtime/sip.md): A guide to integrating Bandwidth Voice with OpenAI's Realtime SIP Interface
 - [OpenAI Realtime WebSocket Integration](/docs/voice/integrations/openai/realtime/websockets.md): A guide to integrating Bandwidth's Programmable Voice with OpenAI's Realtime Websocket Interface
 - [Pipecat Integration](/docs/voice/integrations/pipecat.md): A guide to building real-time voice AI agents on Bandwidth's Voice Network using the Pipecat framework
+- [Vapi Integration](/docs/voice/integrations/vapi.md): A guide to connecting Bandwidth SIP trunking with Vapi for voice AI phone calls
 - [Programmable Voice API](/docs/voice/programmable-voice.md): A general overview of Bandwidth's Programmable Voice API
 - [Try Bandwidth Build](/docs/voice/programmable-voice/build-free-trial.md): Try Bandwidth's Programmable Voice API for free — get a real phone number, a ready-to-use voice app, and 3000 credits to start building immediately.
 - [BXML](/docs/voice/programmable-voice/bxml.md): A general overview of Bandwidth's Programmable Voice BXML
@@ -521,6 +606,7 @@ A general overview of Bandwidth's Voice Services
 - [Transfer Answer](/docs/voice/programmable-voice/webhooks/transferAnswer.md): A general overview of Bandwidth's Transfer Answer Webhook
 - [Transfer Complete](/docs/voice/programmable-voice/webhooks/transferComplete.md): A general overview of Bandwidth's Transfer Complete Webhook
 - [Transfer Disconnect](/docs/voice/programmable-voice/webhooks/transferDisconnect.md): A general overview of Bandwidth's Transfer Disconnect Webhook
+- [Set up SIP Trunking on Build](/docs/voice/sip-trunking/sip-getting-started.md): Connect a SIP endpoint to your Bandwidth Build account using a realm and SIP credentials.
 - [STIR/SHAKEN](/docs/voice/stir-shaken.md): A general overview of Bandwidth's Voice STIR/SHAKEN API
 - [France Hosted Signing Service](/docs/voice/stir-shaken/france-hosted-signing-service.md): France STIR/SHAKEN Certificate Management
 - [US Hosted Signing Service](/docs/voice/stir-shaken/hosted-signing-service.md): STIR/SHAKEN Certificate Management

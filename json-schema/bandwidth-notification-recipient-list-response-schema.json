@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/main/json-schema/bandwidth-notification-recipient-list-response-schema.json",
+  "title": "NotificationRecipientListResponse",
+  "description": "Response containing a list of notification recipients",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/bandwidth-emergency-notification-recipients-api-openapi.yml#/components/schemas/NotificationRecipientListResponse",
+  "type": "object",
+  "properties": {
+    "notificationRecipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/NotificationRecipient"
+      }
+    }
+  },
+  "$defs": {
+    "NotificationRecipient": {
+      "type": "object",
+      "description": "A recipient for emergency call notifications",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the notification recipient"
+        },
+        "emailAddress": {
+          "type": "string",
+          "format": "email",
+          "description": "The email address for notifications"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "The phone number for SMS notifications"
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the notification recipient"
+        }
+      }
+    }
+  }
+}

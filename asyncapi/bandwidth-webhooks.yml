@@ -1,0 +1,43 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://dev.bandwidth.com/docs/messaging/webhooks/
+sources:
+- https://dev.bandwidth.com/docs/messaging/webhooks/
+- https://dev.bandwidth.com/docs/brtc/webhooks/
+- https://dev.bandwidth.com/docs/numbers/webhooks/
+- https://dev.bandwidth.com/docs/mfa/webhooks/
+description: Bandwidth webhook surface across Messaging, WebRTC, Numbers, and MFA services.
+events:
+- event: message-received
+  description: You will receive this webhook when a message is sent to a message‑enabled Bandwidth telephone number on your account.
+- event: suggestion-response
+  description: You will receive this webhook when a client responds to an RBM suggestion.
+- event: location-response
+  description: You will receive this webhook when a client responds to an RBM request for location.
+- event: endpointEligible
+  description: Sent when an endpoint becomes eligible for use.
+- event: endpointIneligible
+  description: Sent when an endpoint becomes ineligible, optionally including errorId and errorMessage.
+- event: connectStatus
+  description: Fired when a <Connect> verb reaches a terminal outcome (INITIATED, COMPLETED, TIMED_OUT, DENIED, CANCELED, FAILED).
+- event: outboundConnectionRequest
+  description: Sent when a WebRTC endpoint requests an outbound connection to a destination.
+- event: orderNotification
+  description: Called whenever an order that is in‑scope changes state or has a note added.
+- event: eventNotification
+  description: Called for each event update as defined by the subscription.
+- event: portoutValidation
+  description: Sent when a port‑out request is initiated on a number in your account.
+- event: message-delivered
+  description: Message has been delivered to the handset (North America or International).
+- event: message-failed
+  description: Message failed to deliver (North America or International).
+delivery:
+  auth: Basic authentication can be enabled for Numbers webhooks; otherwise no authentication is required.
+  signature: No signature header is documented for any webhook.
+  retries: Messaging webhooks are retried for up to 24 hours until a 2xx response is received (10 second timeout per attempt). WebRTC webhooks
+    retry to the eventFallbackUrl if the primary URL is unreachable. Numbers order‑notification webhooks are not retried; portout‑validation webhooks
+    are retried 8 times over 40 minutes (once every 5 minutes). MFA North America webhooks are retried for 24 hours; International webhooks are
+    not retried.
+docs: https://dev.bandwidth.com/docs/messaging/webhooks/

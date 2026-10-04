@@ -1,0 +1,1 @@
+{"issuer":"https://api.bandwidth.com/api/v1","issuerUrl":"https://api.bandwidth.com/api/v1","jwks_endpoint":"https://api.bandwidth.com/api/v1/oauth2/keys","token_endpoint":"https://api.bandwidth.com/api/v1/oauth2/token","alt_issuers":["https://login.bandwidth.com/oauth2/aus6z3sybxny29ou82p7"]}

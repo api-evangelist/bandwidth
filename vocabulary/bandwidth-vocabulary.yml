@@ -1,0 +1,163 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/bandwidth-calls-api-openapi.yml
+- openapi/bandwidth-conferences-api-openapi.yml
+- openapi/bandwidth-emergency-notification-recipients-api-openapi.yml
+- openapi/bandwidth-endpoints-api-openapi.yml
+- openapi/bandwidth-locations-api-openapi.yml
+vocabulary:
+  name: Bandwidth Domain Vocabulary
+  description: 'Terms declared by Bandwidth''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-04'
+  terms:
+  - term: Calls
+    definition: Create, retrieve, and manage phone calls. Supports outbound call creation, call state queries, and in-progress call modifications
+      using BXML or redirect URLs.
+    tags:
+    - Resource Group
+    source: openapi/bandwidth-calls-api-openapi.yml
+  - term: Conferences
+    definition: Create and manage multi-party conference calls. Supports adding and removing members, muting, holding, and playing audio to conferences.
+    tags:
+    - Resource Group
+    source: openapi/bandwidth-conferences-api-openapi.yml
+  - term: Emergency Notification Recipients
+    definition: Configure notification recipients who receive alerts when 911 calls are made from your endpoints.
+    tags:
+    - Resource Group
+    source: openapi/bandwidth-emergency-notification-recipients-api-openapi.yml
+  - term: Endpoints
+    definition: Manage 911 endpoints that represent end users of your service. Endpoints are identified by Alternate End User IDs (AEUIs) and
+      are associated with locations for emergency routing.
+    tags:
+    - Resource Group
+    source: openapi/bandwidth-endpoints-api-openapi.yml
+  - term: Locations
+    definition: Provision and manage physical locations (addresses) for 911 emergency services routing. Locations are validated against the Master
+      Street Address Guide (MSAG) for accuracy.
+    tags:
+    - Resource Group
+    source: openapi/bandwidth-locations-api-openapi.yml
+  - term: Media
+    definition: Upload, retrieve, and manage media files for use in MMS messages. Supports files up to 3.75 MB with 48-hour retention.
+    tags:
+    - Resource Group
+    source: openapi/bandwidth-media-api-openapi.yml
+  - term: Messages
+    definition: Send and retrieve SMS and MMS messages. Supports single and group messaging, delivery receipts, and message history queries.
+    tags:
+    - Resource Group
+    source: openapi/bandwidth-messages-api-openapi.yml
+  - term: Recordings
+    definition: Manage call recordings including retrieval of recording metadata, audio files, and transcription of recorded audio content.
+    tags:
+    - Resource Group
+    source: openapi/bandwidth-recordings-api-openapi.yml
+  - term: CreateCallRequest
+    definition: 'Object declared by the contract with fields: from, to, answerUrl, answerMethod, answerFallbackUrl, answerFallbackMethod, disconnectUrl,
+      disconnectMethod, applicationId, tag, callTimeout, callbackTimeout.'
+    tags:
+    - Object
+    source: openapi/bandwidth-calls-api-openapi.yml#/components/schemas/CreateCallRequest
+  - term: Error
+    definition: 'Object declared by the contract with fields: type, description, id.'
+    tags:
+    - Object
+    source: openapi/bandwidth-calls-api-openapi.yml#/components/schemas/Error
+  - term: Call
+    definition: 'Object declared by the contract with fields: callId, accountId, applicationId, to, from, direction, state, startTime, answerTime,
+      endTime, disconnectCause, tag. (1 more)'
+    tags:
+    - Object
+    source: openapi/bandwidth-calls-api-openapi.yml#/components/schemas/Call
+  - term: UpdateCallRequest
+    definition: 'Object declared by the contract with fields: state, redirectUrl, redirectMethod, redirectFallbackUrl, redirectFallbackMethod,
+      tag.'
+    tags:
+    - Object
+    source: openapi/bandwidth-calls-api-openapi.yml#/components/schemas/UpdateCallRequest
+  - term: UpdateConferenceRequest
+    definition: 'Object declared by the contract with fields: status, redirectUrl, redirectMethod, tag.'
+    tags:
+    - Object
+    source: openapi/bandwidth-conferences-api-openapi.yml#/components/schemas/UpdateConferenceRequest
+  - term: Recording
+    definition: 'Object declared by the contract with fields: recordingId, accountId, callId, applicationId, duration, channels, startTime, endTime,
+      fileFormat, status, mediaUrl, transcription.'
+    tags:
+    - Object
+    source: openapi/bandwidth-conferences-api-openapi.yml#/components/schemas/Recording
+  - term: Conference
+    definition: 'Object declared by the contract with fields: id, name, createdTime, completedTime, tag, activeMembers.'
+    tags:
+    - Object
+    source: openapi/bandwidth-conferences-api-openapi.yml#/components/schemas/Conference
+  - term: ConferenceMember
+    definition: 'Object declared by the contract with fields: callId, conferenceId, memberUrl, mute, hold, callIdsToCoach.'
+    tags:
+    - Object
+    source: openapi/bandwidth-conferences-api-openapi.yml#/components/schemas/ConferenceMember
+  - term: Transcription
+    definition: 'Object declared by the contract with fields: id, status, completedTime, url.'
+    tags:
+    - Object
+    source: openapi/bandwidth-conferences-api-openapi.yml#/components/schemas/Transcription
+  - term: UpdateConferenceMemberRequest
+    definition: 'Object declared by the contract with fields: mute, hold, callIdsToCoach.'
+    tags:
+    - Object
+    source: openapi/bandwidth-conferences-api-openapi.yml#/components/schemas/UpdateConferenceMemberRequest
+  - term: NotificationRecipient
+    definition: A recipient for emergency call notifications
+    tags:
+    - Object
+    source: openapi/bandwidth-emergency-notification-recipients-api-openapi.yml#/components/schemas/NotificationRecipient
+  - term: NotificationRecipientListResponse
+    definition: Response containing a list of notification recipients
+    tags:
+    - Object
+    source: openapi/bandwidth-emergency-notification-recipients-api-openapi.yml#/components/schemas/NotificationRecipientListResponse
+  - term: EndpointListResponse
+    definition: Response containing a list of E911 endpoints
+    tags:
+    - Object
+    source: openapi/bandwidth-endpoints-api-openapi.yml#/components/schemas/EndpointListResponse
+  - term: Endpoint
+    definition: An E911 endpoint representing an end user
+    tags:
+    - Object
+    source: openapi/bandwidth-endpoints-api-openapi.yml#/components/schemas/Endpoint
+  - term: Location
+    definition: A validated physical location for E911 emergency routing
+    tags:
+    - Object
+    source: openapi/bandwidth-locations-api-openapi.yml#/components/schemas/Location
+  - term: LocationListResponse
+    definition: Response containing a list of E911 locations
+    tags:
+    - Object
+    source: openapi/bandwidth-locations-api-openapi.yml#/components/schemas/LocationListResponse
+  - term: CreateMessageRequest
+    definition: 'Object declared by the contract with fields: from, to, text, media, applicationId, tag, priority, expiration.'
+    tags:
+    - Object
+    source: openapi/bandwidth-messages-api-openapi.yml#/components/schemas/CreateMessageRequest
+  - term: MessageList
+    definition: 'Object declared by the contract with fields: totalCount, pageInfo, messages.'
+    tags:
+    - Object
+    source: openapi/bandwidth-messages-api-openapi.yml#/components/schemas/MessageList
+  - term: Message
+    definition: 'Object declared by the contract with fields: id, owner, applicationId, time, segmentCount, direction, to, from, media, text,
+      tag, priority.'
+    tags:
+    - Object
+    source: openapi/bandwidth-messages-api-openapi.yml#/components/schemas/Message
+  - term: TranscriptionRequest
+    definition: 'Object declared by the contract with fields: callbackUrl, callbackMethod, tag.'
+    tags:
+    - Object
+    source: openapi/bandwidth-recordings-api-openapi.yml#/components/schemas/TranscriptionRequest

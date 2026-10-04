@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/main/json-schema/bandwidth-media-schema.json",
+  "title": "Media",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/bandwidth-media-api-openapi.yml#/components/schemas/Media",
+  "type": "object",
+  "properties": {
+    "mediaName": {
+      "type": "string",
+      "description": "The name of the media file"
+    },
+    "contentLength": {
+      "type": "integer",
+      "description": "The size of the media file in bytes"
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The MIME type of the media file"
+    },
+    "content": {
+      "type": "string",
+      "description": "The URL to access the media content"
+    }
+  }
+}

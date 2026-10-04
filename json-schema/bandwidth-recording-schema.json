@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bandwidth/main/json-schema/bandwidth-recording-schema.json",
+  "title": "Recording",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/bandwidth-conferences-api-openapi.yml#/components/schemas/Recording",
+  "type": "object",
+  "properties": {
+    "recordingId": {
+      "type": "string",
+      "description": "The unique identifier for the recording"
+    },
+    "accountId": {
+      "type": "string",
+      "description": "The Bandwidth account ID"
+    },
+    "callId": {
+      "type": "string",
+      "description": "The call ID associated with this recording"
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "The application ID"
+    },
+    "duration": {
+      "type": "string",
+      "description": "The duration of the recording in ISO 8601 format"
+    },
+    "channels": {
+      "type": "integer",
+      "description": "The number of audio channels in the recording"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the recording started"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the recording ended"
+    },
+    "fileFormat": {
+      "type": "string",
+      "enum": [
+        "wav",
+        "mp3"
+      ],
+      "description": "The audio format of the recording"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "partial",
+        "error"
+      ],
+      "description": "The status of the recording"
+    },
+    "mediaUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to download the recording media"
+    },
+    "transcription": {
+      "$ref": "#/$defs/Transcription"
+    }
+  },
+  "$defs": {
+    "Transcription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the transcription"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "none",
+            "available",
+            "error"
+          ],
+          "description": "The status of the transcription"
+        },
+        "completedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time the transcription was completed"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the transcription result"
+        }
+      }
+    }
+  }
+}

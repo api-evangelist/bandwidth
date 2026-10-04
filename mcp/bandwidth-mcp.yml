@@ -1,0 +1,187 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/bandwidth-calls-api-openapi.yml
+- openapi/bandwidth-conferences-api-openapi.yml
+- openapi/bandwidth-emergency-notification-recipients-api-openapi.yml
+- openapi/bandwidth-endpoints-api-openapi.yml
+- openapi/bandwidth-locations-api-openapi.yml
+- openapi/bandwidth-media-api-openapi.yml
+- openapi/bandwidth-messages-api-openapi.yml
+- openapi/bandwidth-recordings-api-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: 'No MCP server was found. The pre-flight posted tools/list to /mcp on dashboard.bandwidth.com, messaging.bandwidth.com, api.bandwidth.com,
+  voice.bandwidth.com; verdict opaque (https://dashboard.bandwidth.com/mcp answered 401: the edge authenticates before it routes, which proves
+  nothing either way). Candidate tools below are derived from the 33 operation(s) in the provider''s own OpenAPI (33 listed); they describe what
+  a server WOULD expose, not one that exists.'
+tools:
+- name: create_call
+  operationId: createCall
+  method: POST
+  path: /accounts/{accountId}/calls
+  description: Create a call
+- name: list_conferences
+  operationId: listConferences
+  method: GET
+  path: /accounts/{accountId}/conferences
+  description: List conferences
+- name: list_notification_recipients
+  operationId: listNotificationRecipients
+  method: GET
+  path: /accounts/{accountId}/e911s/notificationRecipients
+  description: List emergency notification recipients
+- name: list_endpoints
+  operationId: listEndpoints
+  method: GET
+  path: /accounts/{accountId}/e911s
+  description: List E911 endpoints
+- name: list_locations
+  operationId: listLocations
+  method: GET
+  path: /accounts/{accountId}/e911s/locations
+  description: List E911 locations
+- name: list_media
+  operationId: listMedia
+  method: GET
+  path: /users/{accountId}/media
+  description: List media files
+- name: create_message
+  operationId: createMessage
+  method: POST
+  path: /users/{accountId}/messages
+  description: Send a message
+- name: get_call_recordings
+  operationId: getCallRecordings
+  method: GET
+  path: /accounts/{accountId}/calls/{callId}/recordings
+  description: List call recordings
+- name: get_call
+  operationId: getCall
+  method: GET
+  path: /accounts/{accountId}/calls/{callId}
+  description: Get call information
+- name: get_conference
+  operationId: getConference
+  method: GET
+  path: /accounts/{accountId}/conferences/{conferenceId}
+  description: Get conference information
+- name: create_notification_recipient
+  operationId: createNotificationRecipient
+  method: POST
+  path: /accounts/{accountId}/e911s/notificationRecipients
+  description: Create a notification recipient
+- name: create_endpoint
+  operationId: createEndpoint
+  method: POST
+  path: /accounts/{accountId}/e911s
+  description: Create an E911 endpoint
+- name: create_location
+  operationId: createLocation
+  method: POST
+  path: /accounts/{accountId}/e911s/locations
+  description: Create an E911 location
+- name: upload_media
+  operationId: uploadMedia
+  method: PUT
+  path: /users/{accountId}/media/{mediaName}
+  description: Upload a media file
+- name: list_messages
+  operationId: listMessages
+  method: GET
+  path: /users/{accountId}/messages
+  description: List messages
+- name: get_call_recording
+  operationId: getCallRecording
+  method: GET
+  path: /accounts/{accountId}/calls/{callId}/recordings/{recordingId}
+  description: Get a specific recording
+- name: update_call
+  operationId: updateCall
+  method: POST
+  path: /accounts/{accountId}/calls/{callId}
+  description: Update a call
+- name: update_conference
+  operationId: updateConference
+  method: POST
+  path: /accounts/{accountId}/conferences/{conferenceId}
+  description: Update a conference
+- name: get_endpoint
+  operationId: getEndpoint
+  method: GET
+  path: /accounts/{accountId}/e911s/{endpointId}
+  description: Get E911 endpoint details
+- name: get_location
+  operationId: getLocation
+  method: GET
+  path: /accounts/{accountId}/e911s/locations/{locationId}
+  description: Get E911 location details
+- name: get_media
+  operationId: getMedia
+  method: GET
+  path: /users/{accountId}/media/{mediaName}
+  description: Download a media file
+- name: delete_call_recording
+  operationId: deleteCallRecording
+  method: DELETE
+  path: /accounts/{accountId}/calls/{callId}/recordings/{recordingId}
+  description: Delete a recording
+- name: update_conference_member
+  operationId: updateConferenceMember
+  method: PUT
+  path: /accounts/{accountId}/conferences/{conferenceId}/members/{memberId}
+  description: Update a conference member
+- name: update_endpoint
+  operationId: updateEndpoint
+  method: PUT
+  path: /accounts/{accountId}/e911s/{endpointId}
+  description: Update an E911 endpoint
+- name: update_location
+  operationId: updateLocation
+  method: PUT
+  path: /accounts/{accountId}/e911s/locations/{locationId}
+  description: Update an E911 location
+- name: delete_media
+  operationId: deleteMedia
+  method: DELETE
+  path: /users/{accountId}/media/{mediaName}
+  description: Delete a media file
+- name: get_call_recording_media
+  operationId: getCallRecordingMedia
+  method: GET
+  path: /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media
+  description: Download recording media
+- name: get_conference_recordings
+  operationId: getConferenceRecordings
+  method: GET
+  path: /accounts/{accountId}/conferences/{conferenceId}/recordings
+  description: List conference recordings
+- name: delete_endpoint
+  operationId: deleteEndpoint
+  method: DELETE
+  path: /accounts/{accountId}/e911s/{endpointId}
+  description: Delete an E911 endpoint
+- name: delete_location
+  operationId: deleteLocation
+  method: DELETE
+  path: /accounts/{accountId}/e911s/locations/{locationId}
+  description: Delete an E911 location
+- name: create_recording_transcription
+  operationId: createRecordingTranscription
+  method: POST
+  path: /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription
+  description: Transcribe a recording
+- name: get_recording_transcription
+  operationId: getRecordingTranscription
+  method: GET
+  path: /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription
+  description: Get recording transcription
+- name: list_account_recordings
+  operationId: listAccountRecordings
+  method: GET
+  path: /accounts/{accountId}/recordings
+  description: List account recordings
