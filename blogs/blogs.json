@@ -2,6 +2,13 @@
   "repo": "bandwidth",
   "feeds": [
     {
+      "source": "https://www.bandwidth.com/blog/",
+      "feed_url": "https://www.bandwidth.com/blog/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://app.bandwidth.com/signup",
       "feed_url": "https://app.bandwidth.com/signup",
       "title": "",
@@ -16,7 +23,7 @@
       "method": "feed"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 1,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
