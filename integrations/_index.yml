@@ -54,7 +54,7 @@
   type: marketplace
   marketplace: pipedream-components
   channel: open-source-node
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/bandwidth
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/bandwidth
   source: edge
   relationship: ipaas-bridge
   contract_reference:
@@ -71,6 +71,19 @@
     actions: true
     sources: true
     builder: Pipedream repo (component)
+  status: not-a-workflow
+  arazzo: null
+- slug: bandwidth-genesys-own
+  label: Genesys (own)
+  partner: genesys
+  partner_name: Genesys (own)
+  category: telephonyAndTechnology
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appfoundry.genesys.com/filter/genesyscloud/listing/3735d3b5-8f4d-49d8-8b4c-bc6b85e5f688
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
 - slug: bandwidth-zoom-own

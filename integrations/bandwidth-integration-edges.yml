@@ -48,7 +48,7 @@ edges:
   channel: open-source-node
   relationship: ipaas-bridge
   direction: third-party
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/bandwidth
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/bandwidth
   category: null
   contract_reference:
     register: Pipedream components (PipedreamHQ/pipedream components/)
@@ -66,6 +66,29 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Genesys (own)
+  partner: genesys
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appfoundry.genesys.com/filter/genesyscloud/listing/3735d3b5-8f4d-49d8-8b4c-bc6b85e5f688
+  mirror_of: genesys/integrations/genesys-integration-edges.yml
+  apps:
+  - Bandwidth CCaaS Integration for Genesys
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: telephonyAndTechnology
+  publisher_verified:
+  - attestation:ccp
+  - attestation:gdpr
+  - attestation:hipaa
+  - attestation:iso
+  - attestation:soc2
 - partner_name: Zoom (own)
   partner: zoom
   partner_match: mirror
@@ -86,7 +109,9 @@ edges:
 generated: '2026-10-12'
 method: searched
 checked:
+- genesys/integrations/genesys-integration-edges.yml
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 - https://zapier.com/api/v4/apps/
 - zoom/integrations/zoom-integration-edges.yml
 source:
