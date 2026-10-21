@@ -106,6 +106,37 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Zoom app
+- partner_name: Zoom Partner Program
+  partner: zoom
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://partner.zoom.com/solutions/bandwidth/
+  category: Zoom technology partner
+  partner_tier:
+  - Cloud Peering
+  contract_reference:
+    register: Zoom Partner Solutions (partner.zoom.com/solutions; /wp-json/wp/v2/isvsolution)
+    standard: Zoom Partner Program
+    spec_file: null
+    role: zoom-technology-partner
+    registered_name: Bandwidth
+    register_id: https://partner.zoom.com/solutions/bandwidth/
+    matched_domain: bandwidth.com
+    matched_by: domain
+    identity_source: a link on the partner page to the partner's own site (name-gated)
+    signal_note: 'participation only: partner type / program tier is partner_tier, never counted; no Zoom certification
+      is printed on the register, so no certified_products'
+    detected_by: sweep-zoom-app-marketplace.py
+    detected: '2026-10-21'
+    context:
+      products:
+      - Contact Center
+      - Phone
+  detected_by: sweep-zoom-app-marketplace.py
+  first_seen: '2026-10-21'
 generated: '2026-10-12'
 method: searched
 checked:
@@ -114,6 +145,13 @@ checked:
 - https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 - https://zapier.com/api/v4/apps/
 - zoom/integrations/zoom-integration-edges.yml
+- https://marketplace.zoom.us/
+- https://marketplace.zoom.us/api/v1/apps/search
+- https://partner.zoom.com/partner-locator/
+- https://partner.zoom.com/solutions/
+- https://partner.zoom.com/wp-json/wp/v2/isvsolution
+- https://partner.zoom.com/wp-json/wp/v2/partner
+- https://partners.zoom.us/
 source:
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://zapier.com/api/v4/apps/
