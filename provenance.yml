@@ -12,6 +12,9 @@ artifacts:
   asyncapi/bandwidth-voice-events-asyncapi.yml:
     method: unknown
     evidence: no authorship recorded
+  asyncapi/bandwidth-webhooks.yml:
+    method: searched
+    evidence: declared in the artifact
   authentication/bandwidth-authentication.yml:
     method: derived
     evidence: declared in the artifact
@@ -144,6 +147,15 @@ artifacts:
   collections/bandwidth-voice-api.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
+  conformance/bandwidth-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/bandwidth-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/bandwidth-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/bandwidth-call-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -312,16 +324,76 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/bandwidth-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/bandwidth-integration-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/bandwidth-context.jsonld:
     method: unknown
     evidence: no authorship recorded
   json-schema/bandwidth-call-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/bandwidth-conference-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-create-call-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-create-message-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-endpoint-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-endpoint-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-location-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-location-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-media-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-message-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/bandwidth-message-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/bandwidth-notification-recipient-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-notification-recipient-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/bandwidth-phone-number-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-recording-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-transcription-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-transcription-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-update-call-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-update-conference-member-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/bandwidth-update-conference-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/emergency-calling-endpoint-list-response-schema.json:
@@ -639,127 +711,7 @@ artifacts:
   json-structure/voice-update-conference-request-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -843,9 +795,30 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  llms/bandwidth-llms-provenance.yml:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
   llms/bandwidth-llms.txt:
     method: searched
     evidence: 'derive-llms-provenance.py: harvested'
+  mcp/bandwidth-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/_original/bandwidth-emergency-calling-api-openapi.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
@@ -882,6 +855,9 @@ artifacts:
   openapi/bandwidth-recordings-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  packages/bandwidth-packages.yml:
+    method: unknown
+    evidence: no authorship recorded
   plans/bandwidth-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact
@@ -942,10 +918,16 @@ artifacts:
   rate-limits/bandwidth-rate-limits.yml:
     method: generated
     evidence: declared in the artifact
+  regulatory/bandwidth-regulatory-posture.yml:
+    method: unknown
+    evidence: no authorship recorded
   rules/bandwidth-asyncapi-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/bandwidth-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/bandwidth-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/bandwidth-spectral-rules.yml:
@@ -960,6 +942,51 @@ artifacts:
   security/bandwidth-vulnerability-disclosure.yml:
     method: searched
     evidence: declared in the artifact
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/bandwidth-create-call.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/bandwidth-manage-conferences.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/bandwidth-manage-e911-endpoint.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/bandwidth-recordings-download-and-transcribe.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/bandwidth-send-and-list-messages.md:
+    method: generated
+    evidence: declared in the artifact
+  vendors/bandwidth-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
   vocabulary/bandwidth-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/bandwidth-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  well-known/bandwidth-api-oauth-protected-resource.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/bandwidth-api-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/bandwidth-community-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/bandwidth-dashboard-oauth-protected-resource.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/bandwidth-dashboard-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/bandwidth-status-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/bandwidth-well-known.yml:
     method: unknown
     evidence: no authorship recorded
