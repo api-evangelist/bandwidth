@@ -1,4 +1,4 @@
-# Bandwidth (bandwidth)
+# Bandwidth
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,184 +66,314 @@
 
 Bandwidth is a leading cloud-based communications platform providing voice, messaging, emergency calling, phone number management, multi-factor authentication, and toll-free verification APIs. Built on Bandwidth's own Tier 1 network, the platform delivers enterprise-grade reliability for CPaaS applications.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bandwidth/refs/heads/main/apis.yml)
+**Areas:** Communications · CPaaS · Voice · Messaging · Telephony · SMS · MFA · Telecommunications
 
-## Tags
+## Bandwidth on APIs.io
 
-- Communications
-- CPaaS
-- Voice
-- Messaging
-- Telephony
-- SMS
-- MFA
+Everything profiled for Bandwidth is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bandwidth/](https://apis.io/providers/bandwidth/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (8)
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+- [Bandwidth Calls API](https://apis.io/apis/bandwidth/bandwidth-calls-api/) — Create, retrieve, and manage phone calls. Supports outbound call creation, call state queries, and in-progress call modifications using BXML or redirect URLs.
+- [Bandwidth Conferences API](https://apis.io/apis/bandwidth/bandwidth-conferences-api/) — Create and manage multi-party conference calls. Supports adding and removing members, muting, holding, and playing audio to conferences.
+- [Bandwidth Emergency Notification Recipients API](https://apis.io/apis/bandwidth/bandwidth-emergency-notification-recipients-api/) — Configure notification recipients who receive alerts when 911 calls are made from your endpoints.
+- [Bandwidth Endpoints API](https://apis.io/apis/bandwidth/bandwidth-endpoints-api/) — Manage 911 endpoints that represent end users of your service. Endpoints are identified by Alternate End User IDs (AEUIs) and are associated with locations…
+- [Bandwidth Locations API](https://apis.io/apis/bandwidth/bandwidth-locations-api/) — Provision and manage physical locations (addresses) for 911 emergency services routing. Locations are validated against the Master Street Address Guide…
+- [Bandwidth Media API](https://apis.io/apis/bandwidth/bandwidth-media-api/) — Upload, retrieve, and manage media files for use in MMS messages. Supports files up to 3.75 MB with 48-hour retention.
+- [Bandwidth Messages API](https://apis.io/apis/bandwidth/bandwidth-messages-api/) — Send and retrieve SMS and MMS messages. Supports single and group messaging, delivery receipts, and message history queries.
+- [Bandwidth Recordings API](https://apis.io/apis/bandwidth/bandwidth-recordings-api/) — Manage call recordings including retrieval of recording metadata, audio files, and transcription of recorded audio content.
 
-## APIs
+### Published properties
 
-### Bandwidth Voice API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The Bandwidth Voice API enables developers to programmatically make and receive phone calls, manage call recordings, and create multi-party conferences. It supports advanced call control features including call transfers, bridging, DTMF detection, and text-to-speech. The API uses BXML (Bandwidth XML) verbs for call flow control and provides webhooks for real-time event notifications on call state changes.
+#### AsyncAPI (3)
 
-- **Human URL:** [https://dev.bandwidth.com/docs/voice/](https://dev.bandwidth.com/docs/voice/)
-- **Base URL:** `https://voice.bandwidth.com/api/v2`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Bandwidth Messaging Events](https://apis.io/asyncapis/bandwidth/bandwidth-messaging-events-asyncapi/)
+- [Bandwidth Voice Events](https://apis.io/asyncapis/bandwidth/bandwidth-voice-events-asyncapi/)
+- [Bandwidth Webhooks](https://apis.io/asyncapis/bandwidth/bandwidth-webhooks/)
 
-- Calls
-- Conferences
-- CPaaS
-- Recordings
-- Telephony
-- Voice
+#### Event channels (15)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://dev.bandwidth.com/docs/voice/)
-- [OpenAPI](openapi/bandwidth-voice-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bandwidth-voice-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bandwidth-voice-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/bandwidth-voice-events-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+- [/messaging/inbound](https://apis.io/channels/bandwidth/messaging-inbound/)
+- [/messaging/status](https://apis.io/channels/bandwidth/messaging-status/)
+- [/voice/answer](https://apis.io/channels/bandwidth/voice-answer/)
+- [/voice/conferenceCompleted](https://apis.io/channels/bandwidth/voice-conferencecompleted/)
+- [/voice/conferenceCreated](https://apis.io/channels/bandwidth/voice-conferencecreated/)
+- [/voice/conferenceMemberExit](https://apis.io/channels/bandwidth/voice-conferencememberexit/)
+- [/voice/conferenceMemberJoin](https://apis.io/channels/bandwidth/voice-conferencememberjoin/)
+- [/voice/disconnect](https://apis.io/channels/bandwidth/voice-disconnect/)
+- [/voice/gather](https://apis.io/channels/bandwidth/voice-gather/)
+- [/voice/initiate](https://apis.io/channels/bandwidth/voice-initiate/)
+- [/voice/recordingComplete](https://apis.io/channels/bandwidth/voice-recordingcomplete/)
+- [/voice/redirect](https://apis.io/channels/bandwidth/voice-redirect/)
+- [/voice/transcriptionAvailable](https://apis.io/channels/bandwidth/voice-transcriptionavailable/)
+- [/voice/transferAnswer](https://apis.io/channels/bandwidth/voice-transferanswer/)
+- [/voice/transferDisconnect](https://apis.io/channels/bandwidth/voice-transferdisconnect/)
 
-### Bandwidth Messaging API
+#### GraphQL (1)
 
-The Bandwidth Messaging API allows developers to send and receive SMS and MMS messages programmatically. It supports both toll-free and local number messaging, group messaging, and application-to-person (A2P) messaging workflows. The API provides delivery receipts via webhooks, message status tracking, and media management for MMS attachments. Bandwidth operates its own tier-1 network, providing direct carrier connectivity for reliable message delivery.
+GraphQL schemas.
 
-- **Human URL:** [https://dev.bandwidth.com/docs/messaging/](https://dev.bandwidth.com/docs/messaging/)
-- **Base URL:** `https://messaging.bandwidth.com/api/v2`
+- [Moved to /providers/bandwidth/](https://apis.io/graphqls/bandwidth/bandwidth-graphql/)
 
-#### Tags
+#### MCP servers (1)
 
-- CPaaS
-- Messaging
-- MMS
-- SMS
-- Text Messaging
+Model Context Protocol servers that expose the API to agents.
 
-#### Properties
+- [bandwidth-mcp.yml](https://apis.io/servers/bandwidth/bandwidth-mcp-yml/)
 
-- [Documentation](https://dev.bandwidth.com/docs/messaging/)
-- [OpenAPI](openapi/bandwidth-messaging-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bandwidth-messaging-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bandwidth-messaging-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/bandwidth-messaging-events-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+#### Agentic access (1)
 
-### Bandwidth Phone Numbers API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Bandwidth Phone Numbers API provides programmatic access to search, order, and manage phone numbers across the United States and Canada. Developers can search for available local, toll-free, and short code numbers, initiate number porting requests, and configure number features such as CNAM, directory listings, and line features. The API also supports managing sites, SIP peers, and number assignments for organizing telephony resources within an account.
+- [Bandwidth Agentic Access](https://apis.io/agentic-access/bandwidth/bandwidth-agentic-access/)
 
-- **Human URL:** [https://dev.bandwidth.com/docs/numbers/](https://dev.bandwidth.com/docs/numbers/)
-- **Base URL:** `https://dashboard.bandwidth.com/api`
+#### JSON Schema (71)
 
-#### Tags
+The data models the API reads and writes.
 
-- Number Management
-- Phone Numbers
-- Porting
-- Telecom
-- Telephone Numbers
+- [Bandwidth Call](https://apis.io/schemas/bandwidth/bandwidth-call/)
+- [Conference](https://apis.io/schemas/bandwidth/bandwidth-conference/)
+- [CreateCallRequest](https://apis.io/schemas/bandwidth/bandwidth-create-call-request/)
+- [CreateMessageRequest](https://apis.io/schemas/bandwidth/bandwidth-create-message-request/)
+- [Endpoint](https://apis.io/schemas/bandwidth/bandwidth-endpoint/)
+- [EndpointListResponse](https://apis.io/schemas/bandwidth/bandwidth-endpoint-list-response/)
+- [Location](https://apis.io/schemas/bandwidth/bandwidth-location/)
+- [LocationListResponse](https://apis.io/schemas/bandwidth/bandwidth-location-list-response/)
+- [Media](https://apis.io/schemas/bandwidth/bandwidth-media/)
+- [Bandwidth Message](https://apis.io/schemas/bandwidth/bandwidth-message/)
+- [MessageList](https://apis.io/schemas/bandwidth/bandwidth-message-list/)
+- [NotificationRecipient](https://apis.io/schemas/bandwidth/bandwidth-notification-recipient/)
+- [NotificationRecipientListResponse](https://apis.io/schemas/bandwidth/bandwidth-notification-recipient-list-response/)
+- [Bandwidth Phone Number](https://apis.io/schemas/bandwidth/bandwidth-phone-number/)
+- [Recording](https://apis.io/schemas/bandwidth/bandwidth-recording/)
+- [Transcription](https://apis.io/schemas/bandwidth/bandwidth-transcription/)
+- [TranscriptionRequest](https://apis.io/schemas/bandwidth/bandwidth-transcription-request/)
+- [UpdateCallRequest](https://apis.io/schemas/bandwidth/bandwidth-update-call-request/)
+- [UpdateConferenceMemberRequest](https://apis.io/schemas/bandwidth/bandwidth-update-conference-member-request/)
+- [UpdateConferenceRequest](https://apis.io/schemas/bandwidth/bandwidth-update-conference-request/)
+- [Endpoint](https://apis.io/schemas/bandwidth/emergency-calling-endpoint/)
+- [EndpointListResponse](https://apis.io/schemas/bandwidth/emergency-calling-endpoint-list-response/)
+- [Location](https://apis.io/schemas/bandwidth/emergency-calling-location/)
+- [LocationListResponse](https://apis.io/schemas/bandwidth/emergency-calling-location-list-response/)
+- [NotificationRecipient](https://apis.io/schemas/bandwidth/emergency-calling-notification-recipient/)
+- …and 46 more published on APIs.io
 
-#### Properties
+#### JSON Structure (54)
 
-- [Documentation](https://dev.bandwidth.com/docs/numbers/)
-- [OpenAPI](openapi/bandwidth-phone-numbers-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bandwidth-phone-numbers-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bandwidth-phone-numbers-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### Bandwidth Multi-Factor Authentication API
+- [Bandwidth Call Structure](https://apis.io/json-structure/bandwidth/bandwidth-call-structure/)
+- [Bandwidth Message Structure](https://apis.io/json-structure/bandwidth/bandwidth-message-structure/)
+- [Bandwidth Phone Number Structure](https://apis.io/json-structure/bandwidth/bandwidth-phone-number-structure/)
+- [Emergency Calling Endpoint List Response Structure](https://apis.io/json-structure/bandwidth/emergency-calling-endpoint-list-response-structure/)
+- [Emergency Calling Endpoint Structure](https://apis.io/json-structure/bandwidth/emergency-calling-endpoint-structure/)
+- [Emergency Calling Location List Response Structure](https://apis.io/json-structure/bandwidth/emergency-calling-location-list-response-structure/)
+- [Emergency Calling Location Structure](https://apis.io/json-structure/bandwidth/emergency-calling-location-structure/)
+- [Emergency Calling Notification Recipient List Response Structure](https://apis.io/json-structure/bandwidth/emergency-calling-notification-recipient-list-response-structure/)
+- [Emergency Calling Notification Recipient Structure](https://apis.io/json-structure/bandwidth/emergency-calling-notification-recipient-structure/)
+- [Messaging Create Message Request Structure](https://apis.io/json-structure/bandwidth/messaging-create-message-request-structure/)
+- [Messaging Error Structure](https://apis.io/json-structure/bandwidth/messaging-error-structure/)
+- [Messaging Media Structure](https://apis.io/json-structure/bandwidth/messaging-media-structure/)
+- [Messaging Message List Structure](https://apis.io/json-structure/bandwidth/messaging-message-list-structure/)
+- [Messaging Message Structure](https://apis.io/json-structure/bandwidth/messaging-message-structure/)
+- [Mfa Error Structure](https://apis.io/json-structure/bandwidth/mfa-error-structure/)
+- [Mfa Mfa Messaging Request Structure](https://apis.io/json-structure/bandwidth/mfa-mfa-messaging-request-structure/)
+- [Mfa Mfa Messaging Response Structure](https://apis.io/json-structure/bandwidth/mfa-mfa-messaging-response-structure/)
+- [Mfa Mfa Verify Request Structure](https://apis.io/json-structure/bandwidth/mfa-mfa-verify-request-structure/)
+- [Mfa Mfa Verify Response Structure](https://apis.io/json-structure/bandwidth/mfa-mfa-verify-response-structure/)
+- [Mfa Mfa Voice Request Structure](https://apis.io/json-structure/bandwidth/mfa-mfa-voice-request-structure/)
+- [Mfa Mfa Voice Response Structure](https://apis.io/json-structure/bandwidth/mfa-mfa-voice-response-structure/)
+- [Phone Numbers Address Structure](https://apis.io/json-structure/bandwidth/phone-numbers-address-structure/)
+- [Phone Numbers Available Number Structure](https://apis.io/json-structure/bandwidth/phone-numbers-available-number-structure/)
+- [Phone Numbers Available Numbers Response Structure](https://apis.io/json-structure/bandwidth/phone-numbers-available-numbers-response-structure/)
+- [Phone Numbers Disconnect Request Structure](https://apis.io/json-structure/bandwidth/phone-numbers-disconnect-request-structure/)
+- …and 29 more published on APIs.io
 
-The Bandwidth Multi-Factor Authentication API allows developers to generate and verify secure MFA codes delivered via voice calls or SMS messages. It leverages Bandwidth's Voice and Messaging APIs under the hood, handling token generation and management automatically. Developers can customize the code length, expiration time, and delivery message template. The API supports both one-time passcode delivery and verification in a simple two-step workflow.
+#### JSON-LD (1)
 
-- **Human URL:** [https://dev.bandwidth.com/docs/mfa/](https://dev.bandwidth.com/docs/mfa/)
-- **Base URL:** `https://mfa.bandwidth.com/api/v1`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Bandwidth Context](https://apis.io/jsonld/bandwidth/bandwidth-context/)
 
-- Authentication
-- MFA
-- Security
-- Two-Factor Authentication
-- Verification
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://dev.bandwidth.com/docs/mfa/)
-- [OpenAPI](openapi/bandwidth-mfa-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bandwidth-mfa-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bandwidth-mfa-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Bandwidth Vocabulary](https://apis.io/vocabularies/bandwidth/bandwidth-vocabulary/)
 
-### Bandwidth Emergency Calling API
+#### Examples (54)
 
-The Bandwidth Emergency Calling API provides programmatic access to provision and manage 911 endpoints and locations for emergency services routing. It supports Dynamic Location Routing (DLR) for real-time address validation and location updates, ensuring compliance with Kari's Law and RAY BAUM's Act requirements.
+Example requests and responses.
 
-- **Human URL:** [https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/](https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/)
-- **Base URL:** `https://dashboard.bandwidth.com/api`
+- [Bandwidth Call Example](https://apis.io/examples/bandwidth/bandwidth-call-example/)
+- [Bandwidth Message Example](https://apis.io/examples/bandwidth/bandwidth-message-example/)
+- [Bandwidth Phone Number Example](https://apis.io/examples/bandwidth/bandwidth-phone-number-example/)
+- [Emergency Calling Endpoint Example](https://apis.io/examples/bandwidth/emergency-calling-endpoint-example/)
+- [Emergency Calling Endpoint List Response Example](https://apis.io/examples/bandwidth/emergency-calling-endpoint-list-response-example/)
+- [Emergency Calling Location Example](https://apis.io/examples/bandwidth/emergency-calling-location-example/)
+- [Emergency Calling Location List Response Example](https://apis.io/examples/bandwidth/emergency-calling-location-list-response-example/)
+- [Emergency Calling Notification Recipient Example](https://apis.io/examples/bandwidth/emergency-calling-notification-recipient-example/)
+- [Emergency Calling Notification Recipient List Response Example](https://apis.io/examples/bandwidth/emergency-calling-notification-recipient-list-response-example/)
+- [Messaging Create Message Request Example](https://apis.io/examples/bandwidth/messaging-create-message-request-example/)
+- [Messaging Error Example](https://apis.io/examples/bandwidth/messaging-error-example/)
+- [Messaging Media Example](https://apis.io/examples/bandwidth/messaging-media-example/)
+- [Messaging Message Example](https://apis.io/examples/bandwidth/messaging-message-example/)
+- [Messaging Message List Example](https://apis.io/examples/bandwidth/messaging-message-list-example/)
+- [Mfa Error Example](https://apis.io/examples/bandwidth/mfa-error-example/)
+- [Mfa Mfa Messaging Request Example](https://apis.io/examples/bandwidth/mfa-mfa-messaging-request-example/)
+- [Mfa Mfa Messaging Response Example](https://apis.io/examples/bandwidth/mfa-mfa-messaging-response-example/)
+- [Mfa Mfa Verify Request Example](https://apis.io/examples/bandwidth/mfa-mfa-verify-request-example/)
+- [Mfa Mfa Verify Response Example](https://apis.io/examples/bandwidth/mfa-mfa-verify-response-example/)
+- [Mfa Mfa Voice Request Example](https://apis.io/examples/bandwidth/mfa-mfa-voice-request-example/)
+- [Mfa Mfa Voice Response Example](https://apis.io/examples/bandwidth/mfa-mfa-voice-response-example/)
+- [Phone Numbers Address Example](https://apis.io/examples/bandwidth/phone-numbers-address-example/)
+- [Phone Numbers Available Number Example](https://apis.io/examples/bandwidth/phone-numbers-available-number-example/)
+- [Phone Numbers Available Numbers Response Example](https://apis.io/examples/bandwidth/phone-numbers-available-numbers-response-example/)
+- [Phone Numbers Disconnect Request Example](https://apis.io/examples/bandwidth/phone-numbers-disconnect-request-example/)
+- …and 29 more published on APIs.io
 
-#### Tags
+#### Collections (39)
 
-- Compliance
-- E911
-- Emergency Services
-- Public Safety
+Postman and Open Collection request collections.
 
-#### Properties
+- [Bandwidth Emergency Calling Available Numbers API](https://apis.io/collections/bandwidth/open-bandwidth-available-numbers-api/)
+- [Bandwidth Emergency Calling Available Numbers Calls API](https://apis.io/collections/bandwidth/open-bandwidth-calls-api/)
+- [Bandwidth Emergency Calling Available Numbers Conferences API](https://apis.io/collections/bandwidth/open-bandwidth-conferences-api/)
+- [Bandwidth Emergency Calling Available Numbers Disconnects API](https://apis.io/collections/bandwidth/open-bandwidth-disconnects-api/)
+- [Bandwidth Emergency Calling API](https://apis.io/collections/bandwidth/open-bandwidth-emergency-calling-api/)
+- [Bandwidth Emergency Calling Available Numbers Emergency Notification Recipients API](https://apis.io/collections/bandwidth/open-bandwidth-emergency-notification-recipients-api/)
+- [Bandwidth Emergency Calling Available Numbers Endpoints API](https://apis.io/collections/bandwidth/open-bandwidth-endpoints-api/)
+- [Bandwidth Emergency Calling Available Numbers Locations API](https://apis.io/collections/bandwidth/open-bandwidth-locations-api/)
+- [Bandwidth Emergency Calling Available Numbers Media API](https://apis.io/collections/bandwidth/open-bandwidth-media-api/)
+- [Bandwidth Emergency Calling Available Numbers Messages API](https://apis.io/collections/bandwidth/open-bandwidth-messages-api/)
+- [Bandwidth Messaging API](https://apis.io/collections/bandwidth/open-bandwidth-messaging-api/)
+- [Bandwidth Emergency Calling Available Numbers MFA API](https://apis.io/collections/bandwidth/open-bandwidth-mfa-api/)
+- [Bandwidth Emergency Calling Available Numbers Number Features API](https://apis.io/collections/bandwidth/open-bandwidth-number-features-api/)
+- [Bandwidth Emergency Calling Available Numbers Orders API](https://apis.io/collections/bandwidth/open-bandwidth-orders-api/)
+- [Bandwidth Emergency Calling Available Numbers Phone Numbers API](https://apis.io/collections/bandwidth/open-bandwidth-phone-numbers-api/)
+- [Bandwidth Emergency Calling Available Numbers Port-Ins API](https://apis.io/collections/bandwidth/open-bandwidth-port-ins-api/)
+- [Bandwidth Emergency Calling Available Numbers Recordings API](https://apis.io/collections/bandwidth/open-bandwidth-recordings-api/)
+- [Bandwidth Emergency Calling Available Numbers SIP Peers API](https://apis.io/collections/bandwidth/open-bandwidth-sip-peers-api/)
+- [Bandwidth Emergency Calling Available Numbers Sites API](https://apis.io/collections/bandwidth/open-bandwidth-sites-api/)
+- [Bandwidth Emergency Calling Available Numbers Toll-Free Verification API](https://apis.io/collections/bandwidth/open-bandwidth-toll-free-verification-api/)
+- [Bandwidth Voice API](https://apis.io/collections/bandwidth/open-bandwidth-voice-api/)
+- [Bandwidth Emergency Calling Available Numbers API](https://apis.io/collections/bandwidth/postman-bandwidth-available-numbers-api/)
+- [Bandwidth Emergency Calling Available Numbers Calls API](https://apis.io/collections/bandwidth/postman-bandwidth-calls-api/)
+- [Bandwidth Emergency Calling Available Numbers Conferences API](https://apis.io/collections/bandwidth/postman-bandwidth-conferences-api/)
+- [Bandwidth Emergency Calling Available Numbers Disconnects API](https://apis.io/collections/bandwidth/postman-bandwidth-disconnects-api/)
+- …and 14 more published on APIs.io
 
-- [Documentation](https://dev.bandwidth.com/docs/emergency/emergencyCallingApi/)
-- [OpenAPI](openapi/bandwidth-emergency-calling-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bandwidth-emergency-calling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bandwidth-emergency-calling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (4)
 
-### Bandwidth Toll-Free Verification API
+Spectral rulesets for the provider's contracts.
 
-The Bandwidth Toll-Free Verification API enables developers to programmatically submit and manage toll-free number verification requests for A2P messaging compliance. It automates the verification submission process, allowing developers to view and update the verification status of their toll-free numbers.
+- [Bandwidth — asyncapi rules](https://apis.io/rules/bandwidth/bandwidth-asyncapi-spectral-rules/)
+- [Bandwidth — jsonschema rules](https://apis.io/rules/bandwidth/bandwidth-jsonschema-spectral-rules/)
+- [Bandwidth API Rules](https://apis.io/rules/bandwidth/bandwidth-rules/)
+- [Bandwidth API Rules](https://apis.io/rules/bandwidth/bandwidth-spectral-rules/)
 
-- **Human URL:** [https://dev.bandwidth.com/apis/messaging-apis/toll-free-verification/](https://dev.bandwidth.com/apis/messaging-apis/toll-free-verification/)
-- **Base URL:** `https://dashboard.bandwidth.com/api`
+#### Security (4)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- A2P
-- Messaging Compliance
-- Toll-Free
-- Verification
+- [Bandwidth Authentication](https://apis.io/security/bandwidth/bandwidth-authentication/)
+- [Bandwidth Domain Security](https://apis.io/security/bandwidth/bandwidth-domain-security/)
+- [Bandwidth Trust Center](https://apis.io/security/bandwidth/bandwidth-trust-center/)
+- [Bandwidth Vulnerability Disclosure](https://apis.io/security/bandwidth/bandwidth-vulnerability-disclosure/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://dev.bandwidth.com/apis/messaging-apis/toll-free-verification/)
-- [OpenAPI](openapi/bandwidth-toll-free-verification-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bandwidth-toll-free-verification-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bandwidth-toll-free-verification-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-## Common Properties
+- [Bandwidth Plans Pricing](https://apis.io/plans/bandwidth/bandwidth-plans-pricing/)
 
-- [GitHub Organization](https://github.com/Bandwidth)
-- [LinkedIn](https://www.linkedin.com/company/bandwidth-inc)
+#### Rate limits (1)
+
+Published request limits.
+
+- [Bandwidth Rate Limits](https://apis.io/rate-limits/bandwidth/bandwidth-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Bandwidth Finops](https://apis.io/finops/bandwidth/bandwidth-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.bandwidth.com/)
 - [Documentation](https://dev.bandwidth.com/)
-- [Sign Up](https://app.bandwidth.com/signup)
-- [Blog](https://www.bandwidth.com/blog/)
-- [Terms of Service](https://www.bandwidth.com/legal/)
-- [Privacy Policy](https://www.bandwidth.com/legal/privacy-policy/)
-- [Status Page](https://status.bandwidth.com/)
+- [Getting started](https://dev.bandwidth.com/docs/voice/programmable-voice/build-free-trial)
+- [Pricing](https://www.bandwidth.com/pricing/)
 - [Support](https://support.bandwidth.com/)
-- [SDK](https://dev.bandwidth.com/sdks/)
-- [Spectral Rules](rules/bandwidth-spectral-rules.yml)
-- [Vocabulary](vocabulary/bandwidth-vocabulary.yaml)
-- [JSON Schema](json-schema/bandwidth-call-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/bandwidth-message-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/bandwidth-phone-number-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/bandwidth-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Integrations](https://www.bandwidth.com/integrations/)
-- [L L Ms Txt](https://dev.bandwidth.com/llms.txt)
+- [Changelog](https://www.bandwidth.com/release-notes/)
+- [Blog](https://www.bandwidth.com/blog/)
+- [Security](https://www.bandwidth.com/security/)
+- [Compliance](https://www.bandwidth.com/security/)
+- [Terms of service](https://www.bandwidth.com/legal/)
+- [Privacy policy](https://www.bandwidth.com/legal/privacy-policy/)
+- [GitHub](https://github.com/Bandwidth)
+- [Status](https://status.bandwidth.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 61.0** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 82.1 |
+| Contract quality | 72.4 |
+| Contract governance | 31.8 |
+| Operational transparency | 60.5 |
+| Developer ergonomics | 45.8 |
+| Access clarity | 65.8 |
+
+**Agent readiness 34.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | documented (partial credit) |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 30.0** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bandwidth/](https://apis.io/providers/bandwidth/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bandwidth: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bandwidth/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
